@@ -1,0 +1,246 @@
+{include file="left.html"}
+<div id="page-wrapper">
+
+<div class="row">
+<div class="col-lg-12">
+    <h1 class="page-header"><a href="{$smarty.const.URL_ADMIN}?module={$url}&main=unsession" >
+    <i class="fa fa-home"></i> {$main_content}  </a></h1>
+</div>
+</div>
+
+<div class="row shows_insert" {if $id_edit}style="display:block"{else}style="display:none"{/if}>
+<div class="col-lg-12">
+<div class="panel panel-default">
+    <div class="panel-heading heading_title">
+        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.langcms_them} {$smarty.const.langcms_spsluong} 
+        <a><i class="fa fa-angle-double-right fa-fw"></i> {$rs_edit.news_id} : {$rs_edit.news_name} 
+        <i class="fa fa-angle-double-right fa-fw"></i> {$rs_edit.option_name} </a>
+    </div>
+    <div class="panel-body">
+    <form id="frm_admin" name="frm_admin" method="post"  action="{$smarty.const.URL_ADMIN}?module={$url}&main=insert{$url_edit}" >
+    <div class="col-lg-6">
+    <table class="table_insert">
+    <thead>
+    <tr>
+        <td align="right"><span>{$smarty.const.langcms_spsluong}</span></td>
+        <td><input type="text" class="check_input check_num ali_left" name="import_quantity"  id="import_quantity" value="" /></td> 
+    </tr>
+ 	<tr>
+        <td align="right" class="mmw_150"><span>{$smarty.const.langcms_spgnhap}</span></td>
+        <td ><input type="text" name="import_price"  id="import_price" value="{$rs_edit.price_import}" 
+        class="check_input auto_nume ali_left" data-v-max="9999999999" data-v-min="0" /> </td>
+    </tr>
+    <tr>
+        <td class="left"></td>
+        <td class="center">
+        <input type="hidden" name="option_id" value="{$rs_edit.option_id}" />
+        <input type="hidden" name="news_id" value="{$rs_edit.news_id}" />
+        <button type="submit" name="submit" id="submit" value="submit" class="bg_insert">{$smarty.const.langcms_themmoi}</button>
+        </td>
+    </tr>
+    </thead>  
+    </table>
+    </div>
+    <div class="col-lg-6">
+    <table class="table_insert">
+    <thead>
+      <tr>
+        <td >
+        {if $action_insert}
+        <textarea class="form-control" rows="3" name="import_note"  id="import_note" placeholder="Note..." ></textarea>
+        {/if}
+        </td>
+    </tr>
+      </thead>  
+    </table>
+    </div>
+    </form>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+<div class="row">
+<!--Search-->
+<div class="col-lg-5">
+    <form name="frm_search" method="post" action="{$smarty.const.URL_ADMIN}?module={$url}&main=search" class="search_text">
+    <div class="input-group custom-search-form">
+            <input type="text" class="form-control" placeholder="Search..." name="name_search" id="name_search" value="{$name_search}" >
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" name="submit" id="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+    </form> 
+</div>
+<div class="col-lg-2 click_right" style="float:right; text-align:right">
+<a href="{$smarty.const.URL_ADMIN}?module={$url}&main=unsession" class="bg_off" > <i class="fa fa-refresh"></i> Refresh</a> 
+</div>
+<!--Views-->    
+<div class="col-lg-12">
+<form name="frm_news" method="POST" >
+<div class="panel panel-default">
+<div class="panel-heading">
+    <div class="row">
+    <div class="col-lg-7 heading_title">
+        <i class="fa fa-windows"></i> {$main_content}  <strong>( {$numf} {$main_name} )</strong>
+    </div>  
+    <div class="col-lg-2 click_right"> 
+     <a href="{$smarty.const.URL_ADMINCMS}export/manages_export.php?{$url_category}{$url_search}{$url_shops}{$url_order}{$url_displays}"
+      target="_blank" class="br_off"> <i class="fa fa-file-text"></i> {$smarty.const.langcms_xuatfile}</a>
+     </div>
+    <div class="col-lg-3 click_right">
+    
+    <select class="select" onchange="MM_jumpMenu('parent',this,0)">
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_order}{$url_limit}">{$smarty.const.langcms_chienthi}</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_order}{$url_limit}&displays=quality_import" 
+            {if $displays eq quality_import}selected{/if}>{$smarty.const.langcms_nhapkho}</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_order}{$url_limit}&displays=quality_output"
+            {if $displays eq quality_output}selected{/if}>{$smarty.const.langcms_xuatban}</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_order}{$url_limit}&displays=ton_kho"
+            {if $displays eq ton_kho}selected{/if}>{$smarty.const.langcms_tonkho}</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_order}{$url_limit}&displays=quality_sell"
+            {if $displays eq quality_sell}selected{/if}>{$smarty.const.langcms_chuyendi}</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_order}{$url_limit}&displays=kho_tam"
+            {if $displays eq kho_tam}selected{/if}>{$smarty.const.langcms_khotam}</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_order}{$url_limit}&displays=quality_new"
+            {if $displays eq quality_new}selected{/if}>{$smarty.const.langcms_xacnhan}</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_order}{$url_limit}&displays=can_nhap"
+            {if $displays eq can_nhap}selected{/if}>{$smarty.const.langcms_cannhap}</option>
+     </select>
+    </div>
+    </div>
+</div>
+
+<div class="panel-body">
+    <ul class="table_ul">
+        <li class="lileft">
+        <select class="limit_option" onchange="MM_jumpMenu('parent',this,0)" >
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_displays}{$url_order}&limit=10" {if $limit eq 20 }selected{/if}>10</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_displays}{$url_order}&limit=20" {if $limit eq 20 }selected{/if}>20</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_displays}{$url_order}&limit=50" {if $limit eq 50 }selected{/if}>50</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_displays}{$url_order}&limit=100" {if $limit eq 100 }selected{/if}>100</option>
+            <option value="{$url_views}{$url_category}{$url_shops}{$url_displays}{$url_order}&limit=200" {if $limit eq 200 }selected{/if}>200</option>
+        </select>
+        </li>
+    	<li class="lileft" style="width:40%"><div class="paging_news">{$paging}</div></li>
+        <li>
+           <select class="cate_option" onchange="MM_jumpMenu('parent',this,0)" >
+            <option value="{$url_views}{$url_shops}{$url_order}{$url_limit}{$url_displays}">{$smarty.const.langcms_loctheo}</option>
+            {foreach from=$tree_select name=val  item=val}
+            <option value="{$url_views}{$url_shops}{$url_order}{$url_limit}{$url_displays}&category={$val.category_id}" 
+            {if $val.category_id eq $category }selected="selected"{/if}> {$val.category_name}</option>
+            {/foreach}
+            </select>
+        </li>
+        <li style="margin-right:10px">
+            <select class="cate_option" onchange="MM_jumpMenu('parent',this,0)">
+            <option value="{$url_views}{$url_category}{$url_displays}{$url_order}{$url_limit}">{$smarty.const.langcms_loccc}</option>
+            {foreach from=$rs_shop item="rs_shop" name="rs_shop"}
+            <option value="{$url_views}{$url_category}{$url_displays}{$url_order}{$url_limit}&shops={$rs_shop.id}" {if $rs_shop.id eq $shops}selected{/if}>
+            {$rs_shop.shopname}</option>
+            {/foreach}
+            </select>
+        </li>
+
+    </ul>
+    <table class="table_views table-striped table-hover">
+    <thead>
+        <tr class="two">
+          <td align="center"> ID
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=id_tem&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=id_tem&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td>{$smarty.const.langcms_spten}
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=news_id&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=news_id&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td><strong>{$smarty.const.langcms_nhapkho}</strong>
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=quality_import&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=quality_import&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+		  <td><strong>{$smarty.const.langcms_xuatban}</strong>
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=quality_output&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=quality_output&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td><strong>{$smarty.const.langcms_tonkho}</strong>
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=ton_kho&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=ton_kho&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          
+		  <td><strong>{$smarty.const.langcms_chuyendi}</strong>
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=quality_sell&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=quality_sell&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td><strong>{$smarty.const.langcms_khotam}</strong>
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=kho_tam&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=kho_tam&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          
+		  <td><strong>{$smarty.const.langcms_xacnhan}</strong>
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=quality_new&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=quality_new&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td><strong>{$smarty.const.langcms_cannhap}</strong>
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=can_nhap&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}&order=can_nhap&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          
+        </tr>
+    </thead>
+    <tbody >
+        {foreach from=$rs name=rs  item=rs}
+        {if $rs.$displays gt '0' }
+          <tr>
+          <td align="center" class="mw_50">{$rs.id_tem}</td>
+          <td style="line-height:19px">
+          <strong>Code: {$rs.news_id} - {$rs.news_name_new}</strong><br />
+          {$smarty.const.langcms_spnhacc}: {$rs.shopname}<br />
+          {$smarty.const.langcms_cartchon}: <strong>{$rs.option_name} </strong>
+          {if $action_insert}
+          <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}{$url_displays}{$url_order}&id_edit={$rs.id_tem}">
+          <i class="fa fa-angle-double-right fa-fw"></i> {$smarty.const.langcms_nhapkho}</a>
+          {/if}
+          </td>
+          <td align="center">{$rs.quality_import}</td>
+          <td align="center">{$rs.quality_output}</td>
+          <td align="center"><strong>{$rs.ton_kho}</strong></td>
+          
+          <td align="center">{$rs.quality_sell}</td>
+          <td align="center">{$rs.kho_tam}</td>
+          
+          <td align="center">{$rs.quality_new}</td>
+          <td align="center">{$rs.can_nhap}</td>
+        {/if}
+        {/foreach}
+    </tbody>
+    </table>  
+</div>
+</div>
+</form>  
+</div>
+</div>
+</div>
+

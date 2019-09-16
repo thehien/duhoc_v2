@@ -1,0 +1,335 @@
+{include file="$themes/header.html"}
+<link rel="stylesheet"  href="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/css/lightslider.css"/>
+{literal}
+<style>
+    ul{
+        list-style: none outside none;
+        padding-left: 0;
+        margin: 0;
+    }
+    .demo .item{
+        margin-bottom: 10px;
+    }
+    .content-slider li{
+        background-color: #ed3020;
+        text-align: center;
+        color: #FFF;
+    }
+    .content-slider h3 {
+        margin: 0;
+        padding: 70px 0;
+    }
+    .demo{
+        width: 100%;
+    }
+</style>
+
+<script>
+    $(document).ready(function() {
+        $('#image-gallery').lightSlider({
+            gallery:true,
+            item:1,
+            thumbItem:9,
+            slideMargin: 0,
+            speed:500,
+            auto:true,
+            loop:true,
+            onSliderLoad: function() {
+                $('#image-gallery').removeClass('cS-hidden');
+            }
+        });
+    });
+</script>
+{/literal}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/js/lightslider.js"></script>
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            {if $isLogin}
+                {include file="$themes/top-account.html"}
+            {else}
+                {include file="$themes/top.html"}
+            {/if}
+        </div>
+    </section>
+
+</div>
+
+<section class="find-job section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 no-padding fw-mgt30 fw-mgb20">
+                <div align="center" class="col-md-6 no-padding">
+                    <div align="left" class="col-md-12 fw-mgb10">
+                        <h2 class="text-cl-index">{$content_index[0].category_name}</h2>
+                        <div class="fw-border2"></div>
+                    </div>
+                    <div class="col-md-12 fw-mgb10 fw-mgt10 text-justify">
+                        <p class="fw-fs-12">
+                            {$content_index[0].category_content}
+                        </p>
+                    </div>
+
+                </div>
+
+                <div align="center" class="col-md-6 no-padding fw-mgt45">
+                    <div class="demo">
+                        <div class="item">
+                            <div class="clearfix" style="max-width:474px;">
+                                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                                    <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-1.jpg">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-1.jpg" />
+                                    </li>
+                                    <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-2.jpg">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-2.jpg" />
+                                    </li>
+                                    <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-3.jpg">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-3.jpg" />
+                                    </li>
+                                    <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-4.jpg">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-4.jpg" />
+                                    </li>
+                                    <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-5.jpg">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-5.jpg" />
+                                    </li>
+                                    <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-6.jpg">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-6.jpg" />
+                                    </li>
+                                    <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-7.jpg">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-7.jpg" />
+                                    </li>
+                                    <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-8.jpg">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-8.jpg" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class='col-md-12 dotted-spaced'></div>
+        </div>
+    </div>
+</section>
+
+
+<section class="find-job section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 no-padding fw-mgt20 fw-mgb20">
+                <div align="center" class="col-md-6" style="float:left">
+                    <section>
+                        <div align="center">
+                            <img class="img-thumbnail img-rounded" src="http://localhost/duhoc_v2/upload/categorys/0908-img_2.jpg" alt="">
+                        </div>
+                    </section>
+                </div>
+
+                <div align="center" class="col-md-6" style="float:right">
+                    <div align="left" class="col-md-12 fw-mgb10">
+                        <h2 class="text-cl-index">Du học hè</h2>
+                        <div class="fw-border2"></div>
+                    </div>
+                    <div class="col-md-12 fw-mgb10 text-justify">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteursint occaecat cupidatat norin proident,
+                    </div>
+
+                    <div align="left" class="col-md-12 fw-mgb10">
+                        <h2 class="text-cl-index">Sứ mệnh</h2>
+                        <div class="fw-border2"></div>
+                    </div>
+                    <div class="col-md-12 fw-mgb10 text-justify">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteursint occaecat cupidatat norin proident,
+                    </div>
+
+                    <div align="left" class="col-md-12 fw-mgb10">
+                        <h2 class="text-cl-index">Giá trị cốt lõi</h2>
+                        <div class="fw-border2"></div>
+                    </div>
+                    <div class="col-md-12 text-justify">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteursint occaecat cupidatat norin proident,
+                    </div>
+
+                </div>
+            </div>
+            <div class='col-md-12 dotted-spaced'></div>
+        </div>
+    </div>
+</section>
+
+
+<section class="find-job section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 no-padding fw-mgb20 text-center">
+                <h2 class="text-cl-index">AMV - Tư Vấn Tuyển Sinh Quốc Tế</h2>
+            </div>
+
+            <div class="col-md-6 fw-mgb10 text-justify">
+                <div class="fw-mgb10"><h3 class="text-cl-index">Du học dài hạn</h3></div>
+                <div class="fw-mgb10">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                    irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteursint occaecat cupidatat norin proident
+                </div>
+            </div>
+
+            <div class="col-md-6 fw-mgb10 text-justify fw-mgt20">
+                {foreach from=$list_service_menu item="val" name="val"}
+                    <div class="col-md-4 no-padding">
+                        <div class="duhoc_border text-center" style="margin: 5px;">
+                            {$val.service_name}
+                        </div>
+
+                    </div>
+                {/foreach}
+            </div>
+            <div class="col-md-12 no-padding">
+                <div class="col-md-4 fw-mgb10 text-justify">
+                    <div class="fw-mgb10">
+                        <h3 class="text-cl-index">Chương trình du học</h3>
+                        <div class="fw-border2"></div>
+                    </div>
+                    <div class="fw-mgb10">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteursint occaecat cupidatat norin proident
+                    </div>
+                    <div class="fw-mgb20">
+                        <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
+                            Xem thêm
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-4 fw-mgb10 text-justify">
+                    <div class="fw-mgb10">
+                        <h3 class="text-cl-index">Học bổng</h3>
+                        <div class="fw-border2"></div>
+                    </div>
+                    <div class="fw-mgb10">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteursint occaecat cupidatat norin proident
+                    </div>
+                    <div class="fw-mgb20">
+                        <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
+                            Xem thêm
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-4 fw-mgb10 text-justify">
+                    <div class="fw-mgb10">
+                        <h3 class="text-cl-index">Tìm trường</h3>
+                        <div class="fw-border2"></div>
+                    </div>
+                    <div class="fw-mgb10">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteursint occaecat cupidatat norin proident
+                    </div>
+                    <div class="fw-mgb20">
+                        <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
+                            Xem thêm
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class='col-md-12 dotted-spaced'></div>
+        </div>
+    </div>
+</section>
+
+<section class="find-job section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 no-padding fw-mgt20 fw-mgb20">
+                <div align="center" class="col-md-6" style="float:left">
+                    <div class="fw-mgb20"><h2 class="text-cl-index">Hồ Sơ Du Học Tiện Lợi</h2></div>
+
+                    <div class="text-center fw-mgb10">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    </div>
+
+                    <div class="text-center fw-mgt20">
+                        <a class="btn btn-signup-home" href="{$smarty.const.URL_HOMEPAGE}">
+                            Đăng ký tư vấn
+                        </a>
+                    </div>
+                </div>
+
+                <div align="center" class="col-md-6" style="float:right">
+                    <div align="left" class="col-md-3 fw-mgb30">
+                        <img class="img-rounded" src="http://localhost/duhoc_v2/upload/categorys/0908-img_2.jpg" alt="">
+                    </div>
+                    <div class="col-md-9 text-justify fw-mgb30">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteursint occaecat cupidatat norin proident,
+                    </div>
+
+                    <div align="left" class="col-md-3 fw-mgb30">
+                        <img class="img-rounded" src="http://localhost/duhoc_v2/upload/categorys/0908-img_2.jpg" alt="">
+                    </div>
+                    <div class="col-md-9 text-justify fw-mgb30">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteursint occaecat cupidatat norin proident,
+                    </div>
+
+
+                    <div align="left" class="col-md-3">
+                        <img class="img-rounded" src="http://localhost/duhoc_v2/upload/categorys/0908-img_2.jpg" alt="">
+                    </div>
+                    <div class="col-md-9 text-justify">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteursint occaecat cupidatat norin proident,
+                    </div>
+
+
+                </div>
+            </div>
+            <div class='col-md-12 dotted-spaced'></div>
+        </div>
+    </div>
+</section>
+<!-- footer -->
+{include file="$themes/footer_index.html"}

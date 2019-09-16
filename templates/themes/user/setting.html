@@ -1,0 +1,223 @@
+{include file="$themes/header-account.html"}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/jquery.popupoverlay.js"></script>
+
+{literal}
+<style>
+input.hidden {
+  position:absolute;
+  left:-9999px;
+}
+
+#profile-image {
+  cursor:pointer;
+}
+
+#fileUpload {
+  display: none;
+}
+
+#multifileUpload {
+  display: none;
+}
+
+</style>
+{/literal}
+
+{literal}
+<script type="text/javascript">
+  $(function() {
+    $('#gioithieu').click(function(){
+     $("#aboutTab").addClass("active");
+     $("#about").addClass("active");
+
+           // remove class
+           $("#ketnoi").removeClass("active");
+           $("#ketnoiTab").removeClass("active");
+
+           $("#information").removeClass("active");
+           $("#informationTab").removeClass("active");
+
+           $("#common").removeClass("active");
+           $("#commonTab").removeClass("active");
+
+           $("#lienhe").removeClass("active");
+           $("#lienheTab").removeClass("active");
+         });
+
+    $('#infor').click(function(){
+     $("#information").addClass("active");
+     $("#informationTab").addClass("active");
+
+           // remove class
+           $("#ketnoi").removeClass("active");
+           $("#ketnoiTab").removeClass("active");
+
+           $("#aboutTab").removeClass("active");
+           $("#about").removeClass("active");
+
+           $("#common").removeClass("active");
+           $("#commonTab").removeClass("active");
+
+           $("#lienhe").removeClass("active");
+           $("#lienheTab").removeClass("active");
+         });
+
+
+    $('#company-info').click(function(){
+     $("#common").addClass("active");
+     $("#commonTab").addClass("active");
+
+           // remove class
+           $("#ketnoi").removeClass("active");
+           $("#ketnoiTab").removeClass("active");
+
+           $("#aboutTab").removeClass("active");
+           $("#about").removeClass("active");
+
+           $("#information").removeClass("active");
+           $("#informationTab").removeClass("active");
+
+           $("#lienhe").removeClass("active");
+           $("#lienheTab").removeClass("active");
+         });
+
+
+    $('#contact-info').click(function(){
+     $("#lienhe").addClass("active");
+     $("#lienheTab").addClass("active");
+
+           // remove class
+           $("#ketnoi").removeClass("active");
+           $("#ketnoiTab").removeClass("active");
+
+           $("#common").removeClass("active");
+           $("#commonTab").removeClass("active");
+
+           $("#aboutTab").removeClass("active");
+           $("#about").removeClass("active");
+
+           $("#information").removeClass("active");
+           $("#informationTab").removeClass("active");
+         });
+
+    $('#links-info').click(function(){
+     $("#ketnoi").addClass("active");
+     $("#ketnoiTab").addClass("active");
+
+           // remove class
+           $("#lienhe").removeClass("active");
+           $("#lienheTab").removeClass("active");
+
+           $("#common").removeClass("active");
+           $("#commonTab").removeClass("active");
+
+           $("#aboutTab").removeClass("active");
+           $("#about").removeClass("active");
+
+           $("#information").removeClass("active");
+           $("#informationTab").removeClass("active");
+         });
+
+    $("#background-hover").on("mouseover", function(event){
+     $("#background-info").css('display', 'block');
+   });
+
+    $("#background-hover").on("mouseout", function(event){
+     $("#background-info").css('display', 'none');
+   });
+
+    $("#edit-about").on("mouseover", function(event){
+     $("#gioithieu").css('display', 'block');
+   });
+
+    $("#edit-about").on("mouseout", function(event){
+     $("#gioithieu").css('display', 'none');
+   });
+
+    $("#edit-info").on("mouseover", function(event){
+     $("#infor").css('display', 'block');
+   });
+
+    $("#edit-info").on("mouseout", function(event){
+     $("#infor").css('display', 'none');
+   });
+
+    $("#edit-company").on("mouseover", function(event){
+     $("#company-info").css('display', 'block');
+   });
+
+    $("#edit-company").on("mouseout", function(event){
+     $("#company-info").css('display', 'none');
+   });
+
+    $("#edit-contact").on("mouseover", function(event){
+     $("#contact-info").css('display', 'block');
+   });
+
+    $("#edit-contact").on("mouseout", function(event){
+     $("#contact-info").css('display', 'none');
+   });
+
+    $("#edit-links").on("mouseover", function(event){
+     $("#links-info").css('display', 'block');
+   });
+
+    $("#edit-links").on("mouseout", function(event){
+     $("#links-info").css('display', 'none');
+   });
+    
+  });
+</script>
+{/literal}
+
+<!-- Header Section Start -->
+<div class="header">
+  <!-- Start intro section -->
+  <section id="intro" class="section-intro">
+    <div class="logo-menu">
+      {include file="$themes/top-account.html"}
+    </div>
+  </section>
+  <!-- end intro section -->
+</div>
+
+<!-- Header Section End -->
+<section class="job-detail section-info">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-lg-2 border-right">
+        <nav class="navbar navbar-default navbar-fixed-side">
+          <!-- normal collapsible navbar markup -->
+          <div class="container">
+            <div class="navbar-header">
+              <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse">
+             {include file="$themes/user/left_menu.html"}
+           </div>
+         </div>
+       </nav>
+     </div>
+
+     <div class="col-sm-9 col-lg-10 fw-bg-white">
+      <!-- your page content -->
+      <div class="fw-main-content">
+        {include file="$themes/user/setting_detail.html"}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</section>
+
+<div class="clearfix"></div>
+<!-- footer -->
+{include file="$themes/footer_js_info.html"}

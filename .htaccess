@@ -1,0 +1,39 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+ErrorDocument 404 /
+
+RewriteCond %{THE_REQUEST} ^GET\ /.*\;.*\ HTTP/
+RewriteCond %{QUERY_STRING} !^$
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+RewriteRule ^(.*)$ index.php [F,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule adhome.html  cms/admincp/indexadmincp.php?module=homepage
+RewriteRule seo.html index.php?mod=autohits&cmd=seo
+RewriteRule autohits.html index.php?mod=autohits&cmd=home
+RewriteRule forum.html index.php?mod=autohits&cmd=forum
+RewriteRule forumup.html index.php?mod=autohits&cmd=forumup
+RewriteRule email.html index.php?mod=autohits&cmd=email
+RewriteRule ^(.*).html$ index.php?mod=mod&cmd=$1
+
+#Mat dinh link
+RewriteCond %{HTTP_HOST} ^www\.(.+)
+RewriteCond %{HTTPS}s/%1 ^(on(s)|offs)/(.+)
+
+
+#Ho tro toc do
+#ExpiresActive On
+#ExpiresDefault "access plus 1 months"
+#ExpiresByType image/jpg "access plus 1 months"
+#ExpiresByType image/gif "access plus 1 months"
+#ExpiresByType image/jpeg "access plus 1 months"
+#ExpiresByType image/png "access plus 1 months"
+#ExpiresByType text/css "access plus 1 months"
+#ExpiresByType text/javascript "access plus 1 months"
+#ExpiresByType application/javascript "access plus 1 months"
+#ExpiresByType application/x-shockwave-flash "access plus 1 months"
+

@@ -1,0 +1,110 @@
+{include file="$themes/header.html"}
+{if $success}
+  <meta http-equiv="refresh" content="3;url=http://linkrica.com/login.html">
+{/if}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+{literal}
+<style>
+  .error {
+    color: #ff0000;
+  }
+</style>
+
+<script type="text/javascript">
+  $(function() {
+    $("form[name='changepass']").validate({
+                                              // Specify validation rules
+                                              rules: {
+                                                password: {
+                                                  required: true,
+                                                  minlength: 5
+                                                },
+                                                re-password: {
+                                                  required: true,
+                                                  minlength: 5
+                                                }
+                                              },
+                                              // Specify validation error messages
+                                              messages: {
+                                                password: {
+                                                  required: "{/literal}{$smarty.const.lang_err_pass}{literal}",
+                                                  minlength: "{/literal}{$smarty.const.lang_err_pass_1}{literal}"
+                                                },
+                                                re-password: {
+                                                  required: "{/literal}{$smarty.const.lang_err_pass}{literal}",
+                                                  minlength: "{/literal}{$smarty.const.lang_err_pass_1}{literal}"
+                                                }
+                                              },
+                                              submitHandler: function(form) {
+                                                form.submit();
+                                              }
+                                            });
+  });
+</script>
+{/literal}
+
+<!-- Header Section Start -->
+<div class="header">
+  <!-- Start intro section -->
+  <section id="intro" class="section-intro">
+    <div class="logo-menu">
+      {include file="$themes/top.html"}
+    </div>
+    <!-- Header Section End -->
+        <div id="content" class="register-account">
+      <div class="container">
+        <div class="row" style="margin-top: 100px;">
+
+           <div class="col-md-5 col-md-offset-3 fw-mgb10">
+           <h3 style="text-align: center;">{$smarty.const.lang_forgot_label_new_pass}</h3>
+           </div>
+
+            {if $warning}
+              <div class="col-md-5 col-md-offset-3 fw-mgb10" align="center">
+               <span class="error-msg">{$warning}</span>
+              </div>
+            {/if}
+
+            {if $success}
+              <div class="col-md-5 col-md-offset-3 fw-mgb10" align="center">
+               <span class="error-msg">{$success}</span>
+              </div>
+            {/if}
+
+          <div class="col-md-5 col-md-offset-3 cd-user-modal">
+            <div class="my-account-form">
+              <div id="cd-signup" class="is-selected">
+                <div class="fw-bglogin box-login">
+                  <form role="form" class="pass-form" name="changepass" method="post" enctype="multipart/form-data" action="{$smarty.const.URL_HOMEPAGE}change-password-exe.html" />
+                  <input type="hidden" name="email" id="email" value="{$email}" />
+                 <div style="margin:10px">
+                  <div class="form-group">
+                    <div class="input-icon">
+                      <input type="password" class="form-control" name="password" id="password" placeholder="{$smarty.const.lang_forgot_new_pass}" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-icon">
+                      <input type="password" class="form-control" name="re-password" id="re-password" placeholder="{$smarty.const.lang_forgot_new_pass_1}" />
+                    </div>
+                  </div>
+
+                
+                  <center>
+                    <button class="btn btn-submit log-btn" type="submit">{$smarty.const.lang_forgot_input_pass}</button>
+                  </center>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+{include file="$themes/footer_js.html"}

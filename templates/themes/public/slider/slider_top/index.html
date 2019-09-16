@@ -1,0 +1,9 @@
+<!--<link type="text/css" href="{$smarty.const.URL_WEB}{$themes}/public/slider/slider_top/back_top.css" rel="stylesheet">-->
+<div id='bttop'>
+<p>Top</p>
+<a href="{$smarty.const.URL_HOMEPAGE}"><p>Home</p></a>
+</div>
+
+{literal}
+	<script type='text/javascript'>$(function(){$(window).scroll(function(){if($(this).scrollTop()!=0){$('#bttop').fadeIn();}else{$('#bttop').fadeOut();}});$('#bttop').click(function(){$('body,html').animate({scrollTop:0},800);});});</script>
+{/literal}

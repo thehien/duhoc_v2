@@ -1,0 +1,194 @@
+<!-- <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/css/jqueryui.css" type="text/css" />
+<script type="text/javascript" src="{$smarty.const.URL_WEB}{$themes}/assets/js/jqueryui.js"></script>
+ -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+{literal}
+<style type="text/css">
+<!--
+.ui-widget { font-family: Arial, sans-serif; font-size: 14px; height: 30px;}
+.ui-menu .ui-menu-item a { font-weight: bold;}
+.ui-menu .ui-menu-item a:hover { font-weight: bold;}
+
+.error {
+    color: #ff0000;
+}
+
+-->
+</style>
+<script type="text/javascript">
+$(function() {
+  //autocomplete
+  $("#kinhdoanh").autocomplete({
+     source: function(request, response) {
+    $.getJSON("{/literal}{$smarty.const.URL_HOME}{literal}/autocomplete/autocomplete.php", { kinhdoanh: $('#kinhdoanh').val() }, response);
+    },
+    minLength: 1,
+  });
+});
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+       $("form[name='form-common']").submit(function(e){
+         e.preventDefault();
+
+         $.ajax({
+                  url: 'load/submit.php',
+                  type: 'POST',
+                  data: new FormData(this),
+                  processData: false,
+                  contentType: false
+                })
+           .done(function(data){
+              $('#fadeandscale').popup('hide');
+
+              $("#loadingInfo").css("display", "block");
+              var account = $('#accUser').val();
+              $.ajax({
+                url: "load/get_information.php",
+                type: 'POST',
+                data: "id="+ account,
+                dataType: 'json',    
+                success: function(data){              
+                  var company_name = data[0][1];
+                  var business = data[0][5];
+                  var year_create = data[0][4];
+                  var scale = data[0][6];
+                  var location = data[0][7];
+                  var images = data[0][2];
+                  var imagePath = "{/literal}{$smarty.const.URL_HOME}{literal}/upload/avatar/";
+                  var img = " <img src=" + imagePath + images + " style=\"width:100px; height: 100px; margin-top: 20px;\" alt=\"img\"/>";
+                  var img_avatar = " <img src=" + imagePath + images + " style=\"width:30px; height: 30px;\" />";
+                  $('#companyname_result').empty();
+                  $('#companyname_result').append(company_name);
+                   $('#business_result').empty();
+                  $('#business_result').append(business);
+                   $('#born_result').empty();
+                  $('#born_result').append(year_create);
+                   $('#member_result').empty();
+                  $('#member_result').append(scale);
+                   $('#location_result').empty();
+                  $('#location_result').append(location);
+                   $('#images_result').empty();
+                  $('#images_result').append(img);
+                   $('#avatar_result').empty();
+                  $('#avatar_result').append(img_avatar);
+                  setTimeout(function() { $('#loadingInfo').css("display", "none") }, 1000);
+                }
+              });
+
+           })
+           .fail(function(){
+             alert('Ajax Submit Failed ...');
+           });
+       });
+
+  });
+</script>
+{/literal}
+<div class="page-ads" id="form-common-content">
+  <form method="post" name="form-common" class="form-ad" id="common-form" autocomplete="off">
+    <input type="hidden" name="common" id="common" value="1" />
+      {if $googleMember}
+           <input type="hidden" name="accUser" id="accUser" value="{$googleMember.userid}" />
+       {else}
+           <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+      {/if}
+
+    <div class="form-group">
+      <label class="control-label">Hình đại diện</label><br/>
+       <div class="float_left">
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+            <span class="btn-default-file btn-file"><span>Choose file</span><input type="file" name="file" /></span>
+        </div>
+
+       </div>
+       <div class="float_left">
+         <span id="avatar_result">
+           {if $show_member.avatar}
+             <img src="{$smarty.const.URL_HOME}/upload/avatar/{$show_member.avatar}" style="width:50px;" alt="img"/>
+           {/if} 
+         </span>
+     </div>    
+    </div>
+    <div style="clear: both;"></div>
+    <div class="form-group">
+      <label class="control-label">Tên công ty</label>
+      <input type="text" name="company" class="form-control" value="{$show_member.company_name}" placeholder="Tên công ty">
+    </div>
+    <div style="clear: both;"></div>
+    <div class="form-group">
+      <label class="control-label">Hoạt động</label>
+      <input type="text" id="kinhdoanh" name="kinhdoanh" value="{$show_member.business}" class="form-control" placeholder="Lĩnh vực kinh doanh">
+    </div>
+    <div style="clear: both;"></div>
+    <div class="form-group">
+      <div class="col-md-6">
+        <div class="search-category-container">
+          <label class="styled-select">
+            <select name="creatyear" class="dropdown-product selectpicker">
+              <option>Chọn năm thành lập</option>
+               {foreach item=i from=1990|@range:2020}
+                  <option value="{$i}" {if $show_member.year_create == $i}selected{/if}>{$i}</option>
+              {/foreach}
+            </select>
+          </label>
+        </div>
+        
+      </div>
+
+      <div class="col-md-6">
+        <div class="search-category-container">
+          <label class="styled-select">
+            <select name="quymocty" class="dropdown-product selectpicker">
+              <option>Chọn quy mô công ty</option>
+              <option value="1-10" {if $show_member.scale == "1-10"}selected{/if}>1 ~ 10</option>
+              <option value="10-50" {if $show_member.scale == "10-50"}selected{/if}>10 ~ 50</option>
+              <option value="50-200" {if $show_member.scale == "50-200"}selected{/if}>50 ~ 200</option>
+              <option value="200-500" {if $show_member.scale == "200-500"}selected{/if}>200 ~ 500</option>
+              <option value="500-1000" {if $show_member.scale == "500-1000"}selected{/if}>500 ~ 1000</option>
+              <option value="1000-5000" {if $show_member.scale == "1000-5000"}selected{/if}>1000 ~ 5000</option>
+              <option value="5000+" {if $show_member.scale == "5000+"}selected{/if}>5000+</option>
+            </select>
+          </label>
+        </div>
+        
+      </div>
+      
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Địa điểm</label>
+      <input name="location" onFocus="geolocate()" value="{$show_member.location}" id="autocomplete" type="text" class="form-control" placeholder="Nhập địa điểm" />
+    </div>
+    
+    <p style="float: right;"><button class="btn btn-primary">Save</button></p>
+    
+  </form>
+</div>
+{literal}
+<script>
+  var autocomplete;
+  function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+     (document.getElementById('autocomplete')),
+      {types: ['geocode']});
+  }
+
+  function geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var geolocation = {
+          lat: position.coords.latitude, lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle({
+                                              center: geolocation, radius: position.coords.accuracy
+                                            });
+        autocomplete.setBounds(circle.getBounds());
+      });
+    }
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMbIJqAHJRsISGOHLHWKPnMKXvX4qqqgA&libraries=places&callback=initAutocomplete"
+  async defer></script>
+{/literal}

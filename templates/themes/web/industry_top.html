@@ -1,0 +1,58 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+    </section>
+    <section class="home_background section" style="background: url({$smarty.const.URL_HOMEPAGE}upload/categorys/{$content_index[0].category_img}) no-repeat center center;
+-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; min-height: 400px;position: relative;">
+        <div class="container">
+            <div class="row">
+                <div class="text-wrapper-industry">
+                    <h2>Major specialized list</h2>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="find-jobs section-about">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 fw-mgt30 fw-mgb30">
+
+                <div class="col-md-12">
+                    {foreach from=$list_industry item="val" key="key" name="val"}
+                    <div class="col-md-3 no-padding">
+                        <div class="box_industry">
+                            <div align="center" class="fw-mgb10 fw-mgt20">
+                                <a href="{$smarty.const.URL_HOMEPAGE}news/{$val.id}-{$val.category_url}.html">
+                                {if $val.icon}
+                                <img class="img-thumbnail img-rounded"
+                                     src="{$smarty.const.URL_HOME}/upload/special/{$val.icon}"/>
+                                {/if}
+                                </a>
+                            </div>
+                            <div align="center" class="fw-fs-14 fw-mgb10">
+                                <a class="text-cl-index" href="{$smarty.const.URL_HOMEPAGE}news/{$val.id}-{$val.category_url}.html">
+                                    {$val.category_name_limit}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- footer -->
+{include file="$themes/footer_index.html"}

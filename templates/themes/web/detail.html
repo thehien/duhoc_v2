@@ -1,0 +1,142 @@
+{include file="$themes/header.html"}
+<div id="wrapper">
+ {include file="$themes/top.html"}  
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="photo-bg" style="background: url({$smarty.const.URL_IMAGE_NEW}/bg1.jpg)">
+	<div class="container">
+		<div class="sixteen columns">
+			<span><a href="#">{$new_detail.category_name}</a></span>
+			<h2>{$new_detail.news_name} 
+			 {if $isMobile}
+            <br/>
+            {/if}
+								{if $new_detail.job_type == 1}
+                                  <span class="full-time">Full-time</span>
+                                {else}
+                                  <span class="part-time">Part-time</span>
+                                {/if}
+ 								
+ 								{if $new_detail.news_deadline}<span class="temporary"> Deadline: {$new_detail.news_deadline}</span>{/if}
+                                
+			</h2>
+		</div>
+
+	</div>
+</div>
+<!-- Content
+================================================== -->
+<div class="container">
+	
+	<!-- Recent Jobs -->
+	<div class="eleven columns">
+	<div class="padding-right">
+		
+		<!-- Company Info -->
+		<div class="company-info">
+		  
+			<h4 class="margin-bottom-5">Company Info</h4>
+
+			<span><a href="#"> #{$new_detail.news_code}</a></span>
+			<br>
+			
+			<h4>{$new_detail.news_company_name}</h4>
+			<p>{$new_detail.news_company}</p>
+		</div>
+        
+		
+		
+		<h4 class="margin-bottom-5">Job Information</h4>
+
+		<p class="margin-reset">
+			{$new_detail.description}
+		</p>
+		
+		<br>
+
+		<h4 class="margin-bottom-5">Job Requirements</h4>
+
+		<p class="margin-reset">
+			{$new_detail.news_requirements}
+		</p>
+
+		<br>
+
+		<h4 class="margin-bottom-5">Benefits</h4>
+
+		<p class="margin-reset">
+			{$new_detail.news_benefits}
+		</p>
+
+		<br>
+
+		<h4 class="margin-bottom-5">Contact Information</h4>
+
+		<p class="margin-reset">
+			{$new_detail.news_contact}
+		</p>
+
+
+	</div>
+	</div>
+
+
+	<!-- Widgets -->
+	<div class="five columns">
+
+		<!-- Sort by -->
+		<div class="widget">
+			<h4>Overview</h4>
+
+			<div class="job-overview">
+				
+				<ul>
+					<li>
+						<i class="fa fa-map-marker"></i>
+						<div>
+							<strong>Work at:</strong>
+							<span>{$new_detail.news_work_at}</span>
+						</div>
+					</li>
+					<li>
+						<i class="fa fa-user"></i>
+						<div>
+							<strong>Level Japanese:</strong>
+							<span>{$new_detail.news_level}</span>
+						</div>
+					</li>
+					<li>
+						<i class="fa fa-money"></i>
+						<div>
+							<strong>Salary:</strong>
+							<span>{$new_detail.news_salary}</span>
+						</div>
+					</li>
+					<li>
+						<i class="fa fa-folder"></i>
+						<div>
+							<strong>Category:</strong>
+							<span>{$new_detail.category_name}</span>
+						</div>
+					</li>
+					
+				</ul>
+
+
+				<a href="{$smarty.const.URL_HOME}/apply/{$new_detail.news_id}-{$new_detail.news_url}.html" class="button">Apply For This Job</a>
+
+				
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<!-- Widgets / End -->
+</div>
+{include file="$themes/footer.html"}
+
+
+

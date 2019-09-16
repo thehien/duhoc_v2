@@ -1,0 +1,82 @@
+{literal}
+<style>
+  .error {
+    color: #ff0000;
+  }
+</style>
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    
+     $("form[name='contact-form']").submit(function(e){
+       e.preventDefault(); 
+       
+       $.ajax({
+                url: 'load/submit.php',
+                type: 'POST',
+                data: $(this).serialize()
+              })
+         .done(function(data){
+          $('#fadeandscale').popup('hide');
+
+          $("#loadingInfo").css("display", "block");
+          var account = $('#accUser').val();
+          $.ajax({
+            url: "load/get_information.php",
+            type: 'POST',
+            data: "id="+ account,
+            dataType: 'json',    
+            success: function(data){  
+              //console.log(data);              
+              var address = data[0][10];
+              var mail = data[0][11];
+              var mobile = data[0][12];
+              var contact_person= data[0][13];
+
+              $('#address_result').empty();
+              $('#address_result').append(address);
+              $('#mail_result').empty();
+              $('#mail_result').append(mail);
+              $('#mobile_result').empty();
+              $('#mobile_result').append(mobile);
+              $('#person_result').empty();
+              $('#person_result').append(contact_person);
+             
+              setTimeout(function() { $('#loadingInfo').css("display", "none") }, 1000);
+            }
+          });
+
+         })
+         .fail(function(){
+           alert('Ajax Submit Failed ...');
+         });
+     });
+  });
+</script>
+{/literal}
+<div class="page-ads" id="form-contact-content">
+  <form method="post" class="form-ad" name="contact-form" id="contact-form" autocomplete="off">
+    <input type="hidden" name="contact" id="contact" value="1" />
+      {if $googleMember}
+           <input type="hidden" name="accUser" id="accUser" value="{$googleMember.userid}" />
+       {else}
+           <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+      {/if}
+    <div class="form-group">
+      <input type="text" class="form-control" value="{$show_member.address}" name="address" placeholder="Địa chỉ">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" value="{$show_member.mobile}"  name="mobile"  placeholder="Số điện thoại">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control"  value="{$show_member.email}"  name="email"  placeholder="Email">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" value="{$show_member.contact_person}" name="contactperson" placeholder="Người liên hệ">
+    </div>
+
+    <p style="float: right;"><button class="btn btn-primary">Save</button></p>
+  </form>
+</div>

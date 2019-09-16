@@ -1,0 +1,103 @@
+{literal}
+<style>
+  .error {
+    color:#ff0000;
+  }
+</style>
+{/literal}
+{literal}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("form[name='form-connect']").submit(function(e){
+         e.preventDefault();
+
+      $.ajax({
+               url: 'load/submit.php',
+               type: 'POST',
+               data: $(this).serialize()
+             })
+        .done(function(data){
+         $('#fadeandscale').popup('hide');
+
+         $("#loadingInfo").css("display", "block");
+          var account = $('#accUser').val();
+          $.ajax({
+            url: "load/get_information.php",
+            type: 'POST',
+            data: "id="+ account,
+            dataType: 'json',    
+            success: function(data){  
+              //console.log(data);              
+              var website = data[0][14];
+              var facebook = data[0][15];
+              var twitter = data[0][16];
+              var linkedln = data[0][17];
+              var instargam = data[0][18];
+              $('#website_result').empty();
+              $('#website_result').append(website);
+              $('#facebook_result').empty();
+              $('#facebook_result').append(facebook);
+              $('#twitter_result').empty();
+              $('#twitter_result').append(twitter);
+              $('#linkedin_result').empty();
+              $('#linkedin_result').append(linkedln);
+              $('#instargam_result').empty();
+              $('#instargam_result').append(instargam);
+              setTimeout(function() { $('#loadingInfo').css("display", "none") }, 1000);
+            }
+          });
+          
+        })
+        .fail(function(){
+          alert('Ajax Submit Failed ...');
+        });
+    });
+  });
+</script>
+{/literal}
+<div class="page-ads" id="form-connect-content">
+  <form method="post" name="form-connect" class="form-ad" id="connect-form" autocomplete="off">
+    <input type="hidden" name="connect" id="connect" value="1" />
+     {if $googleMember}
+           <input type="hidden" name="accUser" id="accUser" value="{$googleMember.userid}" />
+       {else}
+           <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+      {/if}
+    <div class="form-group">
+      <div class="input-icon">
+          <i class="ti-link"></i>
+          <input type="text" class="form-control" value="{$show_member.website}" name="website" placeholder="Website công ty">
+        </div>
+    </div>
+    <div class="form-group">
+       <div class="input-icon">
+          <i class="ti-facebook"></i>
+          <input type="text" class="form-control" value="{$show_member.facebook}"  name="facebook" placeholder="Facebook">
+        </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-icon">
+          <i class="ti-twitter-alt"></i>
+         <input type="text" class="form-control" value="{$show_member.twitter}" name="twitter" placeholder="Twitter">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="input-icon">
+          <i class="ti-linkedin"></i>
+         <input type="text" class="form-control" value="{$show_member.linkedln}" name="linkedln" placeholder="LinkedIn">
+        </div>
+    </div>
+
+    <div class="form-group">
+       <div class="input-icon">
+          <i class="ti-instagram"></i>
+         <input type="text" class="form-control" value="{$show_member.instargam}" name="instargam" placeholder="Instagram">
+        </div>
+    </div>
+
+    <p style="float: right;"><button class="btn btn-primary">Save</button></p>
+  </form>
+</div>

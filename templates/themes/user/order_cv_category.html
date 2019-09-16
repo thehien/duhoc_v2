@@ -1,0 +1,218 @@
+{include file="$themes/header-account.html"}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/jquery.popupoverlay.js"></script>
+<!-- Header Section Start -->
+<div class="header">
+	<!-- Start intro section -->
+	<section id="intro" class="section-intro">
+		<div class="logo-menu">
+			{include file="$themes/top-cv-account.html"}
+		</div>
+	</section>
+	<!-- end intro section -->
+</div>
+
+<!-- Header Section End -->
+<section class="job-detail section-info">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-lg-2 border-right">
+				<nav class="navbar navbar-default navbar-fixed-side">
+					<!-- normal collapsible navbar markup -->
+					<div class="container">
+						<div class="navbar-header">
+							<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="collapse navbar-collapse">
+							<div class="right-sideabr">
+								{include file="$themes/user/left_cv_menu.html"}
+							</div>
+
+						</div>
+					</div>
+				</nav>
+			</div>
+
+			<div class="col-sm-9 col-lg-10 fw-bg-white">
+				<!-- your page content -->
+				{include file="$themes/user/header_info.html"}
+				<!-- Page Header End -->
+
+				<div class="fw-main-content">
+					<div class="fw-main-bg">
+						<div class="fw-mgb10">
+							<div class="inner-box my-resume menu_info">
+								<div>
+									<nav class="navbar navbar-default">
+										<div class="container-fluid">                    
+											<ul class="nav navbar-nav">
+												<li><a href="{$smarty.const.URL_HOMEPAGE}info-cv.html">HOME</a></li>
+												<li class="activeInfo"><a href="{$smarty.const.URL_HOMEPAGE}all-order-cv.html">ALL ORDER</a></li>
+												<li><a href="{$smarty.const.URL_HOMEPAGE}accept-order-cv.html">ACCEPTED ORDERS</a></li>
+											</ul>
+										</div>
+									</nav>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-md-12">
+						<div class="col-md-9">
+							<div class="fw-mgb10">
+								{include file="$themes/user/search_order_cv.html"}
+							</div>
+							<div class="fw-mgb10"><strong>{$rs_order_active[0].subject_field}</strong></div>
+							<div class="thumbnails">
+								{foreach from=$rs_order_active item="val" name="val"}
+								<div class="grid-item col-md-12 no-padding fw-pdr10 fw-pdb20 post-id" id="{$val.coupon_code}">
+									<form role="form" class="form-ad" name="acceptTranslate" method="post" action="{$smarty.const.URL_HOMEPAGE}accept-translate.html"/>
+									<input type="hidden" name="coupon_code_id" value="{$val.coupon_code}">
+
+									<div class="fw-mgb10 box">
+										<div class="fw-mgb10" style="font-size: 16px;">
+											<strong>ID {$val.coupon_code}: {$val.file_translate}</strong>
+										</div>
+										<div style="clear: both;"></div>
+										<div class="col-md-12 no-padding fw-mgb10">
+											<div class="col-md-1 no-padding">
+												{if $val.avatar}
+												<img width="30" height="30" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+												{else}
+												<img width="30" height="30" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+												{/if}
+
+											</div>
+											<div class="col-md-11" style="line-height: 30px;"><strong>{$val.name}</strong></div>
+										</div>
+										<div style="clear: both;"></div>
+										<div class="col-md-12 no-padding">
+											<div class="col-md-5 no-padding">
+												{foreach from=$fromTolanguage name=val_order item=val_order}
+												{foreach from=$val_order name=val1 item=val1}
+												{if $val1.translate_id == $val.translate_id}
+												<span id="translate_from" class="language-bg" style="margin-bottom: 5px;">
+													<img width="25" height="25" src="{$smarty.const.URL_HOME}/upload/list_language/{$val1.from_flag_language.img_flag}" class="img-circle"/><span style="margin:5px; font-size: 13px;">{$val1.from_language_name}</span>
+												</span>
+												<br/>
+												{/if}
+												{/foreach}
+												{/foreach}
+											</div>
+											<div class="col-md-2 no-padding">
+												{foreach from=$fromTolanguage name=val_order item=val_order}
+												{foreach from=$val_order name=val1 item=val1}
+												{if $val1.translate_id == $val.translate_id}
+												<div id="translate_to" style="margin-bottom: 5px; height: 30px;">
+													<i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+												</div>
+												{/if}
+												{/foreach}
+												{/foreach}
+											</div>
+
+											<div class="col-md-5 no-padding">
+													{foreach from=$fromTolanguage name=val_order item=val_order}
+													{foreach from=$val_order name=val1 item=val1}
+													{if $val1.translate_id == $val.translate_id}
+													<span id="translate_to" class="language-bg"  style="margin-bottom: 5px;">
+														<img width="25" height="25" src="{$smarty.const.URL_HOME}/upload/list_language/{$val1.to_flag_language.img_flag}" class="img-circle"/><span style="margin:5px; font-size: 13px;">{$val1.to_language_name}</span>
+													</span>
+													<br/>
+													{/if}
+													{/foreach}
+													{/foreach}
+											</div>
+										</div>
+
+
+
+
+
+
+
+										<div style="clear: both;"></div>
+										<div class="fw-mgt10">
+											<div class="col-md-12  fw-mgb10">
+												Subject : {$val.subject_field}
+											</div>
+
+											<div class="col-md-12 fw-mgb10">
+												Created Date: 
+												{$val.ngay_mua}
+											</div>
+
+											<div class="col-md-12  fw-mgb10">
+												Estimated Delivery: {$val.estimate} (hours)
+											</div>
+
+											<div class="col-md-6">
+												<strong style="font-size: 20px;">{$val.count_text}</strong> word(s)
+											</div>
+
+											<div class="col-md-6">
+												<strong style="font-size: 20px;">$ {$val.price}</strong>
+											</div>
+											<div class="col-md-12">
+												<hr/>
+											</div>
+										</div>
+										<div style="clear: both;"></div>
+
+										<center>
+											<div class="fw-mgb10">
+												{if $val.translater_id > 0}
+												<a class="accept_receive" href="#">
+													Received
+												</a>
+												{else}
+												<a class="accept_order" href="#">
+													Open
+												</a>
+												{/if}
+											</div>
+
+											<div>
+												<a class="btn btn-submit log-btn" href="{$smarty.const.URL_HOMEPAGE}detail/{$val.coupon_purchaseid}-{$val.coupon_code}.html">
+													View Details
+												</a>
+											</div>
+
+										</center>
+
+									</div> 
+								</form>
+
+							</div>
+							<div style="clear: both;"></div>
+							{/foreach}
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="fw-mgb10"><strong>MAJOR INDUSTRY</strong></div>
+						<div>
+							{include file="$themes/user/list_industry.html"}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+</section>
+
+<div class="clearfix"></div>
+<!-- footer -->
+{include file="$themes/footer_js_info.html"}
+

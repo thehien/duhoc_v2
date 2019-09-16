@@ -1,0 +1,23 @@
+{if $detail eq 1}
+   {* <div class="footer_seo">
+         <strong>{if $seo_title}{$seo_title}{else}{$smarty.const.lang_title}{/if}{$key_filter}</strong><br />
+         <i>{if $seo_desc}{$seo_desc}{else}{$smarty.const.lang_description}{/if}{$key_filter}</i> <br />
+         {if $rs_key}
+             <h4>Tags:&nbsp;</h4>
+             {foreach from=$rs_key item="rs" name="rs"}
+                <a href="{$rs.link}" target="_blank" >{$rs.keyword}</a>,
+             {/foreach} 
+         {/if}
+    </div> *}
+{else}
+   <div class="footer_seo">
+        {* <h1>{if $seo_title}{$seo_title}{else}{$smarty.const.lang_title}{/if}{$key_filter}</h1>
+         <h2>{if $seo_desc}{$seo_desc}{else}{$smarty.const.lang_description}{/if}{$key_filter}</h2>
+         {if $rs_key}
+             <h4>Tags:&nbsp;</h4>
+             {foreach from=$rs_key item="rs" name="rs"}
+                <a href="{$rs.link}" target="_blank">{$rs.keyword}</a>,
+             {/foreach}
+         {/if}*}
+    </div>
+{/if}

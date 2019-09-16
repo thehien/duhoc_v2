@@ -1,0 +1,98 @@
+<div class="filter_select" >
+{if $category_left}
+	<div class ="filter_select_boloc" >
+     <select name="one_boloc" onChange="MM_jumpMenu('parent',this,0)" >
+        	<option value="{$smarty.const.URL_HOMEPAGE}">{$smarty.const.lang_menu_deal}</option>	
+            {foreach from=$category_left item="val" name="val"}
+            {if $val.link eq ""}
+        	<option value="{$smarty.const.URL_HOMEPAGE}{$val.category_url}.html" {if $category_hover eq $val.category_url}selected="selected"{/if}>&radic;&nbsp; {$val.category_name}</option>	   
+       		{else}
+        	<option value="{$val.link}" {if $category_hover eq $val.category_url}selected="selected"{/if}>&radic;&nbsp; {$val.category_name}</option>	   
+            {/if}
+            {/foreach} 
+    </select>  
+	</div>
+{/if}
+{if $numf_three}
+	<div class ="filter_select_boloc" >
+     <select name="one_boloc" onChange="MM_jumpMenu('parent',this,0)" >
+            <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_all_{$fil_four}_{$fil_cty}_{$fil_dis}" >{$rs_three[0].name} &raquo; {$smarty.const.lang_sp_xem_all}</option>	
+            {foreach from=$rs_three item="val" name="val"}
+            <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$val.filter_url}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $fil_three eq $val.filter_url}selected="selected"{/if}>&radic;&nbsp; {$val.filter_name}</option>	   
+            {/foreach}        
+    </select>  
+	</div>
+{/if}
+
+{if $numf_four}
+	<div class ="filter_select_boloc" >
+        <select name="four_boloc" onChange="MM_jumpMenu('parent',this,0)" >
+            <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_all_{$fil_cty}_{$fil_dis}">{$rs_four[0].name} &raquo; {$smarty.const.lang_sp_xem_all}</option>	
+            {foreach from=$rs_four item="val" name="val"}
+            <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$val.filter_url}_{$fil_cty}_{$fil_dis}" {if $fil_four eq $val.filter_url}selected="selected"{/if}>&radic;&nbsp; {$val.filter_name}</option>	   
+            {/foreach}        
+        </select>    
+	</div>
+{/if}
+{if $numf_one}
+	<div class ="filter_select_boloc" >
+    <select name="one_boloc" onChange="MM_jumpMenu('parent',this,0)" >
+            <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_all_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" >{$rs_one[0].name} &raquo; {$smarty.const.lang_sp_xem_all}</option>	
+            {foreach from=$rs_one item="val" name="val"}
+            <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$val.filter_url}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $fil_one eq $val.filter_url}selected="selected"{/if}>&radic;&nbsp; {$val.filter_name}</option>	   
+            {/foreach}        
+    </select>    
+	</div>
+{/if}
+
+{if $numf_two}
+	<div class ="filter_select_boloc">
+    <select name="one_boloc" onChange="MM_jumpMenu('parent',this,0)">
+            <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_all_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" >{$rs_two[0].name} &raquo; {$smarty.const.lang_sp_xem_all}</option>	
+            {foreach from=$rs_two item="val" name="val"}
+            <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$val.filter_url}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $fil_two eq $val.filter_url}selected="selected"{/if}>&radic;&nbsp; {$val.filter_name}</option>	   
+            {/foreach}        
+    </select>  
+	</div>
+{/if}
+
+<div class ="filter_select_boloc">
+<select name="news_category"  onChange="MM_jumpMenu('parent',this,0)" >
+    <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}" selected="selected">{$smarty.const.lang_sp_qt}</option>	
+    <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}/saledesc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $hover_gia eq 'saledesc'}selected="selected"{/if}>&radic;&nbsp; {$smarty.const.lang_sp_km}</option>
+    <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}/viewsdesc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $hover_gia eq 'viewsdesc'}selected="selected"{/if}>&radic;&nbsp; {$smarty.const.lang_sp_uc}</option>
+    <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}/priceasc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $hover_gia eq 'priceasc'}selected="selected"{/if}>&radic;&nbsp; {$smarty.const.lang_sp_gr}</option>
+    <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}/pricedesc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $hover_gia eq 'pricedesc'}selected="selected"{/if}>&radic;&nbsp; {$smarty.const.lang_sp_cc}</option>                       
+</select>  
+</div>
+
+{if $rs_priority eq no}
+	<div class ="filter_select_boloc">
+    <select name="namecity" onChange="MM_jumpMenu('parent',this,0)" >
+        <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_all" >{$smarty.const.lang_cart_tinh} &raquo; {$smarty.const.lang_sp_xem_all}</option>
+        {foreach from = $rs_priority name = rs_priority item =val}		
+        <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$val.cityid}" {if $val.cityid eq $fil_cty} selected="selected"{/if} >&radic;&nbsp; {$val.cityname}</option>
+        {/foreach}
+    </select>
+	</div>
+{/if}
+
+{if $rs_priority eq no}
+	<div class ="filter_select_boloc">
+    <select name="district" onChange="MM_jumpMenu('parent',this,0)">
+        <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_all">{$smarty.const.lang_cart_quan} &raquo; {$smarty.const.lang_sp_xem_all}</option>
+        {foreach from = $rs_district name = rs_district item =val}		
+        <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$val.district_id}" {if $val.district_id eq $fil_dis} selected="selected"{/if} >&radic; &nbsp;{$val.district_name}</option>
+        {/foreach}
+	</select>
+	</div>
+{/if}
+</div>
+
+{literal}
+<script type="text/javascript">
+    function MM_jumpMenu(targ,selObj,restore){ 
+    eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'"); if 
+    (restore) selObj.selectedIndex=0; } 
+</script>
+{/literal}

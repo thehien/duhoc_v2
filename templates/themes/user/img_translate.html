@@ -1,0 +1,57 @@
+{literal}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("form[name='translate-img-form']").submit(function(e){
+      
+      $('#fadeandscale_img').popup('hide');
+      $("#loadingInfo").css("display", "block");
+
+      e.preventDefault();
+      $.ajax({
+       url: 'load/count_translate_img.php',
+       type: 'POST',
+       data: new FormData(this),
+       processData: false,
+       contentType: false
+     })
+      .done(function(data){
+       $("#loadingInfo").css("display", "block");
+       setTimeout(function(){location.reload();}, 1000);
+     })
+      .fail(function(){
+       alert('Ajax Submit Failed ...');
+     });
+    }); 
+  });
+  
+  function clearText() {
+   document.getElementById('translate_img').value = "";
+ };
+</script>
+
+{/literal}
+<div class="page-ads">
+  <form enctype="multipart/form-data" method="post" name="translate-img-form" class="form-ad" id="translate-img-form" autocomplete="off">
+    <input type="hidden" value="{$translateSession}" name="session" id="session">
+    <input type="hidden" value="{$show_member.userid}" name="accUser" id="accUser" />
+    <input type="hidden" value="{$order_language.from_language}" name="from_language" id="from_language">
+    <input type="hidden" value="{$order_language.to_language}" name="to_language" id="to_language">
+    <input type="hidden" value="{$total_count}" name="totalCount" id="totalCount">
+
+    <div class="col-md-12 no-padding">
+      <div class="col-md-12 no-padding">
+        <div class="upload-btn-wrapper">
+          <center>
+            <button class="btn btn-upload-images">Choose images to translate</button>
+            <input id="upload" name="upload_img" type="file" />
+            <div class="col-md-12 " id="error-message"></div>
+          </center> 
+        </div>
+      </div>
+      <div class="col-md-12 no-padding" align="center">
+        <input type="submit" class="btn btn-upload-submit" value="Upload images" />
+     </div>
+     
+   </div>
+ </form>
+</div>

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="{$smarty.const.URL_ADMIN}?module=homes" style="text-transform:uppercase">{$smarty.const.langcms_ngonngu}</a>
+{if $smarty.const.LANG_AUGE_CMS}
+<a class="navbar-brand" href="{$smarty.const.URL_HOME}/lang.php?lang=en" target="_blank"><i class="fa fa-hand-o-right"></i> Home</a>
+{else}
+<a class="navbar-brand" href="{$smarty.const.URL_HOME}/lang.php?lang=vn" target="_blank"><i class="fa fa-hand-o-right"></i> Home</a>
+{/if}
+
+</div>
+<ul class="nav navbar-top-links navbar-right">
+    <li><a href="{$smarty.const.URL_ADMINCMS}langcms.php?cms_lang=cms_vn"><i class="fa fa-flag"></i> VN</a></li>
+    <li><a href="{$smarty.const.URL_ADMINCMS}langcms.php?cms_lang=cms_en"><i class="fa fa-flag"></i> EN</a></li>
+    <li><a href="{$smarty.const.URL_ADMIN}?module=users&main=edit"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+    <li><a href="{$smarty.const.URL_ADMIN}?module=logout"> <i class="fa fa-power-off"></i> {$smarty.const.langcms_dangx}</a></li>
+</ul>
+
+
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+    <ul class="nav" id="side-menu">
+    <li><a href="{$smarty.const.URL_ADMIN}?module=homes"><i class="fa fa-home"></i> {$smarty.const.langcms_home}</a></li>
+    {section name=r1 loop=$r1}
+    {if $r1[r1].link}
+        <li {if $r1[r1].link eq $url}class="menu_active"{/if}>
+        <a href="{$smarty.const.URL_ADMIN}?module={$r1[r1].link}"><i class="fa {$r1[r1].icon}"></i> {$r1[r1].name}</a>
+        </li>
+    {else}
+        <li >
+            <a href="javascript:void(0);"><i class="fa {$r1[r1].icon}"></i> {$r1[r1].name}<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                {section name=r2 loop=$r2[r1]}
+                    <li {if $r2[r1][r2].link eq $url}class="menu_active"{/if}>
+                    <a href="{$smarty.const.URL_ADMIN}?module={$r2[r1][r2].link}"><i class="fa {$r2[r1][r2].icon}"></i> {$r2[r1][r2].name}</a>
+                    </li>
+                {/section}
+            </ul>
+        </li>
+    {/if}
+    {/section}
+    </ul>
+    </div>
+</div>
+</nav>

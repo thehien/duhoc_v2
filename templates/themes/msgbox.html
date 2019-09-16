@@ -1,0 +1,39 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro">
+        <div class="logo-menu">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {elseif $isLogin_cv}
+            {include file="$themes/top-cv-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+        <!-- Header Section End -->
+
+        <div id="content" class="register-account">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 col-md-offset-3" style="margin-top:100px; margin-bottom: 100px;">
+                        <div class="my-account-form">
+                            <div id="cd-signup" class="is-selected">
+                                <div style="clear: both;"></div>
+                                <div class="fw-bglogin box-login" style="margin:10px;">
+                                    <div align="center" class="thongbao" style="padding:20px; font-size: 16px;">
+                                        {$thongbao}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- footer -->
+{include file="$themes/footer.html"}

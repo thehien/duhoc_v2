@@ -1,0 +1,99 @@
+ <div class="col-md-12 no-padding fw-mgb10">
+   <div align="center" class="col-md-12 no-padding fw-mgb10 fw-mgt10">
+    {if $rs_detail[0].avatar}
+    <img width="100" height="100" src="{$smarty.const.URL_HOME}/upload/avatar/{$rs_detail[0].avatar}" class="img-circle"/>
+    {else}
+    <img width="100" height="100" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+    {/if}
+  </div> 
+  <div align="center" class="col-md-12 no-padding fw-mgb10"><strong>{$rs_detail[0].name}</strong></div>
+
+  <div align="center" class="col-md-12 no-padding fw-mgb10"><strong>ID {$rs_detail[0].coupon_code} : {$rs_detail[0].file_translate}</strong></div>
+
+  <div align="center" class="col-md-12 no-padding fw-mgb15">
+   Subject : {$rs_detail[0].subject_field}
+ </div>
+
+ <div align="center" class="col-md-12 no-padding fw-mgb15">
+  <div>
+   <table width="300">
+    <tr>
+      <td align="center" width="45%">
+        {foreach from=$fromTolanguage name=val_order item=val_order}
+        {foreach from=$val_order name=val1 item=val1}
+        {if $val1.translate_id == $rs_detail[0].translate_id}
+        <span id="translate_from" class="language-bg" style="margin-bottom: 5px;">
+           <img width="25" height="25" src="{$smarty.const.URL_HOME}/upload/list_language/{$val1.from_flag_language.img_flag}" class="img-circle"/><span style="margin:5px; font-size: 13px;">{$val1.from_language_name}</span>
+        </span>
+        <br/>
+        {/if}
+        {/foreach}
+        {/foreach}
+      </td>
+
+      <td align="center" width="10%">
+       {foreach from=$fromTolanguage name=val_order item=val_order}
+       {foreach from=$val_order name=val1 item=val1}
+       {if $val1.translate_id == $rs_detail[0].translate_id}
+       <div id="translate_to" style="margin-bottom: 5px;">
+        <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+      </div>
+      {/if}
+      {/foreach}
+      {/foreach}
+    </td>
+
+    <td align="left" width="45%" style="padding-left: 35px;">
+     {foreach from=$fromTolanguage name=val_order item=val_order}
+     {foreach from=$val_order name=val1 item=val1}
+     {if $val1.translate_id == $rs_detail[0].translate_id}
+     <span id="translate_to" class="language-bg"  style="margin-bottom: 5px;">
+       <img width="25" height="25" src="{$smarty.const.URL_HOME}/upload/list_language/{$val1.to_flag_language.img_flag}" class="img-circle"/><span style="margin:5px; font-size: 13px;">{$val1.to_language_name}</span>
+    </span>
+    <br/>
+    {/if}
+    {/foreach}
+    {/foreach}
+  </td>
+</tr>
+</table>
+</div>
+</div>
+
+<div class="col-md-12 no-padding fw-border-bottom-sender fw-mgb10"></div>
+
+<div align="center" class="col-md-12 no-padding">
+  Please download the translated document
+</div>
+
+<div align="center" class="col-md-12 no-padding fw-mgb10">
+ <img width="100" src="{$smarty.const.URL_WEB}{$themes}/assets/img/download.png">
+</div>
+
+<div align="center" class="col-md-12 no-padding fw-mgb10">
+ {if $rs_detail[0].file_name}
+    <a class="btn btn-download" href="{$smarty.const.URL_HOME}/upload/trans/{$rs_detail[0].file_name}">Download translated file</a>
+ {else}
+    <a class="btn btn-download" href="#">Download translated file</a>
+ {/if}
+</div>
+
+<div class="col-md-12 no-padding fw-border-bottom-sender"></div>
+
+<div class="col-md-12 fw-mgb20 fw-bg-comment">
+  <div>
+    <div class="fw-mgt10">Your feedback is highly appreciated and will help us to improve our ability to serve you.
+    </div>
+
+    <div class="fw-mgt10 fw-mgb10">
+      <textarea class="form-control" rows="5" cols="50" name="about" id="about" placeholder="Do you need us to improve?"></textarea>
+    </div>
+
+    <div class="fw-mgt10 fw-mgb10">
+     <input type="button" value="Send" name="submit" class="btn btn-send-comment" />
+   </div>
+
+ </div>
+</div>
+
+</div>

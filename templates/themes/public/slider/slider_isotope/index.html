@@ -1,0 +1,147 @@
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/public/slider/slider_isotope/css/bootstrap.css">
+<script type="text/javascript" src="{$smarty.const.URL_WEB}{$themes}/public/slider/slider_isotope/js/jquery.isotope.js"></script>
+
+{literal}
+<script>
+	jQuery(document).ready(function($) {
+		var $container = jQuery('#portfolio-grid'),
+			filters = {},
+			items_count = jQuery(".portfolio_item").size();
+		
+		$container.imagesLoaded( function(){	
+			setColumnWidth();
+			$container.isotope({
+				itemSelector : '.portfolio_item',
+				hiddenClass : 'portfolio_hidden',
+				resizable : false,
+				transformsEnabled : true,
+				layoutMode: 'fitRows'
+			});		
+		});
+		
+		function getNumColumns(){
+			
+			var $folioWrapper = jQuery('#portfolio-grid').data('cols');
+			
+			if($folioWrapper == '1col') {
+				var winWidth = jQuery("#portfolio-grid").width();		
+				var column = 1;		
+				return column;
+			}
+			
+			if($folioWrapper == '2cols') {
+				var winWidth = jQuery("#portfolio-grid").width();		
+				var column = 2;		
+				if (winWidth<380) column = 1;
+				return column;
+			}
+			
+			else if ($folioWrapper == '3cols') {
+				var winWidth = jQuery("#portfolio-grid").width();		
+				var column = 3;		
+				if (winWidth<380) column = 1;
+				else if(winWidth>=380 && winWidth<788)  column = 2;
+				else if(winWidth>=788 && winWidth<1160)  column = 3;
+				else if(winWidth>=1160) column = 3;
+				return column;
+			}
+			
+			else if ($folioWrapper == '4cols') {
+				var winWidth = jQuery("#portfolio-grid").width();		
+				var column = 4;		
+				if (winWidth<380) column = 1;
+				else if(winWidth>=380 && winWidth<788)  column = 2;
+				else if(winWidth>=788 && winWidth<1130)  column = 3;
+				else if(winWidth>=1130) column = 4;		
+				return column;
+			}
+		}
+		
+		function setColumnWidth(){
+			var columns = getNumColumns();		
+		
+			var containerWidth = jQuery("#portfolio-grid").width();		
+			var postWidth = containerWidth/columns;
+			postWidth = Math.floor(postWidth);
+	 		
+			jQuery(".portfolio_item").each(function(index){
+				jQuery(this).css({"width":postWidth+"px"});				
+			});
+		}
+			
+		function arrange(){
+			setColumnWidth();		
+			$container.isotope('reLayout');	
+		}
+			
+		jQuery(window).on("debouncedresize", function( event ) {	
+			arrange();		
+		});
+		
+		
+		// Filter projects
+		$('.filter a').click(function(){
+			var $this = $(this).parent('li');
+			// don't proceed if already active
+			if ( $this.hasClass('isotope_active') ) {
+				return;
+			}
+
+			var $optionSet = $this.parents('.filter');
+			// change active class
+			$optionSet.find('.isotope_active').removeClass('isotope_active');
+			$this.addClass('isotope_active');
+
+			var selector = $(this).attr('data-filter');
+			$container.isotope({ filter: selector });
+
+			var hiddenItems = 0,
+				showenItems = 0;
+			jQuery(".portfolio_item").each(function(){
+				if ( jQuery(this).hasClass('portfolio_hidden') ) {
+					hiddenItems++;
+				};
+			});
+
+			showenItems = items_count - hiddenItems;
+			if ( ($(this).attr('data-count')) > showenItems ) {				
+				jQuery(".pagination__posts").css({"display" : "block"});
+			} else {
+				jQuery(".pagination__posts").css({"display" : "none"});
+			}
+			return false;
+		});
+	});
+</script>
+{/literal}
+<ul id="filters" class="filter nav nav-pills isotope_category ">
+    <li class="isotope_active"><a href="#" data-count="4" data-filter="">Show All</a></li>
+    {section name=pro_bo loop=$pro_bo}
+    <li><a href="#" data-count="4" data-filter=".category-{$pro_bo[pro_bo].category_id}"> {$pro_bo[pro_bo].category_name} </a></li>
+    {/section}
+</ul>
+
+
+
+<ul id="portfolio-grid" class="portfolio-3cols isotope" data-cols="3cols" style="visibility: visible; position: relative; overflow: hidden; height: 380px; padding:1px">
+{section name=pro_bo loop=$pro_bo}
+    {section name=pro_con loop=$pro_con[pro_bo]}   
+        <li class="portfolio_item category-{$pro_bo[pro_bo].category_id}  accusantium alias consectetur  isotope-item isotope_foreach_li" style="position:absolute; left:0px; top:390px;"  id="{if $smarty.section.pro_con.iteration % 3 eq 0}content_right{/if}">
+         <dl class="isotope_foreach_img">
+            <a href="{$smarty.const.URL_HOMEPAGE}{$pro_con[pro_bo][pro_con].news_id}-{$pro_con[pro_bo][pro_con].news_url}.html" title="{$pro_con[pro_bo][pro_con].news_name}"> 
+            {if $pro_con[pro_bo][pro_con].news_img}
+           	<img src="{$smarty.const.URL_HOMEPAGE}upload/{$pro_con[pro_bo][pro_con].img_file}/{$pro_con[pro_bo][pro_con].news_img}" alt="{$pro_con[pro_bo][pro_con].news_name}" />
+            {/if} 
+            </a> 
+        </dl>
+        <dl class="isotope_foreach_title">
+            <a href="{$smarty.const.URL_HOMEPAGE}{$pro_con[pro_bo][pro_con].news_id}-{$pro_con[pro_bo][pro_con].news_url}.html" title="{$pro_con[pro_bo][pro_con].news_name}">{$pro_con[pro_bo][pro_con].news_name_40}</a>
+            <p>{$pro_con[pro_bo][pro_con].news_content_130}</p>
+        </dl>
+        <dl class="isotope_foreach_views">
+                <a href="{$smarty.const.URL_HOMEPAGE}{$pro_con[pro_bo][pro_con].news_id}-{$pro_con[pro_bo][pro_con].news_url}.html"><span class="isotope_foreach_views">{$smarty.const.lang_sp_xem_them}</span></a>
+        </dl>
+        </li>
+    {/section}      
+{/section}    
+</ul>

@@ -1,0 +1,116 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {include file="$themes/top.html"}
+        </div>
+    </section>
+</div>
+
+<section class="find-jobs section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 no-padding">
+                <div align="center" class="col-md-6 in-middle">
+                    <div class="fw-mgb20">
+                        <h2 class="text-cl-index">{$industry_content[0].category_name}</h2>
+                    </div>
+                    <div class="fw-mgb20">
+                        <p>{$industry_content[0].category_content}
+                        </p>
+                    </div>
+
+                    <div class="fw-mgt20">
+                        <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
+                            Đăng ký tư vấn
+                        </a>
+                    </div>
+                </div>
+                <div align="center" class="col-md-6">
+                    <div align="center">
+                        <img width="100%" src="{$smarty.const.URL_HOME}/upload/news_category/{$industry_content[0].category_img}" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="find-jobs section">
+    <div class="container">
+        <div class="row">
+            <div class='col-md-12 dotted-spaced fw-mgb20'></div>
+            <div class="col-md-12 fw-mgb10" align="left">
+                <h2 class="text-cl-index">{$detail_content_industry[0].news_name}</h2>
+            </div>
+
+            <div class="col-md-12 no-padding">
+                    <div class="col-md-3">
+                        <div class="fw-mgb10">
+                            <img src="{$smarty.const.URL_HOME}/upload/contents/{$detail_content_industry[0].news_img}" alt="">
+                        </div>
+                        <div>
+                            {$detail_content_industry[0].time_news}
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        {$detail_content_industry[0].description}
+                    </div>
+            </div>
+            <div class='col-md-12 dotted-spaced fw-mgt20'></div>
+        </div>
+    </div>
+</section>
+
+<section class="find-jobs section">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 no-padding">
+                {foreach from=$list_content_industry item="val" key="key" name="val"}
+                <div class="col-md-3 fw-mgb20">
+                    <div class="col-md-12 fw-mgb10" align="center">
+                        <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}/{$val.news_url}.html">
+                            {if $val.news_img}
+                            <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_HOME}/upload/contents/{$val.news_img}" />
+                            {else}
+                            <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
+                            {/if}
+                        </a>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="team_title">
+                            <a class="team_title" href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}/{$val.news_url}.html">
+                                <strong>{$val.news_name_limit}</strong>
+                            </a>
+                        </div>
+                        <div class="team_content fw-mgb20" style="height:auto; min-height: 80px;">{$val.news_content_limit}</div>
+                        <div class="col-md-12 no-padding">
+                            <div class="col-md-6 no-padding">
+                                <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+
+                                <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                            </div>
+                            <div class="col-md-6 no-padding" align="center">
+                                <span style="color:#9b9999"><strong>SHARE</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/foreach}
+            </div>
+            <div align="center" class="col-md-12">
+                <div class="fw-mgb20">
+                    <a class="btn btn-learn-more" href="#" onclick="">
+                        Xem thêm
+                    </a>
+                </div>
+            </div>
+    </div>
+</section>
+<!-- footer -->
+{include file="$themes/footer.html"}

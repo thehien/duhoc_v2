@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="sixteen columns">
+        <h3 class="margin-bottom-25">Popular Categories</h3>
+        <ul id="popular-categories">
+{section name=cate_bo loop=$cate_bo}
+{if $cate_pro[cate_bo]}
+  <li><a href="{$smarty.const.URL_HOMEPAGE}{$cate_bo[cate_bo].news_url}{$cate_bo[cate_bo].category_url}.html">{$cate_bo[cate_bo].category_name} <span id="numberJob">({$numberPro[cate_bo][0].num_product})</span></a></li>
+{/if}     
+{/section}
+        </ul>
+
+        <div class="clearfix"></div>
+        <div class="margin-top-20"></div>
+
+        <a href="{$smarty.const.URL_HOMEPAGE}all-categories-main.html" class="button centered">Browse All Categories</a>
+        <div class="margin-bottom-20"></div>
+    </div>
+</div>

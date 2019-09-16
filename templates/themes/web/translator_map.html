@@ -1,0 +1,46 @@
+{literal}
+<script>
+    function initMap() {
+        {/literal}{foreach from=$translater item="locations" key="key" name="locations"}{literal}
+            var location_{/literal}{$key}{literal} = {
+            info: '<strong style="border-bottom:2px solid #ff0000;">{/literal}{$locations.name}{literal}</strong><br/><br/>Translate from : <strong>{/literal}{$locations.fromlanguage}{literal}</strong><br/><br/>Translate to :<strong>{/literal}{$locations.tolanguage}{literal}</strong>',
+                lat: {/literal}{$locations.latitude}{literal},
+                long: {/literal}{$locations.longitude}{literal},
+                    news_img: '{/literal}{$locations.news_img}{literal}'
+                };
+                {/literal}{/foreach}{literal}
+
+                var locations = [
+                    {/literal}{foreach from=$translater item="locations" key="key" name="locations"}{literal}
+                        [location_{/literal}{$key}{literal}.info, location_{/literal}{$key}{literal}.lat, location_{/literal}{$key}{literal}.long, {/literal}{$key}{literal}, location_{/literal}{$key}{literal}.news_img],
+                    {/literal}{/foreach}{literal}
+                ];
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 4,
+                        center: new google.maps.LatLng(14.058432, 108.274866),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+
+                    var infowindow = new google.maps.InfoWindow({});
+
+                    var marker, i;
+
+                    for (i = 0; i < locations.length; i++) {
+                        marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                            map: map,
+                            icon: locations[i][4]
+                        });
+
+                        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                            return function () {
+                                infowindow.setContent(locations[i][0]);
+                                infowindow.open(map, marker);
+                            }
+                        })(marker, i));
+                    }
+                }
+</script>
+{/literal}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_LGIe88h6yUi-vDAUh0r_s6D0c1Mq_cU&callback=initMap" async defer></script>

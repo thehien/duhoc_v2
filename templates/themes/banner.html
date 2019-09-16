@@ -1,0 +1,49 @@
+<div id="header-carousel" class="carousel slide carousel-fade home_banner_top" data-ride="carousel">
+    <!--/.carousel-indicator -->
+    <ol class="carousel-indicators">
+        {*{foreach from=$list_banner_home key="key" item="val" name="val"}
+          <li data-target="#header-carousel" data-slide-to="{$key}"
+              {if $smarty.foreach.val.first}class="active"{/if}><span class="small-circle"></span></li>
+        {/foreach}*}
+    </ol><!-- /ol-->
+    <!--/.carousel-indicator -->
+
+    <!--/.carousel-inner -->
+    <div class="carousel-inner" role="listbox">
+        <!-- .item -->
+        {foreach from=$list_banner_home item="val" name="val"}
+            <div class="item {if $smarty.foreach.val.first}active{/if}">
+                <div class="single-slide-item slide{$val}">
+                    <div class="container">
+                        <div class="welcome-hero-content">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="single-welcome-hero">
+                                        <div class="welcome-hero-txt">
+                                            <h2>{$val.banner_name}</h2>
+                                            <h4>{$val.banner_content}</h4>
+                                        </div>
+                                        <div align="left" class="col-md-12 no-padding fw-mgt30">
+                                            <a href="{$smarty.const.URL_HOMEPAGE}translate.html" class="btn btn-translate btn-lg"
+                                               style="border-radius: 50px !important; padding-bottom:10px;">ĐĂNG KÝ TRỰC TUYẾN</a>
+                                        </div><!--/.welcome-hero-txt-->
+                                    </div><!--/.single-welcome-hero-->
+                                </div><!--/.col-->
+                                <div class="col-sm-4">
+                                    <div class="single-welcome-hero">
+                                        <div class="welcome-hero-img">
+                                            <img src="{$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}"
+                                                 alt="slider image">
+                                        </div><!--/.welcome-hero-txt-->
+                                    </div><!--/.single-welcome-hero-->
+                                </div><!--/.col-->
+                            </div><!--/.row-->
+                        </div><!--/.welcome-hero-content-->
+                    </div><!-- /.container-->
+                </div><!-- /.single-slide-item-->
+
+            </div><!-- /.item .active-->
+        {/foreach}
+    </div><!-- /.carousel-inner-->
+
+</div><!--/#header-carousel-->

@@ -1,0 +1,34 @@
+<div style="line-height:17px; font-weight:400;">
+  <h4><strong>Your order has been paid successfully.</strong></h4><br />
+
+  {foreach from=$newOrderArray item="val" name="val" key="key"}
+    <p>
+     <strong>Project Name:</strong> {$val.file_translate}<br />
+     <strong>Project ID:</strong> {$val.coupon_code}<br />
+
+     <strong>Translate From:</strong>
+     {foreach from=$order_language name=val_order item=val_order}
+       {if $val_order.translate_id == $val.translate_id}
+         {$val_order.from_language_name}{if !$smarty.foreach.val_order.last},{/if}
+       {/if}
+     {/foreach}
+     <br />
+     <strong> Translate To:</strong>
+     {foreach from=$order_language name=val_order item=val_order}
+       {if $val_order.translate_id == $val.translate_id}
+        {$val_order.to_language_name}{if !$smarty.foreach.val_order.last},{/if}
+       {/if}
+     {/foreach}
+     <br />
+     <strong>Words:</strong> {$val.count_text}<br />
+     <strong>Created Date:</strong> {$val.ngay_mua}<br />
+     <strong>Estimated Delivery:</strong> {$val.estimate} (hours)<br />
+     <strong>Amount:</strong> $ <strong>{$val.price}</strong><br /><br />
+   </p> 
+ {/foreach}  
+ <p>
+  <center>
+    <a href="{$smarty.const.URL_HOMEPAGE}payment-history.html" class="btn btn-translate-home">Next</a>
+  </center>
+</p>                     
+</div> 

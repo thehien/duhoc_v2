@@ -1,0 +1,50 @@
+<div id="tabs">
+<div class="index_info">
+  <div class="index_col col-xs-4">    
+  <a href="#tab1" name="#tab1" id="current" ><img src="{$smarty.const.URL_IMAGE}PA1041_iphone-tab.png" /></a>
+  </div>
+  <div class="index_col col-xs-4">   
+  <a href="#tab2" name="#tab2" ><img src="{$smarty.const.URL_IMAGE}PA1046_web-design-tab.png" /></a>
+  </div>
+  <div class="index_col col-xs-4">   
+  <a href="#tab3" name="#tab3" ><img src="{$smarty.const.URL_IMAGE}PA1034_seo-tab.png" /></a>
+  </div>
+</div>
+</div>
+
+<div id="content">
+{foreach from=$banner_03 item="val" name="val"}
+<div id="tab{$val.rows_i}" class="ditacom_banner index_info">
+    <div class="index_col col-sm-6"> 
+        <img src="{$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}" alt="{$val.banner_name}" />
+    </div>
+    <div class="index_col col-sm-6"> 
+        <h3>{$val.banner_name}</h3>
+        <p>{$val.banner_content}</p>
+        <p><a href="{$val.banner_link}">{$smarty.const.lang_sp_xem_them}</a></p>
+    </div>
+</div>
+{/foreach}
+ 
+</div>
+{literal}
+<style>
+	#tabs {width:100%; float:left; border:1px solid #e1e1e1; text-align:left; background: #f1f1f1; padding:10px; margin:20px 0}
+	#tabs li{float: none; text-align:center}
+	#tabs a {padding:0px; font-size:100%%; color:#000; font-weight:bold; text-transform:capitalize; white-space:nowrap}
+	#tabs a:hover,
+	#tabs a:focus {background:url(templates/themes/img/check_mark.png) no-repeat bottom right}
+	#tabs a:focus {outline: 0;}
+	#tabs #current{background:url(templates/themes/img/check_mark.png) no-repeat bottom right;}
+	#tabs img{width:100%; max-width:193px}
+	
+	.ditacom_banner{ float:left}
+	.ditacom_banner img{width:100%; max-width:290px}
+	.ditacom_banner h3{font-size:160%; line-height:40px; color:#48aabe; text-transform:uppercase;}
+	.ditacom_banner p{font-size:110%; line-height:20px; color:#666666; width:100%}
+	.ditacom_banner a{color:#FFFFFF; float:right; padding:3px 8px; background:#ec573a; border-radius:2px}
+	.ditacom_banner a:hover{background:#48aabe}
+	
+</style> 
+{/literal} 
+<script src="{$smarty.const.URL_WEB}{$themes}/public/slider/slider_tabs_new/tabs_demo.js"></script>

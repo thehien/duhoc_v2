@@ -1,0 +1,167 @@
+{include file="$themes/header.html"}
+{literal}
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+
+    .duhoc_border {
+        padding:2px;
+        height: auto;
+        min-height: 350px;
+        background: #fff;
+        border: 3px solid #E39717;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .duhoc_border.is-selected {
+        background: #fff;
+    }
+
+    .duhoc_border:hover {
+        background: #E39717;
+        color: #fff !important;
+    }
+
+    .duhoc_border:before {
+        display: block;
+        text-align: center;
+        line-height: 350px;
+        color: white;
+    }
+</style>
+{/literal}
+
+
+<link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/slider/flickity.css" media="screen">
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/slider/flickity.pkgd.js"></script>
+
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+    </section>
+
+    {foreach from=$list_banner_home item="val" name="val"}
+        <section class="home_background section" style="background: #0f5dc4 url({$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}) no-repeat center center;
+    -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; max-height: 300px;">
+            {include file="$themes/banner_contact.html"}
+        </section>
+    {/foreach}
+</div>
+
+{section name=val loop=$list_cate_study_abroad}
+    <section class="find-jobs section-about fw-mgt20">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 fw-mgt30 fw-mgb20">
+                    <div class="col-md-3 no-padding">
+                        <div class="fw-mgb10">
+                            <h3 class="text-cl-index">{$list_cate_study_abroad[val].service_name}</h3>
+                        </div>
+                        <div class="fw-mgb10">
+                            {$list_cate_study_abroad[val].service_content_limit}
+                        </div>
+                        <div class="fw-mgb10">
+                            <img class="img-thumbnail img-rounded"
+                                 src="{$smarty.const.URL_HOME}/upload/translator_service/{$list_cate_study_abroad[val].service_img}" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="main-carousel_{$list_cate_study_abroad[val].id}">
+                        {section name=arr_study_abroad loop=$arr_study_abroad[val]}
+                            <div class="carousel-cell col-md-6">
+                                <div class="duhoc_border fw-mgb20">
+                                    <div class="fw-mgb10" style="padding: 5px;">
+                                        <a href="{$smarty.const.URL_HOMEPAGE}">
+                                            <img style="width: 100%; height: 160px;"
+                                                 src="{$smarty.const.URL_HOME}/upload/service_content/{$arr_study_abroad[val][arr_study_abroad].news_img}" alt="">
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-12 fw-mgb10">
+                                        <span class="fw-fs-14 text-cl-index"><strong>{$arr_study_abroad[val][arr_study_abroad].news_name_limit}</strong></span>
+                                    </div>
+
+                                    <div class="col-md-12 fw-mgb10">
+                                        <span>{$arr_study_abroad[val][arr_study_abroad].news_content_limit}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {/section}
+                        </div>
+                    </div>
+
+                    {literal}
+                    <style type="text/css">
+                        .carousel-cell {
+                        {/literal}{if $isMobile}{literal}
+                        width: 100%;
+                        {/literal}{else}{literal}
+                        width: 50%;
+                        {/literal}{/if}{literal}
+                        height: auto;
+                        }
+
+                        .carousel-cell:before {
+                            display: block;
+                            text-align: center;
+                            line-height: 330px;
+                            color: white;
+                        }
+                    </style>
+                    <script type="text/javascript">
+                        $(document).on('ready', function() {
+                            $('.main-carousel_{/literal}{$list_cate_study_abroad[val].id}{literal}').flickity({
+                                cellAlign: 'left',
+                                contain: true,
+                                freeScroll: true,
+                                wrapAround: true
+                            });
+                        });
+                    </script>
+                    {/literal}
+
+                    <div class="col-md-3">
+                        {section name=arr_news_study loop=$arr_news_study[val]}
+                            <div class="col-md-12 no-padding fw-mgb10">
+                                <div class="col-md-4 no-padding">
+                                    <a href="{$smarty.const.URL_HOMEPAGE}news-detail/{$arr_news_study[val][arr_news_study].news_id}/{$arr_news_study[val][arr_news_study].news_url}.html">
+                                        <img style="width: 100%;"
+                                             src="{$smarty.const.URL_HOME}/upload/contents/{$arr_news_study[val][arr_news_study].news_img}" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-md-7 ">
+                                    <a class="text-cl-index" href="">
+                                        {$arr_news_study[val][arr_news_study].title_top}
+                                    </a>
+                                </div>
+                            </div>
+                        {/section}
+                        <div class="col-md-12 no-padding fw-mgt10">
+                            <a class="btn btn-learn-more" href="">
+                                Xem thêm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {if !$smarty.section.val.last}
+                <div class='col-md-12 dotted-spaced fw-mgt10'></div>
+                {else}
+                <div class='col-md-12 fw-mgt10'></div>
+                {/if}
+            </div>
+        </div>
+    </section>
+{/section}
+
+<!-- footer -->
+{include file="$themes/footer.html"}

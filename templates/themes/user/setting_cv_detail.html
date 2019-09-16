@@ -1,0 +1,164 @@
+<div class="fw-mg20">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h4 class="alerts-title"><strong>Quản lý cài đặt</strong></h4></li>
+  </ul>
+  <div id="wrapper" class="fw-mgb10">
+    <section id="core">
+      <div class="profileinfo">
+
+        <div id="fullname-gear" class="gear">
+          {literal}
+          <script type="text/javascript">
+            $(document).ready(function() {
+              var passwordForm = $("form[name='password-form']");
+              var languageForm = $("form[name='language-form']");
+
+              var urlProcess = 'load/submit_cv.php';
+              var urlGetInfo = 'load/get_information_cv.php';
+
+             // full name
+             passwordForm.submit(function(e) {
+               e.preventDefault();
+               $.ajax({
+                url: urlProcess,
+                type: 'POST',
+                data: new FormData(this),
+                processData: false,
+                contentType: false
+              })
+               .done(function(data){
+                $("#loadingInfo").css("display", "block");
+                $('#password-gear').removeClass('bg-active');
+                $('#password-disp').fadeOut(300);
+                $('.editlink').fadeIn(300).css({'display': 'block'});
+                var account = $('#accUser').val();
+                $.ajax({
+                  url: urlGetInfo,
+                  type: 'POST',
+                  data: "id="+ account,
+                  dataType: 'json',    
+                  success: function(data){
+                    console.log(data);
+                    var password = data[0]['password'];
+                    $('#password').empty();
+                    setTimeout(function() {$('#loadingInfo').css("display", "none")}, 300);
+                    $('#password').append(password);
+                  }
+                });
+              });
+             });
+
+             // avatar
+             languageForm.submit(function(e) {
+               e.preventDefault();
+               $.ajax({
+                url: urlProcess,
+                type: 'POST',
+                data: new FormData(this),
+                processData: false,
+                contentType: false
+              })
+               .done(function(data){
+                $("#loadingInfo").css("display", "block");
+                $('#language-gear').removeClass('bg-active');
+                $('#language-disp').fadeOut(300);
+                $('.editlink').fadeIn(300).css({'display': 'block'});
+                var account = $('#accUser').val();
+                $.ajax({
+                  url: urlGetInfo,
+                  type: 'POST',
+                  data: "id="+ account,
+                  dataType: 'json',    
+                  success: function(data){  
+                    var language = data[0]['language'];
+                     var strLanguage = "";
+                    if (language == 0) {
+                      strLanguage = "Việt Nam";
+                    } else if (language == 1) {
+                      strLanguage = "English";
+                    }
+                    $('#language').empty();
+                    setTimeout(function() {$('#loadingInfo').css("display", "none")}, 300);
+                    $('#language').append(strLanguage);
+                  }
+                });
+              })
+             });
+           });
+         </script>
+         {/literal}
+
+         <label>Mật khẩu:</label>
+         <span id="password" class="datainfo">{$show_member.password}</span>
+         <a href="#" class="editlink">Chỉnh sửa</a>
+
+         <div id="password-disp" style="display: none;">
+          <form method="post" name="password-form" class="form-ad" id="password-form" autocomplete="off">
+            <input type="hidden" name="password-post" id="password-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+            <div class="fw-mgb10">
+             <div style="margin-bottom: 10px;">
+              <input type="password" name="password-old" id="password-old" placeholder="Mật khẩu cũ" value="{$show_member.password}" class="hlite-name">
+            </div>
+
+            <div style="margin-bottom: 10px;">
+              <input type="password" name="password-new" id="password-new" placeholder="Mật khẩu mới" value="" class="hlite-name">
+            </div>
+
+            <div style="margin-bottom: 10px;">
+              <input type="password" name="password-new-2" id="password-new-2" placeholder="Nhập lại mật khẩu mới" value="" class="hlite-name">
+            </div>
+          </div>
+          <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+            <button class="savebutton">Lưu thay đổi</button>
+            <button class="btn btn-primary">Hủy</button>
+          </div>
+
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+
+    <div id="language-gear" class="gear">
+      <label>Ngôn ngữ:</label>
+      <span id="language" class="datainfo">{if $show_member.language == 0}Việt Nam{else}English{/if}</span>
+      <a href="#" class="editlink">Chỉnh sửa</a>
+
+      <div id="language-disp" style="display: none;">
+        <form method="post" name="language-form" class="form-ad" id="language-form" autocomplete="off">
+         <input type="hidden" name="language-post" id="language-post" value="1" />
+         <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+         <div class="form-group">
+           <div class="float_left">
+            <div class="form-group">
+              <select class="hlite-selected" name="language">
+              <option>Chọn ngôn ngữ</option>
+              <option value="1">English</option>
+              <option value="0">Việt Nam</option>
+            </select>
+           </div>
+         </div>
+         <div style="clear: both;"></div>
+         <div class="form-group" style="padding-top: 10px; margin-left:-5px;">
+          <button class="savebutton">Lưu thay đổi</button>
+          <button class="btn btn-primary">Hủy</button>
+        </div>   
+      </div>
+    </form>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+
+</div>
+</section>
+</div>
+
+
+
+<div id="loadingInfo" class="loading-img">
+  <p style="position: absolute; top: 35%; left: 50%;">
+   <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/loading.gif" class="fw-img-p50" />
+ </p>
+</div>

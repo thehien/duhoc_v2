@@ -1,0 +1,94 @@
+   {foreach from=$rs item="val" name="val"}
+    <div class="col-md-3-1 brief-grids wow">
+    <a href="#" title="{$val.news_name}" />
+      {if $val.news_img}
+      <img class="img-circle" width="160" {if !$isMobile}height="160"{/if} src="{$smarty.const.URL_HOMEPAGE}upload/products/{$val.img_file}/{$val.news_img}" alt="{$val.news_name}" />
+       {else} 
+      <img class="img-circle" width="160" {if !$isMobile }height="160"{/if} src="{$smarty.const.URL_IMAGE_NEW}/nophoto.png" alt="{$val.news_name}" />
+      {/if}
+    </a>
+       <div class="brief-grid">
+         <div class="brief-grid-text-detail">
+           <h4>{$val.news_code}</h4>
+           <p>
+            {$smarty.const.lang_position}: {$val.news_position}<br/>
+            {$smarty.const.lang_type}: {$val.news_type} <br/>
+            {$smarty.const.lang_time_product}: {$val.news_time}<br/>
+            {$smarty.const.lang_salary}: <strong>{$val.price}</strong> vnd          
+           </p>  
+         </div>
+       </div>
+
+       <div class="maidbutton-padding">
+       {if $isMobile}
+          <a class="link" href="{$smarty.const.URL_HOMEPAGE}{$val.news_id}-{$val.news_url}.html" title="{$val.news_name}"> 
+          {$smarty.const.lang_xemchitiet}
+          </a>
+       {else}
+          <a id="popup-with-zoom-anim-{$val.news_id}" href="#small-dialog-{$val.news_id}" class="link">
+          {$smarty.const.lang_xemchitiet}
+          </a>
+       {/if}
+       </div>
+{if !$isMobile}
+       <div id="small-dialog-{$val.news_id}" class="mfp-hide">
+            <div class="content">
+            <center>{if $val.news_img}
+            <img class="img-circle" width="180" src="{$smarty.const.URL_HOMEPAGE}upload/products/{$val.img_file}/{$val.news_img}" alt="{$val.news_name}" />
+             {/if} 
+            </center>
+          </div>
+            <div class="content"><strong>{$smarty.const.lang_code}:</strong> <span style="font-size:16px;">{$val.news_code}</span></div>
+            <div class="content"><strong>{$smarty.const.lang_position}:</strong> {$val.news_position}</div>
+            <div class="content"><strong>{$smarty.const.lang_salary}:</strong> {$val.price} vnd</div>
+            <div class="content"><strong>{$smarty.const.lang_birthday}:</strong> {$val.news_birthday}</div>
+            <div class="content"><strong>{$smarty.const.lang_location}:</strong> {$val.news_location}</div>
+            <div class="content"><strong>{$smarty.const.lang_nationality}:</strong> {$val.news_national}</div>
+            <div class="content"><strong>{$smarty.const.lang_status}:</strong> {$val.news_married}</div>
+            <div class="content"><strong>{$smarty.const.lang_skill}:</strong> {$val.news_skill}</div>
+            <div class="content"><strong>{$smarty.const.lang_experience}:</strong> {$val.news_experience}</div>
+            <div class="content"><strong>{$smarty.const.lang_scale}:</strong> {$val.news_weight} / {$val.news_height}</div>
+            <div class="content"><strong>{$smarty.const.lang_remark}:</strong><br/>
+            {$val.description}</div>
+
+            <center><div class="about-padding">
+             <a href="{$smarty.const.URL_HOMEPAGE}request/{$val.news_id}-{$val.news_url}.html" class="morebutton">{$smarty.const.lang_setup_interview}</a>
+           </div>
+           </center>
+        </div>  
+  {/if}
+ </div>
+{if !$isMobile}
+{literal} 
+<style type="text/css">
+  #small-dialog-{/literal}{$val.news_id}{literal}{
+  background: #FFF;
+  padding: 20px;
+  text-align: left;
+    max-width: 45%;
+  margin: 40px auto;
+  position: relative;
+  border: 2px solid #DBDBDB;
+    -webkit-box-shadow: 0 0 8px 2px #444546;
+  -moz-box-shadow: 0 0 8px 2px #444546;
+  box-shadow: 0 0 8px 2px #444546;
+}
+</style> 
+<script>
+        $(document).ready(function() {
+          $('#popup-with-zoom-anim-{/literal}{$val.news_id}{literal}').magnificPopup({
+              type: 'inline',
+              fixedContentPos: false,
+              fixedBgPos: true,
+              overflowY: 'auto',
+              closeBtnInside: true,
+              preloader: false,
+              midClick: true,
+              removalDelay: 300,
+              mainClass: 'my-mfp-zoom-in'
+          });                                                            
+        });
+</script>
+{/literal}
+  {/if}
+{/foreach}

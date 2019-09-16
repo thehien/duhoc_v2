@@ -1,0 +1,473 @@
+{include file="$themes/header.html"}
+<link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/css/content.css">
+<link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/slider/flickity.css" media="screen">
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/slider/flickity.pkgd.js"></script>
+<link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/grid_gallary/css/grid-gallery.css">
+{literal}
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+
+    .carousel-cell {
+        {/literal}{if $isMobile}{literal}
+        width: 100%;
+        {/literal}{else}{literal}
+        width: 20%;
+        {/literal}{/if}{literal}
+        height: auto;
+        min-height: 370px;
+        margin-right: 10px;
+        background: #fff;
+        border-radius: 5px;
+        border: 3px solid #E39717;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .carousel-cell.is-selected {
+        background: #fff;
+    }
+
+    .carousel-cell:hover {
+        background: #E39717;
+        color: #fff !important;
+    }
+
+    .carousel-cell:before {
+        display: block;
+        text-align: center;
+        line-height: 370px;
+        color: white;
+    }
+</style>
+<script type="text/javascript">
+    $(document).on('ready', function () {
+        $('.main-carousel').flickity({
+            cellAlign: 'left',
+            contain: true,
+            pageDots: false,
+            autoPlay: 1500
+        });
+    });
+</script>
+{/literal}
+
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+    </section>
+    {foreach from=$list_banner_home item="val" name="val"}
+    <section class="home_background section" style="background: url({$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}) no-repeat center center;
+-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; max-height: 300px;">
+        {include file="$themes/banner_contact.html"}
+    </section>
+    {/foreach}
+</div>
+
+
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt30">
+                <h3 class="text-cl-index">LÝ DO CHÍNH YẾU TRỞ THÀNH DU HỌC SINH MỸ</h3>
+            </div>
+
+            <div class="col-md-12 no-padding">
+                {include file="$themes/web/duhoc_main.html"}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="duhoc-jobs section-about">
+    <div class="container">
+        <div class="row">
+             <div class="col-md-12">
+                <div class="col-md-12 no-padding fw-mgt30 fw-mgb20">
+                    <h3 class="text-cl-index">HỌC BỔNG DU HỌC MỸ</h3>
+                </div>
+                <div class="col-md-12 no-padding fw-mgb10">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
+                    et doloremagna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco poriti laboris nisi ut aliquip ex ea
+                    commodo
+                    consequat. Duis aute irure dolor in reprehenderit in uienply voluptate velit esse cillum dolore eu
+                    fugiatnulla pariatur.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="duhoc-jobs section-about">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 no-padding fw-mgb20">
+                {if count($list_du_hoc) > 0}
+                <div class="main-carousel">
+                    {foreach from=$list_du_hoc item="val" key="key" name="val"}
+                    <div class="carousel-cell fw-mgb30 fw-mgt20">
+                        <div class="fw-mgb10" style="padding: 10px;">
+                            <a href="{$smarty.const.URL_HOMEPAGE}sv-detail/{$val.news_id}/{$val.news_url}.html">
+                                <img style="width: 100%;" src="{$smarty.const.URL_HOME}/upload/translator_service/{$val.service_img}" alt="{$val.service_name_limit}">
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 fw-mgb20">
+                            <span class="fw-fs-16 text-cl-index"><strong>{$val.service_name_limit}</strong></span>
+                        </div>
+
+                        <div class="col-md-12 fw-mgb10">
+                            <span>{$val.service_content_limit}</span>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+                {else}
+                <div align="center" class="fw-mgt30 fw-mgb30"><h3>Don't have data.</h3></div>
+                {/if}
+            </div>
+
+            <div align="center" class="col-md-12 fw-mgb20">
+                <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
+                    Xem thêm
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt30 fw-mgb20">
+                <h3 class="text-cl-index">CHƯƠNG TRÌNH DU HỌC TẠI MỸ</h3>
+            </div>
+            <div class="col-md-12 fw-mgb10">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
+                et doloremagna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco poriti laboris nisi ut aliquip ex ea
+                commodo
+                consequat. Duis aute irure dolor in reprehenderit in uienply voluptate velit esse cillum dolore eu
+                fugiatnulla pariatur.
+            </div>
+
+            <div class="col-md-12">
+                 {include file="$themes/web/duhoc_news.html"}
+            </div>
+
+            <div align="center" class="col-md-12 fw-mgb20">
+                <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}duhoc-news.html">
+                    Xem thêm
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="duhoc-jobs section-about">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12 no-padding">
+                    <div class="col-md-6 no-padding">
+                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/bg/1.jpg" alt="">
+                    </div>
+                    <div class="col-md-6 no-padding">
+                        <div class="col-md-12 fw-mgt20">
+                            <h2 class="text-cl-index">Chia sẻ từ du học viên tại Mỹ</h2>
+                        </div>
+                        <div class="col-md-12 fw-mgb20">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
+                            et doloremagna
+                        </div>
+                        <div class="col-md-12 fw-mgb10">
+                            <div class="col-md-6" align="center">
+                                <div class="col-md-12 fw-mgb10">
+                                    <img style="max-width: 110px;" class="img-circle" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
+                                </div>
+
+                                <div class="col-md-12 fw-mgb10">
+                                    <strong>Name of Student</strong>
+                                </div>
+
+                                <div class="col-md-12 fw-mgb10">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
+                                        et doloremagna.
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" align="center">
+                                <div class="col-md-12 fw-mgb10">
+                                    <img style="max-width: 110px;" class="img-circle" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
+                                </div>
+
+                                <div class="col-md-12 fw-mgb10">
+                                    <strong>Name of Student</strong>
+                                </div>
+
+                                <div class="col-md-12 fw-mgb10">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
+                                        et doloremagna.
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 no-padding">
+                    <div class="col-md-6 no-padding">
+                        <div class="col-md-12 fw-mgt20">
+                            <h2 class="text-cl-index">Du học AMV là dành cho bạn</h2>
+                        </div>
+                        <div class="col-md-12 fw-mgb10">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
+                            et doloremagna.
+                        </div>
+
+                        <div class="col-md-12 fw-mgb10 no-padding">
+                            <div class="col-md-6" align="center">
+                                <div class="col-md-12 fw-mgb10">
+                                    <img style="max-width: 100px;" class="img-circle" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
+                                </div>
+
+                                <div class="col-md-12 fw-mgb10 fw-fs-16">
+                                    99 % Visa được chấp nhận
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" align="center">
+                                <div class="col-md-12 fw-mgb10">
+                                    <img style="max-width: 100px;" class="img-circle" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
+                                </div>
+
+                                <div class="col-md-12 fw-mgb10 fw-fs-16">
+                                    700 + trường đối tác trên thế giới
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" align="center">
+                                <div class="col-md-12 fw-mgb10">
+                                    <img style="max-width: 100px;" class="img-circle" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
+                                </div>
+
+                                <div class="col-md-12 fw-mgb10 fw-fs-16">
+                                    15+ uy tín và kinh nghiệm
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" align="center">
+                                <div class="col-md-12 fw-mgb10">
+                                    <img style="max-width: 100px;" class="img-circle" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
+                                </div>
+
+                                <div class="col-md-12 fw-mgb10 fw-fs-16">
+                                    Miễn phí hỗ trợ học sinh tư vấn
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 no-padding">
+                        <img src="http://localhost/duhoc_v2/upload/categorys/0908-img_2.jpg" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt30 fw-mgb20">
+                <h3 class="text-cl-index">Hình ảnh du học sinh - Mỹ</h3>
+            </div>
+            <div class="col-md-12 fw-mgb30">
+                <div class="gg-box">
+                    <div class="gg-element">
+                        <img src="https://picsum.photos/1600/1300/?random">
+                    </div>
+                    <div class="gg-element">
+                        <img src="https://picsum.photos/1600/1200/?random">
+                    </div>
+                    <div class="gg-element">
+                        <img src="https://picsum.photos/1200/1600/?random">
+                    </div>
+                    <div class="gg-element">
+                        <img src="https://picsum.photos/1600/1201/?random">
+                    </div>
+                    <div class="gg-element">
+                        <img src="https://picsum.photos/1200/1601/?random">
+                    </div>
+                    <div class="gg-element">
+                        <img src="https://picsum.photos/1201/1600/?random">
+                    </div>
+                    <div class="gg-element">
+                        <img src="https://picsum.photos/1600/1310/?random">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="duhoc-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt30 fw-mgb30">
+                <div class="col-md-8 no-padding">
+
+                    <div class="col-md-12 no-padding fw-mgb10">
+                        <a class="tintuc_title" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                            <strong>Cập nhật tin tức du học Mỹ….</strong>
+                        </a>
+                    </div>
+                    <div class="col-md-12 no-padding fw-mgb20">
+                        <div class="col-md-4 fw-mgb10" align="center">
+                            <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                {if $val.news_img}
+                                <img class="img-thumbnail img-rounded" style="height: 140px !important;" src="{$smarty.const.URL_HOME}/upload/blogs/{$val.news_img}" />
+                                {else}
+                                <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
+                                {/if}
+                            </a>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="team_content fw-mgb20" style="height:auto; min-height: 80px;">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut ero labore et dolore magna aliqua. Ut enim ad
+                                minim veniam,quis fugiat nulla pariatur. Excepteur sint occaecat
+                                cupidatat norin proident, sunt in culpa qui officia deserunt mollit anim id
+                                est laborum. deserunt mollit anim id est
+                            </div>
+                            <div class="col-md-12 no-padding fw-fs-12">
+                                <div class="col-md-6 no-padding">
+                                    <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                                    <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                                </div>
+                                <div class="col-md-6 no-padding" align="right">
+                                    <span style="color:#9b9999"><strong>SHARE</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='col-md-12 dotted-spaced'></div>
+
+
+                    <div class="col-md-12 no-padding fw-mgt20 fw-mgb10">
+                        <a class="tintuc_title" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                            <strong>Cập nhật tin tức du học Mỹ….</strong>
+                        </a>
+                    </div>
+                    <div class="col-md-12 no-padding fw-mgb20">
+                        <div class="col-md-4 fw-mgb10" align="center">
+                            <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                {if $val.news_img}
+                                <img class="img-thumbnail img-rounded" style="height: 140px !important;" src="{$smarty.const.URL_HOME}/upload/blogs/{$val.news_img}" />
+                                {else}
+                                <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
+                                {/if}
+                            </a>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="team_content fw-mgb20" style="height:auto; min-height: 80px;">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut ero labore et dolore magna aliqua. Ut enim ad
+                                minim veniam,quis fugiat nulla pariatur. Excepteur sint occaecat
+                                cupidatat norin proident, sunt in culpa qui officia deserunt mollit anim id
+                                est laborum. deserunt mollit anim id est
+                            </div>
+                            <div class="col-md-12 no-padding fw-fs-12">
+                                <div class="col-md-6 no-padding">
+                                    <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                                    <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                                </div>
+                                <div class="col-md-6 no-padding" align="right">
+                                    <span style="color:#9b9999"><strong>SHARE</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='col-md-12 dotted-spaced'></div>
+
+
+                    <div class="col-md-12 no-padding fw-mgt20 fw-mgb10">
+                        <a class="tintuc_title" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                            <strong>Cập nhật tin tức du học Mỹ….</strong>
+                        </a>
+                    </div>
+
+                    <div class="col-md-12 no-padding fw-mgb20">
+                        <div class="col-md-4 fw-mgb10" align="center">
+                            <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                {if $val.news_img}
+                                <img class="img-thumbnail img-rounded" style="height: 140px !important;" src="{$smarty.const.URL_HOME}/upload/blogs/{$val.news_img}" />
+                                {else}
+                                <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
+                                {/if}
+                            </a>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="team_content fw-mgb20" style="height:auto; min-height: 80px;">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut ero labore et dolore magna aliqua. Ut enim ad
+                                minim veniam,quis fugiat nulla pariatur. Excepteur sint occaecat
+                                cupidatat norin proident, sunt in culpa qui officia deserunt mollit anim id
+                                est laborum. deserunt mollit anim id est
+                            </div>
+                            <div class="col-md-12 no-padding fw-fs-12">
+                                <div class="col-md-6 no-padding">
+                                    <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                                    <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                                </div>
+                                <div class="col-md-6 no-padding" align="right">
+                                    <span style="color:#9b9999"><strong>SHARE</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="fw-mgb20">
+                        <h3 class="text-cl-index">TẢI CẨM NANG DU HỌC MIỄN PHÍ</h3>
+                    </div>
+
+                    <div>
+                        {include file="$themes/web/register_duhoc.html"}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="{$smarty.const.URL_WEB}{$themes}/assets/grid_gallary/js/grid-gallery.min.js"></script>
+<!-- footer -->
+{include file="$themes/footer.html"}

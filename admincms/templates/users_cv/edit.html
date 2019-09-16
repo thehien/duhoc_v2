@@ -1,0 +1,68 @@
+{include file="left.html"}
+<div id="page-wrapper">
+<div class="row">
+<div class="col-lg-12">
+    <h1 class="page-header"><a href="#" ><i class="fa fa-home"></i> {$smarty.const.langcms_capnhat} {$main_name}</a></h1>
+</div>
+</div>
+
+<div class="row shows_insert" style="display:block">
+<div class="col-lg-12">
+<div class="panel panel-default">
+    <div class="panel-heading heading_title">
+        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.langcms_capnhat} {$main_name}
+    </div>
+    <div class="panel-body">
+    <form id="frm_admin" name="frm_admin" method="post"  action="{$smarty.const.URL_ADMIN}?module=users&main=edit" >
+    <div class="col-lg-6">
+        <table class="table_insert">
+        <thead>
+            <tr>
+              <td align="right">FirstName:  <em>*</em></td>
+              <td><input type="text" class="check_input" name="firstname"  id="firstname" value="{$rs_edit.firstname}" /></td>
+            </tr>
+            <tr>
+              <td align="right">LastName: <em>*</em></td>
+              <td><input type="text" class="check_input" name="lastname"  id="lastname" value="{$rs_edit.lastname}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+              <td align="right">{$smarty.const.langcms_matk}</td>
+              <td><input type="text" name="password"  id="password" value=""  /></td>
+            </tr>
+           
+            <tr>
+                <td class="left"></td>
+                <td class="center">
+                <input type="hidden" id="user_role" name="user_role" value="{$rs_edit.user_role}" />
+                <input type="hidden" id="status" name="status" value="{$rs_edit.status}" />
+                <button type="submit" name="submit" id="submit" value="submit" class="bg_edit">{$smarty.const.langcms_capnhat} </button>
+                </td>
+                </tr>
+          </thead>  
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <table class="table_insert">
+        <thead>
+        	<tr>
+              <td align="right">Email</td>
+              <td><input type="text" name="email"  id="email" value="{$rs_edit.email}" /></td>
+            </tr>
+            <tr>
+              <td align="right">Phone</td>
+              <td><input type="text" name="mobile"  id="mobile" value="{$rs_edit.mobile}" /></td>
+            </tr>
+           
+          </thead>  
+        </table>
+    </div>
+    </form>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+

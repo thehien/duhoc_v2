@@ -1,0 +1,17 @@
+<h4 class="support_online_h4">{$smarty.const.lang_heard_hotro}</h4>
+<ul class="support_online" >
+    {foreach from=$rs_online item="val" name="val"}
+    <li >  
+    	{if {$val.img}<img src="{$smarty.const.URL_HOMEPAGE}upload/img/{$val.img}" alt="{$val.name}" class="support_online_avata" />{/if}
+        {if $val.name}<p><span>{$val.name}</span></p>{/if}
+        {if $val.phone}<p>{$val.office}: <strong>{$val.phone}</strong></p>{/if}
+        <p>
+          {if $val.yahoo}<a href="ymsgr:sendim?{$val.yahoo}"><img src="{$smarty.const.URL_IMAGE}icon_yahoo.png" alt="" > </a>{/if}
+          {if $val.skype}<a href="Skype:{$val.skype}?chat"> <img src="{$smarty.const.URL_IMAGE}skype-icon.png" title=""  alt=""> </a>{/if}
+        </p> 
+    </li> 
+    {/foreach}
+    <!--<li style="border-bottom:none" >  	
+       <a href="{$smarty.const.URL_HOMEPAGE}support-add.html"><h3><img src="{$smarty.const.URL_IMAGE}newest.gif" alt="Tìm nhà theo yêu cầu"/> Tìm theo yêu cầu</h3></a>
+    </li>-->         
+</ul>

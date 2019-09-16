@@ -1,0 +1,42 @@
+{include file="$themes/header.html"}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/jquery.popupoverlay.js"></script>
+ <!-- Header Section Start -->
+      <div class="header">    
+        <!-- Start intro section -->
+        <section id="intro" class="section-intro">
+          <div class="logo-menu">
+            {if $isLogin}
+              {include file="$themes/top-account.html"}
+            {else}
+              {include file="$themes/top.html"}
+            {/if}
+          </div>
+    </section>
+
+    </div>
+    
+    <!-- Find Job Section Start -->
+    <section class="find-job section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12" style="text-align: center">
+            <h2 class="fwW-fs-32">Our Translators</h2>
+          </div>
+
+          <div class="col-md-12" style="margin: 10px;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              {include file="$themes/user/search_translator.html"}
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+
+         <div class="col-md-12" style="margin: 10px;">
+           {include file="$themes/user/all_translator.html"}
+         </div>
+         
+    </section>
+    <!-- Find Job Section End -->
+
+<!-- footer -->
+{include file="$themes/footer.html"}

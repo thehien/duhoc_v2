@@ -1,0 +1,668 @@
+{include file="$themes/header-account.html"}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/jquery.popupoverlay.js"></script>
+<script src="https://static.filestackapi.com/v3/filestack.js"></script>
+{literal}
+<style>
+.error {
+  color: #ff0000;
+  white-space: nowrap;
+}
+</style>
+<script type="text/javascript">
+  var fsClient = filestack.init('ABOcK5w9Q4aECjiXSztXbz');
+  var data ={};
+  function openPicker() {
+    fsClient.pick({
+      fromSources:["local_file_system","googledrive","dropbox"],
+      accept:[".pdf",".doc",".docx",".docm","text/plain"],
+      transformations:{
+        crop:{      
+          force:true
+        }
+      }
+    }).then(function(response) {
+      var converFileUrl = response['filesUploaded'][0]['url'];
+      document.getElementById('convertFile').setAttribute('value', converFileUrl);
+      var session = $('#session').val();
+      var userid = $('#accUser').val();
+      var translate_from = $('#translateFrom').val();
+      var translate_to = $('#translateTo').val();
+      var total_count = $('#totalCount').val();
+      var dataString = "file=" + converFileUrl + "&session=" + session + "&translate_from=" + translate_from + "&translate_to=" + translate_to +"&totalCount=" + total_count  +"&userid=" + userid;
+      $.ajax({
+        url: 'load/exec_translate.php',
+        type: 'GET',
+        data: dataString,
+        processData: false,
+        contentType: false
+      })
+      .done(function(data){
+       $("#loadingInfo").css("display", "block");
+       setTimeout(function(){location.reload();}, 1000); 
+     });
+      handleFilestack(response);
+
+    });
+  }
+</script>
+<script type="text/javascript">
+  $(function() {
+    $(".delete").click(function(){
+      var element = $(this);
+      var del_id = element.attr("id");
+      var session = $('#session').val();
+      var translate_from = $('#translateFrom').val();
+      var translate_to = $('#translateTo').val();
+      var info = 'id=' + del_id + '&session=' + session + '&from_language=' + translate_from + '&to_language=' + translate_to ;
+      if(confirm("Do you want to delete this file?")) {
+       $.ajax({
+         type: "POST",
+         url: "load/delete_translate.php",
+         data: info,
+         success: function(data){     
+           $("#loadingInfo").css("display", "block");
+         }
+       });
+       $(this).parents("#displayFile").animate({ opacity: "hide" }, "slow");
+       setTimeout(function(){location.reload();}, 1000); 
+     }
+     return false;
+   });
+
+      // Rset order
+      $(".resetOrder").click(function(){
+        if(confirm("Do you want to remove all orders?")) {
+          var session = $('#session').val();
+          $.ajax({
+           type: "GET",
+           url: "load/delete_order.php",
+           data: 'session=' + session,
+           success: function(data){     
+             $("#loadingInfo").css("display", "block");
+             setTimeout(function(){location.reload();}, 1000); 
+           }
+         });
+
+        }
+        return false;
+      });
+
+      $(".deleteLanguage").click(function(){
+        var element = $(this);
+        var del_id = element.attr("id");
+        var toLanguage = element.attr("title");
+        var translate_id = element.attr("alt");
+        var session = $('#session').val();
+        var info = 'id=' + del_id + '&session=' + session + '&translate_id=' + translate_id + '&toLanguage=' + toLanguage ;
+        if(confirm("Do you want to delete the language?")) {
+         $.ajax({
+           type: "POST",
+           url: "load/delete_language.php",
+           data: info,
+           success: function(data){     
+             $("#loadingInfo").css("display", "block");
+           }
+         });
+         $(this).parents("#translate_to").animate({ opacity: "hide" }, "slow");
+         setTimeout(function(){location.reload();}, 1000); 
+       }
+       return false;
+     });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+     $("form[name='language-form']").validate({
+      rules: {
+        from_language: {
+          required: true
+        },
+        to_language: {
+          required: true
+        }
+      }, 
+      messages: {
+        from_language: "Hãy chọn ngôn ngữ nguồn", 
+        to_language: "Hãy chọn ngôn ngữ đích"
+      }, 
+      submitHandler: function (form) {
+        $.ajax({
+          url: 'load/get_language.php',
+          type: 'POST',
+          data: $(form).serialize()
+        }).done(function(data){
+          $("#loadingInfo").css("display", "block");
+          setTimeout(function(){location.reload();}, 1000); 
+        });
+
+      }
+    });
+   });
+ </script>
+ 
+ {/literal}
+
+ <!-- Header Section Start -->
+ <div class="header">
+  <!-- Start intro section -->
+  <section id="intro" class="section-intro">
+    <div class="logo-menu">
+      {if $isLogin}
+      {include file="$themes/top-account.html"}
+      {else}
+      {include file="$themes/top.html"}
+      {/if}
+    </div>
+
+    <input type="hidden" value="" name="convertFile" id="convertFile">
+
+    <div id="content" class="register-account fw-font-default">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 fw-mgb10">
+            <h2 style="text-align: center;">Start your order!</h2>
+            <p style="clear: both;text-align: center;">
+              Speed, Quality, Professional
+            </p>
+          </div>
+
+          {if $warningMessage}
+          <div class="col-md-6 col-md-offset-3 fw-mgb10" align="center">
+            <span class="error-msg">{$warningMessage}</span>
+          </div>
+          {/if}
+
+          <div class="col-sm-8">
+            <div class="fw-bglogin box fw-mgb10">
+              <div class="content_left fw-mg10">
+                <div class="fw-fs-24 fw-mgb10">What would you like to translate today?</div>
+                <div>
+                  <div style="float: left; padding-right: 20px;">
+                   <a class="btn btn-upload fadeandscale_img_open" href="#fadeandscale_img">
+                     Upload Images
+                   </a>
+                 </div>
+                 <div style="float: left; padding-right: 20px;">
+                  <a class="btn btn-upload" href="#" onclick="openPicker();return false;">
+                    Choose File
+                  </a>
+                </div>
+                <div style="float: left">
+                  <a class="btn btn-upload fadeandscale_open" href="#fadeandscale">
+                    Enter text
+                  </a>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="fw-mgt10">
+                Types of supported file
+                <div>
+                  <i class="fa fa-file-pdf-o" aria-hidden="true" title="pdf"></i>
+                  <i class="fa fa-file-word-o" aria-hidden="true" title="word"></i>
+                  <i class="fa fa-file-text-o" aria-hidden="true" title="txt"></i>
+                </div>
+              </div>
+
+              <div class="clearfix"></div>
+
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          {* Hiển thị tài liệu dịch*}
+          {if $list_order_translate}
+
+          {foreach from=$list_order_translate name=val item=val}
+
+          {literal}
+          <script type='text/javascript'>
+            $(function() {
+              $('#special_category_{/literal}{$val.id}{literal}').change(function() {
+                var element = $(this);
+                var value = $(this).val();
+                var name = $(this).find('option:selected').text();
+                $('#special_category_value').empty();
+                $('#special_category_value').addClass('language-bg').append(name);
+                $('#specialCategory').val(value);
+
+                var session = $('#session').val();
+                var specialCategory = $('#specialCategory').val();
+
+                var translateId = $('#translate_id_{/literal}{$val.id}{literal}').val();
+
+                var dataString = "specialCategory=" + specialCategory + "&translate_id=" + translateId + "&session=" + session;
+                $.ajax({
+                  url: 'load/exec_special_category.php',
+                  type: 'GET',
+                  data: dataString
+                })
+                .done(function(data){
+                  setTimeout(function() {$('#loadingInfo').css("display", "none")}, 300);
+                });
+
+              });
+            });
+          </script>
+          <script>
+            $(function() {
+                        // Submit data
+                        $('#updateData_{/literal}{$val.id}{literal}').click(function(){
+                         $("form[name='translate-form-{/literal}{$val.id}{literal}']").validate({
+                                // Specify validation rules
+                                rules: {
+                                  from_language_{/literal}{$val.id}{literal}: "required", 
+                                  special_category_{/literal}{$val.id}{literal} :"required"
+                                },
+                                // Specify validation error messages
+                                messages: {
+                                  from_language_{/literal}{$val.id}{literal}: "Please select From Language",
+                                  special_category_{/literal}{$val.id}{literal} : "Please select Subject Field"
+                                },
+                                submitHandler: function(form) {
+                                  $("#loadingInfo").css("display", "block");
+                                  form.submit();
+                                }
+
+                              });
+                       });
+                      });
+                    </script>
+                    {/literal}
+
+
+                    <div class="fw-bglogin box fw-mgb10">
+
+                     <form method="post" name="translate-form-{$val.id}" class="form-ad" id="translate-form-{$val.id}" autocomplete="off" action="{$smarty.const.URL_HOMEPAGE}translate.html">
+
+                      <input type="hidden" name="totalCharater" id="totalCharater" value="{$total_count}">
+                      <input type="hidden" value="{$translateSession}" name="session" id="session">
+                      <input type="hidden" value="{$show_member.userid}" name="accUser" id="accUser"/>
+                      <input type="hidden" value="{$val.id}" name="translate_id_{$val.id}" id="translate_id_{$val.id}"/>
+                      <input type="hidden" value="{$val.id}" name="translateId"/>
+                      <input type="hidden" value="{$val.count_text}" name="count_text_{$val.id}" id="count_text_{$val.id}"/>
+
+                      <div class="content_left fw-mg10" style=" width: 97%">
+                        <div id="displayFile" class="fw-mgb10">
+                          <div class="col-sm-6" style="white-space: nowrap;">. {$val.file_translate}</div>
+
+                          <div class="col-sm-2" style="white-space: nowrap;"></div>
+
+                          <div class="col-sm-2" style="white-space: nowrap;"></div>
+
+                          <div class="col-sm-2"> </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="fw-mgb10 col-sm-11">
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                              <div class="input-icon">
+                                <select name="from_language_{$val.id}" id="from_language_{$val.id}" class="form-control">
+                                  <option value="">{$smarty.const.lang_from_language}</option>
+                                  {foreach from=$from_language name=val_language item=val_language}
+                                  <option value="{$val_language.from_lang_id}" {if $val.from_language == $val_language.from_lang_id}selected{/if}>{$val_language.from_language}
+                                  </option>
+                                  {/foreach}
+                                </select>
+                                
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-4" align="center" style="margin-top:5px;">
+                            <a class="btn btn-common fadeandscale_to_language_{$val.id}_open" href="#fadeandscale_to_language_{$val.id}">
+                              Translate To
+                            </a>
+                          </div>
+
+
+                          <div class="col-sm-4">
+                           <div class="form-group">
+                            <div class="input-icon">
+                              <select name="special_category_{$val.id}" id="special_category_{$val.id}" class="form-control">
+                               <option value="">{$smarty.const.lang_common_chude}</option>
+                               {foreach from=$list_special_cate name=val_category item=val_category}
+                               <option value="{$val_category.id}" {if $val.special_category == $val_category.id} selected="selected" {/if}>{$val_category.category_name}</option>
+                               {/foreach}
+                             </select>
+                             <input type="hidden" name="specialCategory" id="specialCategory" value="">
+                           </div>
+                         </div>
+                       </div>
+                       <div class="clearfix"></div>
+                     </div>
+
+
+                     <div class="fw-mgb10">
+                      <div class="col-sm-12">
+                       {foreach from=$order_language name=val_order item=val_order}
+                         {if $val_order.translate_id == $val.id}
+                           <span style="margin-right: 10px;" id="translate_to" {if $val_order.id} class="language-bg"{/if}>{$val_order.to_language_name}
+                            <a href="#" id="{$val_order.id}" alt="{$val_order.translate_id}" title="{$val_order.to_language}" class="deleteLanguage"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            </span>
+                        {/if}
+                      {/foreach}
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+
+                  <div class="fw-mgb10">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <textarea class="form-control" name="messages" id="messages" rows="6" placeholder="Please enter request for this order...">{$val.message}</textarea>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="fw-mgb10">
+                    <div class="col-sm-3" style="line-height: 40px;">
+                      {$val.count_text} word(s)
+                    </div>
+
+                    <div class="col-sm-2" style="line-height: 40px;">
+                      <strong>$ {$val.price}</strong>
+                    </div>
+
+                    {if $val.count_text <= 300 || $val.count_text < 600}
+                    {assign var="estimate" value=12}
+                    {elseif $val.count_text >= 900 || $val.count_text <= 1800}
+                    {assign var="estimate" value=24}
+                    {elseif $val.count_text >= 2000 || $val.count_text < 2100}
+                    {assign var="estimate" value=48}
+                    {elseif $val.count_text > 2100 || $val.count_text < 4000}
+                    {assign var="estimate" value=72}
+                    {elseif $val.count_text > 4000 || $val.count_text < 2000}  
+                    {assign var="estimate" value=>12}
+                    {/if}
+
+                    <div class="col-sm-3" style="line-height: 40px; font-size: 13px;">
+                      Estimated: {$estimate} (hours)
+                      <input type="hidden" name="estimate" value="{$estimate}">
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div align="right">
+                        <a href="#" id="{$val.id}" class="delete btn btn-cancel">
+                          Delete
+                        </a>
+                        <input type="submit" alt="{$val.id}" id="updateData_{$val.id}" class="btn btn-upload" value="Accept" />
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </form>
+
+
+                  {* Load html choose to_language *}
+                  <div id="fadeandscale_to_language_{$val.id}" class="well" style="width: 800px;">
+                    {literal}
+                    <script type="text/javascript">
+                      $(document).ready(function() {
+                        $("form[name='select-language-form-{/literal}{$val.id}{literal}']").submit(function(e){
+                          var selectedValue = $('#from_language_{/literal}{$val.id}{literal} :selected').val();
+                          var translateId = $('#translate_id_{/literal}{$val.id}{literal}').val();
+                          var countText = $('#count_text_{/literal}{$val.id}{literal}').val();
+
+                          e.preventDefault();
+                          $.ajax({
+                            url: 'load/select_language.php',
+                            type: 'POST',
+                            data: $(this).serialize() + '&count_text=' + countText + '&from_language=' + selectedValue + '&translate_id=' + translateId
+                          })
+                          .done(function(data){
+                           $("#loadingInfo").css("display", "block");
+                         })
+                          .fail(function(){
+                           alert('Ajax Submit Failed ...');
+                         });
+                        });
+
+                              // search autocomplete
+                              $("#search-box").keyup(function(){
+                                $.ajax({
+                                  type: "POST",
+                                  url: "load/get_language_to.php",
+                                  data:'keyword='+$(this).val(),
+                                  dataType: 'json', 
+                                  beforeSend: function(){
+                                    $("#search-box").css("background","#FFF url(loaderIcon.gif) no-repeat 165px");
+                                  },
+                                  success: function(data){
+                                    var displayLanguage ="";
+                                    for (i = 0; i < data.length; i++) {
+                                      displayLanguage += "<div class=\"col-sm-3\">";
+                                      displayLanguage += "<label class=\"checkbox-inline\" style=\"white-space: nowrap;\">";
+                                      displayLanguage += "<input type=\"checkbox\" name=\"to_language[]\" class=\"to_language[]\" id=\"to_language\" value=" + data[i]['to_lang_id'] + ">";
+                                      displayLanguage += "" + data[i]['to_language'] + "";
+                                      displayLanguage += "</label></div>";
+                                    }
+                                    $("#result-box").html(displayLanguage);
+                                    
+                                  }
+                                });
+                              });
+
+                            });
+                          </script>
+                          <script>
+                            $(document).ready(function () {
+                              $('#fadeandscale_to_language_{/literal}{$val.id}{literal}').popup({
+                                pagecontainer: '.container',
+                                transition: 'all 0.3s'
+                              });
+                            });
+                          </script>
+                          <script type="text/javascript">
+                           $(function() {
+                            $("#selectLanguage_{/literal}{$val.id}{literal}").click(function(){
+                             $("form[name='select-language-form-{/literal}{$val.id}{literal}']").validate({
+                              rules: {
+                               'to_language[]': {
+                                required: true
+                              }
+                            },
+                            messages: {
+                              'to_language[]': "Please select To Language"
+                            },
+                            errorPlacement: function(error, element) {
+                             error.appendTo('#errorValidate');
+                           },
+                           submitHandler: function(form) {
+                            $("#loadingInfo").css("display", "block");
+                            $('#fadeandscale_to_language_{/literal}{$val.id}{literal}').popup('hide');
+                            form.submit();
+                          }
+                        });
+                           });
+                          });
+                        </script>
+                        {/literal} 
+                        <div class="page-ads">
+                          <form method="post" name="select-language-form-{$val.id}" id="select-language-form-{$val.id}" autocomplete="off" class="form-ad" >
+                            <input type="hidden" value="{$translateSession}" name="session" id="session">
+                            <input type="hidden" value="{$show_member.userid}" name="accUser" id="accUser" />
+                            <input type="hidden" value="{$total_count}" name="totalCount" id="totalCount">
+
+                            <div class="text-center fw-mgb10 fw-border-bottom">
+                              <h3>Translate To...</h3>
+                            </div>
+                            <div class="fw-mgb10">
+                              <div align="left" style="font-size: 17px;">Popular Languages:</div>
+                            </div>
+                            <div class="fw-mgb10">
+                              <!-- Search form -->
+                              <input class="form-control" id="search-box" type="text" name="search" placeholder="Search Language" aria-label="Search Language">
+                            </div>
+
+                            <div style="height: 10px;" class="fw-mgb10" id="errorValidate"></div>
+
+                            <div align="left" class="fw-mgb10">
+                              <div id="result-box">
+                                <div class="show_more">
+                                  <div class="showhide" style="display: block;">
+                                 {foreach from=$to_language name=val1 item=val1}
+                                 {assign var="counter" value=$smarty.foreach.val1.iteration}
+                                  <div class="col-sm-3">
+                                   <label class="checkbox-inline" style="white-space: nowrap;">
+                                    <input type="checkbox" name="to_language[]" class="to_language[]" id="to_language" value="{$val1.to_lang_id}" {foreach from=$order_language name=val_order item=val_order}
+                                    {if $val_order.to_language == $val1.to_lang_id}checked=""{/if}
+                                    {/foreach}>{$val1.to_language}
+                                  </label>
+                                </div>
+                                {/foreach}
+                                </div>
+                              </div>
+                              <div class="col-md-12 fw-mgt10 clickShowHide" style="cursor: pointer; font-weight: bold; color: #ff0000;">More Language</div>
+                            </div>
+                            {literal}
+                            <script type="text/javascript">
+                              /*$(document).ready(function() {
+                                $(".clickShowHide").click(function() {
+                                  $(".showhide").slideToggle("slow");
+                                });
+                              });*
+                            </script>
+                            {/literal}
+                          </div>
+                          <div style="clear: both;"></div>
+                          <div class="fw-mgt30" align="center">
+                           <input type="submit" id="selectLanguage_{$val.id}" class="btn btn-common" value="Select language(s)" />
+                         </div>
+                       </form>
+                     </div>
+
+                   </div>
+                 </div>
+               </div>
+               <div class="clearfix"></div>
+             </div>
+             {/foreach}
+             {/if}
+           </div>
+
+           <div class="col-sm-4">
+            <form role="form" class="form-ad" name="order-translate" method="post" enctype="multipart/form-data" action="{$smarty.const.URL_HOMEPAGE}add-cart.html"/>
+
+            {foreach from=$list_order_translate_finish name=val item=val}
+            <input type="hidden" value="{$val.id}" name="translate_id[]" id="translate_id">
+            <input type="hidden" value="{$val.from_language}" name="from_language[]">
+            <input type="hidden" value="{$val.to_language}" name="to_language[]">
+            {/foreach}
+
+            <input type="hidden" name="estimate" value="{$estimate}">
+
+            <div class="fw-bglogin box ">
+              <div>
+                <div class="fw-fs-24" style="float:left">Order Details</div>
+                <div style="float:right">
+                  <a href="#" class="resetOrder">Reset All</a>
+                </div>
+              </div>
+              <div style="clear: both;"></div>
+              <div class="divider-translate"></div>
+
+              <div class="fw-mgt10">
+                {if $list_order_translate_finish}
+                {foreach from=$list_order_translate_finish name=val item=val}
+                <div class="fw-mgb10">
+                  <div class="col-sm-9" style="font-size: 13px;">. {$val.file_translate}</div>
+                  <div class="col-sm-3 language-bg" style="font-size: 13px;">$ {$val.price}</div>
+                  <div class="clearfix"></div>
+                </div>
+                {/foreach}
+                {else}
+                <div align="center">Don't have translate document.</div>
+                {/if}
+              </div>
+
+              <div class="divider-translate"></div>
+
+              <div class="fw-mgt10">
+                <div style="float: left">
+                  <span id="count_results">
+                    {if $list_order_translate_finish}
+                    <strong>{$total_count}</strong>
+                    {else}
+                    <strong>0</strong>
+                    {/if}
+                  </span> word(s)
+                </div>
+                {if $list_order_translate_finish}
+                <div style="float: right">$ <span id="price_results"><strong>{$total_price}</strong></span></div>
+                {else}
+                <div style="float: right">$ <span id="price_results"><strong>0</strong></span></div>
+                {/if}
+
+              </div>
+              <div class="clearfix"></div>
+
+              <div class="fw-mgt10">
+                {if $list_order_translate_finish}
+                <input type="submit" name="submit" id="button-cart" value="Next" class="btn btn-order-translate log-btn" />
+                {else}
+                <input type="button" name="submit" id="button-cart" value="Next" class="btn btn-order-translate log-btn" />
+                {/if}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+{* Hiển thị nội dung popup *}
+<!-- Popup text -->
+<div id="fadeandscale" class="well" style="width: 800px;">
+ {include file="$themes/user/text_translate.html"}
+</div>
+
+{* Hiển thị nội dung popup upload *}
+<!-- Popup images -->
+<div id="fadeandscale_img" class="well" style="width: 600px;">
+ {include file="$themes/user/img_translate.html"}
+</div>
+
+{literal}
+<script>
+  $(document).ready(function () {
+    $('#fadeandscale').popup({
+      pagecontainer: '.container',
+      transition: 'all 0.3s'
+    });
+
+    $('#fadeandscale_img').popup({
+      pagecontainer: '.container',
+      transition: 'all 0.3s'
+    });
+  });
+</script>
+<style>
+#fadeandscale {
+  background-color: #fff;
+  width: 530px;
+  overflow: hidden;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
+}
+.popup_visible #fadeandscale {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+</style>
+{/literal}
+
+<div id="loadingInfo" class="loading-img">
+  <p style="position: absolute; top: 35%; left: 45%;">
+   <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/loading.gif" class="fw-img-p50" />
+ </p>
+</div>
+
+{include file="$themes/footer_js_translate.html"}

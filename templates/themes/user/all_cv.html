@@ -1,0 +1,111 @@
+<div class="wrapper">
+  {foreach from=$allCV item="val" name="val"}
+  <div class="box">
+   <div align="center">
+     <a href="#fadeandscale_to_cv_{$val.userid}" class="fadeandscale_to_cv_{$val.userid}_open">
+      {if $val.avatar}
+      <img width="90" height="90" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+      {else}
+      <img width="90" height="90" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+      {/if}
+    </a>
+  </div>
+  <div class="fw-bg-gray-cv">
+    <div class="fw-mg5">
+     <div align="left">{$val.name}</div>
+     <div align="left"><i class="fa fa-map-marker" aria-hidden="true"></i> {$val.address}</div>
+   </div>
+
+ </div>
+ <div class="fw-bg-blue-cv">
+  <div class="fw-mg5">
+    <div align="left">Dịch từ: {$val.from_language_name}</div>
+    <div align="left">Dịch sang: {$val.to_language_name}</div>
+  </div>
+</div>
+</div>
+
+{literal} 
+<script>
+  $(document).ready(function () {
+    $('#fadeandscale_to_cv_{/literal}{$val.userid}{literal}').popup({
+      pagecontainer: '.container',
+      transition: 'all 0.3s',
+      horizontal: 'right'
+    });
+  });
+</script>
+{/literal} 
+
+{* Load html choose to_language *}
+<div id="fadeandscale_to_cv_{$val.userid}" class="well" style="width: 800px; display: none;">
+  <div class="col-md-12">
+    <div class="col-md-4">
+     {if $val.avatar}
+      <img width="90" height="90" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+      {else}
+      <img width="90" height="90" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+      {/if}
+    </div>
+    <div class="col-md-8">
+     dddddddddd
+    </div>
+ </div>
+
+ <div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>Giới thiệu</h3></div>
+  <div>
+    {$val.about}
+  </div>
+ </div>
+
+ <div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>Cặp ngôn ngữ</h3></div>
+  <div>
+    {$val.about}
+  </div>
+ </div>
+
+  <div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>Kinh nghiệm & kỹ năng</h3></div>
+  <div class="fw-mgb10">
+    Chủ đề lĩnh vực
+  </div>
+  <div>
+    aaaaaaaaaa
+  </div>
+    <div class="fw-mgb10">
+    Số năm kinh nghiệm
+  </div>
+  <div>
+    aaaaaaaaaa
+  </div>
+
+  <div class="fw-mgb10">
+   Số từ dịch/ 1 ngày
+ </div>
+  <div>
+    aaaaaaaaaa
+  </div>
+ </div>
+
+   <div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>Phần mềm & Dịch vụ</h3></div>
+  <div class="fw-mgb10">
+    Dịch vụ
+  </div>
+  <div>
+    aaaaaaaaaa
+  </div>
+    <div class="fw-mgb10">
+    Phần mềm sử dụng
+  </div>
+  <div>
+    aaaaaaaaaa
+  </div>
+
+ </div>
+
+</div>
+{/foreach}
+</div>

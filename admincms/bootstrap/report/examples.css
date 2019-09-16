@@ -1,0 +1,39 @@
+.jqibox{z-index:9999}
+.jqifade{
+	position: absolute;
+	background-color: #CCC;	
+}
+div.jqi{
+	position: absolute;
+	background-color: #555555;
+	padding: 10px; 
+	width: 300px;
+	text-align: center;
+}
+div.jqi .jqiclose{
+    float: right;
+    margin: -8px -10px 0 0;
+    cursor: pointer;
+    color: #FFF;
+	background:#F00; width:15px; height:15px; border-radius:50%; line-height:15px
+	}
+div.jqi .jqicontainer{
+	background-color: #999999;
+	padding: 5px; 
+	color: #ffffff;
+	font-size:12px;
+	font-weight: bold;
+}
+div.jqi .jqimessage{
+	background-color: #333333;
+	padding: 10px;
+}
+div.jqi .jqibuttons{
+	text-align: center;
+	padding: 5px 0 0 0;
+}
+div.jqi button{
+	padding: 0px 10px 2px 10px;
+	height:25px;
+	margin: 0 10px;
+}

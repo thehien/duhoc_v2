@@ -1,0 +1,183 @@
+{include file="left.html"}
+<div id="page-wrapper">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">{$smarty.const.langcms_weltkc}</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <i class="fa fa-shopping-cart fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+                <div class="huge">{$orders_news}</div>
+                <div>{$smarty.const.langcms_weldhm}!</div>
+            </div>
+        </div>
+    </div>
+    <a href="{$smarty.const.URL_ADMIN}?module=porders&main=views&status=1">
+        <div class="panel-footer">
+            <span class="pull-left">{$smarty.const.langcms_welxct}</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+        </div>
+    </a>
+    </div>
+    </div>
+    
+    {*<div class="col-lg-3 col-md-6">
+    <div class="panel panel-yellow">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <i class="fa fa-shopping-cart fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+                <div class="huge">{$comment_news}</div>
+                <div>{$smarty.const.langcms_weltlm}!</div>
+            </div>
+        </div>
+    </div>
+    <a href="{$smarty.const.URL_ADMIN}?module=comments">
+        <div class="panel-footer">
+            <span class="pull-left">{$smarty.const.langcms_welxct}</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+        </div>
+    </a>
+    </div>
+    </div>
+    
+    {*<div class="col-lg-3 col-md-6">
+    <div class="panel panel-red">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <i class="fa fa-shopping-cart fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+                <div class="huge">{$support_news}</div>
+                <div>{$smarty.const.langcms_welhtm}!</div>
+            </div>
+        </div>
+    </div>
+    <a href="{$smarty.const.URL_ADMIN}?module=supports">
+        <div class="panel-footer">
+            <span class="pull-left">{$smarty.const.langcms_welxct}</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+        </div>
+    </a>
+    </div>
+    </div>*}
+    
+    {*<div class="col-lg-3 col-md-6">
+    <div class="panel panel-green">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <i class="fa fa-shopping-cart fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+                <div class="huge">{$faq_news}</div>
+                <div>{$smarty.const.langcms_welhdm}!</div>
+            </div>
+        </div>
+    </div>
+    <a href="{$smarty.const.URL_ADMIN}?module=faqs">
+        <div class="panel-footer">
+            <span class="pull-left">{$smarty.const.langcms_welxct}</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+        </div>
+    </a>
+    </div>
+    </div>*}
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-shopping-cart"></i>{$smarty.const.langcms_weltkdh} ( <strong>{$orders_all}</strong> )
+    </div>
+    <div class="panel-body">
+        <div class="list-group">
+            <a href="#" class="list-group-item">
+                <i class="fa fa-comment fa-fw"></i> {$smarty.const.langcms_weldhm}
+                <span class="pull-right text-muted small"><em> {$orders_news} </em>
+                </span>
+            </a>
+            <a href="#" class="list-group-item">
+                <i class="fa fa-twitter fa-fw"></i> {$smarty.const.langcms_weldxnn} 
+                <span class="pull-right text-muted small"><em> {$orders_2} </em>
+                </span>
+            </a>
+            {*<a href="#" class="list-group-item">
+                <i class="fa fa-envelope fa-fw"></i> {$smarty.const.langcms_weldghh} 
+                <span class="pull-right text-muted small"><em> {$orders_3} </em>
+                </span>
+            </a>*}
+            <a href="#" class="list-group-item">
+                <i class="fa fa-tasks fa-fw"></i> {$smarty.const.langcms_weldtt} 
+                <span class="pull-right text-muted small"><em> {$orders_4} </em>
+                </span>
+            </a>
+            <a href="#" class="list-group-item">
+                <i class="fa fa-tasks fa-fw"></i> {$smarty.const.langcms_weldgb} 
+                <span class="pull-right text-muted small"><em> {$orders_5} </em>
+                </span>
+            </a>
+        </div>
+    </div>
+    </div>
+    </div>
+    
+    <div class="col-lg-6">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-th-large"></i> {$smarty.const.langcms_weltkcc} 
+    </div>
+    <div class="panel-body">
+        <div class="list-group">
+            <a href="#" class="list-group-item">
+                <i class="fa fa-user fa-fw"></i> {$smarty.const.langcms_weltvcc}
+                <span class="pull-right text-muted small"><em>{$users_all} </em>
+                </span>
+            </a>
+            <a href="#" class="list-group-item">
+                <i class="fa fa-th-large fa-fw"></i> {$smarty.const.langcms_welsp} 
+                <span class="pull-right text-muted small"><em>{$products_all} </em>
+                </span>
+            </a>
+            <a href="#" class="list-group-item">
+                <i class="fa fa-hacker-news fa-fw"></i> {$smarty.const.langcms_welbvv} 
+                <span class="pull-right text-muted small"><em>{$news_all} </em>
+                </span>
+            </a>
+            <a href="#" class="list-group-item">
+                <i class="fa fa-globe fa-fw"></i> {$smarty.const.langcms_weltkk}
+                <span class="pull-right text-muted small"><em>{$keyword_all} </em>
+                </span>
+            </a>
+            {*<a href="#" class="list-group-item">
+                <i class="fa fa-apple fa-fw"></i> {$smarty.const.langcms_welnccc} 
+                <span class="pull-right text-muted small"><em>{$shop_all} </em>
+                </span>
+            </a>*}
+            
+        </div>
+    </div>
+    </div>
+    </div>
+
+    
+</div>
+
+
+</div>

@@ -1,0 +1,24 @@
+<div class="detail_services">
+	
+    <div class="detail_services_content">
+    	  <img src="{$smarty.const.URL_HOMEPAGE}upload/products/{$new_detail.img_file}/{$new_detail.news_img}" alt="{$new_detail.news_name}"/>
+          <h1>{$new_detail.news_name}</h1>
+          <h2>{$new_detail.news_content}</h2>    
+    </div>   
+    <div class="detail_services_full">
+    <div class="detail_description">{$new_detail.description}</div>  
+     {include file="$themes/public/seo/detail_share.html"}    
+    </div>
+</div>
+{literal}
+<style type="text/css">
+/*detail_services.html*/
+.detail_services {float:left; width:100%; padding:0px 0px 10px 0px}
+.detail_services_content {float:left; width:100%;}
+.detail_services_content img{width:100%;}
+.detail_services_content h1{font-size:150%;text-align:justify; color:#48aabe; text-transform:uppercase;  padding:20px 0}
+.detail_services_content h2{padding: 10 0px 0px 0px; font-weight:400; line-height:20px ; text-align:justify}
+.detail_services_full{width:100%; padding:20px 0px 10px 0px; text-align:center; float:left}
+
+</style>
+{/literal}

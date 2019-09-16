@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery confirmOn Sample</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="jquery-1.7.0.js"></script>
+        <script src="jquery.confirmon.js"></script>
+        <link rel="stylesheet" type="text/css" href="sample.css"/>
+        <script>
+            $(function() {
+                $('#button_3').confirmOn({
+                    classPrepend: 'myprefix'
+                },'click', function(e, confirmed) {
+                    if(confirmed) window.location = $(this).attr("remove-link");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="contentwrapper">
+     
+            <table>
+
+                <tr>
+                    <td>Button with confirmOn and another class prefix</td>
+                    <td>
+                        <button id="button_3" remove-link="http://localhost/alo360.com/">Delete me 1</button>
+                    </td>
+                </tr>
+                
+            </table>
+
+        </div>
+    </body>
+</html>

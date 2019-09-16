@@ -1,0 +1,453 @@
+<div class="fw-mg20">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h4 class="alerts-title"><strong>{$smarty.const.lang_user_ttcn}</strong></h4></li>
+  </ul>
+  <div id="wrapper" class="fw-mgb10">
+    <section id="core">
+      <div class="profileinfo">
+        <div id="fullname-gear" class="gear">
+          <label>{$smarty.const.lang_user_name}</label>
+          <span id="fullname" class="datainfo">{if $show_member.name}{$show_member.name}{else}Họ & tên{/if}</span>
+           <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+          
+          <div id="fullname-disp" style="display: none;">
+            <form method="post" name="fullname-form" class="form-ad" id="common-form" autocomplete="off">
+              <input type="hidden" name="fullname-post" id="fullname-post" value="1" />
+              <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+              <div class="fw-mgb10">
+                <div class="float_left" style="padding-right: 10px;">
+                  <input type="text" name="firstname" id="firstname" placeholder="First name" value="{$show_member.firstname}" class="hlite-name">
+                </div>
+                <div class="float_left">
+                  <input type="text" name="lastname" id="lastname" placeholder="Last name" value="{$show_member.lastname}" class="hlite-name">
+                </div>
+              </div>
+              <div style="clear: both;"></div>
+              <div style="padding-top: 10px; margin-left:-5px;">
+                <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+              </div>
+
+            </form>
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+
+        <div id="avatar-gear" class="gear">
+          <label>{$smarty.const.lang_user_avatar}</label>
+          <span id="avatar" class="datainfo">
+            {if $show_member.avatar}
+            <img width="50" height="50" src="{$smarty.const.URL_HOME}/upload/avatar/{$show_member.avatar}" class="img-circle" />
+            {else}
+            <img width="50" height="50" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+            {/if}
+          </span>
+          <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+
+          <div id="avatar-disp" style="display: none;">
+            <form method="post" name="avatar-form" class="form-ad" id="avatar-form" autocomplete="off">
+              <input type="hidden" name="avatar-post" id="avatar-post" value="1" />
+              <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+              <div class="form-group">
+               <div class="float_left" style="margin-top:5px;">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                  <span class="btn-default-file btn-file"><span>Choose file</span><input type="file" name="file" /></span>
+                </div>
+              </div>
+
+              <div class="float_left">
+               <span id="avatar_result">
+                 {if $show_member.avatar}
+                 <img width="50" height="50" src="{$smarty.const.URL_HOME}/upload/avatar/{$show_member.avatar}" class="img-circle"/>
+                 {else}
+                 <img width="50" height="50" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+                 {/if}
+               </span>
+             </div>   
+             <div style="clear: both;"></div>
+             <div class="form-group" style="padding-top: 10px; margin-left:-5px;">
+              <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+            </div> 
+          </div>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+    <div id="pemail-gear" class="gear">
+        <label>{$smarty.const.lang_user_email}</label>
+        <span id="pemail" class="datainfo">{if $show_member.email}{$show_member.email}{else}{$smarty.const.lang_user_email}{/if}</span>
+        <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+      
+        <div id="pemail-disp" style="display: none;">
+          <form method="post" name="pemail-form" class="form-ad" id="pemail-form" autocomplete="off">
+            <input type="hidden" name="pemail-post" id="pemail-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+            
+
+            <div class="float_left" style="padding-right: 10px;">
+              <input type="text" name="sub_email" id="sub_email" placeholder="{$smarty.const.lang_user_sub_email}" value="{$show_member.sub_email}" class="hlite-name">
+            </div>
+            <div style="clear: both;"></div>
+            <div style="padding-top: 10px; margin-left:-5px;">
+              <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+            </div>
+          </form>
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+
+  <div id="mobile-gear" class="gear">
+        <label>{$smarty.const.lang_user_mobile}</label>
+        <span id="mobile" class="datainfo">
+          {if $show_member.mobile}({$show_member.mobile_code}) {$show_member.mobile}{else}{$smarty.const.lang_user_mobile}{/if}
+        </span>
+        <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+       
+        <div id="mobile-disp" style="display: none;">
+          <form method="post" name="mobile-form" class="form-ad" id="mobile-form" autocomplete="off">
+            <input type="hidden" name="mobile-post" id="mobile-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+            <div class="float_left" style="padding-right: 10px;">
+             <div class="form-group">
+                <select name="mobileCode" id="mobileCode" class="hlite-selected">
+                          <option value="">{$smarty.const.lang_common_mobile_code}</option>
+                          {foreach from=$rs_mobile_code item="val" name="val"}
+                              <option value="{$val.code}" {if $show_member.mobile_code==$val.code}selected{/if}>{$val.name} (+{$val.code})</option>
+                          {/foreach}
+                        </select>
+            </div>
+          </div>
+          <div class="float_left">
+            <input type="text" name="mobile" id="mobile"  placeholder="{$smarty.const.lang_user_mobile}" value="{$show_member.mobile}" class="hlite-name">
+          </div>
+
+          <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+           <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+          </div>
+
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+
+  <div id="address-gear" class="gear">
+      <label>{$smarty.const.lang_user_address}</label>
+      <span id="address" class="datainfo">
+      {if $show_member.address}
+        {$show_member.address}
+      {else} 
+        {$smarty.const.lang_user_address}
+      {/if}
+     </span>
+      <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+     
+      <div id="address-disp" style="display: none;">
+        <form method="post" name="address-form" class="form-ad" id="address-form" autocomplete="off">
+           <input type="hidden" name="address-post" id="address-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+          <div style="margin-bottom: 10px;">
+            <input type="text" name="address-1" id="address-1" placeholder="{$smarty.const.lang_user_address}" value="{$show_member.address}" class="hlite-name">
+          </div>
+
+          <div style="margin-bottom: 10px;">
+            <input type="text" name="address-3" id="address-3" placeholder="{$smarty.const.lang_user_address_1}" value="{$show_member.district}" class="hlite-name">
+          </div>
+
+          <div style="margin-bottom: 10px;">
+            <input type="text" name="address-4" id="address-4" placeholder="{$smarty.const.lang_user_address_2}" value="{$show_member.address_code}" class="hlite-name">
+          </div>
+
+          <div style="margin-bottom: 10px;">
+             <select name="address-5" class="hlite-name">
+                      <option value="">{$smarty.const.lang_user_address_3}</option>
+                      {foreach from=$rs_list_country name=val item=val}
+                      <option value="{$val.id}" {if $show_member.country == $val.id}selected{/if}>{$val.name}</option>
+                      {/foreach}
+                    </select>
+          </div>
+
+           <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+            <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+          </div>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+
+</div>
+</section>
+</div>
+
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item"><h4 class="alerts-title"><strong>{$smarty.const.lang_user_company_info}</strong></h4></li>
+</ul>
+
+<div id="wrapper" class="fw-mgb10">
+  <section id="core">
+    <div class="profileinfo">
+
+    <div id="company-gear" class="gear">
+      <label>{$smarty.const.lang_user_company}</label>
+      <span id="company" class="datainfo">
+      {if $show_member.company}
+        {$show_member.company}
+      {else} 
+        {$smarty.const.lang_user_company_name}
+      {/if}
+      </span>
+      <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+     
+      <div id="company-disp" style="display: none;">
+        <form method="post" name="company-form" class="form-ad" id="company-form" autocomplete="off">
+          <input type="hidden" name="company-post" id="company-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+          <div class="float_left">
+            <input type="text" name="company" placeholder="{$smarty.const.lang_user_company_name}" value="{$show_member.company}" class="hlite-name">
+          </div>
+
+           <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+             <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+          </div>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+        <div id="address_company-gear" class="gear">
+      <label>{$smarty.const.lang_user_addr_company}</label>
+      <span id="address_company" class="datainfo">
+      {if $show_member.address_company}
+        {$show_member.address_company}
+      {else} 
+        {$smarty.const.lang_user_addr_company}
+      {/if}
+      </span>
+      <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+     
+      <div id="address_company-disp" style="display: none;">
+        <form method="post" name="address_company-form" class="form-ad" id="address_company-form" autocomplete="off">
+          <input type="hidden" name="address_company-post" id="company-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+          <div class="float_left">
+            <input type="text" name="address_company" placeholder="{$smarty.const.lang_user_addr_company}" value="{$show_member.address_company}" class="hlite-name">
+          </div>
+
+           <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+             <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+          </div>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+    <div id="website-gear" class="gear">
+      <label>Website</label>
+      <span id="website" class="datainfo">
+      {if $show_member.website}
+        {$show_member.website}
+      {else} 
+        Website
+      {/if}
+    </span>
+      <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+     
+      <div id="website-disp" style="display: none;">
+        <form method="post" name="website-form" class="form-ad" id="website-form" autocomplete="off">
+          <input type="hidden" name="website-post" id="website-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+          <div class="float_left">
+            <input type="text" name="website" placeholder="Website" value="{$show_member.website}" class="hlite-name">
+          </div>
+
+           <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+             <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+          </div>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+      </div>
+    </section>
+  </div>
+
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item"><h4 class="alerts-title"><strong>{$smarty.const.lang_user_social}</strong></h4></li>
+</ul>
+
+
+<div id="wrapper" class="fw-mgb10">
+  <section id="core">
+    <div class="profileinfo">
+
+    <div id="skype-gear" class="gear">
+      <label>Skype</label>
+      <span id="skype" class="datainfo">
+      {if $show_member.skype}
+        {$show_member.skype}
+      {else} 
+        Chat Software
+      {/if}
+
+      </span>
+      <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+    
+      <div id="skype-disp" style="display: none;">
+        <form method="post" name="skype-form" class="form-ad" id="skype-form" autocomplete="off">
+          <input type="hidden" name="skype-post" id="skype-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+          <div class="float_left">
+            <input type="text" name="skype" id="skype" placeholder="Skype id" value="{$show_member.skype}" class="hlite-name">
+          </div>
+
+           <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+             <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+          </div>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+    <div id="facebook-gear" class="gear">
+      <label>Facebook</label>
+      <span id="facebook" class="datainfo">
+      {if $show_member.facebook}
+        {$show_member.facebook}
+      {else} 
+        Facebook
+      {/if}
+      </span>
+      <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+      
+      <div id="facebook-disp" style="display: none;">
+        <form method="post" name="facebook-form" class="form-ad" id="facebook-form" autocomplete="off">
+           <input type="hidden" name="facebook-post" id="website-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+          <div class="float_left">
+            <input type="text" name="facebook" placeholder="Facebook" value="{$show_member.facebook}" class="hlite-name">
+          </div>
+
+           <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+            <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+          </div>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+    <div id="linkedin-gear" class="gear">
+      <label>Linkedin</label>
+      <span id="linkedin" class="datainfo">
+        {if $show_member.linkedin}
+        {$show_member.linkedin}
+      {else} 
+        Linkedin
+      {/if}
+      </span>
+      <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+     
+      <div id="linkedin-disp" style="display: none;">
+        <form method="post" name="linkedin-form" class="form-ad" id="linkedin-form" autocomplete="off">
+             <input type="hidden" name="linkedin-post" id="website-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+          <div class="float_left">
+            <input type="text" name="linkedin" placeholder="Linkedin" value="{$show_member.linkedin}" class="hlite-name">
+          </div>
+
+           <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+             <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+          </div>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+    <div id="twitter-gear" class="gear">
+      <label>Twitter</label>
+      <span id="twitter" class="datainfo">
+      {if $show_member.twitter}
+        {$show_member.twitter}
+      {else} 
+        Twitter
+      {/if}
+    </span>
+      <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+      
+      <div id="twitter-disp" style="display: none;">
+        <form method="post" name="twitter-form" class="form-ad" id="twitter-form" autocomplete="off">
+            <input type="hidden" name="twitter-post" id="twitter-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+          <div class="float_left">
+            <input type="text" name="twitter" placeholder="Twitter" value="{$show_member.twitter}" class="hlite-name">
+          </div>
+           <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+             <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+          </div>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+     <div id="google-gear" class="gear">
+      <label>Google+</label>
+      <span id="google" class="datainfo">
+      {if $show_member.google}
+        {$show_member.google}
+      {else} 
+        Google+
+      {/if}
+    </span>
+      <a href="#" class="editlink">{$smarty.const.lang_user_edit}</a>
+      
+      <div id="google-disp" style="display: none;">
+        <form method="post" name="google-form" class="form-ad" id="google-form" autocomplete="off">
+            <input type="hidden" name="google-post" id="google-post" value="1" />
+            <input type="hidden" name="accUser" id="accUser" value="{$show_member.userid}" />
+          <div class="float_left">
+            <input type="text" name="google" placeholder="Google+" value="{$show_member.google}" class="hlite-name">
+          </div>
+           <div style="clear: both;"></div>
+          <div style="padding-top: 10px; margin-left:-5px;">
+             <button class="savebutton">{$smarty.const.lang_user_save}</button>
+                <button class="btn btn-primary cancel">{$smarty.const.lang_user_cancel}</button>
+          </div>
+        </form>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+  </div>
+</section>
+</div>
+</div>
+
+
+<div id="loadingInfo" class="loading-img">
+  <p style="position: absolute; top: 35%; left: 50%;">
+   <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/loading.gif" class="fw-img-p50" />
+ </p>
+</div>

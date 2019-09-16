@@ -1,0 +1,45 @@
+{literal}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("form[name='translate-text-form']").submit(function(e){
+     e.preventDefault();
+     $.ajax({
+      url: 'load/count_translate_text.php',
+      type: 'POST',
+      data: $(this).serialize()
+    })
+     .done(function(data){
+       $('#fadeandscale').popup('hide');
+       $("#loadingInfo").css("display", "block");
+       setTimeout(function(){location.reload();}, 1000);
+     })
+     .fail(function(){
+       alert('Ajax Submit Failed ...');
+     });
+   }); 
+  });
+  
+  function clearText() {
+   document.getElementById('translate_text').value = "";
+ };
+</script>
+
+{/literal}
+<div class="page-ads">
+  <form method="post" name="translate-text-form" class="form-ad" id="translate-text-form" autocomplete="off">
+    <input type="hidden" value="{$translateSession}" name="session" id="session">
+    <input type="hidden" value="{$show_member.userid}" name="accUser" id="accUser" />
+    <input type="hidden" value="{$order_language.from_language}" name="from_language" id="from_language">
+    <input type="hidden" value="{$order_language.to_language}" name="to_language" id="to_language">
+    <input type="hidden" value="{$total_count}" name="totalCount" id="totalCount">
+
+    <div class="form-group">
+      <label class="control-label" style="white-space: nowrap;">Input text content</label>
+      <textarea class="form-control" rows="7" name="translate_text" id="translate_text" placeholder="Input text content">{$show_member.aboutus}</textarea>
+    </div>
+    <p style="float: right;">
+      <a href="#" class="btn btn-primary" onClick="clearText();">Remove</a>
+      <button class="btn btn-primary">Done</button>
+    </p>
+  </form>
+</div>

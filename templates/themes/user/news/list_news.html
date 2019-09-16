@@ -1,0 +1,25 @@
+<div class="col-md-12 no-padding">
+{foreach from=$new_right item="val1" name="val1"}
+<div class="col-md-12 no-padding fw-mgb10 latest_border box_translator">
+	<div align="center" class="col-md-12 no-padding fw-mgb10">
+		 <a href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val1.news_id}-{$val1.news_url}.html" title="{$val1.news_name}"> 
+			{if $val1.news_img}
+			<img width="100%" src="{$smarty.const.URL_HOME}/upload/news/{$val1.news_img}"/>
+			{else}
+			<img width="100%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/no_img.png"/>
+		    {/if}
+		</a>
+   </div>
+
+    <div align="left" class="col-md-12 fw-mgb10" style="padding: 5px 12px 5px 10px;">
+		 <a href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val1.news_id}-{$val1.news_url}.html" title="{$val.news_name}"> <strong style="text-transform: uppercase;">{$val1.title_top}</strong></a>
+   </div>
+
+   <div align="left" class="col-md-12 fw-mgb10" style="padding: 5px 12px 5px 10px;">
+		{$val1.description_top}
+   </div>
+</div>
+<div style="clear: both"></div>
+{/foreach}
+
+</div>

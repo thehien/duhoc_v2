@@ -1,0 +1,99 @@
+<div class="support_form">
+        <form method="post" name="frm_indexs" id="frm_indexs" action="{$smarty.const.URL_HOMEPAGE}support-add.html" >
+            <input type="hidden" name="code_contact" id="code_contact" value="OK" />
+            <h3>Đăng ký Tư vấn - Bán giá</h3>
+            <select name="category" id="category" class="check_input"  placeholder="Chọn dịnh vụ  *">
+                <option value="">Chọn dịnh vụ</option>
+                <option value="Thiết kế Website">Thiết kế Website</option>
+                <option value="Phát triển phần mềm">Phát triển phần mềm</option>
+                <option value="Lập trình di động">Lập trình di động</option>
+                <option value="Domain, Hosting">Domain - Hosting</option>
+                <option value="Dịch vụ khác">Dịch vụ khác</option>
+            </select>
+            
+            <select name="district" id="district" >
+                <option value="Tư vấn & Báo giá">Tư vấn & Báo giá </option>
+                <option value="Tư vấn">Tư vấn </option>
+                <option value="Báo giá">Báo giá</option>
+            </select> 
+            <label><textarea  name="txt_content" id="txt_content" cols="45" rows="5" placeholder="{$smarty.const.lang_contents}" ></textarea></label>
+            
+            <strong>Vui lòng điền thông tin liên hệ</strong>
+            <input  type="text" name="txt_name" id="txt_name" placeholder="{$smarty.const.lang_full_name}  *" class="check_input"/>
+            <input  type="text" name="txt_email" id="txt_email"  placeholder="Email *"  class="check_input check_email" /> 
+            <input  type="text" name="txt_tel" id="txt_tel"  placeholder="{$smarty.const.lang_dien_thoai}" /> 
+            
+            <input class="imput_gui"  type="submit" name="button" id="button" value="Send" />
+        </form>     
+      
+        {literal}	
+        <style type="text/css">
+			.support_form_left{float:left;background:url(../templates/themes/img/free-quote-bg.png); margin:0px 0px 20px 0px }
+			.support_form_index{float:left;background:url(templates/themes/img/free-quote-bg.png); margin:20px 0  }
+            .support_form {float:left;width:100%; padding:15px 15px }
+            .support_form h3{color:#c35944; font-size:120%; text-transform:uppercase; padding-bottom:5px}
+            .support_form select{width:100%; margin-bottom:6px; padding:6px;border-radius:3px; color:#333;}
+            .support_form input{border-radius:3px; padding:6px; width:100%; color:#333; margin-bottom:6px}
+            .support_form textarea{border:1px solid #ECE8E8; border-radius:3px; padding:5px; height:80px; width:100%; max-width:100%}
+            .support_form strong{color:#c35944; padding:20px 0}
+            .imput_gui{color:#FFFFFF !important; float:right; padding:3px 8px; background:#ec573a; border-radius:2px}
+            .imput_gui:hover{background:#48aabe}
+        </style>
+        {/literal}	
+        {literal}
+         <style>
+       		.inputError{border:1px dotted #F00 !important; background:#FFC}
+			.error_note{display:none !important;}
+			.inputError_mail{border:1px dotted #0F0 !important; }
+			.error_note_mail{display:none !important}
+        </style>
+		<script type="text/javascript" charset="utf-8">
+            jQuery(document).ready(function() 
+            {
+                jQuery( 'form#frm_indexs').submit(function() 
+                {
+                    jQuery( 'form#frm_indexs .error_note').remove();
+                    var hasError = false;
+                    
+                    jQuery( '.check_input').each(function(){			
+                        if(jQuery.trim(jQuery(this).val()) == '') 
+                        {
+                            var labelText = jQuery(this).parent().prev('label').text().replace(':','');
+                            var placeholder = jQuery(this).attr('placeholder');
+                            jQuery(this).parent().append( '<span class="error_note">Chưa nhập '+placeholder+'</span>' );
+                            jQuery(this).addClass( 'inputError' );
+                            hasError = true;
+                        } 
+                        else{jQuery(this).removeClass( 'inputError' );}
+                    });
+                    
+                    jQuery( '.check_email').each(function(){			
+                        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                        if(!emailReg.test(jQuery.trim(jQuery(this).val()))) 
+                        {
+                            var placeholder = jQuery(this).attr('placeholder');
+						    jQuery(this).parent().append( '<span class="error_note_mail">Email không đúng</span>' );
+                            jQuery(this).addClass( 'inputError_mail' );
+                            hasError = true;
+                        }
+                        else{jQuery(this).removeClass( 'inputError_mail' );}
+                    });
+                    
+                    jQuery( '.check_select').each(function(){			
+                        if(jQuery.trim(jQuery(this).val()) == '0') 
+                        {
+                            var labelText = jQuery(this).parent().prev('label').text().replace(':','');
+                            var placeholder = jQuery(this).attr('placeholder');
+                            jQuery(this).parent().append( '<span class="error_note">Chưa chọn '+labelText+'</span>' );
+                            jQuery(this).addClass( 'inputError' );
+                            hasError = true;
+                        } 
+                        else{jQuery(this).removeClass( 'inputError' );}
+                    });
+                    
+                    if(hasError) {return false;}
+                });
+            });
+        </script>
+    {/literal}
+	</div>

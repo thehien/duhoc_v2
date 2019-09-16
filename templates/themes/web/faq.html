@@ -1,0 +1,90 @@
+{include file="$themes/header.html"}
+{include file="$themes/breadcrumb.html"}  
+<div class="index_full">
+<div class="index_width">
+<div class="index_info">
+<div class="index_col col-mm-12"> 
+  <ul id="accordion" class="accordion">
+  {foreach from=$rs item="val" name="val"}
+  <li>
+    <div class="link"><i class="fa fa-comments"></i>{$val.question}<i class="fa fa-chevron-down"></i></div>
+    <ul class="submenu_sub">
+      <li>{$val.answer}</li>
+    </ul>
+  </li>
+  {/foreach}
+ {if $paging}<div class="paging_news">{$paging}</div>{/if}
+</ul>
+</div>
+</div>
+</div>
+</div>
+{include file="$themes/footer.html"}
+
+{literal}
+<style>
+.accordion {width: 100%; margin-bottom:20px}
+.accordion .link {
+  cursor: pointer;
+  display: block;
+  padding: 15px 15px 15px 42px;
+  border: 1px solid #CCC !important;
+  position: relative;
+  margin-bottom:5px;
+  background:#FFF
+}
+.accordion li:last-child .link { border-bottom: 0; }
+.accordion li i {
+  position: absolute;
+  top: 16px;
+  left: 12px;
+  font-size: 18px;
+  color: #595959;
+  transition: all 0.4s ease;
+}
+.accordion li i.fa-chevron-down {right: 12px;left: auto; font-size: 16px;}
+.accordion li.open .link { color: #b63b4d; }
+.accordion li.open i { color: #b63b4d; }
+.accordion li.open i.fa-chevron-down {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.submenu_sub{
+  display: none;
+  border: 1px solid #d8d8d8;
+  padding:20px; margin-bottom:20px;
+  background:#f2f2f2
+  
+}
+</style>
+{/literal}
+{literal}
+<script>
+$(function() {
+	var Accordion = function(el, multiple) {
+		this.el = el || {};
+		this.multiple = multiple || false;
+
+		// Variables privadas
+		var links = this.el.find('.link');
+		// Evento
+		links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+	}
+	Accordion.prototype.dropdown = function(e) {
+		var $el = e.data.el;
+			$this = $(this),
+			$next = $this.next();
+
+		$next.slideToggle();
+		$this.parent().toggleClass('open');
+
+		if (!e.data.multiple) {
+			$el.find('.submenu_sub').not($next).slideUp().parent().removeClass('open');
+		};
+	}	
+	var accordion = new Accordion($('#accordion'), false);
+});
+</script>
+{/literal}

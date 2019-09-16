@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="sixteen columns">
+        <h3 class="margin-bottom-25">News & Event</h3>
+    </div>
+ {section name=spr_bo loop=$spr_bo}
+            {section name=spr_con loop=$spr_con[spr_bo]}
+    <div class="three column">
+               <!-- Post #1 -->
+        <div class="recent-post">
+            <div class="recent-post-img"><a href=""><img src="{$smarty.const.URL_HOMEPAGE}timthumb.php?src={$smarty.const.URL_HOMEPAGE}upload/news/{$spr_con[spr_bo][spr_con].news_img}&amp;zc=2&amp;a=t&amp;w=280&amp;h=180" width="100" alt=""></a><div class="hover-icon"></div></div>
+            <a href="{$smarty.const.URL_HOMEPAGE}detail/{$spr_con[spr_bo][spr_con].news_id}-{$spr_con[spr_bo][spr_con].news_url}.html"><h4>{$spr_con[spr_bo][spr_con].news_name}</h4></a>
+           
+            <p>{$spr_con[spr_bo][spr_con].news_content}</p>
+            <a href="{$smarty.const.URL_HOMEPAGE}detail/{$spr_con[spr_bo][spr_con].news_id}-{$spr_con[spr_bo][spr_con].news_url}.html" class="button">Read More</a>
+        </div>
+           
+    </div>
+     {/section}      
+{/section} 
+
+</div>

@@ -1,0 +1,193 @@
+{include file="left.html"}
+<div id="page-wrapper">
+
+<div class="row">
+<div class="col-lg-12">
+    <h1 class="page-header"><a href="{$url_views}" ><i class="fa fa-home"></i> {$main_content}</a></h1>
+</div>
+</div>
+
+<div class="row shows_insert" {if $id_edit}style="display:block"{else}style="display:none"{/if}>
+<div class="col-lg-12">
+<div class="panel panel-default">
+    <div class="panel-heading heading_title">
+        <i class="fa fa-plus-circle fa-fw"></i> {if $id_edit}{$smarty.const.langcms_capnhat}{else}{$smarty.const.langcms_them}{/if} {$main_name}
+    </div>
+    <div class="panel-body">
+    <form id="frm_admin" name="frm_admin" method="post"  action="{$smarty.const.URL_ADMIN}?module={$url}&main=insert{$url_edit}" >
+    <div class="col-lg-12">
+    <table class="table_insert">
+    <thead>
+        <tr>
+            <td align="right" class="mw_150"><span>Website <em>*</em></span></td>
+            <td><input type="text" class="check_input" name="config_website"  id="config_website" value="{$rs_edit.config_website}" /></td>
+         	<td align="right"><span>Phone</span></td>
+            <td><input type="text" name="config_phone"  id="config_phone" value="{$rs_edit.config_phone}" /></td>
+        </tr>
+        <tr>
+       		<td align="right"><span>Company</span></td>
+            <td><input type="text" name="config_company"  id="config_company" value="{$rs_edit.config_company}" /></td>
+            <td align="right"><span>Hotline</span></td>
+            <td><input type="text" name="config_hotline"  id="config_hotline" value="{$rs_edit.config_hotline}" /></td>
+        </tr>
+        <tr>
+        	<td align="right"><span>Email</span></td>
+            <td><input type="text" name="config_email"  id="config_email" value="{$rs_edit.config_email}" /></td>
+            <td align="right"><span>Fax</span></td>
+            <td><input type="text" name="config_fax"  id="config_fax" value="{$rs_edit.config_fax}" /></td>
+        </tr>
+        <tr>
+            <td align="right"><span>Address</span></td>
+            <td colspan="3"><input type="text" name="config_address"  id="config_address" value="{$rs_edit.config_address}" /></td>
+        </tr>
+        <tr>
+            <td align="right"><span>Time </span></td>
+            <td colspan="3"><input type="text" name="config_time"  id="config_time" value="{$rs_edit.config_time}" /></td>
+        </tr>
+        <tr>
+            <td align="right"><span>Tilte</span></td>
+            <td colspan="3"><input type="text" name="config_tilte"  id="config_tilte" value="{$rs_edit.config_tilte}" /></td>
+        </tr>
+        <tr>
+            <td align="right"><span>Keywords</span></td>
+            <td colspan="3"><input type="text" name="config_keywords"  id="config_keywords" value="{$rs_edit.config_keywords}" /></td>
+        </tr>
+        <tr>
+            <td align="right" valign="top"><span>Description</span></td>
+            <td colspan="3">
+            <textarea class="form-control" rows="3" name="config_description" id="config_description">{$rs_edit.config_description}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" valign="top"><span>Bank</span></td>
+            <td colspan="3">
+            <textarea class="form-control" rows="3" name="config_bank" id="config_bank">{$rs_edit.config_bank}</textarea>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="left"></td>
+            <td class="center">
+            {if $id_edit}<button type="submit" name="submit" id="submit" value="submit" class="bg_edit">{$smarty.const.langcms_capnhat} </button>
+            <a href="{$url_views}{$url_limit}{$url_order}" class="status_undo"><i class="fa fa-undo"></i> {$smarty.const.langcms_quaylai}</a>
+            {else}<button type="submit" name="submit" id="submit" value="submit" class="bg_insert">{$smarty.const.langcms_themmoi} </button>{/if}
+            </td>
+        </tr>
+      </thead>  
+    </table>
+    </div>
+    
+    </form>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<!--Search-->
+<div class="col-lg-5">
+    <form name="frm_search" method="post" action="{$smarty.const.URL_ADMIN}?module={$url}&main=search" class="search_text">
+    <div class="input-group custom-search-form">
+            <input type="text" class="form-control" placeholder="Search..." name="name_search" id="name_search" value="{$name_search}" >
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" name="submit" id="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+    </form> 
+</div>
+
+<!--Views-->    
+<div class="col-lg-12">
+<form name="frm_news" method="POST" >
+<div class="panel panel-default">
+<div class="panel-heading">
+    <div class="row">
+    <div class="col-lg-6 heading_title">
+        <i class="fa fa-windows"></i> {$main_content}  <strong>( {$numf} {$main_name} )</strong>
+    </div>   
+    <div class="col-lg-6 click_right">
+    	{if $action_delete}
+        <a href="javascript:void(0);" onclick="del_news('frm_news');" class="bg_del">
+        <i class="fa fa-trash-o"></i> {$smarty.const.langcms_xoa}</a>  
+        {/if}
+        {if $action_edit}
+        <a href="javascript:void(0);" onclick="status_on('frm_news');" class="bg_on">
+        <i class="fa fa-check-square"></i> {$smarty.const.langcms_kichhoat}</a>        
+        <a href="javascript:void(0);" onclick="status_off('frm_news');" class="bg_off" >
+        <i class="fa fa-minus-square"></i> {$smarty.const.langcms_vohieu}</a>
+        <a href="javascript:void(0);" onClick="update_order('frm_news');"class="bg_edit">
+        <i class="fa fa-pencil-square-o"></i> {$smarty.const.langcms_capnhat}</a></li>
+        {/if}
+        {if $action_insert}
+        <a href="javascript:void(0);" class="name_insert bg_ins">
+        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.langcms_them}</a> 
+        {/if}
+    </div>
+    </div>
+</div>
+    
+<div class="panel-body">
+    <ul class="table_ul">
+        <li class="lileft">
+            <select class="limit_option" onchange="MM_jumpMenu('parent',this,0)" >
+                <option value="{$url_views}{$url_order}&limit=10" {if $limit eq 20 }selected="selected"{/if}>10</option>
+                <option value="{$url_views}{$url_order}&limit=20" {if $limit eq 20 }selected="selected"{/if}>20</option>
+                <option value="{$url_views}{$url_order}&limit=50" {if $limit eq 50 }selected="selected"{/if}>50</option>
+                <option value="{$url_views}{$url_order}&limit=100" {if $limit eq 100 }selected="selected"{/if}>100</option>
+                <option value="{$url_views}{$url_order}&limit=200" {if $limit eq 200 }selected="selected"{/if}>200</option>
+           </select>
+        </li>
+    	<li class="lileft" style="width:40%"><div class="paging_news">{$paging}</div></li>
+    </ul>
+    <table class="table_views table-striped table-hover">
+    <thead>
+        <tr class="two">
+          <td align="center"> ID
+          <div class="order">
+              <a href="{$url_views}{$url_limit}&order=id_tem&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_limit}&order=id_tem&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td>{$smarty.const.langcms_tieude} {$main_name}
+          <div class="order">
+              <a href="{$url_views}{$url_limit}&order=config_website&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_limit}&order=config_website&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td align="center">{$smarty.const.langcms_vitri}</td>
+          <td align="center">{$smarty.const.langcms_trangthai}</td>
+          {if $action_edit}<td align="center">{$smarty.const.langcms_capnhat}</td>{/if}
+          <td align="center"><label><input type="checkbox" data-toggle="checkall" data-target="input[id=checks]" /></label></td>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach from=$rs name=rs  item=rs}
+          <tr>
+          <td align="center" class="mw_80">{$rs.id_tem}</td>
+          <td><input type="text" name="config_website{$rs.id_tem}" value="{$rs.config_website}" /></td>
+          <td align="center" class="mw_80"><input type="text" maxlength="3" size="1"  name="pos{$rs.id_tem}" value="{$rs.pos}" class="check_num" /></td>
+          <td align="center" class="mw_80">
+            <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=status&id={$rs.id_tem}&status={$rs.status}"  
+            {if $rs.status eq 1}class="status_on"{else}class="status_off"{/if}><i class="fa fa-check-square"></i>
+            </a>
+          </td>
+          {if $action_edit}
+          <td align="center" class="mw_80">
+              <a href="{$url_views}{$url_limit}{$url_order}&id_edit={$rs.id_tem}" class="status_edit"><i class="fa fa-pencil-square-o"></i></a>
+          </td>
+          {/if}
+          <td align="center"><label><input type="checkbox" id="checks" name="checkbox_id[]" value="{$rs.id_tem}"  /></label></td>
+        </tr>
+        {/foreach}
+    </tbody>
+    </table>  
+</div>
+</div>
+</form>  
+</div>
+</div>
+
+</div>
+

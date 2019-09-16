@@ -1,0 +1,191 @@
+<div class="fw-mgb10">
+	<div class="col-md-12 no-padding">
+   <div id="content-e" class="content light">
+    {foreach from=$accept_order item="val" name="val"}
+    <div class="col-md-12 no-padding fw-mgb10 fw-hover">
+      <div style="padding: 5px;">
+        <div class="fw-mgb10" style="font-size: 16px;">
+          <a href="#fade_{$val.coupon_purchaseid}" alt="{$val.coupon_purchaseid}" class="fade_{$val.coupon_purchaseid}_open"><strong>ID {$val.coupon_code}: {$val.file_translate}</strong></a>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="col-md-12 no-padding">
+          <table width="100%">
+            <tr>
+              <td width="20%">
+                {if $val.avatar}
+                <img width="30" height="30" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+                {else}
+                <img width="30" height="30" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+                {/if}
+              </td>
+              <td>
+                <strong style="font-size: 15px;">{$val.name}</strong>
+              </td>
+            </tr>
+          </table>
+        </div> 
+        <div class="col-md-12 no-padding" style="font-size: 13px; white-space: nowrap;">
+          Estimated Delivery: {$val.estimate} (hours)
+        </div>
+
+        <div class="col-md-12 no-padding">
+          <div class="col-md-6 no-padding" style="font-size: 12px;">
+            <strong>{$val.count_text}</strong> word(s)
+          </div>
+
+          <div class="col-md-6 no-padding">
+            <strong style="font-size: 12px; color: #18a9f2;" class="border_price">$ {$val.price}</strong>
+          </div>
+        </div>
+
+        <div class="col-md-12 no-padding fw-mgb5">
+         {if $val.order_status == 1}
+         <a class="accept_final" href="#">
+          Pending
+        </a>
+        {elseif $val.order_status == 2}
+        <a class="accept_active" href="#">
+          Active
+        </a>
+        {elseif $val.order_status == 3}
+        <a class="accept_final" href="#">
+          Completed
+        </a>
+        {elseif $val.order_status == 4}
+        <a class="accept_final" href="#">
+          Cancel
+        </a>
+        {/if}
+      </div>
+    </div>
+  </div>
+
+  {literal} 
+  <script>
+    $(document).ready(function () {
+     $('#fade_{/literal}{$val.coupon_purchaseid}{literal}').popup({
+      pagecontainer: '.container',
+      transition:  'all 0.3s',
+      escape: true,
+      scrolllock: false
+    });
+     return false;
+   });
+ </script>
+ <style type="text/css">
+ #fade_{/literal}{$val.coupon_purchaseid}{literal},
+ #fade_wrapper_{/literal}{$val.coupon_purchaseid}{literal},
+ #fade_background_{/literal}{$val.coupon_purchaseid}{literal} {
+  transition: all 0.3s;
+  background: #fff;
+}
+
+</style>
+{/literal} 
+
+{* Load html choose to_language *}
+<div id="fade_{$val.coupon_purchaseid}" class="well" style="display: none; width: 700px;">
+  <div class="col-md-12 no-padding fw-mgb10">
+   <div align="center" class="col-md-12 no-padding fw-mgb10 fw-mgt10">
+    {if $val.avatar}
+    <img width="100" height="100" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+    {else}
+    <img width="100" height="100" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+    {/if}
+  </div> 
+  <div align="center" class="col-md-12 no-padding fw-mgb10"><strong>{$val.name}</strong></div> 
+
+  <div align="center" class="col-md-12 no-padding fw-mgb10"> <i class="fa fa-map-marker" aria-hidden="true"></i> {if $val.country_name}
+    {$val.country_name}
+    {else}
+    Don't have location
+  {/if}</div>
+
+  <div align="center" class="col-md-12 no-padding fw-mgb10"><strong>ID {$val.coupon_code} : {$val.file_translate}</strong></div>
+
+  <div align="center" class="col-md-12 no-padding fw-mgb15">
+   Subject Field : {$val.subject_field}
+ </div>
+
+ <div align="center" class="col-md-12 no-padding fw-mgb15">
+  <div>
+   <table width="350">
+    <tr>
+      <td align="center" width="45%">
+        {foreach from=$fromTolanguage name=val_order item=val_order}
+        {foreach from=$val_order name=val1 item=val1}
+        {if $val1.translate_id == $val.translate_id}
+        <span id="translate_from" class="language-bg" style="margin-bottom: 5px;">
+         <img width="25" height="25" src="{$smarty.const.URL_HOME}/upload/list_language/{$val1.from_flag_language.img_flag}" class="img-circle"/><span style="margin:5px; font-size: 13px;">{$val1.from_language_name}</span>
+       </span>
+       <br/>
+       {/if}
+       {/foreach}
+       {/foreach}
+     </td>
+
+     <td align="center" width="10%">
+       {foreach from=$fromTolanguage name=val_order item=val_order}
+       {foreach from=$val_order name=val1 item=val1}
+       {if $val1.translate_id == $val.translate_id}
+       <div id="translate_to" style="margin-bottom: 5px;">
+        <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+      </div>
+      {/if}
+      {/foreach}
+      {/foreach}
+    </td>
+
+    <td align="left" width="45%" style="padding-left: 25px;">
+     {foreach from=$fromTolanguage name=val_order item=val_order}
+     {foreach from=$val_order name=val1 item=val1}
+     {if $val1.translate_id == $val.translate_id}
+     <span id="translate_to" class="language-bg"  style="margin-bottom: 5px;">
+       <img width="25" height="25" src="{$smarty.const.URL_HOME}/upload/list_language/{$val1.to_flag_language.img_flag}" class="img-circle"/><span style="margin:5px; font-size: 13px;">{$val1.to_language_name}</span>
+     </span>
+     <br/>
+     {/if}
+     {/foreach}
+     {/foreach}
+   </td>
+ </tr>
+</table>
+</div>
+</div>
+
+<div class="col-md-12 no-padding">
+  <div align="right" class="col-md-4 no-padding" style="font-size: 12px;">
+    <strong>{$val.count_text}</strong> word(s)
+  </div>
+
+  <div align="center" class="col-md-4 no-padding">
+    <strong style="font-size: 12px; color: #18a9f2;" class="border_price">$ {$val.price}</strong>
+  </div>
+
+  <div align="left" class="col-md-4 no-padding">
+    {if $val.order_status == 1}
+    <a class="accept_final" href="#">
+      Pending
+    </a>
+    {elseif $val.order_status == 2}
+    <a class="accept_active" href="#">
+      Active
+    </a>
+    {elseif $val.order_status == 3}
+    <a class="accept_final" href="#">
+      Completed
+    </a>
+    {elseif $val.order_status == 4}
+    <a class="accept_final" href="#">
+      Cancel
+    </a>
+    {/if}
+  </div>
+</div>
+</div>
+</div>
+{/foreach}
+</div>
+</div>
+<div style="clear: both;"></div>
+</div>

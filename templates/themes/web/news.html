@@ -1,0 +1,164 @@
+{include file="$themes/header.html"}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick-theme.css">
+{literal}
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+    .slider {
+        width: 100%;
+        margin: 10px auto;
+    }
+    .slider_menu {
+        width: 60%;
+        margin: 10px auto;
+    }
+    .slick-slide {
+        margin: 0 10px;
+    }
+    .slick-slide img {
+        width: 100%;
+    }
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
+    .slick-slide {
+        transition: all ease-in-out .3s;
+        opacity: .2;
+    }
+    .slick-active {
+        opacity: 1;
+    }
+    .slick-current {
+        opacity: 1;
+    }
+</style>
+<script type="text/javascript">
+    $(document).on('ready', function() {
+        $('.variable-width').slick({
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            centerMode: false,
+            variableWidth: true
+        });
+    });
+</script>
+{/literal}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+    </section>
+    {foreach from=$list_banner_home item="val" name="val"}
+        <section class="home_background section" style="background: #0f5dc4 url({$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}) no-repeat center center;
+    -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; min-height: 400px;">
+            {include file="$themes/banner_contact.html"}
+        </section>
+    {/foreach}
+</div>
+
+<section class="find-job section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgb10">
+                <div class="col-md-7 slider_menu variable-width">
+                    {foreach from=$list_news_category item="val" name="val"}
+                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}news/{$val.category_id}-{$val.category_url}.html">
+                        <strong>{$val.category_name}</strong>
+                    </a>
+                    {/foreach}
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+
+            <div class="col-md-12 fw-mgb10">
+                <h2 class="main_title text-cl-index">{$content_index[0].category_name}</h2>
+            </div>
+            <div class="col-md-12 no-padding fw-mgb10">
+                <div align="left" class="col-md-8 text-justify">
+                    {$content_index[0].category_content}
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div class="col-md-12">
+                {if count($list_content_industry) > 0}
+                <div class="col-md-6 col-sm-6 col-xs-12 fw-mgb20">
+                    <div style="background: #fff;">
+                        {include file="$themes/content_banner.html"}
+                    </div>
+                </div>
+                <div id="post-data">
+                    {foreach from=$list_content_industry item="val" key="key" name="val"}
+                    <div class="col-md-3 fw-mgb20">
+                        <div class="col-md-12 fw-mgb10" align="center">
+                            <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}/{$val.news_url}.html">
+                                {if $val.news_img}
+                                <img class="img-thumbnail img-rounded" style="height: auto; max-height: 150px;" src="{$smarty.const.URL_HOME}/upload/contents/{$val.news_img}" />
+                                {else}
+                                <img class="img-thumbnail img-rounded" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg">
+                                {/if}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="team_title">
+                                <a class="team_title" href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}/{$val.news_url}.html">
+                                    <strong>{$val.news_name_limit}</strong>
+                                </a>
+                            </div>
+                            <div class="team_content fw-mgb20" style="height:auto; min-height: 80px;">{$val.news_content_limit}</div>
+                            <div class="col-md-12 no-padding">
+                                <div class="col-md-6 no-padding">
+                                    <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                                    <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                                </div>
+                                <div class="col-md-6 no-padding" align="right">
+                                    <span style="color:#9b9999"><strong>SHARE</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+
+                {if $total_pages > 0}
+                <div class="col-md-12">
+                    <div class="showing pull-left"></div>
+                    <ul class="pagination pull-right" id="paging">
+                        {section name=foo start=1 loop=$total_pages step=1}
+                        {if $smarty.section.foo.index == 1}
+                        <li class='active' id="{$smarty.section.foo.index}">
+                            <a href='{$smarty.const.URL_HOME}/load/pagination.php?page={$smarty.section.foo.index}'>{$smarty.section.foo.index}</a>
+                        </li>
+                        {else}
+                        <li id="{$smarty.section.foo.index}">
+                            <a href='{$smarty.const.URL_HOME}/load/pagination.php?page={$smarty.section.foo.index}'>{$smarty.section.foo.index}</a>
+                        </li>
+                        {/if}
+                        {/section}
+                    </ul>
+                </div>
+                {/if}
+                {/if}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- footer -->
+{include file="$themes/footer.html"}

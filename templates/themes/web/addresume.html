@@ -1,0 +1,227 @@
+{include file="$themes/header.html"}
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script type="text/javascript" src="{$smarty.const.URL_HOMEPAGE}editor/ckeditor/ckeditor.js"></script>
+<div id="wrapper">
+ {include file="$themes/top.html"}
+
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single submit-page">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2><i class="fa fa-plus-circle"></i> Add Resume</h2>
+    </div>
+
+  </div>
+</div>
+
+<!-- Content
+================================================== -->
+{literal}
+<script type="text/javascript">
+function validateResume() {
+  var valid = true; 
+  $(".demoInputBox").css('background-color','');
+  $(".info").html('');
+
+  if(!$("#name").val()) {
+    $("#name-info").html("(required)");
+    $("#name").css('background-color','#FFFFDF');
+    valid = false;
+  }
+  if(!$("#email").val()) {
+    $("#email-info").html("(required)");
+    $("#email").css('background-color','#FFFFDF');
+    valid = false;
+  }
+   var email = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; 
+  if(!$("#email").val().match(email)) {
+    $("#email-info").html("(invalid)");
+    $("#email").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if(!$("#phone").val()) {
+    $("#phone-info").html("(required)");
+    $("#phone").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  var phoneNumber = /[0-9-()+]{3,20}/; 
+  if(!$("#phone").val().match(phoneNumber)) {
+    $("#phone-info").html("(Please input number)");
+    $("#phone").css('background-color','#FFFFDF');
+    valid = false;
+  }
+  if(!$("#location").val()) {
+    $("#location-info").html("(required)");
+    $("#location").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if(!$("#visa").val()) {
+    $("#visa-info").html("(required)");
+    $("#visa").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+   if(!$("#language").val()) {
+    $("#language-info").html("(required)");
+    $("#language").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if (valid == false) {
+    var elementFocust = $('*:input[type!=hidden]:first').focus();
+   $('html, body').animate({scrollTop: elementFocust.offset().top}, 1500); 
+  }
+  
+  return valid;
+}
+
+function sendResume() {
+  var valid = validateResume();
+  if(valid) {
+    document.getElementById("frm_addresume").submit();
+    return false;
+  }
+}
+</script>
+{/literal}
+
+<!-- Content
+================================================== -->
+<div class="container">
+
+  <!-- Submit Page -->
+  <div class="sixteen columns">
+    <div class="submit-page">
+
+      <div id="contact_form">
+        
+        {if $errorMessage}
+        <div id="result" class="notification error">{$errorMessage}</div>
+        {/if}
+      <div id="contact_body">
+
+      <form name="frm_addresume" id="frm_addresume" method="post" action="{$smarty.const.URL_HOMEPAGE}submitresume.html" enctype="multipart/form-data"> 
+      <!-- Title -->
+      <div class="form">
+        <h5>Title</h5>
+        <input class="search-field" type="text" name="title" id="title" placeholder="e.g. Web Developer" value=""/>
+      </div>
+
+      <!-- Email -->
+      <div class="form">
+        <h5>Your Name</h5>
+        <span id="name-info" class="info"></span>
+        <input class="search-field" type="text" name="name" id="name" placeholder="Your full name" value="" class="demoInputBox" />
+      </div>
+
+      <!-- Email -->
+      <div class="form">
+        <h5>Your Email</h5>
+        <span id="email-info" class="info"></span>
+        <input class="search-field" type="text" name="email" id="email" placeholder="mail@example.com" value="" class="demoInputBox" />
+      </div>
+
+      <!-- Location -->
+      <div class="form">
+        <h5>Your Phone</h5>
+        <span id="phone-info" class="info"></span>
+        <input class="search-field" type="text" name="phone" id="phone" placeholder="e.g. 0909.434.322" value="" class="demoInputBox" />
+      </div>
+
+      <!-- Location -->
+      <div class="form">
+        <h5>Location</h5>
+        <span id="location-info" class="info"></span>
+        <input class="search-field" type="text" name="location" id="location" placeholder="e.g. HCM, Can Tho" value="" class="demoInputBox"/>
+      </div>
+
+
+      <!-- Location -->
+      <div class="form">
+        <h5>Visa (Current)</h5>
+        <span id="visa-info" class="info"></span>
+        <input class="search-field" type="text" name="visa" id="visa" placeholder="e.g. 15/07/2017" value="" class="demoInputBox"/>
+      </div>
+
+
+      <!-- Location -->
+      <div class="form">
+        <h5>Language (Japanese)</h5>
+        <span id="language-info" class="info"></span>
+        <input class="search-field" type="text" name="language" id="language" placeholder="e.g. N2, N3, N1..." value="" class="demoInputBox"/>
+      </div>
+
+       <!-- Description -->
+      <div class="form">
+        <h5>Request Working</h5>
+          <textarea class="ckeditor" name="requestworking" id="requestworking"></textarea>
+        {literal}<script type="text/javascript">CKEDITOR.replace('requestworking'); </script>{/literal}
+      </div>
+
+      <!-- Logo -->
+      <div class="form">
+        <h5>Photo <span>(optional)</span></h5>
+        <input type="file" name="photo" multiple />
+      </div>
+
+      <!-- cv -->
+       <div class="form">
+        <h5>Upload your CV <span>(optional)</span> <span>Max. file size: 5MB</span></h5>
+        <input type="file" name="resume" multiple />
+      </div>
+
+
+
+      <!-- Education -->
+      <div class="form with-line">
+        <h5>Education <span>(optional)</span></h5>
+        <div class="form-inside">
+        <textarea class="ckeditor" name="education" id="education"></textarea>
+        {literal}<script type="text/javascript">CKEDITOR.replace('education'); </script>{/literal}
+         
+        </div>
+      </div>
+
+
+      <!-- Experience  -->
+      <div class="form with-line">
+        <h5>Experience <span>(optional)</span></h5>
+        <div class="form-inside">
+      
+         <textarea class="ckeditor" name="experience" id="experience"></textarea>
+        {literal}<script type="text/javascript">CKEDITOR.replace('experience'); </script>{/literal}
+       
+        </div>
+      </div>
+
+
+      <!-- Experience  -->
+      <div class="form with-line">
+       <div class="g-recaptcha" data-sitekey="{$smarty.const.lang_captcha}"></div>
+      </div>
+
+
+      <div class="divider margin-top-0 padding-reset"></div>
+          <input type="button" id="submit_btn" class="button big margin-top-5" onClick="sendResume();" value="Send Your Resume" />
+          <input type="hidden" name="submitResume" value="1" />
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+{include file="$themes/footer.html"}
+
+
+

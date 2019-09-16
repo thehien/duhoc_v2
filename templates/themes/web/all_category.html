@@ -1,0 +1,14 @@
+{foreach from=$list_special_cate item="val" name="val"}
+<div class="col-md-2 f-category-home" style="margin-right: 15px; margin-bottom: 15px; margin-left: 15px;">
+		<a href="{$smarty.const.URL_HOMEPAGE}major-industry.html" class="industry">
+			<div class="icon">
+				{if $val.icon}
+				<img width="70" height="70" src="{$smarty.const.URL_HOME}/upload/special/{$val.icon}"/>
+				{else}
+				<img width="70" height="70" src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo_small.png" />
+				{/if}
+			</div>
+			<h3 style="font-size: 16px;">{$val.category_name}</h3>
+		</a>
+	</div>
+{/foreach}

@@ -1,0 +1,69 @@
+{include file="$themes/header.html"}
+
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+    </section>
+
+    {foreach from=$list_banner_home item="val" name="val"}
+        <section class="home_background section" style="background: #0f5dc4 url({$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}) no-repeat center center;
+    -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; max-height: 260px;">
+            {include file="$themes/banner_contact.html"}
+        </section>
+    {/foreach}
+</div>
+
+
+
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgb20 fw-mgt30">
+                <h2 class="text-cl-index">HỌC BỔNG</h2>
+            </div>
+
+            <div class="col-md-12 fw-mgb30">
+               Linkrica sint occaecat cupidatat non proident, sunt in official Linkrica Linkrica sint occaecat cupidatat non proident, sunt in culpa qui official Linkrica sint
+occaecat cupidatat non proident, sunt in culpa qui official Linkrica sint occaecat cupidatat non proident, sunt in culpa qui
+            </div>
+
+            <div class="col-md-12 fw-mgb10">
+                        {foreach from=$list_hoc_bong item="val" name="val"}
+                            <div class="col-md-4 fw-mgb30">
+                                <div class="box_translator" style="margin-right: 10px;">
+                                    <div class="fw-mgb10">
+                                        <a href="{$smarty.const.URL_HOMEPAGE}hocbong/{$val.category_id}/{$val.category_url}.html">
+                                            <img src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}" alt="{$val.category_name}">
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-12 fw-mgb10">
+                                        <span class="fw-fs-16 text-cl-index"><strong>{$val.category_name_limit}</strong></span>
+                                    </div>
+
+                                    <div class="col-md-12 fw-mgb10">
+                                        <span class="fw-fs-12">{$val.category_content_limit}</span>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- footer -->
+{include file="$themes/footer.html"}

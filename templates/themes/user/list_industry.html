@@ -1,0 +1,17 @@
+{foreach from=$rs_news_industry item="val" name="val" key=key}
+<div class="col-md-12 col-sm-12 col-xs-12 f-category fw-mgb10">
+	<a href="{$smarty.const.URL_HOMEPAGE}industry/{$val.id}-{$val.category_url}.html">
+		<div class="icon">
+			 {if $val.img}
+		      <img width="240" height="135" src="{$smarty.const.URL_HOME}/upload/special/{$val.img}"/>
+		      {else}
+		      <img width="130" src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo_small.png" />
+		      {/if}
+		</div>
+	</a>
+</div>
+<div class="fw-mgb15">
+	<div class="fw-mgb5"><h4 style="font-size: 15px; font-weight: bold;">{$val.category_name}</h4></div>
+	<div class="fw-mgb5"><h5>{$val.count_order} Orders</h5></div>
+</div>
+{/foreach}

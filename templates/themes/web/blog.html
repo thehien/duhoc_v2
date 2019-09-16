@@ -1,0 +1,131 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {include file="$themes/top.html"}
+        </div>
+    </section>
+</div>
+
+{literal}
+<script type="text/javascript">
+    function loadBlogData(category){
+        $("#blog-data").html('<img src="{/literal}{$smarty.const.URL_WEB}{$themes}{literal}/assets/img/loading.gif" class="fw-img-p50" />');
+        $.ajax( {
+            url: '{/literal}{$smarty.const.URL_HOME}{literal}/load/load_blog_data.php?category=' + category,
+            type: "get",
+            dataType: 'json',
+            async: false,
+            beforeSend: function() {
+                $("#blog-data").html('<img src="{/literal}{$smarty.const.URL_WEB}{$themes}{literal}/assets/img/loading.gif" class="fw-img-p50" />');
+            }
+        })
+            .done(function(data) {
+                $("#blog-data").html(data);
+            })
+            .fail(function(jqXHR, ajaxOptions, thrownError) {
+                alert('server not responding...');
+            });
+    }
+</script>
+{/literal}
+
+<section class="find-jobs section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgb20 fw-fs-24 text-cl-index" align="center">
+                AMV Blog
+            </div>
+
+            <div class="col-md-12">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-9 col-sm-6 col-xs-12 no-padding">
+                            <div id="blog-data">
+                            {foreach from=$list_blog_center item="val" key="key" name="val"}
+                            <div class="col-md-3 no-padding fw-mgb20">
+                                <div class="col-md-12 fw-mgb10" align="center">
+                                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                        {if $val.news_img}
+                                        <img class="img-thumbnail img-rounded" style="height: 140px !important;" src="{$smarty.const.URL_HOME}/upload/blogs/{$val.news_img}" />
+                                        {else}
+                                        <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
+                                        {/if}
+                                    </a>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="team_title">
+                                        <a class="team_title" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                            <strong>{$val.news_name_limit}</strong>
+                                        </a>
+                                    </div>
+                                    <div class="team_content fw-mgb20" style="height:auto; min-height: 80px;">{$val.news_content_limit}</div>
+                                    <div class="col-md-12 no-padding">
+                                        <div class="col-md-6 no-padding">
+                                            <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                                            <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                                        </div>
+                                        <div class="col-md-6 no-padding" align="right">
+                                            <span style="color:#9b9999"><strong>SHARE</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/foreach}
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb20">
+                            {foreach from=$list_blog_right item="val" key="key" name="val"}
+                            <div class="col-md-12 no-padding fw-mgt10 fw-mgb10">
+                                <div class="team_title">
+                                    <a class="team_title"
+                                       href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                        <strong>{$val.news_name_limit}</strong>
+                                    </a>
+                                </div>
+                                <div class="team_content fw-mgb10" style="height:auto; min-height: 80px;">
+                                    {$val.news_content_limit}
+                                </div>
+                                <div class="col-md-12 no-padding">
+                                    <div class="col-md-6 no-padding">
+                                        <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                                        <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                                    </div>
+                                    <div class="col-md-6 no-padding" align="right">
+                                        <span style="color:#9b9999"><strong>SHARE</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            {/foreach}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {if count($list_blog_center) > 10}
+            <div align="center" class="col-md-12">
+                <div class="fw-mgb20">
+                    <a class="btn btn-learn-more" href="#" onclick="loadBlogData(121);">
+                        Learn more
+                    </a>
+                </div>
+            </div>
+            {/if}
+
+        </div>
+    </div>
+</section>
+<!-- footer -->
+<div id="loadingInfo" class="loading-img" style="display: none;">
+    <p style="position: absolute; top: 30%; left: 50%;">
+        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/loading.gif" class="fw-img-p50" />
+    </p>
+</div>
+{include file="$themes/footer_index.html"}

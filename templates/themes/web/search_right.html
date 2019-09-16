@@ -1,0 +1,48 @@
+<div class="five columns">
+<form name="frmsearch" method="post" action="{$smarty.const.URL_HOMEPAGE}search.html">
+        <!-- Sort by -->
+        <div class="widget">
+            <h4>Sort by Level Japanese</h4>
+            <!-- Select -->
+            <select name="language" data-placeholder="Choose Category" class="chosen-select-no-single">
+                <option selected="selected" value="">Selected</option>
+                <option value="N1">N1 Japanese</option>
+                <option value="N2">N2 Japanese</option>
+                <option value="N3">N3 Japanese</option>
+                <option value="N4">N4 Japanese</option>
+                <option value="N5">N5 Japanese</option>
+            </select>
+        </div>
+
+        <!-- Location -->
+        <div class="widget">
+            <h4>Location</h4>
+                <input type="text" name="province" placeholder="City" value=""/>
+        </div>
+
+          <!-- Job Type -->
+        <div class="widget">
+            <h4>Job Type</h4>
+            <ul class="checkboxes">
+                <li>
+                    <input id="check-2" type="checkbox" name="jobtype" value="2">
+                    <label for="check-2">Full-Time</label>
+                </li>
+                <li>
+                    <input id="check-3" type="checkbox" name="jobtype" value="1">
+                    <label for="check-3">Part-Time</label>
+                </li>
+                
+            </ul>
+
+        </div>
+
+
+         <!-- Location -->
+        <div class="widget">
+            <button class="button">Filter</button>      
+        </div>
+
+ </form>      
+
+    </div>

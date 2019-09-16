@@ -1,0 +1,25 @@
+{foreach from=$new_center item="val" name="val"}
+<div class="fw-mgb10 col-md-12 no-padding fw-mgb10 fw-mbt10"><img width="40" src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo_small.png"/> <strong>Linkrica shared an article
+</strong></div>
+
+<div class="col-md-12 no-padding fw-mgb10 news_title_border" style="padding-bottom: 10px;">
+	<div align="left" class="fw-mgb10" style="margin: 3px; font-size: 20px;">
+		 <a href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}-{$val.news_url}.html" title="{$val.news_name}"> <strong>{$val.title_top}</strong></a>
+   </div>
+	<div align="left" class="fw-mgb10 col-md-12 no-padding" style="margin: 3px;">
+		<div class="col-md-4 no-padding">
+		<a href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}-{$val.news_url}.html" title="{$val.news_name}"> 
+		{if $val.news_img}
+		<img width="250" src="{$smarty.const.URL_HOME}/upload/news/{$val.news_img}"/>
+		{else}
+		<img width="250" src="{$smarty.const.URL_WEB}{$themes}/assets/img/no_img.png"/>
+	    {/if}
+		</a>
+		</div>
+
+		<div class="col-md-8 no-padding">
+		{$val.description_center}
+		</div>
+   </div>
+</div>
+{/foreach}

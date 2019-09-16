@@ -1,0 +1,18 @@
+<div class="col-md-12 no-padding">
+	<section class="regular slider">
+		{foreach from=$all_customer_online item="val" name="val"}
+		<div>
+			<div align="center">{if $val.avatar}
+				<img height="110" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+				{else}
+				<img height="110" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+			{/if}</div>
+			<div style="clear: both;"></div>
+			<div align="center" style="font-size: 14px;">
+				<strong title="{$val.full_name}">{$val.name}</strong>
+			</div>
+		</div>
+
+		{/foreach}
+	</section>
+</div>

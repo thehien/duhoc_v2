@@ -1,0 +1,108 @@
+<table align="center" width="100%" style="border:1px solid  #C0C0C0;">
+  <tbody>
+  <tr>
+    <td style="color:#fff;text-align:center;font-size:13.4px;" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" style="background-color:#ffff; height:40px;border-bottom:1px solid #CCC;">
+      <img src="http://linkrica.com/templates/themes/assets/img/logo.png" border="0"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="100%">
+        <tbody>
+        <tr>
+          <td style="font-size: 14px;">
+          	<p>Hi <strong> {$name}</strong>,</p>
+            <p>We have received your translation request. Your order is pending until the payment method is confirmed. After receiving your payment confirmation, we immediately work with your order.</p>
+          </td>
+        </tr>
+        {foreach from=$rs_order item="val" name="val"}
+        <tr>
+         	<td>
+         		Project Name: <strong>{$val.file_translate}</strong>
+         	</td>
+        </tr>
+         <tr>
+         	<td>
+         		Project ID: {$val.coupon_code}
+         	</td>
+        </tr>
+         <tr>
+         	<td>
+         		Translate From:{foreach from=$order_language name=val_order item=val_order}
+               {if $val_order.translate_id == $val.translate_id}
+                 {$val_order.from_language_name}{if !$smarty.foreach.val_order.last},{/if}
+               {/if}
+             {/foreach}
+         	</td>
+        </tr>
+         <tr>
+         	<td>
+         		Translate To:{foreach from=$order_language name=val_order item=val_order}
+             {if $val_order.translate_id == $val.translate_id}
+              {$val_order.to_language_name}{if !$smarty.foreach.val_order.last},{/if}
+             {/if}
+           {/foreach}
+         	</td>
+        </tr>
+
+         <tr>
+          <td>
+            Words: {$val.count_text}
+          </td>
+        </tr>
+
+         <tr>
+         	<td>
+         		Created Date: {$val.ngay_mua}
+         	</td>
+        </tr>
+          <tr>
+         	<td>
+         		Estimated Delivery: {$val.estimate} (hours)
+         	</td>
+        </tr>
+          <tr>
+         	<td>
+         		Amount: $ <strong>{$val.price}</strong>
+         	</td>
+        </tr>
+        <tr><td style="padding-bottom: 20px; border-bottom: 1px solid #CCC;"></td></tr>
+         {/foreach}
+        <tr><td style="height: 10px;"></td></tr>
+         <tr>
+          <td>
+             <a href="{$website}/confirm-payment/{$coupons_code}-{$securityId}.html" style="color:#fff; margin-left:5px; margin-right:5px; border-radius: 10px;background: #6996db; padding: 10px;width: 150px;height: 35px;
+text-decoration: none;"> <strong>Payment</strong></a>
+          </td>
+        </tr>
+        <tr><td style="height: 10px;"></td></tr>
+        <tr>
+          <td>
+            You need help with the payment method, please contact Linkrica Team (<a href="mailto:support@linkrica@.com">support@linkrica@.com</a>)
+
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top:1px solid #CCC; background-color:#fff; width:130px;height:60px; text-align:left;">
+             <p>
+             Thank you,<br/>
+             The Linkrica Team
+            </p>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
+
+
+
+

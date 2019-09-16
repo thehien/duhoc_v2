@@ -1,0 +1,113 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {include file="$themes/top.html"}
+        </div>
+        <!-- Header Section End -->
+        <section class="featured-jobs">
+            {include file="$themes/top-support.html"}
+        </section>
+    </section>
+</div>
+
+<section class="job-detail section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 no-padding fw-border-content-bottom" style="margin: 5px; text-align: center">
+                <h4 class="fw-fs-26 fw-mgt10 fw-mgb10">
+                    {$news_detail.news_name}
+                </h4>
+            </div>
+
+            <div class="col-md-12 no-padding fw-mgt10">
+                <div class="col-md-9">
+                    <div class="col-md-12 fw-mgb20" style="text-align: justify">
+                        <p>
+                            {$news_detail.description}
+                        </p>
+                    </div>
+                    <div class="col-md-12 meta fw-mgt20 fw-mgb20">
+                        <div class="meta">
+                            <span>Tags:</span>
+                            <span><a class="btn btn-border btn-sm" href="#"><i class="fa fa-tag"></i> Email<div class="ripple-container"></div></a></span>
+                            <span><a class="btn btn-border btn-sm" href="#"><i class="fa fa-tag"></i> Job Aleart</a></span>
+                            <span><a class="btn btn-border btn-sm" href="#"><i class="fa fa-tag"></i> Save This job</a></span>
+                            <span><a class="btn btn-border btn-sm" href="#"><i class="fa fa-tag"></i> Report Abuse</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="fw-mgb10">
+                        <a class="btn btn-submit fw-fs-18" href="#">
+                            ĐĂNG  KÝ TRỰC TUYẾN
+                        </a>
+                    </div>
+
+                    <div class="fw-mgb10">
+                        <a class="btn btn-submit-1 fw-fs-18" href="#">
+                            CHUYÊN GIA TƯ VẤN
+                        </a>
+                    </div>
+
+                    <div class="fw-mgb10">
+                        <div class="fw-mgb10">
+                            <div><strong>
+                                DANH MỤC: <strong style="color: #0026ff; text-transform: uppercase">{$categoryNews.category_name}</strong>
+                            </strong></div>
+                        </div>
+                        {foreach from=$list_news_sub item="val" key="key" name="val"}
+                        <div class="fw-mgb10">
+                            <a href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html" class="link_hover">
+                                <span title="{$val.full_news_name}">{$val.news_name_limit}</span>
+                            </a>
+                        </div>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="fw-mgb20 fw-mgt10">
+                    <div class="fw-fs-18">BÀI VIẾT LIÊN QUAN</div>
+                    <div align="left" class="btn-bg-under-center fw-mgt10"></div>
+                </div>
+
+                <div class="col-md-12 no-padding">
+                    {foreach from=$list_news_sub item="val" key="key" name="val"}
+                    <div class="col-md-4 fw-mgb30">
+                        <div class="col-md-5 fw-mgb10">
+                            <a href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
+                                <img src="{$smarty.const.URL_HOME}/upload/news/{$val.news_img}"/>
+                            </a>
+                        </div>
+
+                        <div class="col-md-7">
+                            <div class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html" class="link_hover">
+                                    <strong title="{$val.full_news_name}">{$val.news_name_limit}</strong>
+                                </a>
+                            </div>
+                            <div class="fw-mgb10">
+                                <span><i class="ti-calendar"></i> {$val.time_news}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- footer -->
+{include file="$themes/footer.html"}

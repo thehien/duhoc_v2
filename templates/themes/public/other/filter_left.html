@@ -1,0 +1,109 @@
+{if $category_left}
+	<div class ="filter_left">
+    <h4 >{$catename_left}</h4>
+	{foreach from=$category_left item="val" name="val}
+		{if $category_hover eq $val.category_url}
+            <a href="{$smarty.const.URL_HOMEPAGE}{$val.news_url}{$val.category_url}.html">
+            <i class="fa fa-check-square-o"></i> {$val.category_name}
+            </a><br />
+		{else}
+            <a  href="{$smarty.const.URL_HOMEPAGE}{$val.news_url}{$val.category_url}.html">
+            <i class="fa fa-square-o"></i> {$val.category_name}
+            </a><br />
+		{/if}
+	{/foreach}
+	</div>
+{/if}
+
+{if $numf_four}
+	<div class ="filter_left" >
+	<a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_all_{$fil_cty}_{$fil_dis}" >
+    <h5 >{$rs_four[0].name} &raquo; {$smarty.const.lang_sp_xem_all}</h5></a><br />
+	{foreach from=$rs_four item="val" name="val}
+		{if $fil_four eq $val.filter_url}
+            <a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$val.filter_url}_{$fil_cty}_{$fil_dis}">
+            <i class="fa fa-check-square-o"></i> {$val.filter_name}
+            </a><br />
+		{else}
+            <a  href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$val.filter_url}_{$fil_cty}_{$fil_dis}">
+            <i class="fa fa-square-o"></i> {$val.filter_name}
+            </a><br />
+		{/if}
+	{/foreach}
+	</div>
+{/if}
+
+{if $numf_one}
+	<div class ="filter_left">
+	<a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_all_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" >
+    <h5 >{$rs_one[0].name} &raquo; {$smarty.const.lang_sp_xem_all}</h5></a><br />
+	{foreach from=$rs_one item="val" name="val}
+		{if $fil_one eq $val.filter_url}
+            <a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_all_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}">
+            <i class="fa fa-check-square-o"></i> {$val.filter_name}
+            </a><br />
+		{else}
+            <a  href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$val.filter_url}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}">
+            <i class="fa fa-square-o"></i> {$val.filter_name}
+            </a><br />
+		{/if}
+	{/foreach}
+	</div>
+{/if}
+
+
+{if $numf_two}
+	<div class ="filter_left" >
+	<a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_all_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" >
+    <h5 >{$rs_two[0].name} &raquo; {$smarty.const.lang_sp_xem_all}</h5></a><br />
+	{foreach from=$rs_two item="val" name="val}
+		{if $fil_two eq $val.filter_url}
+            <a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$val.filter_url}_{$fil_three}_{$fil_four}">
+            <i class="fa fa-check-square-o"></i> {$val.filter_name}
+            </a><br />
+		{else}
+            <a  href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$val.filter_url}_{$fil_three}_{$fil_four}">
+            <i class="fa fa-square-o"></i> {$val.filter_name}
+            </a><br />
+		{/if}
+	{/foreach}
+	</div>
+{/if}
+
+{if $numf_three}
+	<div class ="filter_left" >
+	<a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_all_{$fil_four}_{$fil_cty}_{$fil_dis}" >
+    <h5 >{$rs_three[0].name} &raquo; {$smarty.const.lang_sp_xem_all}</h5></a><br />
+	{foreach from=$rs_three item="val" name="val}
+		{if $fil_three eq $val.filter_url}
+            <a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_all_{$fil_four}_{$fil_cty}_{$fil_dis}">
+            <i class="fa fa-check-square-o"></i> {$val.filter_name}
+            </a><br />
+		{else}
+            <a  href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$val.filter_url}_{$fil_four}_{$fil_cty}_{$fil_dis}">
+            <i class="fa fa-square-o"></i> {$val.filter_name}
+            </a><br />
+		{/if}
+	{/foreach}
+	</div>
+{/if}
+
+<div class ="filter_left" >
+	<a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}" >
+    <h5 >{$smarty.const.lang_sp_qt}</h5></a><br />
+    <a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}/saledesc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}">
+    {if $hover_gia eq 'saledesc'}<i class="fa fa-check-square-o"></i>{else}<i class="fa fa-square-o"></i>{/if} {$smarty.const.lang_sp_km}
+    </a><br />
+    
+    <a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}/viewsdesc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}">
+    {if $hover_gia eq 'viewsdesc'}<i class="fa fa-check-square-o"></i>{else}<i class="fa fa-square-o"></i>{/if} {$smarty.const.lang_sp_uc}
+    </a><br />
+    
+    <a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}/priceasc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}">
+    {if $hover_gia eq 'priceasc'}<i class="fa fa-check-square-o"></i>{else}<i class="fa fa-square-o"></i>{/if} {$smarty.const.lang_sp_gr}
+    </a><br />
+    
+    <a href="{$smarty.const.URL_HOMEPAGE}{$url_filter}/pricedesc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}">
+   {if $hover_gia eq 'pricedesc'}<i class="fa fa-check-square-o"></i>{else}<i class="fa fa-square-o"></i>{/if} {$smarty.const.lang_sp_cc}
+    </a><br />
+</div>

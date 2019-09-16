@@ -1,0 +1,119 @@
+ 
+<div class="col-md-12 no-padding">
+  <ul id="left-menu" class="nav navbar-nav">
+    <li {if $info} class="link-active"{else} class="link-hover"{/if}>
+      <div class="float_left" style="width: 30px; line-height: 30px;">
+        <img width="70%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/icon/home.png">
+      </div>
+      <div class="float_left" style="line-height: 30px; margin-top:3px;">
+        <a href="{$smarty.const.URL_HOMEPAGE}info-cv.html" {if $info} class="link-active"{else} class="link-text-hover"{/if}>{$smarty.const.lang_user_home}</a>
+      </div>
+    </li>
+    <div style="clear: both;"></div>
+    <li {if $profile_cv} class="link-active"{else} class="link-hover"{/if}>
+      <div class="float_left" style="width: 30px; line-height: 30px;">
+        <img width="70%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/icon/profile.png">
+      </div>
+      <div class="float_left" style="line-height: 30px; margin-top:3px;">
+        <a href="{$smarty.const.URL_HOMEPAGE}profile-cv.html"  {if $profile_cv} class="link-active"{else} class="link-text-hover"{/if}>{$smarty.const.lang_user_hoso}</a>
+      </div>
+    </li>
+    <div style="clear: both;"></div>
+    <li class="divider-info"></li>
+    <li>
+      <span class="navbar-brand" style="font-size: 15px;"><strong>{$smarty.const.lang_user_qldh}</strong></span>
+    </li>
+    <div style="clear: both;"></div>
+    <li {if $send_order} class="link-active"{else} class="link-hover"{/if}>
+      <div class="float_left" style="width: 30px; line-height: 30px;">
+        <img width="70%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/icon/active.png">
+      </div>
+      <div class="float_left" style="line-height: 30px; margin-top:3px;">
+        <a href="{$smarty.const.URL_HOMEPAGE}send-order.html" {if $send_order} class="link-active"{else} class="link-text-hover"{/if}>Accepted ({$rs_accept_number})</a>
+      </div>
+    </li>
+    <div style="clear: both;"></div>
+    <li {if $accept_finalize} class="link-active"{else} class="link-hover"{/if}>
+      <div class="float_left" style="width: 30px; line-height: 30px;">
+        <img width="70%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/icon/trans_complete.png">
+      </div>
+      <div class="float_left" style="line-height: 30px; margin-top:3px;">
+        <a href="{$smarty.const.URL_HOMEPAGE}accept-finalized.html" {if $accept_finalize} class="link-active"{else} class="link-text-hover"{/if}" >Completed ({$rs_finalize_number})</a>
+      </div>
+    </li>
+
+    <div style="clear: both;"></div>
+    <li class="divider-info"></li>
+    <li>
+      <span class="navbar-brand" style="font-size: 15px;"><strong>{$smarty.const.lang_user_vct}</strong></span>
+    </li>
+    <div style="clear: both;"></div>
+    <li {if $earnings_report} class="link-active"{else} class="link-hover"{/if}>
+      <div class="float_left" style="width: 30px; line-height: 30px;">
+        <img width="70%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/icon/payment_method.png">
+      </div>
+      <div class="float_left" style="line-height: 30px; margin-top:3px;">
+        <a href="{$smarty.const.URL_HOMEPAGE}earnings-report.html"  {if $earnings_report} class="link-active"{else} class="link-hover"{/if}>{$smarty.const.lang_user_bctn}</a>
+      </div>
+    </li>
+    <div style="clear: both;"></div>
+    <li {if $withdrawal} class="link-active"{else} class="link-hover"{/if}>
+      <div class="float_left" style="width: 30px; line-height: 30px;">
+        <img width="70%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/icon/withdrawal.png">
+      </div>
+      <div class="float_left" style="line-height: 30px; margin-top:3px;">
+        <a href="{$smarty.const.URL_HOMEPAGE}withdrawal.html" {if $withdrawal} class="link-active"{else} class="link-text-hover"{/if}>{$smarty.const.lang_user_wh}</a>
+      </div>
+    </li>
+
+    <div style="clear: both;"></div>
+    <li class="divider-info"></li>
+    <li {if $setting_cv} class="link-active"{else} class="link-hover"{/if}>
+      <div class="float_left" style="width: 30px; line-height: 30px;">
+       <img width="70%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/icon/setting.png">
+     </div>
+     <div class="float_left" style="line-height: 30px; margin-top:3px;">
+      <a href="{$smarty.const.URL_HOMEPAGE}setting-cv.html"  {if $setting_cv} class="link-active"{else} class="link-text-hover"{/if}>{$smarty.const.lang_user_cd}</a>
+    </div>
+  </li>
+  <div style="clear: both;"></div>
+  <li class="link-hover">
+    <div class="float_left" style="width: 30px; line-height: 30px;">
+      <img width="70%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/icon/support.png">
+    </div>
+    <div class="float_left" style="line-height: 30px; margin-top:3px;">
+      <a href="#" class="link-text-hover">{$smarty.const.lang_user_ht}</a>
+    </div>
+  </li>
+
+  <div style="clear: both;"></div>
+  <li class="link-hover">
+    <div class="float_left" style="width: 30px; line-height: 30px;">
+     <img width="70%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/icon/send_msg.png">
+   </div>
+   <div class="float_left" style="line-height: 30px; margin-top:3px;">
+    <a href="#" class="link-text-hover">{$smarty.const.lang_user_gtn}</a>
+  </div>
+</li>
+
+
+</ul>
+</div>
+
+<div class="col-md-12 no-padding fw-mgt10" style="font-size: 13px; color: #a09b9b; font-weight: bold; margin-top: 30px;  ">
+  <div class="col-md-6 no-padding">
+    Terms of Use
+  </div>
+
+  <div class="col-md-6 no-padding">
+    Privacy Policy
+  </div>
+
+  <div class="col-md-12 no-padding">
+    Translation Process
+  </div>
+
+  <div class="col-md-12 no-padding">
+   Copyright © 2019 Linkrica 
+ </div>
+</div>

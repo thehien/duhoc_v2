@@ -1,0 +1,194 @@
+{include file="$themes/header.html"}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick-theme.css">
+{literal}
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+    .slider {
+        width: 100%;
+        margin: 10px auto;
+    }
+    .slider_menu {
+        width: 80%;
+        margin: 10px auto;
+    }
+    .slick-slide {
+        margin: 0 10px;
+    }
+    .slick-slide img {
+        width: 100%;
+    }
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
+    .slick-slide {
+        transition: all ease-in-out .3s;
+        opacity: .2;
+    }
+    .slick-active {
+        opacity: 1;
+    }
+    .slick-current {
+        opacity: 1;
+    }
+</style>
+<script type="text/javascript">
+    $(document).on('ready', function() {
+        $('.variable-width').slick({
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            centerMode: false,
+            variableWidth: true
+        });
+    });
+</script>
+{/literal}
+
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            {include file="$themes/top.html"}
+        </div>
+    </section>
+</div>
+
+
+<section class="find-jobs section">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-6 col-xs-12">
+                            <div class="col-md-12 fw-mgb20 fw-mgt10">
+                                <h2 class="text-cl-index">Học bổng du học mỹ</h2>
+                            </div>
+
+                            <div class="col-md-12 fw-mgb10">
+                                Linkrica sint occaecat cupidatat non proident, sunt in official Linkrica Linkrica sint occaecat cupidatat non proident, sunt in culpa qui official Linkrica sint
+                                occaecat cupidatat non proident, sunt in culpa qui official Linkrica sint occaecat cupidatat non proident, sunt in culpa qui
+                            </div>
+
+                            <div class="col-md-12" id="blog-data">
+                                <div class="col-md-12 fw-mgb20">
+                                    <div class="col-md-9 slider_menu variable-width">
+                                        {foreach from=$list_news_category item="val" name="val"}
+                                        <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}news/{$val.category_id}-{$val.category_url}.html">
+                                            <strong>{$val.category_name}</strong>
+                                        </a>
+                                        {/foreach}
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+
+                                <div class="col-md-12 no-padding">
+                                    <div class="col-md-5 no-padding">
+                                        <div class="form-group">
+                                            <select name="mobileCode" id="mobileCode" class="form-control">
+                                                <option value="">Tất cả</option>
+                                                {foreach from=$rs_mobile_code item="val" name="val"}
+                                                <option value="{$val.code}">{$val.name} (+{$val.code})</option>
+                                                {/foreach}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <a class="btn btn-register-home" href="{$smarty.const.URL_HOMEPAGE}register.html">
+                                            ĐĂNG KÝ TRỰC TUYẾN
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {foreach from=$list_blog_center item="val" key="key" name="val"}
+                                    <div class="col-md-12 no-padding fw-border3">
+                                        <div class="col-md-9">
+                                            <div class="team_title fw-mgt10">
+                                                <a href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$val.news_id}/{$val.news_url}.html">
+                                                    <strong>{$val.news_name_limit}</strong>
+                                                </a>
+                                            </div>
+                                            <div class="team_content fw-mgb10" style="height:auto; min-height: 70px;">{$val.news_content_limit_1}</div>
+                                            <div class="col-md-12 no-padding fw-fs-12 fw-mgb10">
+                                                <div class="col-md-3 no-padding">
+                                                    <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                                                    <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                                                </div>
+                                                <div class="col-md-3 no-padding" align="right">
+                                                    <span style="color:#9b9999"><strong>SHARE</strong></span>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 no-padding" align="right">
+                                            <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$val.news_id}/{$val.news_url}.html">
+                                                {if $val.news_img}
+                                                <img style="height: 150px !important;" src="{$smarty.const.URL_HOME}/upload/blogs/{$val.news_img}" />
+                                                {else}
+                                                <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
+                                                {/if}
+                                            </a>
+                                        </div>
+                                    </div>
+                                {/foreach}
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb20">
+                            {foreach from=$list_blog_right item="val" key="key" name="val"}
+                            <div class="col-md-12 no-padding fw-mgt10 fw-mgb10">
+
+                                <div class="col-md-12 no-padding fw-mgb10" align="left">
+                                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                        {if $val.news_img}
+                                        <img style="height: 140px !important;" src="{$smarty.const.URL_HOME}/upload/blogs/{$val.news_img}" />
+                                        {else}
+                                        <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
+                                        {/if}
+                                    </a>
+                                </div>
+
+                                <div class="col-md-12 no-padding team_title">
+                                    <a class="team_title"
+                                       href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                        <strong>{$val.news_name_limit}</strong>
+                                    </a>
+                                </div>
+                                <div class="team_content fw-mgb10" style="height:auto; min-height: 80px;">
+                                    {$val.news_content_limit}
+                                </div>
+                                <div class="col-md-12 no-padding fw-fs-12">
+                                    <div class="col-md-6 no-padding">
+                                        <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                                        <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                                    </div>
+                                    <div class="col-md-6 no-padding" align="right">
+                                        <span style="color:#9b9999"><strong>SHARE</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            {/foreach}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{include file="$themes/footer.html"}

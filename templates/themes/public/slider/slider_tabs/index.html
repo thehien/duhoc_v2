@@ -1,0 +1,75 @@
+<link type="text/css"  href="{$smarty.const.URL_WEB}{$themes}/public/slider/slider_tabs/banner-jquery-slideshow.css" rel="stylesheet">
+<script   type="text/javascript" src="{$smarty.const.URL_WEB}{$themes}/public/slider/slider_tabs/banner-jquery-ui-1.7.2.custom.min.js"></script>
+
+
+{literal}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#featured").tabs({fx:[{opacity: "toggle", duration: 'slow'}, {opacity: "toggle", duration: 'normal'}],
+			show: function(event, ui){
+				$('#featured .ui-tabs-panel .info').hide();
+				var infoheight=$('.info', ui.panel).height();
+				$('.info', ui.panel).css('height', '0px').animate({ 'height': infoheight }, 600);
+			}
+		}).tabs("rotate", 5000, true);
+		$('#featured').hover(
+			function(){ $('#featured').tabs('rotate', 0, true); },
+			function(){ $('#featured').tabs('rotate', 5000, true); }
+		);
+		$('#featured .ui-tabs-panel a.hideshow').click(function(){
+			if($(this).text()=='Hide'){
+				$(this).parent('.info').animate({ 'height': '0px' }, 500);
+				$(this).text('Show');
+			}
+			else{
+				$(this).parent('.info').animate({ 'height': '70px' }, 500);
+				$(this).text('Hide');
+			}
+			return false;
+		});
+	});
+</script>
+{/literal}	
+     
+<div id="featured" class="content_tabs_height">
+    <ul >
+   	{section name=pro_bo loop=$pro_bo}
+        <li class="ui-tabs-nav-item" id="nav-fragment-{$pro_bo[pro_bo].category_id}" >
+            <a href="#fragment-{$pro_bo[pro_bo].category_id}" >
+           {$pro_bo[pro_bo].category_name} 
+            </a>
+        </li>
+    {/section}
+    </ul>
+	{section name=pro_bo loop=$pro_bo}
+	    <div id="fragment-{$pro_bo[pro_bo].category_id}"   >
+           
+            <ul class="content_tabs" >
+                {section name=pro_con loop=$pro_con[pro_bo]}   
+                    <li class="content_tabs_li">
+                    <dl class="content_tabs_img">
+                        <a href="{$smarty.const.URL_HOMEPAGE}{$pro_con[pro_bo][pro_con].news_id}-{$pro_con[pro_bo][pro_con].news_url}.html" title="{$pro_con[pro_bo][pro_con].news_name}"> 
+                        {if $pro_con[pro_bo][pro_con].news_img}
+                        <img src="{$smarty.const.URL_HOMEPAGE}upload/{$pro_con[pro_bo][pro_con].img_file}/{$pro_con[pro_bo][pro_con].news_img}" alt="{$pro_con[pro_bo][pro_con].news_name}" />
+                        {/if} 
+                        </a> 
+                    </dl>
+                    <dl class="content_tabs_title">
+                        <a href="{$smarty.const.URL_HOMEPAGE}{$pro_con[pro_bo][pro_con].news_id}-{$pro_con[pro_bo][pro_con].news_url}.html" title="{$pro_con[pro_bo][pro_con].news_name}">{$pro_con[pro_bo][pro_con].news_name_40}</a>
+                    </dl>
+                    <dl class="content_tabs_price">
+                        <ol class="content_tabs_left">
+                            <span>Giá tốt: {$pro_con[pro_bo][pro_con].gia_kmai} {$smarty.const.lang_cart_tien} </span>
+                            <p>{$pro_con[pro_bo][pro_con].gia_ban} {$smarty.const.lang_cart_tien}</p>
+                        </ol>
+                       <ol class="content_tabs_right">
+                            <a href="{$smarty.const.URL_HOMEPAGE}cart/{$pro_con[pro_bo][pro_con].news_id}.html"><span class="content_tabs_cart">{$smarty.const.lang_sp_giohang}</span></a>
+                        </ol> 
+                    </dl>
+                    </li>
+                {/section}         
+            </ul> 
+
+	    </div>
+	 {/section}              
+</div>

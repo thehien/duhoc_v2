@@ -1,0 +1,297 @@
+{include file="left.html"}
+<div id="page-wrapper">
+<div class="row">
+<div class="col-lg-12">
+    <h1 class="page-header"><a href="{$url_views}" ><i class="fa fa-home"></i> 
+    {if $id_edit}{$smarty.const.langcms_capnhat}{else}{$smarty.const.langcms_them}{/if} {$main_name} : </a>
+    <a href="{$smarty.const.URL_HOMEPAGE}{$news_id}-{$news_url}.html" target="_blank" ><i class="fa fa-home"></i> {$news_name}</a>
+    </h1>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12" >
+<table class="table_insert category_tree table-striped table-hover" style="margin-top:0px" >
+    <!--Hinh san pham-->
+    <tbody class="pro_tbody" style="float:none">
+    <tr data-tt-id="10" class="pro_tr" >
+        <td colspan="2"><strong>{$smarty.const.langcms_genimg}</strong></td>
+    </tr>
+    <tr data-tt-id="11" data-tt-parent-id="10" style="display: none;">
+    <td>
+    <div class="col-lg-3 pro_general" >
+        <form name="frm_image" method="post" enctype="multipart/form-data" action="{$smarty.const.URL_ADMIN}?module={$url}&main=images{$url_edit}">
+        <input type="file" name="filename" id="filename" /> 
+        <input type="text" name="image_name" id="image_name" placeholder="Title and alt img" />
+        {if $id_edit}<button type="submit" name="submit" id="submit" value="submit" class="bg_insert">{$smarty.const.langcms_spthinh}</button>{/if}
+        </form>
+    </div>
+    <div class="col-lg-9">
+        {foreach from=$rs name=rs  item=rs}
+        <div class="img_general">
+           <img src="{$smarty.const.IMG_UPLOAD}{$url}/{$rs.img_file}/{$rs.image}" />
+           <a id="click_img_{$rs.id}" remove-link="{$smarty.const.URL_ADMIN}?module={$url}&main=delimage&id={$rs.id}" ><i class="fa fa-trash-o"></i></a>
+            {literal}
+            <script>
+                $(function() 
+                {
+                    $('#click_img_{/literal}{$rs.id}{literal}').confirmOn({
+                        classPrepend: 'myprefix'
+                    },'click', function(e, confirmed) {
+                        if(confirmed) window.location = $(this).attr("remove-link");
+                    });
+                });
+            </script>
+            {/literal}
+        </div>
+        {/foreach}
+    </div>
+    </td>
+    </tr>
+    </tbody>
+    <tr class="tr_he"><td></td></tr>
+    
+    {*
+    <!--Lua chon mua hang-->
+    <tbody class="pro_tbody" style="float:none">
+    <tr data-tt-id="20" class="pro_tr" >
+        <td><strong>{$smarty.const.langcms_genopt}</strong></td>
+    </tr>
+    <tr data-tt-id="21" data-tt-parent-id="20" style="display: none;">
+    <td>
+    <div class="col-lg-3 pro_general" >
+    <form name="frm_option" method="post" action="{$smarty.const.URL_ADMIN}?module={$url}&main=option{$url_edit}">
+        <input type="text" name="option_name" id="option_name" placeholder="Ex: Color, Zize ..."/>
+        {if $id_edit}<button type="submit" name="submit" id="submit" value="submit" class="bg_insert">{$smarty.const.langcms_geninopt}</button>{/if}
+    </form>
+    </div>
+    <!--<div class="col-lg-6 pro_general" >
+        {foreach from=$rs_op item="rs" name="rs"}
+        <div class="op_general">
+        <strong>{$rs.option_name}</strong> 
+        <a id="click_option_{$rs.option_id}" remove-link="{$smarty.const.URL_ADMIN}?module={$url}&main=deloption&id={$rs.option_id}" >
+        <i class="fa fa-trash-o"></i></a>
+        {literal}
+		<script>
+            $(function() 
+            {
+                $('#click_option_{/literal}{$rs.option_id}{literal}').confirmOn({
+                    classPrepend: 'myprefix'
+                },'click', function(e, confirmed) {
+                    if(confirmed) window.location = $(this).attr("remove-link");
+                });
+            });
+        </script>
+        {/literal}
+        </div>
+        {/foreach}
+    </div>-->
+    <div class="col-lg-8 pro_general" >
+    <form name="frm_news" method="POST" >
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-lg-12 click_right">
+               <a href="javascript:void(0);" onClick="update_option('frm_news');" class="bg_edit">
+               {if $action_edit}<i class="fa fa-pencil-square-o"></i> {$smarty.const.langcms_capnhat}</a>{/if}
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel-body">
+        <table class="table_views category_tree table-striped table-hover">
+        <thead>
+        <tr class="two">
+          <td>Name</td>
+          <td>{$smarty.const.langcms_spgban}</td>
+          <td>Status</td>
+          <td align="center"> Delete</td>
+        </tr>
+    </thead>
+        <tbody>
+        {foreach from=$rs_op item="rs" name="rs"}
+        <tr>
+          <td><input type="text" name="option_name{$rs.option_id}" value="{$rs.option_name}" /></td>
+          <td><input type="text" name="price_new{$rs.option_id}" value="{$rs.price_new}" class="auto_nume wnum" data-v-max="9999999999" data-v-min="0" /></td>
+          <td>
+            <select class="select_option wnum" name="status{$rs.option_id}" id="status{$rs.option_id}"  >
+                <option value="1" {if $rs.status eq 1}selected{/if}>On</option>
+                <option value="0" {if $rs.status eq 0}selected{/if}>Off</option>
+            </select>
+         </td>
+          <td align="center">
+          {if $smarty.foreach.rs.iteration neq 1}
+          <a id="click_option_{$rs.option_id}" remove-link="{$smarty.const.URL_ADMIN}?module={$url}&main=deloption&id={$rs.option_id}" >
+          <i class="fa fa-trash-o"></i></a>
+          {literal}
+            <script>
+                $(function() 
+                {
+                    $('#click_option_{/literal}{$rs.option_id}{literal}').confirmOn({
+                        classPrepend: 'myprefix'
+                    },'click', function(e, confirmed) {
+                        if(confirmed) window.location = $(this).attr("remove-link");
+                    });
+                });
+            </script>
+          {/literal}
+          {/if}
+          </td>
+        </tr>
+        <label><input type="hidden" name="checkbox_id[]" value="{$rs.option_id}" /> </label>
+        {/foreach}
+        </tbody>
+        </table>
+    </div>
+    </div>
+    </form>
+    </div>
+    
+    
+    </td>
+    </tr>
+    </tbody>*}
+
+    {*<tr class="tr_he"><td></td></tr>
+    
+    <!--Thuoc tinh san pham-->
+    {if $rs_property}
+    <tbody class="pro_tbody" style="float:none">
+    <tr data-tt-id="30" class="pro_tr" >
+        <td><strong>{$smarty.const.langcms_genttsp}</strong></td>
+    </tr>
+    <tr data-tt-id="31" data-tt-parent-id="30" style="display: none;">
+    <td>
+    <div class="col-lg-6" style="padding:10px 0px">
+    <table class="table_insert">
+    <thead>
+    <form name="frm_setting_property" method="post" enctype="multipart/form-data" action="{$smarty.const.URL_ADMIN}?module={$url}&main=property{$url_edit}">
+     	{foreach from=$rs_property item="val" name="val}
+        <tr>
+            <td align="right"><span>{$val.name}</span></td>
+            <td> <input type="text" name="content{$smarty.foreach.val.iteration}" id="content{$smarty.foreach.val.iteration}" value="" /></td>
+        </tr>
+        <input type="hidden" name="num"  id="num" value="{$numf_property}" />
+        <input type="hidden" name="name{$smarty.foreach.val.iteration}"  id="name{$smarty.foreach.val.iteration}" value="{$val.name}" />
+        <input type="hidden" name="pos{$smarty.foreach.val.iteration}"  id="pos{$smarty.foreach.val.iteration}" value="{$val.pos}" />
+        <input type="hidden" name="property{$smarty.foreach.val.iteration}"  id="property{$smarty.foreach.val.iteration}" value="{$val.id}" />
+ 		{/foreach}
+        <tr>
+            <td class="left"></td>
+            <td class="center">
+            {if $id_edit}<button type="submit" name="submit" id="submit" value="submit" class="bg_insert">{$smarty.const.langcms_capnhat}</button>{/if}  
+            </td>
+        </tr>
+     </form>
+    </thead>  
+    </table>
+    </div>
+    <div class="col-lg-6">
+    <table class="table_views table-striped table-hover">
+    {if $rs_tt}
+    {foreach from=$rs_tt item="rs_tt" name="rs_tt"}
+        <tr>
+            <td>{$rs_tt.name}</td>
+            <td>{$rs_tt.content} </td>
+            <td align="center">
+            <a id="click_property_{$rs_tt.id}" remove-link="{$smarty.const.URL_ADMIN}?module={$url}&main=delproperty&id={$rs_tt.id}" class="status_dele"> 
+            <i class="fa fa-trash-o"></i></a>
+            {literal}
+            <script>
+                $(function() 
+                {
+                    $('#click_property_{/literal}{$rs_tt.id}{literal}').confirmOn({
+                        classPrepend: 'myprefix'
+                    },'click', function(e, confirmed) {
+                        if(confirmed) window.location = $(this).attr("remove-link");
+                    });
+                });
+            </script>
+            {/literal}
+            </td>
+        </tr>
+    {/foreach}
+    {/if}
+    </table>
+    </div>
+    </td>
+    </tr>
+    </tbody>
+    <tr class="tr_he"><td></td></tr>
+    {/if}*}
+    
+    
+    {*<!--Bo loc-->
+    {if $numf_one or $numf_two or $numf_three}
+    <tbody class="pro_tbody" style="float:none">
+    <tr data-tt-id="40" class="pro_tr" >
+        <td><strong>{$smarty.const.langcms_genbloc}</strong></td>
+    </tr>
+    <tr data-tt-id="41" data-tt-parent-id="40" style="display: none;">
+    <td>
+    <div class="col-lg-6">
+    <form name="frm_setting_site" method="post" enctype="multipart/form-data" action="{$smarty.const.URL_ADMIN}?module={$url}&main=filter{$url_edit}">
+    <table class="table_insert">
+    {if $numf_one}
+    <tr>
+        <td align="right" width="125px"><span>{$rs_one[0].name}</span></td>
+        <td align="left">
+        <select name="url_one" id="url_one" class="select_option">
+            {foreach from=$rs_one item="val" name="val}
+            <option value="{$val.filter_url}" {if $rs_filter.url_one eq $val.filter_url} selected="selected"{/if}>{$val.filter_name}</option>
+            {/foreach}
+        </select>       
+        </td>	
+    </tr>
+    {/if}
+    {if $numf_two}
+    <tr>
+        <td align="right"><span>{$rs_two[0].name}</span></td>
+        <td align="left">
+        <select name="url_two" id="url_two" class="select_option">
+            {foreach from=$rs_two item="val" name="val}
+            <option value="{$val.filter_url}" {if $rs_filter.url_two eq $val.filter_url} selected="selected"{/if}>{$val.filter_name}</option>
+            {/foreach}
+        </select>       
+        </td>	
+    </tr>
+    {/if}
+    {if $numf_three}
+    <tr>
+        <td align="right"><span>{$rs_three[0].name}</span></td>
+        <td align="left">
+        <select name="url_three" id="url_three" class="select_option">
+            {foreach from=$rs_three item="val" name="val}
+            <option value="{$val.filter_url}" {if $rs_filter.url_three eq $val.filter_url} selected="selected"{/if}>{$val.filter_name}</option>
+            {/foreach}
+        </select>       
+        </td>	
+    </tr>
+    {/if}
+    <tr>
+        <td></td>
+        <td>
+        <input type="hidden" name="category_id" id="category_id" value="{$category_filter}" />
+        {if $id_edit}<button type="submit" name="submit" id="submit" value="submit" class="bg_insert">{$smarty.const.langcms_capnhat}</button>{/if}  
+       
+        </td>
+    </tr>
+    </table>
+    </form>
+    </div>
+    <div class="col-lg-6">
+    </div>
+    </td>
+    </tr>
+    </tbody>
+ 	{/if}
+    *}
+</table>
+</div>     
+</div>
+</div>
+
+
+<!--Hoi khi xoa-->
+<script src="{$smarty.const.URL_ADMIN_THEM}delete/jquery.confirmon.js"></script>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_ADMIN_THEM}delete/sample.css"/>
+

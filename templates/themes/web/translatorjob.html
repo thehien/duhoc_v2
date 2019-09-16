@@ -1,0 +1,164 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">    
+  <!-- Start intro section -->
+  <section id="intro" class="section-intro">
+    <div class="logo-menu">
+      {if $isLogin}
+      {include file="$themes/top-account.html"}
+      {else}
+      {include file="$themes/top.html"}
+      {/if}
+    </div>
+    <!-- Header Section End -->    
+    <section id="slider">
+     <div class="tp-banner-container">
+      <div class="tp-banner" style="background-color: #333F50;">
+        <ul>
+         <li data-transition="fade" data-slotamount="7" data-masterspeed="2000" data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img/translate_job.jpg">
+
+          <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/translate_job.jpg" alt="laptopmockup_sliderdy" data-lazyload="{$smarty.const.URL_WEB}{$themes}/assets/img/translate_job.jpg">
+
+          <div class="tp-caption mediumHeading h2 lft tp-resizeme rs-parallaxlevel-0 start" data-x="center" data-y="center" data-voffset="-50" data-speed="1200" data-start="1000" data-easing="Back.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="400" style="z-index: 11;">
+            <h2 style="min-height: 0px; min-width: 0px; line-height: 30px; border-width: 0px; margin: 0px 0px 20px; padding: 0px; letter-spacing: 2px; font-weight: 900; font-size: 45px; color: #fff;text-align: center;">TRANSLATION JOBS</h2>
+            <h4 style="color: #fff; text-align: center;">Online translation jobs for professional linguists and freelance translators.</h4>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+</section>
+
+</div>
+
+<!-- Find Job Section Start -->
+<section class="find-job section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-8">
+          <div class="col-md-12">{include file="$themes/user/search_translator.html"}</div>
+
+          <div class="col-md-12"> {include file="$themes/user/view_order_cv_home.html"}</div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="fw-mgb10">
+            <a class="btn btn-submit fw-fs-28" href="{$smarty.const.URL_HOMEPAGE}login-cv.html">
+             TRANSLATOR SIGN UP
+           </a>
+         </div>
+
+         <div class="fw-mgb10">
+          <a class="btn btn-submit fw-fs-26" href="#">
+           FAQs- For Translator
+         </a>
+       </div>
+
+       <div class="fw-mgb10">
+        <div class="latest_border">
+          <div class="latest_title_border">
+            <div class="fw-bold-order">BECOME A TRANSLATOR</div>
+            <div class="fw-clearfix"></div>
+          </div>
+          <div class="fw-mgt10">
+            <div class="col-md-12">
+              <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/study.jpg" />
+            </div>
+            <div class="fw-clearfix"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fw-mgb10">
+       <div class="latest_border">
+        <div class="latest_title_border">
+          <div class="fw-bold-order">ONLINE TRANSLATORS</div>
+          <div class="fw-clearfix"></div>
+        </div>
+        <div class="fw-mgb10">
+          <div class="col-md-12">
+            {foreach from=$all_cv_online item="val" name="val"}
+            <div class="col-md-12" style="border-bottom: 1px solid #e2e0e0">
+              <div class="col-md-4 no-padding fw-mgt10">
+               {if $val.avatar}
+               <img width="60" height="60" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+               {else}
+               <img width="60" height="60" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+               {/if}
+
+             </div>
+             <div class="col-md-8 no-padding fw-mgb10">
+              <div align="left"><strong>{$val.full_name}</strong></div>
+              <div align="left">
+                <i class="fa fa-map-marker" aria-hidden="true"></i> {if $val.country_name}
+                {$val.country_name} {$val.city}
+                {else}
+                Location
+                {/if}
+              </div>
+              <div class="col-md-12 no-padding">
+                <div class="col-md-5 no-padding">
+                  {foreach from=$fromToLanguage name=val_lang item=val_lang}
+                  {foreach from=$val_lang name=val1 item=val1}
+                  {if $val1.cv_id == $val.translate_id}
+                  {if $smarty.foreach.val1.first}
+                  <div id="translate_from" class="language-bg" style="margin-bottom: 5px;">
+                    <span style="margin:5px; font-size: 12px;">{$val1.from_language_name}</span>
+                  </div>
+                  {/if}
+                  {/if}
+                  {/foreach}
+                  {/foreach}
+                </div>
+
+                <div class="col-md-2 no-padding">
+                 {foreach from=$fromToLanguage name=val_lang item=val_lang}
+                 {foreach from=$val_lang name=val1 item=val1}
+                 {if $val1.cv_id == $val.translate_id}
+                 {if $smarty.foreach.val1.first}
+                 <div id="translate_to" style="margin-bottom: 5px;">
+                  <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+                </div>
+                {/if}
+                {/if}
+                {/foreach}
+                {/foreach}
+              </div>
+
+              <div class="col-md-5 no-padding">
+               {foreach from=$fromToLanguage name=val_lang item=val_lang}
+               {foreach from=$val_lang name=val1 item=val1}
+               {if $val1.cv_id == $val.translate_id}
+               {if $smarty.foreach.val1.first}
+               <div id="translate_to" class="language-bg" style="margin-bottom: 5px;">
+                <span style="margin:5px; font-size: 12px;">{$val1.to_language_name}</span>
+              </div>
+              {/if}
+              {/if}
+              {/foreach}
+              {/foreach}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fw-clearfix"></div>
+      {/foreach}
+
+    </div>
+    <div class="fw-clearfix"></div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>         
+</section>
+<!-- Find Job Section End -->
+
+
+<!-- footer -->
+{include file="$themes/footer.html"}

@@ -1,0 +1,338 @@
+{include file="left.html"}
+<iframe width=174 height=189 name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="{$smarty.const.URL_ADMIN_THEM}calendar/ipopeng.htm" 
+scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; left:-500px; top:0px;">
+</iframe>
+
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header"><a href="{$smarty.const.URL_ADMIN}?module={$url}&main=unsession" ><i class="fa fa-home"></i> {$main_content}</a></h1>
+    </div>
+  </div>
+
+  <div class="row shows_insert" {if $id_edit}style="display:block"{else}style="display:none"{/if}>
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading heading_title">
+          <i class="fa fa-plus-circle fa-fw"></i> {if $id_edit}{$smarty.const.langcms_capnhat}{else}{$smarty.const.langcms_them}{/if} {$main_name}
+        </div>
+        <div class="panel-body">
+
+          <form id="frm_admin" name="frm_admin" method="post"  action="{$smarty.const.URL_ADMIN}?module={$url}&main=insert{$url_edit}" >
+            <div class="col-lg-6" >
+              <table class="table_insert">
+              <thead>
+                <tr>
+                  <td align="right"><span>{$smarty.const.langcms_carthvt} <em>*</em></span></td>
+                  <td><input type="text" class="check_input" name="fullname"  id="fullname" value="{$rs_edit.name}" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><span>Mobile Code</span></td>
+                  <td>
+                  <input type="text" class="check_input" name="mobile_code" id="mobile_code" value="{$rs_edit.mobile_code}" />
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right"><span>Mobile <em>*</em></span></td>
+                  <td><input type="text" class="check_input" name="mobile"  id="mobile" value="{$rs_edit.mobile}" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><span>Email</span></td>
+                  <td><input type="text" class="check_input" name="email"  id="email" value="{$rs_edit.email}" /></td>
+                </tr>
+
+                 <tr>
+                  <td align="right"><span>Country</span></td>
+                  <td>
+                 <input type="text" class="check_input" name="country" id="country" value="{$rs_edit.country_name}" />
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right"><span>{$smarty.const.langcms_cartdchi}</span></td>
+                  <td><input type="text" class="check_input" name="address"  id="address" value="{$rs_edit.address}" /></td>
+                </tr>
+
+               <tr>
+                <td class="left"></td>
+                <td class="left">
+                    <a href="{$url_views}{$url_status}{$url_cities}{$url_limit}{$url_order}" class="status_undo">
+                      <i class="fa fa-undo"></i> {$smarty.const.langcms_quaylai}</a>
+                    </td>
+                  </tr>
+                </thead>  
+              </table>
+            </div>
+            <div class="col-lg-6">
+              <table class="table_insert">
+                <thead>
+                 <tr>
+                   <td align="right"><span>{$smarty.const.langcms_trangthai}</span></td>
+                   <td>
+                    <select disabled="" class="select_option" name="coupon_status" id="coupon_status" style="font-weight:bold" >
+                      {foreach from = $rs_status name = rs_st item =rs_st}	
+                      <option value="{$rs_st.coupon_status}" {if $rs_edit.coupon_status eq $rs_st.coupon_status}selected{/if}>{$rs_st.status_name}</option>
+                      {/foreach}
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+
+                </tr>
+
+              </thead>  
+            </table>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!--Search-->
+  <form name="frm_search" method="post" action="{$smarty.const.URL_ADMIN}?module={$url}&main=search" class="search_date">
+    <div class="col-lg-2">
+      <div class="input-group custom-search-form">
+       <input type="text" class="form-control" placeholder="Email" name="email_search" id="email_search" value="" >
+       <span class="input-group-btn">
+        <button class="btn btn-default" type="submit" name="submit" id="submit">
+          <i class="fa fa-search"></i>
+        </button>
+      </span>
+
+    </div>
+  </div>
+  <div class="col-lg-2">
+    <div class="input-group custom-search-form">
+      <select class="form-control mw_160"  onchange="MM_jumpMenu('parent',this,0)" >
+        <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}">Create Date</option>
+        {foreach from=$rs_month name=rs_date item=rs_date} 
+        <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}&create_date={$rs_date.month}">{$rs_date.month}</option>
+        {/foreach}
+      </select>
+    </div>
+  </div>
+  <div class="col-lg-2">
+    <div class="input-group custom-search-form">
+
+      <select class="form-control mw_160"  onchange="MM_jumpMenu('parent',this,0)" >
+       <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}">Translate from</option>
+       {foreach from=$rs_all_language name = rs_language item =rs_language} 
+       <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}&translate_from={$rs_language.id}">{$rs_language.name}</option>
+       {/foreach}
+     </select>
+   </div>
+ </div>
+ <div class="col-lg-2">
+  <div class="input-group custom-search-form">
+    <select class="form-control mw_160"  onchange="MM_jumpMenu('parent',this,0)" >
+     <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}">Translate to</option>
+     {foreach from=$rs_all_language name = rs_language item =rs_language} 
+     <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}&translate_to={$rs_language.id}">{$rs_language.name}</option>
+     {/foreach}
+   </select>
+
+ </div>
+</div>
+
+<div class="col-lg-2">
+  <div class="input-group custom-search-form">
+
+   <select class="form-control mw_160"  onchange="MM_jumpMenu('parent',this,0)" >
+     <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}">Subject Field</option>
+     {foreach from=$rs_all_subject_field name=rs_subject item =rs_subject} 
+     <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}&subject={$rs_subject.id}">{$rs_subject.category_name}</option>
+     {/foreach}
+   </select>
+
+ </div>
+</div>
+
+<div class="col-lg-2">
+  <div class="input-group custom-search-form">
+    <select class="form-control mw_160"  onchange="MM_jumpMenu('parent',this,0)" >
+     <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}">Country</option>
+     {foreach from=$list_country name=rs_country item=rs_country} 
+     <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}&country={$rs_country.id}">{$rs_country.name}</option>
+     {/foreach}
+   </select>
+
+ </div>
+</div>
+</form> 
+
+<!--Views-->    
+<div class="col-lg-12">
+  <form name="frm_news" method="POST" >
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-lg-5 heading_title">
+            <i class="fa fa-windows"></i> {$main_content}  <strong>( {$numf} order )</strong>
+          </div>   
+          <div class="col-lg-7 click_right">
+
+           {if $action_delete}
+           <a href="javascript:void(0);" onclick="del_news('frm_news');" class="bg_del">
+            <i class="fa fa-trash-o"></i> {$smarty.const.langcms_xoa}</a>  
+            {/if}
+            {if $action_edit}
+            <a href="javascript:void(0);" onClick="update_order('frm_news');"class="bg_edit">
+              <i class="fa fa-pencil-square-o"></i> {$smarty.const.langcms_capnhat}</a></li>
+              {/if}
+              {* <a href="{$smarty.const.URL_ADMINCMS}export/orders_print.php?{$url_status}{$url_cities}{$url_search}{$url_start}{$url_end}" target="_blank" class="br_off">
+                <i class="fa fa-print"></i> {$smarty.const.langcms_cartindh}</a>
+
+                <a href="{$smarty.const.URL_ADMINCMS}export/orders_export.php?{$url_status}{$url_cities}{$url_search}{$url_start}{$url_end}" target="_blank" class="br_off">
+                  <i class="fa fa-file-text"></i> {$smarty.const.langcms_cartxuatf}</a>  *}
+
+                  {*<a href="{$smarty.const.URL_ADMINCMS}export/orders_report.php?{$url_status}{$url_cities}{$url_search}{$url_start}{$url_end}" target="_blank" class="br_off">
+                    <i class="fa fa-eye"></i> {$smarty.const.langcms_carttke}</a>*}
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-body">
+                <ul class="table_ul">
+
+                 <li class="lileft" style="width:40%"><div class="paging_news">{$paging}</div></li>
+                 <li >
+                  <select class="limit_option mw_160"  onchange="MM_jumpMenu('parent',this,0)" >
+                   <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}">{$smarty.const.langcms_cartlttt}</option>
+                   {foreach from = $rs_status name = rs_st item =rs_st}	
+                   <option value="{$url_views}{$url_cities}{$url_order}{$url_limit}&status={$rs_st.coupon_status}" 
+                   {if $status eq $rs_st.coupon_status}selected{/if}>{$rs_st.status_name}</option>
+                   {/foreach}
+                 </select>
+               </li>
+
+             </ul>
+             <table class="table_views table-striped table-hover">
+              <thead>
+                <tr class="two">
+                  <td align="center"> ID
+                    <div class="order">
+                      <a href="{$url_views}{$url_status}{$url_cities}{$url_limit}&order=id_tem&sc=asc"><i class="fa fa-caret-up"></i></a>  
+                      <a href="{$url_views}{$url_status}{$url_cities}{$url_limit}&order=id_tem&sc=desc"><i class="fa fa-caret-down"></i></a>
+                    </div>
+                  </td>
+                  <td class="mw_200">Translater Info</td>
+                  <td>Information order</td>
+                  <td>{$smarty.const.langcms_trangthai}</td>
+                  <td valign="top">Payment</td>
+                  <td valign="top">Source File</td>
+                  <td valign="top">Target File</td>
+                  <td align="center"><label><input type="checkbox" data-toggle="checkall" data-target="input[id=checks]" /></label></td>
+                </tr>
+              </thead>
+              <tbody>
+                {foreach from=$rs name=rs item=rs}
+                <tr>
+                  <td align="center" class="mw_50">
+                    {$rs.id_tem}
+                    {if $action_edit}
+                    <p><a href="{$url_views}{$url_status}{$url_cities}{$url_limit}{$url_order}&id_edit={$rs.id_tem}" class="status_edit">
+                      <i class="fa fa-pencil-square-o"></i></a></p>
+                      {/if}
+                    </td>
+
+                    <td valign="top" style="line-height:22px; width: 200px;">
+                      <i class="name_orders" >Translater Name :</i> <br/><strong> {$rs.trans_name}</strong><br />
+                      <i class="name_orders" >Translater Email :</i> <br/> <strong> {$rs.trans_email}</strong><br />
+                      <i class="name_orders" >Project ID :</i> <strong> {$rs.coupon_code}</strong><br />
+                      <i class="name_orders">Subject Field :</i> <i>{$rs.subject_field}</i><br />
+                      <i class="name_orders">Create Date :</i><i>{$rs.ngay_mua}</i><br />
+                      <i class="name_orders">Country :</i><i>{$rs.country_name}</i><br />
+
+                    </td>
+
+                    <td valign="top">
+                     <i class="name_orders">Project Name :</i> <br/><strong> {$rs.file_translate}</strong><br />
+
+                     <i class="name_orders">Translate From : </i> 
+                     {foreach from=$fromTolanguage name=val_order item=val_order}
+                     {foreach from=$val_order name=val1 item=val1}
+                     {if $val1.translate_id == $rs.translate_id}
+                     {$val1.from_language_name}{if !$smarty.foreach.val1.last},{/if}
+                     {/if}
+                     {/foreach}
+                     {/foreach}
+                     <br />
+
+                     <i class="name_orders">Translate To : </i>
+                     {foreach from=$fromTolanguage name=val_order item=val_order}
+                     {foreach from=$val_order name=val1 item=val1}
+                     {if $val1.translate_id == $rs.translate_id}
+                     {$val1.to_language_name}{if !$smarty.foreach.val1.last},{/if}
+                     {/if}
+                     {/foreach}
+                     {/foreach}
+                     <br />
+
+                     <i class="name_orders">Estimated Delivery :</i> <input type="text" name="" value="{$rs.estimate} hour(s)" class="orders_edit"/><br />
+
+                     <i class="name_orders">Words :</i> <input type="text" name="" value="{$rs.count_text}" class="orders_edit"/><br />
+
+                     <i class="name_orders">Amount :</i> <input type="text" name="" value="$ {$rs.price}" class="orders_edit"/><br />
+
+                     <i class="name_orders">Total (55 %) :</i> <input type="text" name="" value="$ {$rs.percent}" class="orders_edit"/><br />
+
+                   </td>
+
+
+                   <td class="mw_100" valign="top" >
+                    {foreach from = $rs_status name = rs_sta item =rs_sta}	
+                    <p style="margin:3px 0 0 8px">
+                      {if $rs.coupon_status eq $rs_sta.coupon_status}
+                      <a style="color:#{$rs_sta.status_color}; font-weight:bold"><i class="fa fa-check-square" style="font-size:80%"></i> 
+                      {$rs_sta.status_name}</a>
+                      {else}
+                      <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=status&id={$rs.id_tem}&status={$rs_sta.coupon_status}" > 
+                        <i class="fa fa-caret-right"></i>  &nbsp;{$rs_sta.status_name}</a>
+                        {/if}
+                      </p>
+                      {/foreach}
+                    </td>
+                    <td valign="top">
+                      {foreach from = $rs_payment name = rs_sta item =rs_sta} 
+                      <p style="margin:3px 0 0 8px">
+                        {if $rs.coupon_status eq $rs_sta.coupon_status}
+                        <a style="color:#{$rs_sta.status_color}; font-weight:bold"><i class="fa fa-check-square" style="font-size:80%"></i> 
+                        {$rs_sta.status_name}</a>
+                        {else}
+                        <a href="#"> 
+                          <i class="fa fa-caret-right"></i>  &nbsp;{$rs_sta.status_name}</a>
+                          {/if}
+                        </p>
+                        {/foreach}
+                      </td>
+                      <td  align="center" valign="top">
+                        {if $rs.file_zip}
+                        <a href="{$smarty.const.URL_HOME}/load/download/{$rs.file_zip}">Download</a>
+                        {else}
+                        <a href="{$smarty.const.URL_HOME}/load/download/{$rs.file_translate}">Download</a>
+                        {/if}
+                      </td>
+                      <td valign="top">
+                        {foreach from=$listFileArray name=val_order item=val_order}
+                          {foreach from=$val_order name=val1 item=val1}
+                            {if $val1.order_id == $rs.coupon_code}
+                             <a href="{$smarty.const.URL_HOME}/upload/trans/{$val1.file_name}">{$val1.file_name}</a>: <br/>({$val1.send_date})
+                             <br/>
+                            {/if}
+                          {/foreach}
+                        {/foreach}
+                      </td>
+
+                      <td align="center">{if $rs.coupon_status neq 4}<label><input type="checkbox" id="checks" name="checkbox_id[]" value="{$rs.id_tem}"  /></label>{/if}</td>
+                    </tr>
+                    {/foreach}
+                  </tbody>
+                </table>  
+              </div>
+            </div>
+          </form>  
+        </div>
+      </div>
+    </div>
+

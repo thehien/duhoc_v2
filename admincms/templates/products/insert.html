@@ -1,0 +1,253 @@
+{include file="left.html"}
+<script type="text/javascript" src="{$smarty.const.URL_HOMEPAGE}editor/ckeditor/ckeditor.js"></script>
+<div id="page-wrapper">
+<form id="frm_admin" name="frm_admin" method="post" enctype="multipart/form-data" action="{$smarty.const.URL_ADMIN}?module={$url}&main=insert{$url_edit}">
+<div class="row">
+<div class="col-lg-12">
+    <h1 class="page-header"><a href="{$url_views}" ><i class="fa fa-home"></i> 
+    {if $id_edit}{$smarty.const.langcms_capnhat}{else}{$smarty.const.langcms_them}{/if} {$main_name}</a>
+    </h1>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12" >
+<table class="table_insert category_tree table-striped table-hover" style="margin-top:0px" >
+    <tbody class="pro_tbody">
+    <tr data-tt-id="20" class="pro_tr" >
+        <td><strong>{$smarty.const.langcms_spttcb} </strong></td>
+    </tr>
+    <tr data-tt-id="21" data-tt-parent-id="20" style="display: none;">
+    <td>
+    <div class="col-lg-12">
+    <table class="table_insert">
+    <thead>
+        <tr>
+        <td align="right" class="mmw_150"><span>{$smarty.const.langcms_ten} <em>*</em></span></td>
+        <td style="width:40%"><input type="text" class="check_input" placeholder="Name" name="news_name"  id="news_name" value="{$rs_edit.news_name}" /></td>
+         
+        <td align="right" class="mmw_150"><span>{$smarty.const.langcms_sptimma}</span></td>
+        <td><input type="text" name="news_code"  id="news_code" placeholder="Code" value="{$rs_edit.news_code}" /></td> 
+        
+        </tr>
+        <tr>
+        <td align="right"><span>{$smarty.const.langcms_danhmuc} <em>*</em></span></td>
+            <td>
+            <select class="select_option check_input" name="news_category" id="news_category" >
+                <option value="">{$smarty.const.langcms_chondanhmuc}</option>
+                {foreach from=$tree_select name=val  item=val}
+                <option value="{$val.category_id}" {if $val.category_id eq $rs_edit.news_category}selected="selected"{/if}>{$val.category_name}</option>
+                {/foreach}
+            </select>
+            </td>
+          <td align="right" class="mmw_150"><span>{$smarty.const.langcms_linkdm}</span></td>
+        <td style="width:40%"><input class="check_url" type="text" name="news_url" id="news_url" value="{$rs_edit.news_url}" placeholder="Url link"/></td>
+            
+            
+            
+        </tr>
+        <tr>
+           <td align="right" class="mmw_150"><span>DeadLine</span></td>
+             <td ><input type="text" name="news_deadline" placeholder="DeadLine" id="news_deadline" value="{$rs_edit.news_deadline}" class="ali_left" /> </td>
+
+            <td align="right" class="mmw_150"><span>Work At</span></td>
+             <td ><input type="text" name="news_work_at" placeholder="Work At" id="news_work_at" value="{$rs_edit.news_work_at}" class="ali_left" /> </td>
+
+        </tr> 
+     
+          <tr>
+
+             <td align="right" valign="top"><span>{$smarty.const.langcms_hinhanh}</span></td>
+            <td valign="top"> <input type="file" name="filename" id="filename" class="border_solid" value=""/>
+            {if $rs_edit.news_img}
+            <div style="float:left">
+            <input type="hidden" name="image_old" id="image_old" value="{$rs_edit.news_img}" />
+            <input type="hidden" name="file_old" id="file_old" value="{$rs_edit.img_file}" />
+            <img src="{$smarty.const.IMG_UPLOAD}{$url}/{$rs_edit.img_file}/{$rs_edit.news_img}" height="50" style="padding:5px 0px; float:left" />
+            <label style="padding:5px 10px; float:left; color:#F00; width:34px">
+            <input type="checkbox" value="1" name="delete_img" >
+            <i style="font-size:15px" class="fa fa-trash-o"></i>
+            </label>
+            </div>
+            {/if}
+           
+            </td>
+             <td align="right" class="mmw_150"><span>Level Japanese</span></td>
+             <td ><input type="text" name="news_level" placeholder="Level" id="news_level" value="{$rs_edit.news_level}" class="ali_left" /> </td>
+         </tr>
+          <tr>
+             <td align="right" class="mmw_150"><span>Company Name</span></td>
+             <td>
+                <input type="text" name="news_company_name" placeholder="Company name" id="news_company_name" value="{$rs_edit.news_company_name}" class="ali_left" />
+             </td>
+
+            <td align="right" class="mmw_150"><span>Salary</span></td>
+             <td ><input type="text" name="news_salary" placeholder="Salary" id="news_salary" value="{$rs_edit.news_salary}" class="ali_left" /> </td>
+
+            
+         </tr>
+         <tr>
+             <td align="right" class="mmw_150"><span>Company Info</span></td>
+             <td colspan="3">
+                 <textarea class="ckeditor" name="news_company" id="news_company">{$rs_edit.news_company}</textarea>
+             {literal}<script type="text/javascript">CKEDITOR.replace( 'news_company'); </script>{/literal}
+             </td>
+            
+         </tr>
+
+          <tr>
+             <td align="right" class="mmw_150"><span>Short content job</span></td>
+             <td colspan="3">
+             <textarea class="ckeditor" name="news_content" id="news_content">{$rs_edit.news_content}</textarea>
+             {literal}<script type="text/javascript">CKEDITOR.replace( 'news_content'); </script>{/literal}
+             </td>
+         </tr>
+
+          <tr>
+             <td align="right" class="mmw_150"><span>Job Information</span></td>
+             <td colspan="3">
+             <textarea class="ckeditor" name="description" id="description">{$rs_edit.description}</textarea>
+             {literal}<script type="text/javascript">CKEDITOR.replace( 'description'); </script>{/literal}
+             </td>
+         </tr>
+
+          <tr>
+             <td align="right" class="mmw_150"><span>Requirements</span></td>
+             <td colspan="3">
+             <textarea class="ckeditor" name="news_requirements" id="news_requirements">{$rs_edit.news_requirements}</textarea>
+             {literal}<script type="text/javascript">CKEDITOR.replace( 'news_requirements'); </script>{/literal}
+             </td>
+         </tr>
+
+          <tr>
+             <td align="right" class="mmw_150"><span>Benefits</span></td>
+             <td colspan="3">
+             <textarea class="ckeditor" name="news_benefits" id="news_benefits">{$rs_edit.news_benefits}</textarea>
+             {literal}<script type="text/javascript">CKEDITOR.replace('news_benefits'); </script>{/literal}
+             </td>
+         </tr>
+
+         <tr>
+             <td align="right" class="mmw_150"><span>Contact Information</span></td>
+             <td colspan="3">
+             <textarea class="ckeditor" name="news_contact" id="news_contact">{$rs_edit.news_contact}</textarea>
+             {literal}<script type="text/javascript">CKEDITOR.replace('news_contact'); </script>{/literal}
+             </td>
+         </tr>
+
+        
+      </thead>  
+    </table>
+    </div>
+    </td>
+    </tr>
+    </tbody>
+
+    <tbody class="pro_tbody">
+    <tr data-tt-id="40" class="pro_tr" >
+        <td><strong>{$smarty.const.langcms_spqlht}</strong></td>
+    </tr>
+    <tr data-tt-id="41" data-tt-parent-id="40" style="display: none; background:none !important">
+    <td>
+    <div class="col-lg-12">
+    <table class="table_insert">
+    <thead>
+    <tr>
+        <td align="right" class="mmw_150"><span style="font-weight: bold;">Job Type</span></td>
+        <td>
+        <select class="select_option check_input" name="job_type" id="job_type">
+              <option value="0" {if $rs_edit.job_type eq 0}selected{/if}>Job Part-time</option>
+            <option value="1" {if $rs_edit.job_type eq 1}selected{/if}>Job Full-time</option>
+            
+        </select>
+        </td>
+        <td align="right" class="mmw_150"><span>{$smarty.const.langcms_trangthai}</span></td>
+        <td>
+        <select class="select_option check_input" name="status" id="status">
+            <option value="1" {if $rs_edit.status eq 1}selected{/if}>Display</option>
+            <option value="0" {if $rs_edit.status eq 0}selected{/if}>Don't display</option>
+        </select>
+        </td>
+        <td align="right" class="mmw_150"><span>Hot job</span></td>
+        <td>
+        <select class="select_option check_input" name="home" id="home">
+            <option value="1" {if $rs_edit.home eq 1}selected{/if}>Display</option>
+            <option value="0" {if $rs_edit.home eq 0}selected{/if}>Don't display</option>
+        </select>
+        </td>
+
+        
+    </tr>
+    
+   </thead>  
+    </table>
+    </div>
+    </td>
+    </tr>
+    </tbody>
+
+    <tbody class="pro_tbody">
+    <tr data-tt-id="60" class="pro_tr" >
+        <td><strong>Meta Seo</strong></td>
+    </tr>
+    <tr data-tt-id="61" data-tt-parent-id="60" style="display: none;">
+    <td>
+    <div class="col-lg-12">
+    <table class="table_insert">
+    <thead>
+        <tr>
+            <td align="right" class="mmw_150"><span>Seo Title</span></td>
+            <td style="width:40%"><input type="text" name="seo_title"  id="seo_title" value="{$rs_edit.seo_title}" placeholder="Seo H1"  /></td>
+            <td align="right" class="mmw_150"><span>Meta Keywords</span></td>
+            <td style="width:40%"><input type="text" name="seo_key"  id="seo_key" value="{$rs_edit.seo_key}" placeholder="Seo Keywords"  /></td>
+        </tr>
+        <tr>
+          <td align="right" valign="top"><span>Meta Content</span></td>
+          <td colspan="3"><textarea class="form-control" rows="3" name="seo_desc"  id="seo_desc" placeholder="Seo H2" >{$rs_edit.seo_desc}</textarea></td>
+        </tr>      
+      </thead>  
+    </table>
+    </div>
+    </td>
+    </tr>
+    </tbody>
+        
+   
+    
+    <tr>
+    <td align="right" style="background:#FFF; height:100px ">
+    {if $id_edit}<button type="submit" name="submit" id="submit" value="submit" class="bg_edit" >{$smarty.const.langcms_capnhat} </button>
+    <a href="{$rs_undo}" class="status_undo"><i class="fa fa-undo"></i> {$smarty.const.langcms_quaylai}</a>
+    {else}<button type="submit" name="submit" id="submit" value="submit" class="bg_insert" >{$smarty.const.langcms_themmoi} </button>{/if}
+    </td>
+    </tr>
+</table>
+</div>     
+</div>
+</form>
+</div>
+
+{literal}
+<script>
+    loadstatustext = 'Loading...';
+    function ajaxLoad(url,id)
+    {
+        if (document.getElementById){var x = (window.ActiveXObject) ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();}
+        if (x)
+        {
+            x.onreadystatechange = function()
+            {
+                el = document.getElementById(id);
+                el.innerHTML = loadstatustext;
+                if (x.readyState == 4 && x.status == 200){el.innerHTML = x.responseText;}
+            }
+            x.open("GET", url, true);
+            x.send(null);
+        }
+    }
+    function pb_display(x) 
+    {
+        ajaxLoad('{/literal}{$smarty.const.URL_ADMINCMS}{literal}district.php?cityid='+x,'district_shows');
+    }
+        ajaxLoad('{/literal}{$smarty.const.URL_ADMINCMS}district.php?cityid={$rs_edit.cityid}&district_id={$rs_edit.district}{literal}','district_shows');
+</script>
+{/literal}

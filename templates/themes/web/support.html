@@ -1,0 +1,153 @@
+<!--XXXUPXXX25-07-->
+{include file="$themes/header.html"}
+{include file="$themes/breadcrumb.html"}  
+{include file="$themes/top.html"}
+<div class="index_col col-mm-12"> 
+<table cellspacing="0" cellpadding="0" border="0" align="right"  class="contact_table" >
+<tr>
+<td  valign="top" >
+<div class="width_td_left padding_td">
+   <table width="100%" cellspacing="0" cellpadding="0" border="0"  >
+    <tbody>
+    <form method="post" name="frm_indexs" id="frm_indexs" action="{$smarty.const.URL_HOMEPAGE}support-add.html" >
+    <input type="hidden" name="code_contact" id="code_contact" value="OK" />
+        <tr><td ><strong>Điền thông tin BĐS cần tìm</strong></td></tr>
+        <tr>
+        <td >
+            <select name="category" id="category" class="contact_table_input input_width">
+                <option value="Loại BĐS">Chọn loại BĐS</option>
+                <option value="Dự án">Dự án</option>
+                <option value="Căn hộ">Căn hộ</option>
+                <option value="Đất nền">Đất nền</option>
+                <option value="Nhà bán">Nhà bán</option>
+                <option value="Cho thuê">Cho thuê</option>
+                <option value="Ký gửi">Ký gửi</option>
+            </select>
+             
+            <select name="district" id="district" class="contact_table_input input_width">
+                <option value="Quận, Huyện">Chọn Quận / Huyện </option>
+                {foreach from =$rs_district name =rs_district item =val}	
+                <option value="{$val.district_name}">{$val.district_name}</option>
+                {/foreach}
+            </select> 
+        </td>
+        </tr>
+        <tr>
+        <td >
+         <input  type="text" name="txt_mucgia" id="txt_mucgia" placeholder="Nhập mức giá" class="input_width"/>
+         <input  type="text" name="txt_dientich" id="txt_dientich" placeholder="Nhập diện tích" class="input_width"/>
+        </td>
+        </tr>
+        
+        <tr>
+        <td >
+         <input  type="text" name="txt_huongnha" id="txt_huongnha" placeholder="Hướng nhà cần tìm " class="input_width"/>
+         <input  type="text" name="txt_sophong" id="txt_sophong" placeholder="Số phòng trong nhà " class="input_width"/>
+        </td>
+        </tr>
+        <tr><td  align="left"><input  type="text" name="txt_tienich" id="txt_tienich" placeholder="Tiện ích khác"/></td></tr>
+        <tr><td ><strong>Vui lòng điền thông tin liên hệ</strong></td></tr>
+        <tr><td  align="left"><input class="check_input"  type="text" name="txt_name" id="txt_name" placeholder="{$smarty.const.lang_full_name}  *"/></td></tr>            <tr><td  align="left"><input class="check_input check_email" type="text" name="txt_email" id="txt_email"  placeholder="Email *"  /> </td></tr>
+        <tr><td  align="left"><input  type="text" name="txt_tel" id="txt_tel"  placeholder="{$smarty.const.lang_dien_thoai}" /> </td></tr>
+        <tr><td  align="left"><input  type="text" name="txt_address" id="txt_qddress" placeholder="{$smarty.const.lang_address}" /> </td></tr>
+        <tr><td  align="left">
+        <label><textarea  name="txt_content" id="txt_content" cols="45" rows="5" placeholder="{$smarty.const.lang_contents}" ></textarea> </label>
+        </td></tr>
+        <tr><td  align="left"><i>{$smarty.const.lang_note}</i></td></tr>
+        <tr><td  align="left"><input class="imput_gui"  type="submit" name="button" id="button" value="Send" /></td></tr>
+    </form>	
+    </tbody>
+ </table>  
+</div>    
+<div class="width_td_right">
+ <img src="{$smarty.const.URL_IMAGE}hcmcity_map.png" alt="" title="" style="width:100%; padding-top:25px"  />
+</div>       
+</td>  
+</tr>
+</table>
+</div>
+{include file="$themes/bottom.html"}
+{include file="$themes/footer.html"}
+  
+  
+{literal}	
+<style type="text/css">
+	.imput_gui { background-color:#ECE8E8; line-height:25px; min-height:30px; max-width:85px; color:#FFFFFF; font-weight:bold;}
+	.contact_table {line-height:20px; padding-left:0px; padding-top:0px;color:#330000; line-height:35xp; width:100%; }
+	.contact_table td {color:#333333; padding:5px 0px 5px 0px; font-size:110%}
+	.contact_table td h1{color:#333333; font-size:120%}
+	.contact_table input{border:1px solid #ECE8E8; border-radius:3px; padding:7px; width:93.5%; color:#333;}
+	.contact_table textarea{border:1px solid #ECE8E8; border-radius:3px; padding:5px; height:100px; width:94%}
+	.contact_table_input{border:1px solid #ECE8E8; border-radius:3px; padding:7px; width:100%; color:#333;}
+
+	@media (max-width: 780px) 
+	{
+		.width_td_left{width:100%; float:left;}
+		.width_td_right{width:100%; float:left; }
+		.input_width{width:94% !important; margin-bottom:5px}
+	}
+	@media (min-width: 781px) 
+	{
+		.width_td_left{width:52%; float:left;}
+		.width_td_right{width:45%; float:right;}
+		.padding_td{padding-right:20px;}
+		.input_width{width:45% !important;}
+	}
+</style>
+{/literal}	
+{literal}
+    <style>
+        .inputError{border:1px dotted #F00 !important; background:#FFC}
+        .error_note{display:none !important;}
+        .inputError_mail{border:1px dotted #F00 !important; background:#FFC}
+        .error_note_mail{display:none !important}
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        jQuery(document).ready(function() 
+        {
+            jQuery( 'form#frm_indexs').submit(function() 
+            {
+                jQuery( 'form#frm_indexs .error_note').remove();
+                var hasError = false;
+                
+                jQuery( '.check_input').each(function(){			
+                    if(jQuery.trim(jQuery(this).val()) == '') 
+                    {
+                        var labelText = jQuery(this).parent().prev('label').text().replace(':','');
+                        var placeholder = jQuery(this).attr('placeholder');
+                        jQuery(this).parent().append( '<span class="error_note">Chưa nhập '+placeholder+'</span>' );
+                        jQuery(this).addClass( 'inputError' );
+                        hasError = true;
+                    } 
+                    else{jQuery(this).removeClass( 'inputError' );}
+                });
+                
+                jQuery( '.check_email').each(function(){			
+                    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                    if(!emailReg.test(jQuery.trim(jQuery(this).val()))) 
+                    {
+                        var placeholder = jQuery(this).attr('placeholder');
+                        jQuery(this).parent().append( '<span class="error_note_mail">Email không đúng</span>' );
+                        jQuery(this).addClass( 'inputError_mail' );
+                        hasError = true;
+                    }
+                    else{jQuery(this).removeClass( 'inputError_mail' );}
+                });
+                
+                jQuery( '.check_select').each(function(){			
+                    if(jQuery.trim(jQuery(this).val()) == '0') 
+                    {
+                        var labelText = jQuery(this).parent().prev('label').text().replace(':','');
+                        var placeholder = jQuery(this).attr('placeholder');
+                        jQuery(this).parent().append( '<span class="error_note">Chưa chọn '+labelText+'</span>' );
+                        jQuery(this).addClass( 'inputError' );
+                        hasError = true;
+                    } 
+                    else{jQuery(this).removeClass( 'inputError' );}
+                });
+                
+                if(hasError) {return false;}
+            });
+        });
+    </script>
+{/literal}

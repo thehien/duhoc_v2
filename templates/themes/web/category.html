@@ -1,0 +1,57 @@
+{include file="$themes/header.html"}
+{include file="$themes/breadcrumb.html"} 
+<div class="index_full">
+<div class="index_width">
+<div class="index_info">
+    <div class="index_col col-lg-3 col-md-3">  
+    	{include file="$themes/left.html"}
+        <ul class="banner_02 none_display_mb">
+            {foreach from=$banner_03 item="val" name="val"}
+            <li class="banner_02_lt" style="margin:5px 0">
+            <dl><a href="{$val.banner_link}"><img src="{$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}" alt="{$val.banner_name}" /></a></dl>
+            </li>
+            {/foreach}
+		</ul>
+    </div>
+    <div class="index_col col-lg-9 col-md-9 products_04"> 
+        {include file="$themes/public/content/content_cate.html"}  
+        {include file="$themes/public/content/foreach_products.html"}  
+    </div>
+</div>
+</div>
+</div>
+
+<div class="index_full">
+<div class="index_width">
+<div class="index_info" >
+	<div class="index_col col-md-12" >  
+    
+    {section name=cate_bo loop=$cate_bo}
+    {if $cate_pro[cate_bo]}
+    <a href="{$smarty.const.URL_HOMEPAGE}{$cate_bo[cate_bo].category_url}.html" >
+        <div class="cates_name_sub" style="background:#{$category_color};">
+            <i class="fa fa-bars"></i>
+            <h3>{$cate_bo[cate_bo].category_name}</h3> 
+            <span>{$smarty.const.lang_sp_xem_them}</span>
+        </div>
+    </a>
+    <div class="col-mm-12 products_05">  
+        {include file="$themes/public/content/foreach_products_sub.html"} 
+     </div> 
+    {/if}     
+    {/section}
+
+  
+{literal}
+<style type="text/css">
+.cates_name_sub{width:100%; padding:9px; float:left; margin-bottom:20px}
+.cates_name_sub h3{color:#FFF;text-transform:uppercase; float:left}
+.cates_name_sub i{color:#FFF; float:left; font-size:140%; padding-right:10px}
+.cates_name_sub span{text-align:right; float:right; color:#FFF; text-decoration:underline}
+</style>
+{/literal}
+    </div>
+</div>
+</div>
+</div>
+{include file="$themes/footer.html"}

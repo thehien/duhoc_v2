@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+</head>
+<body>
+<div id="wrapper">
+<script src="jquery-1.7.2.min.js"></script>
+<link href="jquery.treetable.css" media="all" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery.treetable-ajax-persist.js"></script>
+<script type="text/javascript" src="jquery.treetable-3.0.0.js"></script>
+<script type="text/javascript" src="persist-min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	$(".category_tree").agikiTreeTable({persist: true, persistStoreName: "files"});
+});
+</script>
+
+<div id="page-wrapper" style="min-height: 572px;">
+<table class="category_tree">
+    <tbody>
+    <tr data-tt-id="21">
+        <td><b>&nbsp;Liên kết và Hợp tác</b></td>
+    </tr>
+    
+    <tr data-tt-id="31" data-tt-parent-id="21" style="display: none;">
+        <td> - Chính Sách Đổi Trả Hàng</td>
+       
+    </tr>
+    <tr  data-tt-id="30" data-tt-parent-id="21" style="display: none;">
+        <td> - Chính Sách Đổi Trả Hàng</td>
+    </tr> 
+    
+    <tr data-tt-id="22">
+        <td><b>&nbsp;Liên kết và Hợp tác</b></td>
+    </tr>
+        <tr  data-tt-id="31" data-tt-parent-id="22" style="display: none;">
+            <td> - Chính Sách Đổi Trả Hàng</td>
+        </tr>
+        <tr  data-tt-id="30" data-tt-parent-id="22" style="display: none;">
+            <td> - Chính Sách Đổi Trả Hàng</td>
+        </tr> 
+            <tr  data-tt-id="35" data-tt-parent-id="30" style="display: none;">
+                <td> -- Chính Sách Đổi Trả Hàng 1</td>
+            </tr>  
+             <tr  data-tt-id="35" data-tt-parent-id="30" style="display: none;">
+                <td> -- Chính Sách Đổi Trả Hàng 2</td>
+            </tr>     
+    </tbody>
+    </table>
+
+</div>
+</body> 

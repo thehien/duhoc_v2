@@ -1,0 +1,113 @@
+<nav class="navbar navbar-default main-navigation" data-spy="affix" role="navigation" data-offset-top="50">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand logo" href="{$smarty.const.URL_HOMEPAGE}index.html"><img src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo.png" alt=""></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar">
+      <!-- Start Navigation List -->
+    
+      <ul class="nav navbar-nav navbar-right float-right" style="margin-right:20px;">
+
+       <li style="margin-top: 5px;">
+          <a href="{$smarty.const.URL_HOMEPAGE}translate.html" {if $url_views == 'translate'} class="btn-translate"{else} class="btn-translate"{/if}>
+                    {$smarty.const.lang_common_translate_now}
+                    </a>
+       </li>
+      
+       <li class="fw-mgt10">
+        <a title="Homepage" href="{$smarty.const.URL_HOMEPAGE}info.html"><i class="fa fa-bars fa-lg"></i></a>
+       </li> 
+
+        <li class="left" style="margin-top: 7px; cursor: pointer;" {if $number_notices} onclick="window.location.href = '{$smarty.const.URL_HOMEPAGE}notices_readed.html'"{else} onclick="window.location.href = '{$smarty.const.URL_HOMEPAGE}notices.html'"{/if}>
+          {if $number_notices}
+            <div class="notification notify show-count" data-count="{$number_notices}"></div>
+          {else}
+            <div class="notification"></div>
+          {/if} 
+        </li>
+        <li class="left">
+          <a href="#">
+          <span id="avatar_top_result">
+              {if $show_member.avatar}
+               <img class="img-circle" src="{$smarty.const.URL_HOME}/upload/avatar/{$show_member.avatar}" style="width: 30px; height: 30px;" alt="">
+              {else}
+               <img class="img-circle" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" style="width: 30px; height: 30px;" alt="">
+              {/if}
+          </span>
+         
+          {if $googleMember}
+          <img class="img-circle" src="{$googleMember.google_picture_link}" style="width: 30px; height: 30px;" alt="">
+          {/if}
+        </a>
+          <ul class="dropdown">
+            <li>
+              <a href="{$smarty.const.URL_HOMEPAGE}profile.html">
+                {$smarty.const.lang_common_hoso}
+              </a>
+            </li>
+            <li><a href="{$smarty.const.URL_HOMEPAGE}setting.html">
+              {$smarty.const.lang_user_cd}
+              </a>
+              
+            </li>
+            <li>
+              <a href="{$smarty.const.URL_HOMEPAGE}logout.html">
+                Log out
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Start -->
+            <ul class="wpb-mobile-menu">
+               <li>
+                 <a href="{$smarty.const.URL_HOMEPAGE}translate.html" {if $url_views == 'translate'} class="active"{/if}>
+                    <strong>{$smarty.const.lang_common_translate_now}</strong>
+                    </a>
+              </li>
+              <li>
+                <a class="active" href="{$smarty.const.URL_HOMEPAGE}index.html"><strong>Home</strong></a>
+              </li>
+              <li>
+                <a href="{$smarty.const.URL_HOMEPAGE}how-it-works.html" {if $url_views == 'how-it-works'}class="active"{/if}>
+                    <strong>How it works</strong>
+                    </a>
+              </li>
+              <li>
+                  <a href="{$smarty.const.URL_HOMEPAGE}about-us.html" {if $url_views == 'about-us'}class="active"{/if}>
+                    <strong>{$smarty.const.lang_common_about}</strong>
+                    </a>
+              </li>
+             
+              <li>
+                 <a href="{$smarty.const.URL_HOMEPAGE}service.html" {if $url_views == 'service'}class="active"{/if}>
+                    <strong>{$smarty.const.lang_common_service}</strong>
+                    </a>
+              </li>  
+              <li class="btn-m">
+                <a {if $active}class="active"{/if} href="{$smarty.const.URL_HOMEPAGE}register.html"><i class="ti-pencil-alt"></i> 
+                  <strong>{$smarty.const.lang_common_register}</strong>
+                </a>
+              </li>
+              <li class="btn-m"><a {if $url_views == 'login'}class="active"{/if} href="{$smarty.const.URL_HOMEPAGE}login.html">
+                <i class="ti-lock"></i> 
+                 <strong>{$smarty.const.lang_common_login}</strong>
+              </a></li>   
+               <li class="btn-m"><a href="{$smarty.const.URL_HOMEPAGE}help-center.html" {if $url_views == 'help-center'}class="active"{/if}>
+               <strong>{$smarty.const.lang_common_support}</strong>
+             </a></li>          
+            </ul>
+  <!-- Mobile Menu End -->
+</nav>

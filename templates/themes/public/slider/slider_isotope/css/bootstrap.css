@@ -1,0 +1,81 @@
+/* Info */
+.portfolio-meta-list {
+  margin: 0 0 2em 0;
+  padding: 1em 0;
+  border: none;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+}
+.portfolio-meta-list li {
+  margin: .5em 0 0 0;
+  padding: 0;
+  border: none;
+  background: none;
+  list-style-type: none;
+  text-transform: none;
+}
+.portfolio-meta-list li:first-child {
+  margin-top: 0;
+}
+.portfolio-meta-list li strong {
+  display: inline;
+  padding-right: .3em;
+}
+/**** Isotope CSS3 transitions Hieu ung chay ****/
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+  -moz-transition-duration: 0.8s;
+  -ms-transition-duration: 0.8s;
+  -o-transition-duration: 0.8s;
+  transition-duration: 0.8s;
+}
+.isotope {
+  -webkit-transition-property: height, width;
+  -moz-transition-property: height, width;
+  -ms-transition-property: height, width;
+  -o-transition-property: height, width;
+  transition-property: height, width;
+}
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  -ms-transition-property: -ms-transform, opacity;
+  -o-transition-property: top, left, opacity;
+  transition-property: transform, opacity;
+}
+/**** disabling Isotope CSS3 transitions ****/
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+  -moz-transition-duration: 0s;
+  -ms-transition-duration: 0s;
+  -o-transition-duration: 0s;
+  transition-duration: 0s;
+}
+
+
+.isotope_category {width:100%; float:left; margin-bottom:2%}
+.isotope_category li{float:left;margin:5px 5px 0px 0px; padding:10px 25px; background:#05b3d2;}
+.isotope_category li:hover{ background:#FC0;}
+.isotope_category li a{color:#FFF;  white-space:nowrap }
+.isotope_active{background:#FC0 !important;}
+
+
+.isotope_foreach_img{text-align:center; margin-bottom:5px; width:auto; height:auto; padding:10px }
+.isotope_foreach_img img{width:100%; max-height:250px}
+
+.isotope_foreach_title{height:auto;padding:0px 10px 10px 10px }
+.isotope_foreach_title a{color:#f86924; font-size:130%; text-transform:capitalize; white-space:nowrap}
+.isotope_foreach_title a:hover{color:#06F}
+.isotope_foreach_title p{padding-top:5px; line-height:18px}	
+
+.isotope_foreach_views{background:#f07ec6; border-radius:2px; padding:3px 5px 3px 5px; text-transform:uppercase; color:#FFF; font-weight:bold;width:28%; min-width:100px; height:auto; margin: 0px 0px 10px 10px; font-size:90%}
+.isotope_foreach_views:hover{background:#5d5098;}
+
+@media (max-width: 480px) {.isotope_foreach_li{float:left; box-shadow: 0 0 1px #999999; width:99% !important;  margin-bottom:2%} }
+@media (min-width: 480px) and (max-width: 600px){.isotope_foreach_li{float:left; box-shadow: 0 0 1px #999999; width:48.5% !important; margin-right:1% !important; margin-bottom:1%} }
+@media (min-width: 601px) and (max-width: 780px){.isotope_foreach_li{float:left; box-shadow: 0 0 1px #999999; width:48.5% !important; margin-right:1% !important; margin-bottom:1%} }
+@media (min-width: 781px) and (max-width: 1080px){.isotope_foreach_li{float:left; box-shadow: 0 0 1px #999999; width:32% !important; margin-right:1.8%; margin-bottom:2%} }
+@media (min-width: 1081px) {.isotope_foreach_li{float:left; box-shadow: 0 0 1px #999999; width:32% !important; margin-right:1.9%; margin-bottom:2%}}

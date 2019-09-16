@@ -1,0 +1,70 @@
+  {foreach from=$rs item="val" name="val"}
+   {if $smarty.foreach.val.iteration > '0' and  $smarty.foreach.val.iteration <= '5' }
+    <div class="col-md-6 feature-grid">
+    <a href="{$smarty.const.URL_HOMEPAGE}{$val.news_id}-{$val.news_url}.html" title="{$val.news_name}" />
+      {if $val.news_img}
+      <img class="img-circle " width="100" height="100" src="{$smarty.const.URL_HOMEPAGE}upload/products/{$val.img_file}/{$val.news_img}" alt="{$val.news_name}" />
+       {else} 
+      <img class="img-circle" width="100" height="100" src="{$smarty.const.URL_IMAGE_NEW}/nophoto.png" alt="{$val.news_name}" />
+      {/if}
+    </a>
+       <div class="brief-grid">
+         <div class="brief-grid-text-detail">
+           <h4>{$val.news_code}</h4>
+           <p>
+            <strong>{$val.news_position}</strong><br/>
+            {$smarty.const.lang_type}:   <strong>{$val.news_type}</strong><br/>
+            {$smarty.const.lang_time_product}: <strong>{$val.news_time}</strong><br/>
+            {$smarty.const.lang_salary}: <strong>{$val.price}</strong> vnd          
+           </p>  
+         </div>
+       </div>
+
+       <div class="maidbutton-padding">
+         <a class="link" href="{$smarty.const.URL_HOMEPAGE}{$val.news_id}-{$val.news_url}.html" title="{$val.news_name}"> 
+          {$smarty.const.lang_xemchitiet}
+          </a>
+      </div>
+ </div>
+{/if}
+
+     {if $smarty.foreach.val.iteration > '5' and  $smarty.foreach.val.iteration <= '10' }
+    <div class="col-md-6 feature-grid">
+    <a href="{$smarty.const.URL_HOMEPAGE}{$val.news_id}-{$val.news_url}.html" title="{$val.news_name}" />
+      {if $val.news_img}
+      <img class="img-circle" width="100" height="100" src="{$smarty.const.URL_HOMEPAGE}upload/products/{$val.img_file}/{$val.news_img}" alt="{$val.news_name}" />
+       {else} 
+      <img class="img-circle" width="100" height="100" src="{$smarty.const.URL_IMAGE_NEW}/nophoto.png" alt="{$val.news_name}" />
+      {/if}
+    </a>
+       <div class="brief-grid">
+         <div class="brief-grid-text-detail">
+           <h4>{$val.news_code}</h4>
+           <p>
+            <strong>{$val.news_position}</strong><br/>
+            {$smarty.const.lang_type}:   <strong>{$val.news_type}</strong><br/>
+            {$smarty.const.lang_time_product}: <strong>{$val.news_time}</strong><br/>
+            {$smarty.const.lang_salary}: <strong>{$val.price}</strong> vnd          
+           </p>  
+         </div>
+       </div>
+
+       <div class="maidbutton-padding">
+          <a class="link" href="{$smarty.const.URL_HOMEPAGE}{$val.news_id}-{$val.news_url}.html" title="{$val.news_name}"> 
+          {$smarty.const.lang_xemchitiet}
+          </a>
+       </div>
+
+ </div>
+
+    {/if}
+    {/foreach}
+<div class="clearfix"> </div> 
+
+
+
+
+
+
+
+

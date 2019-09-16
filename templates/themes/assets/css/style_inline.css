@@ -1,0 +1,192 @@
+#wrapper { display: block; padding: 0; margin-top: 0px;}
+
+#core { display: block; margin-left: 5px; }
+
+.profileinfo { width: 100%; padding: 4px 10px;}
+.profileinfo h2 { position: relative; left: -250px; }
+
+.gear { 
+	position: relative; 
+	display: block; 
+	margin-bottom: 25px; 
+	padding-bottom: 8px; 
+	padding-top:10px;
+	padding-left:5px;
+	padding-right:5px;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.gear a.editlink { 
+	position: absolute; 
+	font-size: 13px; 
+	top: 10px;
+	right:5px;
+	color: #2d9ae2;
+}
+
+.gear a.editlink:hover { 
+	position: absolute; 
+	font-size: 13px; 
+	top: 10px;
+	right:5px;
+	color: #2d9ae2;
+	text-decoration: underline;
+}
+
+
+.bg-active { 
+	background-color: #eae8e8;
+}
+
+.datainfo { margin-left: 10px; font-size: 15px; color: #333; margin-bottom: 10px; }
+
+label { display: inline-block; font-weight: bold; color: #696969; font-size: 15px; width: 120px; }
+
+/** @group form inputs **/
+.hlite { 
+	background: #e2e8f6; 
+	border: 1px solid #bdc7d8; 
+	width: 400px; 
+	margin-left: -7px; 
+	padding: 5px 7px; 
+	color: #565656; 
+	font-size: 13px; 
+}
+
+.hlite-name { 
+	background: #fff; 
+	border: 1px solid #bdc7d8; 
+	width: 200px; 
+	margin-left: -7px; 
+	padding: 5px 7px; 
+	color: #565656; 
+	font-size: 13px; 
+}
+
+.hlite-selected { 
+	background: #fff; 
+	border: 1px solid #bdc7d8; 
+	margin-left: -7px; 
+	padding: 5px 7px; 
+	color: #565656; 
+	font-size: 13px;
+	width: 200px;
+}
+
+/** @group buttons **/
+.savebtn { 
+	position: absolute; 
+	right: 0; 
+	top: 30px;
+	right:5px;
+	padding: 4px 9px; 
+	background: #3591ce; 
+	font-size: 13px; 
+	cursor: pointer;
+	 border: 1px solid #3591ce; 
+	color: #fff; 
+	 border-radius: 15px;
+	-webkit-box-shadow: inset 0 1px 0 #8a9cc2; 
+	-moz-box-shadow: inset 0 1px 0 #8a9cc2; 
+	box-shadow: inset 0 1px 0 #8a9cc2; 
+	margin-bottom: 5px;
+	 margin-top: -5px; 
+	 display: none;
+}
+.savebtn:hover { color: #fff; background: #607db7; text-decoration: none; }
+.savebtn:active { background: #556790; }
+
+
+.savebutton { 
+	padding: 4px 9px; 
+	background: #3591ce; 
+	font-size: 13px; 
+	cursor: pointer;
+	 border: 1px solid #3591ce; 
+	color: #fff; 
+	 border-radius: 3px;
+	-webkit-box-shadow: inset 0 1px 0 #8a9cc2; 
+	-moz-box-shadow: inset 0 1px 0 #8a9cc2; 
+	box-shadow: inset 0 1px 0 #8a9cc2; 
+	margin-bottom: 5px;
+}
+.savebutton:hover { color: #fff; background: #607db7; text-decoration: none; }
+.savebutton:active { background: #556790; }
+
+
+.savebutton_cv { 
+	padding: 4px 9px; 
+	background: #63A326; 
+	font-size: 13px; 
+	cursor: pointer;
+	 border: 1px solid #63A326; 
+	color: #fff; 
+	 border-radius: 3px;
+	-webkit-box-shadow: inset 0 1px 0 #63A326; 
+	-moz-box-shadow: inset 0 1px 0 #63A326; 
+	box-shadow: inset 0 1px 0 #63A326; 
+	margin-bottom: 5px;
+}
+.savebutton_cv:hover { color: #fff; background: #6caf28; text-decoration: none; }
+.savebutton_cv:active { background: #63A326; }
+
+
+.accept_order { 
+	padding: 3px 7px; 
+	background: #e0b73c; 
+	font-size: 13px; 
+	cursor: pointer;
+	 border: 1px solid #fcc97e; 
+	color: #fff; 
+	 border-radius: 19px;
+/*	-webkit-box-shadow: inset 0 1px 0 #63A326; 
+	-moz-box-shadow: inset 0 1px 0 #63A326; 
+	box-shadow: inset 0 1px 0 #63A326; */
+	margin-bottom: 5px;
+}
+.accept_order:hover { color: #fff; background: #e0b73c; text-decoration: none; }
+.accept_order:active { background: #e0b73c; }
+
+
+.accept_receive { 
+	padding: 3px 7px; 
+	background: #afaaaa; 
+	font-size: 13px; 
+	cursor: pointer;
+	color: #fff; 
+	 border-radius: 19px;
+	margin-bottom: 5px;
+}
+.accept_receive:hover { color: #fff; background: #afaaaa; text-decoration: none; }
+.accept_receive:active { background: #afaaaa; }
+
+
+.accept_active { 
+	padding: 3px 7px; 
+	background: #3591CE; 
+	font-size: 12px; 
+	cursor: pointer;
+	color: #fff; 
+	 border-radius: 19px;
+	margin-bottom: 5px;
+}
+.accept_active:hover { color: #fff; background: #3591CE; text-decoration: none; }
+.accept_active:active { background: #3591CE; }
+
+.accept_final { 
+	padding: 3px 7px; 
+	background: #afaaaa; 
+	font-size: 12px; 
+	cursor: pointer;
+	color: #fff; 
+	 border-radius: 19px;
+	margin-bottom: 5px;
+}
+.accept_final:hover { color: #fff; background: #afaaaa; text-decoration: none; }
+.accept_final:active { background: #afaaaa; }
+
+
+
+.disabled {
+    background:#F5F5F5;
+}

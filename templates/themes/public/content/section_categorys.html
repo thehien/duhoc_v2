@@ -1,0 +1,29 @@
+<ul class="section_categorys">
+    {section name=sv_bo loop=$sv_bo}
+        <li>
+            <div class="section_categorys_img" >
+            	<h3>{$sv_bo[sv_bo].category_name}</h3>
+                <a href="{$smarty.const.URL_HOMEPAGE}{$sv_bo[sv_bo].news_url}{$sv_bo[sv_bo].category_url}.html" title="{$sv_bo[sv_bo].category_name}"> 
+                {if $sv_bo[sv_bo].category_img}
+                <img src="{$smarty.const.URL_HOMEPAGE}upload/categorys/{$sv_bo[sv_bo].category_img}" alt="{$sv_bo[sv_bo].category_name}" />
+                {/if} 
+                </a> 
+            </div>
+            <div class="section_categorys_info" >
+            {section name=sv_con loop=$sv_con[sv_bo]}
+            <a href="{$smarty.const.URL_HOMEPAGE}detail/{$sv_con[sv_bo][sv_con].news_id}-{$sv_con[sv_bo][sv_con].news_url}.html">
+            <h4>- {$sv_con[sv_bo][sv_con].news_name} </h4></a>
+            {/section}
+            </div>
+        </li>
+    {/section}
+</ul> 
+
+
+
+
+
+
+
+
+

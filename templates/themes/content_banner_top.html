@@ -1,0 +1,36 @@
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        {foreach from=$list_news_slide item="val" key="key" name="val"}
+          <li data-target="#myCarousel" data-slide-to="{$key}" {if $smarty.foreach.val.first}class="active"{/if}></li>
+        {/foreach}
+    </ol>
+    <div class="carousel-inner">
+        {foreach from=$list_news_slide item="val" key="key" name="val"}
+        <div align="center" class="item {if $smarty.foreach.val.first}active{/if}">
+            {if $val.news_img}
+            <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}/{$val.news_url}.html">
+                <img src="{$smarty.const.URL_HOME}/upload/contents/{$val.news_img}" class="img-responsive"
+                     style="max-height: 300px; max-width: 100%;" alt="{$val.news_name}">
+            </a>
+            {else}
+            <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}/{$val.news_url}.html">
+                <img class="img-responsive"
+                     style="max-height: 300px; max-width: 100%;" src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="{$val.news_name}">
+            </a>
+            {/if}
+            <div class="container">
+                <div class="carousel-caption">
+                    <h3>{$val.news_name}</h3>
+                </div>
+            </div>
+        </div>
+        {/foreach}
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>

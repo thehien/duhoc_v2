@@ -1,0 +1,39 @@
+{include file="$themes/header.html"}
+<div id="wrapper">
+ {include file="$themes/top.html"} 
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+    <div class="container">
+        <div class="ten columns">
+            <h2>All location</h2>
+        </div>
+
+    </div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+
+        <div class="sixteen columns">
+        <ul id="popular-categories">
+        {foreach from=$cateLocation item="val" name="val"}
+          <li><a href="#"><i></i> {$val.cityname}</a></li>   
+        {/foreach}
+        </ul>
+
+        <div class="clearfix"></div>
+    </div>
+
+
+</div>
+<!-- Widgets / End -->
+
+
+</div>
+{include file="$themes/footer.html"}
+
+
+

@@ -1,0 +1,31 @@
+       {if $isLogin}
+       <div id="background-hover" class="page-header-company bg_info">
+        {else}
+         <div id="background-hover" class="page-header-company bg_cv_info">
+        {/if}
+                <div class="outside">
+                  <!-- <div class="inside"></div> -->
+                   <div style="position: absolute; left: 50%; top: -60%;">
+                    <div style="position: relative; left: -50%;">
+                      {if $show_member.avatar}
+                        <img width="150" height="150" src="{$smarty.const.URL_HOME}/upload/avatar/{$show_member.avatar}" class="img-circle avatar"/>
+                     {else}
+                        <img width="150" height="150" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle avatar" />
+                     {/if}
+                    </div>
+                </div>
+                <div class="inside">
+                  <div class="author-info">
+                  <h3><strong>{$show_member.name}</strong></h3>
+                   <p class="sub-title"><strong>{if $show_member.district}{$show_member.district},{/if} {$show_member.country_name}</strong></p>
+
+                  <div class="social-link">
+                    <a class="twitter" target="_blank" data-original-title="twitter" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a>
+                    <a class="facebook" target="_blank" data-original-title="facebook" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a>
+                    <a class="google" target="_blank" data-original-title="google-plus" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-google"></i></a>
+                    <a class="linkedin" target="_blank" data-original-title="linkedin" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+                </div>
+              </div>
+       </div>

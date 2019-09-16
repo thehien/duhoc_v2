@@ -1,0 +1,202 @@
+{include file="left.html"}
+<div id="page-wrapper">
+
+<div class="row">
+<div class="col-lg-12">
+    <h1 class="page-header"><a href="{$url_views}" ><i class="fa fa-home"></i> {$main_content}</a></h1>
+</div>
+</div>
+
+<div class="row">
+<!--Search-->
+<div class="col-lg-10">
+    <form name="frm_search" method="post" action="{$smarty.const.URL_ADMIN}?module={$url}&main=search" class="search_text">
+    
+    
+    <table>
+    <tr>
+    <td width="90">Search name</td>
+    <td><div class="input-group custom-search-form">
+           
+            <input type="text" class="form-control" placeholder="Search..." name="name_search" id="name_search" value="{$name_search}" >
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" name="submit" id="submit">
+                <i class="fa fa-search"></i>
+            </button>
+            </span>     
+    </div></td>
+    </tr>
+    </table>
+    
+    
+    </form> 
+</div>
+<!--Views-->    
+<div class="col-lg-12">
+<form name="frm_news" method="POST" >
+<div class="panel panel-default">
+<div class="panel-heading">
+    <div class="row">
+    <div class="col-lg-6 heading_title">
+        <i class="fa fa-windows"></i> {$main_content}  <strong>( {$numf} {$main_name} )</strong>
+    </div>   
+    <div class="col-lg-6 click_right">
+    	{if $action_delete}
+        <a href="javascript:void(0);" onclick="del_news('frm_news');" class="bg_del">
+        <i class="fa fa-trash-o"></i> {$smarty.const.langcms_xoa}</a>  
+        {/if}
+        {if $action_edit}
+        <a href="javascript:void(0);" onclick="status_on('frm_news');" class="bg_on">
+        <i class="fa fa-check-square"></i> {$smarty.const.langcms_kichhoat}</a>        
+        <a href="javascript:void(0);" onclick="status_off('frm_news');" class="bg_off" >
+        <i class="fa fa-minus-square"></i> {$smarty.const.langcms_vohieu}</a>
+        <a href="javascript:void(0);" onClick="update_order('frm_news');"class="bg_edit">
+        <i class="fa fa-pencil-square-o"></i> {$smarty.const.langcms_capnhat}</a></li>
+        {/if}
+        {if $action_insert}
+        <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=insert" class="name_insert bg_ins">
+        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.langcms_them}</a> 
+        {/if}
+    </div>
+    </div>
+</div>
+<div class="panel-body">
+    <ul class="table_ul">
+        <li class="lileft">
+            <select class="limit_option" onchange="MM_jumpMenu('parent',this,0)" >
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=10" {if $limit eq 20 }selected="selected"{/if}>10</option>
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=20" {if $limit eq 20 }selected="selected"{/if}>20</option>
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=50" {if $limit eq 50 }selected="selected"{/if}>50</option>
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=100" {if $limit eq 100 }selected="selected"{/if}>100</option>
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=200" {if $limit eq 200 }selected="selected"{/if}>200</option>
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=1000" {if $limit eq 1000 }selected="selected"{/if}>1000</option>
+           </select>
+        </li>
+    	<li class="lileft" style="width:40%"><div class="paging_news">{$paging}</div></li>
+       
+    </ul>
+    <table class="table_views table-striped table-hover">
+    <thead>
+        <tr class="two">
+      
+          <td align="center"> ID
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=id_tem&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=id_tem&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+    
+        <td>{$smarty.const.langcms_country}
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=news_name&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=news_name&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+         
+          <td align="center">Code
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=news_level&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=news_level&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+
+          <td align="center">{$smarty.const.langcms_trangthai}
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=status&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=status&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          {if $action_edit}<td align="center">{$smarty.const.langcms_capnhat}</td>{/if}
+
+          <td align="center"><label><input type="checkbox" data-toggle="checkall" data-target="input[id=checks]" /></label></td>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach from=$rs key=key name=rs  item=rs}
+          <tr>
+         
+          <td align="center" class="mw_80">
+          <a href="{$smarty.const.URL_HOMEPAGE}{$rs.id}-{$rs.news_url}.html" target="_blank" class="status_views">
+          {$rs.id} 
+          </a>
+          </td>
+
+           <td valign="center" class="mw_300">
+            <input type="text" name="news_name{$rs.name}" value="{$rs.name}" style="font-weight:bold" />
+          </td>
+
+
+          <td valign="center" class="mw_300">
+           <input type="text" name="news_name{$rs.code}" value="{$rs.code}" />
+          </td>
+
+          <td align="center" class="mw_100">
+           <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+              <td><span>Status:</span></td>
+              <td> <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=status&id={$rs.id_tem}&status={$rs.status}"  
+            {if $rs.status eq 1}class="status_on"{else}class="status_off"{/if}><i class="fa fa-check-square"></i>
+              </a></td>
+            </tr>
+            </table>
+          </td>
+
+          </td>
+          {if $action_edit}
+          <td align="center" class="mw_80">
+          <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=insert{$url_category}{$url_page}{$url_shops}{$url_limit}{$url_order}&id_edit={$rs.id}" class="status_edit">
+          <i class="fa fa-pencil-square-o"></i></a>
+             
+          </td>
+          {/if}
+      
+          <td align="center"><label><input type="checkbox" id="checks" name="checkbox_id[]" value="{$rs.id_tem}"  /></label></td>
+        </tr>
+        {/foreach}
+    </tbody>
+    </table>  
+</div>
+</div>
+</form>  
+</div>
+{if $smarty.session.user_role eq 1}
+<div class="col-lg-12 update_price">
+<a id="click_price" href="#" remove-link="{$smarty.const.URL_ADMIN}?module={$url}&main=updateprice">
+<i class="fa fa-youtube-play"></i> {$smarty.const.langcms_upgia}</a>
+<a id="click_tang" href="#" remove-link="{$smarty.const.URL_ADMIN}?module={$url}&main=updatetang" >
+<i class="fa fa-angle-double-up"></i> {$smarty.const.langcms_ttilept}</a>
+<a id="click_giam" href="#" remove-link="{$smarty.const.URL_ADMIN}?module={$url}&main=updategiam" >
+<i class="fa fa-angle-double-down"></i> {$smarty.const.langcms_gtilept}</a>
+<a href="{$smarty.const.URL_ADMIN}?module=categorys"><i class="fa fa-hand-o-right"></i> {$smarty.const.langcms_xemtl}</a>
+</div>
+{/if}
+</div>
+</div>
+
+<!--Hoi khi xoa-->
+<script src="{$smarty.const.URL_ADMIN_THEM}delete/jquery.confirmon.js"></script>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_ADMIN_THEM}delete/sample.css"/>
+{literal}
+<script>
+	$(function() {
+		$('#click_giam').confirmOn({
+			classPrepend: 'myprefix'
+		},'click', function(e, confirmed) {
+			if(confirmed) window.location = $(this).attr("remove-link");
+		});
+		
+		$('#click_tang').confirmOn({
+			classPrepend: 'myprefix'
+		},'click', function(e, confirmed) {
+			if(confirmed) window.location = $(this).attr("remove-link");
+		});
+		
+		$('#click_price').confirmOn({
+			classPrepend: 'myprefix'
+		},'click', function(e, confirmed) {
+			if(confirmed) window.location = $(this).attr("remove-link");
+		});
+		
+	});
+</script>
+{/literal}

@@ -1,0 +1,29 @@
+<div class="breadcrumbs breadcrumb_url" >
+    <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="col-xs-0 col-mm-0">
+        <a href="{$smarty.const.URL_HOMEPAGE}" itemprop="url">
+        <span itemprop="title">{$smarty.const.lang_trang_chu}</span>
+        </a> <i class="fa fa-angle-double-right"></i>
+    </div>   
+       
+    {if $name_home}
+    <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="col-mm-0">
+        {if $home_hover neq ""}
+            <a href="{$smarty.const.URL_HOMEPAGE}{$home_hover}.html" itemprop="url">
+            <span itemprop="title">{$name_home}</span>
+            </a> <i class="fa fa-angle-double-right"></i>
+        {else}
+            <span itemprop="title">{$name_home}</span>
+        {/if}  
+    </div>  
+    {/if}
+    {if $supcate_hover}
+    <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="col-mm-0">
+        <a href="{$smarty.const.URL_HOMEPAGE}{$news_url}{$supcate_hover}.html" itemprop="url">
+        <span itemprop="title">{$supcate_name}</span>
+        </a> <i class="fa fa-angle-double-right"></i> 
+    </div>
+   {/if} 
+    <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a href="{$smarty.const.URL_HOMEPAGE}{$news_url}{$category_hover}.html" itemprop="url"><span itemprop="title">{$category_name}</span></a>
+    </div>
+</div>

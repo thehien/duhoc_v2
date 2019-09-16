@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <title>{if $seo_title}{$seo_title}{else}{$smarty.const.lang_title}{/if}{$key_filter}</title>
+    <meta name="keywords" content="{if $seo_key}{$seo_key}{else}{$smarty.const.lang_keywords}{/if}{$key_filter}">
+    <meta name="description" content="{if $seo_desc}{$seo_desc}{else}{$smarty.const.lang_description}{/if}{$key_filter}">
+    <meta property="og:title" content="{if $seo_title}{$seo_title}{else}{$smarty.const.lang_title}{/if}{$key_filter}">
+    <meta property="og:description" content="{if $seo_desc}{$seo_desc}{else}{$smarty.const.lang_description}{/if}{$key_filter}">
+    {if $new_detail.news_img eq ''}<meta property="og:image" content="{$smarty.const.URL_IMAGE}logo.png">
+    {else}<meta property="og:image" content="{$smarty.const.URL_HOMEPAGE}upload/{$new_detail.img_meta}/{$new_detail.img_file}/{$new_detail.news_img}">{/if}
+    <meta property="og:url" content="{$smarty.const.URL_HOME}{$link_web}">
+    <meta property="og:site_name" content="{$smarty.const.lang_title}">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="{$smarty.const.URL_HOME}">
+    <link href="favicon.png" rel="shortcut icon">
+    <!-- CSS================================================== -->
+   <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/css/bootstrap.min.css" type="text/css">   
+     <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/css/navbar-fixed-side.css" type="text/css">
+     <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/css/style_inline.css" type="text/css">
+    <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/css/jasny-bootstrap.min.css" type="text/css">  
+    <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/css/bootstrap-select.min.css" type="text/css">  
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/fonts/font-awesome.min.css" type="text/css"> 
+    <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/fonts/themify-icons.css"> 
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/css/main.css" type="text/css">
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/css/responsive.css" type="text/css">
+    <!-- Color CSS Styles  -->
+    <link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/css/colors/blue.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/css/thirdeffect.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/css/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/css/bootstrap-datetimepicker.css" media="screen" />
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/css/bootstrap-social.css" type="text/css">
+    <script type="text/javascript" src="{$smarty.const.URL_WEB}{$themes}/assets/js/jquery-2.1.1.min.js"></script>
+{literal}
+<script type="text/javascript">
+  $(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if (scroll >= 10) {
+        $(".main-navigation").addClass("affix");
+        $("#left-menu").addClass("fw-mgt72");
+    } else {
+        $(".main-navigation").removeClass("affix");
+        $("#left-menu").removeClass("fw-mgt72");
+    }
+  }); 
+
+</script>
+{/literal}
+</head>
+<body>

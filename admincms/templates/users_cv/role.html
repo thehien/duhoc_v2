@@ -1,0 +1,69 @@
+{include file="left.html"}
+<div id="page-wrapper">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header"><a href="#" ><i class="fa fa-home"></i> {$main_content}</a></h1>
+    </div>
+</div>
+<div class="row">
+<div class="col-lg-12">
+<form name="frm_news" method="POST" >
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-lg-5 heading_title">
+                <i class="fa fa-windows"></i> <strong>{$smarty.const.langcms_cqctv}</strong> : <strong>{$firstname}</strong>
+            </div>
+      
+            <div class="col-lg-7 click_right">
+               <a href="javascript:void(0);" onClick="update_action('frm_news');" class="bg_edit">
+               {if $action_edit}<i class="fa fa-pencil-square-o"></i> {$smarty.const.langcms_capnhat}</a>{/if}
+               <a id="check-all" href="javascript:void(0);" class="name_check"><i class="fa fa-check-circle-o"></i> {$smarty.const.langcms_chonall}</a>
+               <a id="uncheck-all" href="javascript:void(0);"  class="name_check"><i class="fa fa-circle-thin"></i> {$smarty.const.langcms_nochon}</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel-body">
+        <table class="table_views category_tree table-striped table-hover">
+            <thead>
+            <tr class="two">
+              <td>{$smarty.const.langcms_dscn}</td>
+              <td  align="center">{$smarty.const.langcms_xem}</td>
+              <td  align="center">{$smarty.const.langcms_them}</td>
+              <td  align="center">{$smarty.const.langcms_sua}</td>
+              <td  align="center">{$smarty.const.langcms_xoa}</td>
+              <td  align="center">{$smarty.const.langcms_trangthai}</td>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach from=$rs_tree name=rs  item=rs}
+              <tr  data-tt-id="{$rs.module_id}" {if $rs.parent gt 0}data-tt-parent-id="{$rs.parent}"{/if}>
+              {if $rs.sub_category}
+              <td>{$rs.name}</td>
+              <td  align="center"></td>
+              <td  align="center"></td>
+              <td  align="center"></td>
+              <td  align="center"></td>
+              <td  align="center"><label><input type="checkbox"  name="status{$rs.id_tem}" value="1" {if $rs.status}checked{/if}/></label> </td>
+              {else}
+              <td>{$rs.name}</td>
+              <td  align="center"><input type="checkbox"  name="action_views{$rs.id_tem}" value="1" {if $rs.action_views}checked{/if} /> </td>
+              <td  align="center"><input type="checkbox"  name="action_insert{$rs.id_tem}" value="1" {if $rs.action_insert}checked{/if}/> </td>
+              <td  align="center"><input type="checkbox"  name="action_edit{$rs.id_tem}" value="1"  {if $rs.action_edit}checked{/if}/> </td>
+              <td  align="center"><input type="checkbox"  name="action_delete{$rs.id_tem}" value="1"  {if $rs.action_delete}checked{/if}/> </td>
+              <td  align="center"><input type="checkbox"   name="status{$rs.id_tem}" value="1"   {if $rs.status}checked{/if}/> </td>
+              {/if}
+            </tr>
+            <label><input type="hidden" name="checkbox_id[]" value="{$rs.id_tem}" /> </label>
+            {/foreach}
+            </tbody>
+        </table>
+    </div>
+</div>
+</form>
+</div>
+</div> 
+ 
+ 
+  

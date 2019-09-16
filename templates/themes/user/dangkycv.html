@@ -1,0 +1,199 @@
+{include file="$themes/header.html"}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+{literal}
+<script type="text/javascript">
+    $(function () {
+        $("form[name='registration-cv']").validate({
+            // Specify validation rules
+            rules: {
+                email: {
+                    required: true, email: true
+                },
+                password: {
+                    required: true, minlength: 5
+                },
+                first_name: "required",
+                last_name: "required",
+                country: {
+                    required: true
+                },
+                from_translate: {
+                    required: true
+                },
+                to_translate: {
+                    required: true
+                },
+                special_category: {
+                    required: true
+                },
+            }, // Specify validation error messages
+            messages: {
+                first_name: "{/literal}{$smarty.const.lang_err_first_name}{literal}",
+                last_name: "{/literal}{$smarty.const.lang_err_last_name}{literal}",
+                email: "{/literal}{$smarty.const.lang_err_email}{literal}",
+                password: {
+                    required: "{/literal}{$smarty.const.lang_err_pass}{literal}",
+                    minlength: "{/literal}{$smarty.const.lang_err_pass_1}{literal}"
+                },
+                country: "{/literal}{$smarty.const.lang_err_country}{literal}",
+                from_translate: "{/literal}{$smarty.const.lang_err_source}{literal}",
+                to_translate: "{/literal}{$smarty.const.lang_err_target}{literal}",
+                special_category: "{/literal}{$smarty.const.lang_err_cdlv}{literal}",
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>
+{/literal}
+
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            {include file="$themes/top.html"}
+        </div>
+
+        <div id="content" class="register-account">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-4 col-md-offset-4 col-sm-5 col-sm-offset-6 cd-user-modal">
+                        <div class="my-account-form">
+
+                            <form role="form" class="form-ad" name="registration-cv" method="post"
+                                  enctype="multipart/form-data" action="{$smarty.const.URL_HOMEPAGE}add-cv.html"/>
+
+
+                            <h3 align="center">{$smarty.const.lang_common_hoso}</h3>
+                            <div class="fw-bglogin box-login"  style="padding: 25px;">
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="first_name" id="first_name"
+                                                   placeholder="{$smarty.const.lang_common_ho}"/>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="last_name" id="last_name"
+                                                   placeholder="{$smarty.const.lang_common_ten}"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-icon">
+                                                    <select name="mobileCode" id="mobileCode" class="form-control">
+                                                        <option value="">{$smarty.const.lang_common_mobile_code}
+                                                        </option>
+                                                        {foreach from=$rs_mobile_code item="val" name="val"}
+                                                        <option value="{$val.code}">{$val.name} (+{$val.code})</option>
+                                                        {/foreach}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="mobile"
+                                                   placeholder="{$smarty.const.lang_common_mobile}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <select name="country" class="form-control">
+                                            <option value="">{$smarty.const.lang_common_country}</option>
+                                            {foreach from=$rs_list_country name=val item=val}
+                                            <option value="{$val.id}">{$val.name}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <select name="from_translate" class="form-control">
+                                            <option value="">{$smarty.const.lang_common_from_trans}</option>
+                                            {foreach from=$list_language name=val item=val}
+                                            <option value="{$val.id}">{$val.name}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <select name="to_translate" class="form-control">
+                                            <option value="">{$smarty.const.lang_common_to_trans}</option>
+                                            {foreach from=$list_language name=val item=val}
+                                            <option value="{$val.id}">{$val.name}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <select name="special_category" class="form-control">
+                                            <option value="">{$smarty.const.lang_common_chude}</option>
+                                            {foreach from=$list_special_cate name=val item=val}
+                                            <option value="{$val.id}">{$val.category_name}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="fw-mgt15"><h3 align="center">{$smarty.const.lang_common_account}</h3></div>
+                            <div class="fw-bglogin box-login"  style="padding: 25px;">
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <input type="text" class="form-control" name="email" id="email"
+                                               placeholder="Email"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <input type="password" class="form-control" name="password" id="password"
+                                               placeholder="Password"/>
+                                    </div>
+                                </div>
+
+                                <center>
+                                    <button class="btn btn-submit-cv log-btn" type="submit">
+                                        {$smarty.const.lang_common_register}
+                                    </button>
+                                </center>
+                            </div>
+
+                            </form>
+                        </div>
+
+                        <div style="clear: both;"></div>
+                        <div align="center" class="fw-mgt20 fw-mgb10 ">
+                            {$smarty.const.lang_common_dongy}
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3 col-sm-5 col-sm-offset-6 cd-user-modal">
+
+                        <div align="center" class="fw-mgt10">
+                            <a class="btn btn-dangkyuser log-btn"
+                               href="{$smarty.const.URL_HOMEPAGE}register.html">{$smarty.const.lang_common_user}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        {include file="$themes/footer_js.html"}

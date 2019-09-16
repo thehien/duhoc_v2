@@ -1,0 +1,64 @@
+<div class="my-account-form">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" class="form-control" readonly="" disabled="" value="{$show_member.firstname}" name="first_name" id="first_name" placeholder="{$smarty.const.lang_common_ho}"/>
+        </div>
+
+        <div class="col-md-6">
+          <input type="text" class="form-control" readonly="" disabled="" value="{$show_member.lastname}" name="last_name" id="last_name" placeholder="{$smarty.const.lang_common_ten}"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" readonly="" disabled="" value="{$show_member.email}" name="email" id="email" placeholder="Email"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+         <div class="form-group">
+          <div class="input-icon">
+            <select name="mobileCode" id="mobileCode" class="form-control" readonly="" disabled="">
+              <option value="">{$smarty.const.lang_common_mobile_code}</option>
+              {foreach from=$rs_mobile_code item="val" name="val"}
+              <option value="{$val.code}" {if $show_member.mobile_code==$val.code}selected{/if}>{$val.name} (+{$val.code})</option>
+              {/foreach}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <input type="text" class="form-control" readonly="" disabled="" value="{$show_member.mobile}" name="mobile" placeholder="{$smarty.const.lang_common_mobile}">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="input-icon">
+      <select name="country" class="form-control" readonly="" disabled="">
+        <option value="">{$smarty.const.lang_common_country}</option>
+        {foreach from=$rs_list_country name=val item=val}
+          <option value="{$val.id}" {if $show_member.country==$val.id}selected{/if}>{$val.name}</option>
+        {/foreach}
+      </select>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <input type="text" class="form-control" readonly="" disabled="" value="{$show_member.address}" name="address" id="address" placeholder="{$smarty.const.lang_user_address}"/>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,555 @@
+{include file="$themes/header.html"}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick-theme.css">
+{literal}
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+    .slider {
+        width: 100%;
+        margin: 10px auto;
+    }
+    .slider_menu {
+        width: 60%;
+        margin: 10px auto;
+    }
+    .slick-slide {
+        margin: 0 10px;
+    }
+    .slick-slide img {
+        width: 100%;
+    }
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
+    .slick-slide {
+        transition: all ease-in-out .3s;
+        opacity: .2;
+    }
+    .slick-active {
+        opacity: 1;
+    }
+    .slick-current {
+        opacity: 1;
+    }
+</style>
+<script type="text/javascript">
+    $(document).on('ready', function() {
+        $(".regular").slick({
+            dots: false,
+            infinite: false,
+            {/literal}{if $isMobile}{literal}
+                slidesToShow: 4,
+            {/literal}{else}{literal}
+                slidesToShow: 10,
+            {/literal}{/if}{literal}
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 500,
+        });
+
+        $(".lazy").slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            cssEase: 'linear',
+            prevArrow: false,
+            nextArrow: false
+        });
+
+        $('.variable-width').slick({
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            centerMode: false,
+            variableWidth: true
+        });
+
+        $('.chuong-trinh').slick({
+            dots: false,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true,
+            prevArrow: false,
+            nextArrow: false,
+            autoplay:true,
+            autoplaySpeed:1500
+        });
+    });
+</script>
+{/literal}
+
+<link rel="stylesheet" href="{$smarty.const.URL_WEB}{$themes}/assets/slider/flickity.css" media="screen">
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/slider/flickity.pkgd.js"></script>
+{literal}
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+
+    .carousel-cell {
+        {/literal}{if $isMobile}{literal}
+        width: 100%;
+        {/literal}{else}{literal}
+        width: 22%;
+        {/literal}{/if}{literal}
+        height: auto;
+        min-height: 370px;
+        margin-right: 10px;
+        background: #fff;
+        border-radius: 5px;
+        border: 3px solid #E39717;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .carousel-cell.is-selected {
+        background: #fff;
+    }
+
+    .carousel-cell:hover {
+        background: #E39717;
+        color: #fff !important;
+    }
+
+    .carousel-cell:before {
+        display: block;
+        text-align: center;
+        line-height: 370px;
+        color: white;
+    }
+</style>
+<script type="text/javascript">
+    $(document).on('ready', function() {
+        $('.main-carousel').flickity({
+            cellAlign: 'left',
+            contain: true,
+            freeScroll: true,
+            wrapAround: true,
+            pageDots: false
+        });
+    });
+</script>
+{/literal}
+
+<!-- Header Section Start -->
+<div class="header">
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            {if $isLogin}
+                {include file="$themes/top-account.html"}
+            {else}
+                {include file="$themes/top.html"}
+            {/if}
+        </div>
+
+        <section id="slider">
+            {include file="$themes/banner.html"}
+        </section>
+    </section>
+</div>
+
+<section class="find-job section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 no-padding fw-mgb20">
+                <div align="center" class="col-md-6">
+                    <section class="lazy slider">
+                        {foreach from=$list_banner item="val" name="val"}
+                        <div align="center">
+                            <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_HOME}/upload/banners/{$val.banner_img}" alt="">
+                        </div>
+                        {/foreach}
+
+                    </section>
+                </div>
+                <div align="center" class="col-md-6 in-middle">
+                    <div class="fw-mgb10">
+                        <h2 class="text-cl-index">{$content_index[0].category_name}</h2>
+                    </div>
+                    <div class="fw-mgb10 text-justify">
+                        <p>
+                            {$content_index[0].category_content}
+                        </p>
+                    </div>
+
+                    <div class="fw-mgt10">
+                        <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}about-us.html">
+                            Giới thiệu
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="featured-jobs section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgb10" align="center">
+                <h2>Đối tác AMV</h2>
+            </div>
+
+            <div class="col-md-12">
+                <section class="regular slider">
+                    {foreach from=$all_partner item="val" name="val"}
+                        <div align="center">
+                            {if $val.news_img}
+                                <img style="width: 150px; height: 55px; border: 2px solid #000;" src="{$smarty.const.URL_HOME}/upload/partner/{$val.news_img}"/>
+                            {else}
+                                <img style="width: 150px; height: 55px; border: 2px solid #000;" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" />
+                            {/if}
+                        </div>
+                    {/foreach}
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Find Job Section End -->
+{literal}
+<script>
+    $(document).ready(function () {
+        $('.counter-count').each(function () {
+            $(this).prop('Counter',0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 5000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+    });
+</script>
+{/literal}
+
+<section class="find-job section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {include file="$themes/web/news_top.html"}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Find Job Section Start -->
+<section class="home_background section" style="background: url({$smarty.const.URL_HOMEPAGE}upload/categorys/{$content_index[1].category_img}) no-repeat center center;
+-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; min-height: 450px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="text-align: center; padding-top: 20px;">
+                <h2>{$content_index[1].category_name}</h2>
+                <br/><br/>
+                <h4 class="fw-fs-14">
+                    {$content_index[1].category_content}
+                </h4>
+            </div>
+
+            <div class="col-md-12" style="margin-top: 40px;">
+                <div class="col-md-3">
+                    <center>
+                        <h2 class="counter" style="font-size: 36px;"><span class="counter-count">2000</span> +</h2><br/>
+                        <h5>Trường THPT các nước</h5>
+                    </center>
+
+                </div>
+                <div class="col-md-3">
+                    <center>
+                        <h2 class="counter" style="font-size: 36px;"><span class="counter-count">500</span></h2><br/>
+                        <h5>Trường Đại học các nước</h5>
+                    </center>
+                </div>
+                <div class="col-md-3">
+                    <center>
+                        <h2 class="counter" style="font-size: 36px;"><span class="counter-count">1000</span> tỷ</h2><br/>
+                        <h5>Tổng giá trị học bổng</h5>
+                    </center>
+                </div>
+
+                <div class="col-md-3">
+                    <center>
+                        <h2 class="counter" style="font-size: 36px;"><span class="counter-count">100</span> %</h2><br/>
+                        <h5>Học sinh đậu vào trường mơ ước</h5>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="find-job section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center fw-mgb20 fw-mgt20">
+                <h2 class="text-cl-index">Du Học Dài Hạn</h2>
+            </div>
+
+            <div class="col-md-12 text-center fw-mgb30">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et doloremagna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in uienply voluptate velit esse cillum dolore eu fugiatnulla pariatur.
+            </div>
+
+            <div class="col-md-12 fw-mgb30">
+                {if count($list_du_hoc) > 0}
+                <div class="main-carousel">
+                    {foreach from=$list_du_hoc item="val" key="key" name="val"}
+                    <div class="carousel-cell fw-mgb30 fw-mgt20">
+                        <div class="fw-mgb10" style="padding: 10px;">
+                            <a href="{$smarty.const.URL_HOMEPAGE}sv-detail/{$val.news_id}/{$val.news_url}.html">
+                                <img style="width: 100%;" src="{$smarty.const.URL_HOME}/upload/translator_service/{$val.service_img}" alt="{$val.service_name_limit}">
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 fw-mgb20">
+                            <span class="fw-fs-16 text-cl-index"><strong>{$val.service_name_limit}</strong></span>
+                        </div>
+
+                        <div class="col-md-12 fw-mgb10">
+                            <span>{$val.service_content_limit}</span>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+                {else}
+                    <div align="center" class="fw-mgt30 fw-mgb30"><h3>Don't have data.</h3></div>
+                {/if}
+            </div>
+
+            <div class="col-md-12 fw-mgt20 fw-mgb20">
+                <div class="col-md-3">
+                    <div class="col-md-12 fw-mgb10">
+                        <h3 class="text-cl-index">Chương trình</h3>
+                    </div>
+
+                    <div class="col-md-12 no-padding chuong-trinh slider">
+                        {foreach from=$list_chuong_trinh item="val" name="val"}
+                            <div class="col-md-12 no-padding">
+                                <div class="col-md-12 no-padding fw-mgb10">
+                                    <a href="">
+                                        <img style="width: 100%;" src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}"
+                                              alt="{$val.category_name}">
+                                    </a>
+                                </div>
+                                <div class="col-md-12 no-padding fw-mgb10">
+                                    <span class="fw-fs-16 text-cl-index"><strong>{$val.category_name_limit}</strong></span>
+                                </div>
+
+                                <div class="col-md-12 no-padding fw-mgb10">
+                                    <span class="fw-fs-12">{$val.category_content_left}</span>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="col-md-12 fw-mgb10">
+                        <h3 class="text-cl-index">Học Bổng</h3>
+                    </div>
+
+                    <div class="col-md-12 fw-mgb10">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et doloremagna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in uienply voluptate velit esse cillum dolore eu fugiatnulla pariatur.
+                    </div>
+
+                    <div class="col-md-12 fw-mgb10">
+                        {foreach from=$list_hoc_bong item="val" name="val"}
+                            <div class="col-md-4 no-padding fw-mgb10">
+                                <div class="box_translator" style="margin-right: 10px;">
+                                    <div class="fw-mgb10">
+                                        <a href="{$smarty.const.URL_HOMEPAGE}sv-detail/{$val.news_id}/{$val.news_url}.html">
+                                            <img src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}" alt="{$val.category_name}">
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-12 fw-mgb10">
+                                        <span class="fw-fs-16 text-cl-index"><strong>{$val.category_name_limit}</strong></span>
+                                    </div>
+
+                                    <div class="col-md-12 fw-mgb10">
+                                        <span class="fw-fs-12">{$val.category_content_limit}</span>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="featured-jobs section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center fw-mgb20 fw-mgt20">
+                <h2 class="text-cl-index">{$content_index[5].category_name}</h2>
+            </div>
+
+            <div class="col-md-12 text-center fw-mgb30">
+                <div>
+                    {$content_index[5].category_content}
+                </div>
+            </div>
+
+            <div class="col-md-12 fw-mgb20">
+                {foreach from=$list_content_quality item="val" key="key" name="val"}
+                <div class="col-md-6 fw-mgb10" style="min-height:130px;">
+                    <div class="col-md-4" align="center">
+                        {if $val.category_img}
+                            <img src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}" />
+                        {else}
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/icon_time.png"/>
+                        {/if}
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="fw-fs-24 fw-mgb10 text-cl-index">{$val.category_name}</div>
+                        <div class="fw-mgb10">
+                            {$val.category_content}
+                        </div>
+                    </div>
+                </div>
+                {/foreach}
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Find Job Section Start -->
+<section class="find-job section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center fw-mgb20 fw-mgt20">
+                <h2 class="text-cl-index">{$content_index[6].category_name}</h2>
+            </div>
+
+            <div class="col-md-12 text-center fw-mgb30">
+                <div>
+                    {$content_index[6].category_content}
+                </div>
+            </div>
+
+            <div class="col-md-12 fw-mgb10">
+                <div class="col-md-6 fw-mgb10">
+                    <div align="center" class="box_home_translate">
+
+                        <div class="fw-mgb30">
+                            <span class="translator_text"><strong>Hành trình du học của bạn</strong></span>
+                        </div>
+                        <div class="fw-mgb30">
+                            <span>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                            do eiusmod tempor incididunt ut ero labore et dolore.
+                            </span>
+                        </div>
+                        <div class="fw-mgb20">
+                            <center>
+                                <a class="btn btn-signup-home" href="{$smarty.const.URL_HOMEPAGE}register.html">
+                                    PHƯƠNG THỨC HOẠT ĐỘNG
+                                </a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div align="center" class="box_home_translate">
+                        <div class="fw-mgb30">
+                            <span class="translator_text"><strong>Chào mừng bạn đến với AMV</strong></span>
+                        </div>
+                        <div class="fw-mgb30">
+                            <span>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                                do eiusmod tempor incididunt ut ero labore et dolore.
+                            </span>
+                        </div>
+                        <div class="fw-mgb20">
+                            <center>
+                                <a class="btn btn-signup-home" href="{$smarty.const.URL_HOMEPAGE}dang-ky-chuyen-vien.html">
+                                    ĐĂNG KÝ
+                                </a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-jobs section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left fw-mgb20 fw-mgt20">
+                <h2 class="text-cl-index">AMV Blog</h2>
+            </div>
+            <div class="col-md-12 fw-mgb10 fw-mgt20">
+                {foreach from=$list_blog_center item="val" key="key" name="val"}
+                <div class="col-md-3 no-padding fw-mgb20">
+                    <div class="col-md-12 fw-mgb10" align="center">
+                        <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                            {if $val.news_img}
+                            <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_HOME}/upload/blogs/{$val.news_img}" />
+                            {else}
+                            <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
+                            {/if}
+                        </a>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="team_title">
+                            <a class="team_title" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                <strong>{$val.news_name_limit}</strong>
+                            </a>
+                        </div>
+                        <div class="team_content fw-mgb20" style="height:auto; min-height: 80px;">{$val.news_content_limit}</div>
+                        <div class="col-md-12 no-padding">
+                            <div class="col-md-6 no-padding">
+                                <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                                <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                            </div>
+                            <div class="col-md-6 no-padding" align="right">
+                                <span style="color:#9b9999"><strong>SHARE</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/foreach}
+            </div>
+
+            {if count($list_blog_center) > 10}
+            <div align="center" class="col-md-12">
+                <div class="fw-mgb20">
+                    <a class="btn btn-learn-more" href="#" onclick="loadBlogData(121);">
+                        Learn more
+                    </a>
+                </div>
+            </div>
+            {/if}
+        </div>
+    </div>
+</section>
+<!-- footer -->
+{include file="$themes/footer_index.html"}

@@ -1,0 +1,156 @@
+<div class="wrapper" style="padding-bottom: 20px;">
+  {foreach from=$allCV item="val" name="val"}
+  <div class="box-1">
+   <div align="center" style="margin: 20px 0 20px 0;">
+     <a href="#fadeandscale_to_cv_{$val.userid}" alt="{$val.userid}" id="getProfile_{$val.userid}" class="fadeandscale_to_cv_{$val.userid}_open">
+      {if $val.avatar}
+      <img width="90" height="90" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+      {else}
+      <img width="90" height="90" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+      {/if}
+    </a>
+  </div>
+  <div class="fw-bg-gray-cv">
+    <div style="padding: 5px;">
+     <div align="left"><strong>{$val.name}</strong></div>
+     <div align="left">
+      <i class="fa fa-map-marker" aria-hidden="true"></i> {if $val.country}
+        {$val.country}
+      {else}
+        Location
+      {/if}
+    </div>
+  </div>
+
+</div>
+<div class="fw-bg-blue-cv">
+  <div style="padding: 5px;">
+    <div align="left">Translate From: English</div>
+    <div align="left">Translate To: VietNam</div>
+  </div>
+</div>
+</div>
+
+
+{literal} 
+<script>
+  $(document).ready(function () {
+    $('#fadeandscale_to_cv_{/literal}{$val.userid}{literal}').popup({
+      pagecontainer: '.container',
+      transition: 'all 0.3s',
+      horizontal: 'right',
+      scrolllock: false
+    });
+  });
+</script>
+{/literal} 
+
+{* Load html choose to_language *}
+<div id="fadeandscale_to_cv_{$val.userid}" class="well" style="width: 800px; display: none;">
+  <div class="col-md-12">
+    <div class="col-md-2">
+      {if $val.avatar}
+      <img width="80" height="80" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+      {else}
+      <img width="80" height="80" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+      {/if}
+    </div>
+
+    <div class="col-md-8">
+     <div><strong>{$val.name}</strong></div>
+     <div>
+      <i class="fa fa-map-marker" aria-hidden="true"></i> {if $val.country}
+       {$val.country}
+      {else}
+        Address
+      {/if}
+    </div>
+    <div>Native language: <strong>{$val.native_language_name}</strong></div>
+  </div>
+
+  <div class="col-md-2" align="right">
+   <div> <img width="60" src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo_small.png"/></div>
+ </div>
+</div>
+
+<div class="col-md-12">
+ <div class="divider-info"></div>
+</div>
+
+<div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>Giới thiệu</h3></div>
+  <div style="word-break: break-all;">
+   {if $val.about}
+   {$val.about}
+   {else}
+   Không có
+   {/if}
+ </div>
+</div>
+
+<div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>Cặp ngôn ngữ</h3></div>
+  <div class="col-md-12">
+    <div class="col-md3">English <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Japan</div>
+    <div style="clear:both;"></div>
+      <div class="col-md3">English <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Vietnam</div>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>Kinh nghiệm & kỹ năng</h3></div>
+  <div class="fw-mgb10">
+    <strong>Chủ đề lĩnh vực</strong>
+  </div>
+  <div class="col-md-12">
+    <div id="border-content" class="col-md-2"> <div align="center" style="padding:5px;">Pháp lý</div></div>
+    <div id="border-content" class="col-md-2"><div align="center" style="padding:5px;">Máy móc</div></div>
+  </div>
+  <div class="fw-mgb10">
+    <strong>Số năm kinh nghiệm</strong>
+  </div>
+  <div style="clear:both;"></div>
+  <div id="border-content">
+   <div align="center" style="padding:5px;">
+     {if $val.experience}
+     {$val.experience}
+     {else}
+     1 year
+     {/if}
+   </div>
+ </div>
+<div style="clear:both;"></div>
+ <div class="fw-mgb10">
+   <strong>Số từ dịch / 1 ngày</strong>
+ </div>
+ <div style="clear:both;"></div>
+ <div id="border-content">
+  <div align="center" style="padding:5px;">
+   {$val.speed_translate} từ / 1 ngày
+ </div>
+
+</div>
+</div>
+
+<div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>Phần mềm & Dịch vụ</h3></div>
+  <div class="fw-mgb10">
+    <strong>Dịch vụ</strong>
+  </div>
+  <div>
+    
+  </div>
+  <div class="fw-mgb10">
+    <strong>Phần mềm sử dụng</strong>
+  </div>
+  <div>
+
+  </div>
+
+</div>
+
+</div>
+
+{/foreach}
+</div>

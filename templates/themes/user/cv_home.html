@@ -1,0 +1,261 @@
+<div class="wrapper" style="padding-bottom: 20px;">
+  {foreach from=$allCV item="val" name="val"}
+  <div class="box-1">
+   <div align="center" style="margin: 20px 0 20px 0;">
+     <a href="#fadeandscale_to_cv_{$val.userid}" alt="{$val.userid}" class="fadeandscale_to_cv_{$val.userid}_open">
+      {if $val.avatar}
+      <img width="90" height="90" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+      {else}
+      <img width="90" height="90" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+      {/if}
+    </a>
+  </div>
+  <div class="fw-bg-gray-cv">
+    <div style="padding: 5px;">
+     <div align="left"><strong title="{$val.full_name}">{$val.name}</strong></div>
+     <div align="left">
+      <i class="fa fa-map-marker" aria-hidden="true"></i> {if $val.country_name}
+      {$val.country_name}
+      {else}
+      Location
+      {/if}
+    </div>
+  </div>
+
+</div>
+<div class="fw-bg-blue-cv">
+  <div style="padding: 5px;">
+    <div align="left">Translate From: <span id="main_from_language_{$val.userid}"></span></div>
+    <div align="left">Translate To: <span id="main_to_language_{$val.userid}"></span></div>
+  </div>
+</div>
+</div>
+
+{literal} 
+<script>
+  $(document).ready(function () {
+   $('#fadeandscale_to_cv_{/literal}{$val.userid}{literal}').popup({
+    pagecontainer: '.container',
+    transition:  'all 0.3s ease-out',
+    horizontal: 'right',
+    escape: true,
+    scrolllock: false
+  });
+
+   var user_id = $('#user_id_{/literal}{$val.id}{literal}').val();
+   $.ajax({
+     type: "GET",
+     url: "load/get_language_user.php",
+     data: 'user_id=' + user_id,
+     dataType: 'json',    
+     success: function(data) {
+       for (i = 0; i < data.length; i++) {
+         var main_from_language = data[0]['from_language_name'];
+         var main_to_language = data[0]['to_language_name'];
+
+         var from_language = data[i]['from_language_name'];
+         var to_language = data[i]['to_language_name'];
+         var language = "<div id=\"border-content\"  style=\"margin-bottom:10px;\"><div align=\"center\" style=\"padding:5px;\">" + from_language + " - " + to_language + "</div></div>";
+         if (language != '') {
+          $('#language_content_{/literal}{$val.userid}{literal}').append(language);  
+        } 
+      } 
+      $('#main_from_language_{/literal}{$val.userid}{literal}').append(main_from_language);  
+      $('#main_to_language_{/literal}{$val.userid}{literal}').append(main_to_language);  
+
+      if (!$.trim(data)){  
+        $('#language_content_{/literal}{$val.userid}{literal}').append('<span class=\"fw-cl-gray\">Your main language pairs</span>');  
+      } 
+    }
+  });
+
+  $.ajax({
+     type: "GET",
+     url: "load/get_subject_user.php",
+     data: 'user_id=' + user_id,
+     dataType: 'json',    
+     success: function(data) {
+      data.forEach(function(data1) {
+           var category_name = data1[0]['category_name'];
+           var subject = "<div id=\"border-content\" style=\"margin-bottom:10px;\"><div align=\"center\" style=\"padding:5px;\">" + category_name + "</div></div>";
+           if (subject != '') {
+            $('#subject_content_{/literal}{$val.userid}{literal}').append(subject);  
+          }
+      });
+     
+    if (!$.trim(data)){  
+      $('#subject_content_{/literal}{$val.userid}{literal}').append('<span class=\"fw-cl-gray\">Your translation subject</span>');  
+    } 
+  }
+});
+
+   $.ajax({
+     type: "GET",
+     url: "load/get_service_user.php",
+     data: 'user_id=' + user_id,
+     dataType: 'json',    
+     success: function(data) {
+      for (i = 0; i < data.length; i++) {
+       var service_name = data[i]['service_name'];
+       var service = "<div id=\"border-content\" style=\"margin-bottom:10px;\"><div align=\"center\" style=\"padding:5px;\">" + service_name + "</div></div>";
+       if (service != '') {
+        $('#service_content_{/literal}{$val.userid}{literal}').append(service);  
+      }
+    }   
+    if (!$.trim(data)){  
+      $('#service_content_{/literal}{$val.userid}{literal}').append('<span class=\"fw-cl-gray\">Your services</span>');  
+    } 
+  }
+});
+
+   $.ajax({
+     type: "GET",
+     url: "load/get_software_user.php",
+     data: 'user_id=' + user_id,
+     dataType: 'json',    
+     success: function(data) {
+      for (i = 0; i < data.length; i++) {
+       var software_name = data[i]['software_name'];
+       var software = "<div id=\"border-content\" style=\"margin-bottom:10px;\"><div align=\"center\" style=\"padding:5px;\">" + software_name + "</div></div>";
+       if (software != '') {
+        $('#software_content_{/literal}{$val.userid}{literal}').append(software);  
+      }
+    }
+    if (!$.trim(data)){  
+      $('#software_content_{/literal}{$val.userid}{literal}').append('<span class=\"fw-cl-gray\">Translator Toolkit</span>');  
+    } 
+  }
+});
+
+   return false;
+ });
+</script>
+
+<style type="text/css">
+#fadeandscale_to_cv_{/literal}{$val.userid}{literal} {
+  transform: scale(0.8);
+  background: #fff;
+}
+.popup_visible #fadeandscale_to_cv_{/literal}{$val.userid}{literal} {
+  transform: scale(1);
+}
+</style>
+{/literal} 
+
+{* Load html choose to_language *}
+<div id="fadeandscale_to_cv_{$val.userid}" class="well" style="width: 950px; display: none;">
+  <div class="col-md-12">
+    <input type="hidden" value="{$val.userid}" name="user_id_{$val.id}" id="user_id_{$val.id}" />
+    <div class="col-md-2">
+      {if $val.avatar}
+      <img width="100" height="100" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+      {else}
+      <img width="100" height="100" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+      {/if}
+    </div>
+
+    <div class="col-md-8">
+     <div><strong>{$val.name}</strong></div>
+     <div>
+      <i class="fa fa-map-marker" aria-hidden="true"></i> {if $val.country_name}
+      {$val.country_name}
+      {else}
+      <span class="fw-cl-gray">
+        Country
+      </span>
+      {/if}
+    </div>
+    <div>Native language: 
+      {if $val.native_language_name}
+      <strong>{$val.native_language_name}</strong>
+      {else}
+      <span class="fw-cl-gray">Your Native language</span>
+      {/if}
+    </div>
+  </div>
+
+  <div class="col-md-2" align="right">
+   <div> <img width="80" src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo_small.png"/></div>
+ </div>
+</div>
+
+<div class="col-md-12">
+ <div class="divider-info"></div>
+</div>
+
+<div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>About</h3></div>
+  <div>
+   {if $val.about}
+   {$val.about}
+   {else}
+   <span class="fw-cl-gray">
+    Introduce more about you
+  </span>
+  {/if}
+</div>
+</div>
+
+<div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>Language Pairs</h3></div>
+
+  <div id="language_content_{$val.userid}"></div>
+</div>
+
+<div class="col-md-12 fw-mgt10">
+  <div class="fw-mgb10 fw-mgt10"><h3>Experience and Skills</h3></div>
+  <div class="fw-mgb10">
+    <strong>Subject field</strong>
+  </div>
+
+  <div id="subject_content_{$val.userid}"></div>
+
+  <div style="clear: both"></div>
+  <div class="fw-mgb10 fw-mgt10">
+    <strong>Years of experience</strong>
+  </div>
+  <div style="clear:both;"></div>
+  <div id="border-content">
+   <div align="center" style="padding:5px;">
+     {if $val.experience}
+     {$val.experience}
+     {else}
+     1 year
+     {/if}
+   </div>
+ </div>
+ <div style="clear:both;"></div>
+ <div class="fw-mgb10 fw-mgt10">
+   <strong>Number of words / 1 day</strong>
+ </div>
+ <div style="clear:both;"></div>
+ <div id="border-content">
+  <div align="center" style="padding:5px;">
+    {if $val.speed_translate}
+    {$val.speed_translate} word(s)
+    {else}
+    0 word(s)
+    {/if}
+  </div>
+
+</div>
+</div>
+
+<div class="col-md-12">
+  <div class="fw-mgb10 fw-mgt10"><h3>Software and Services</h3></div>
+  <div class="fw-mgb10">
+    <strong>Services</strong>
+  </div>
+
+  <div id="service_content_{$val.userid}"></div>
+
+  <div style="clear: both;"></div>
+  <div class="fw-mgb10 fw-mgt10">
+    <strong>The software</strong>
+  </div>
+
+  <div  id="software_content_{$val.userid}"></div>
+</div>
+</div>
+{/foreach}
+</div>

@@ -1,0 +1,162 @@
+{include file="left.html"}
+<iframe width=174 height=189 name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="{$smarty.const.URL_ADMIN_THEM}calendar/ipopeng.htm" 
+scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; left:-500px; top:0px;">
+</iframe>
+
+<div id="page-wrapper">
+<div class="row">
+<div class="col-lg-12">
+    <h1 class="page-header"><a href="{$smarty.const.URL_ADMIN}?module={$url}&main=unsession" ><i class="fa fa-home"></i> {$main_content}</a></h1>
+</div>
+</div>
+
+<div class="row">
+<!--Search-->
+<!--Search-->
+<form name="frm_search" method="post" action="{$smarty.const.URL_ADMIN}?module={$url}&main=search" class="search_date">
+<div class="col-lg-2">
+<div class="input-group custom-search-form">
+	<input name="startdate" class="form-control" type="text" id="startdate" value="{$startdate}" placeholder="{$smarty.const.langcms_carttn}"  />
+    <span class="input-group-btn">
+        <button class="btn btn-default" name="btn" type="button" onclick="if(self.gfPop)gfPop.fPopCalendar(document.frm_search.startdate);return false;">
+        <i class="fa fa-angle-double-down"></i>
+        </button>
+    </span>
+</div>
+</div>
+<div class="col-lg-2">
+<div class="input-group custom-search-form">
+	<input name="enddate" class="form-control" type="text" id="enddate" value="{$enddate}" placeholder="{$smarty.const.langcms_cartdn}" />
+    <span class="input-group-btn">
+        <button class="btn btn-default" name="btn" type="button" onclick="if(self.gfPop)gfPop.fPopCalendar(document.frm_search.enddate);return false;">
+        <i class="fa fa-angle-double-down"></i>
+        </button>
+    </span>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="input-group custom-search-form">
+    <input type="text" class="form-control" placeholder="Search..." name="name_search" id="name_search" value="{$name_search}" >
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="submit" name="submit" id="submit">
+        <i class="fa fa-search"></i>
+        </button>
+    </span>
+</div>
+</div>
+<div class="col-lg-2 click_right" style="float:right; text-align:right">
+<a href="{$smarty.const.URL_ADMIN}?module={$url}&main=unsession" class="bg_off" > <i class="fa fa-refresh"></i> Refresh</a> 
+</div>
+</form> 
+
+
+<!--Views-->    
+<div class="col-lg-12">
+<form name="frm_news" method="POST" >
+<div class="panel panel-default">
+<div class="panel-heading">
+    <div class="row">
+    <div class="col-lg-9 heading_title">
+        <i class="fa fa-windows"></i> {$main_content}  <strong>( {$numf} {$main_name} )</strong>
+    </div>  
+
+    <div class="col-lg-3 click_right">
+    	{if $action_delete}
+        <a href="javascript:void(0);" onclick="del_news('frm_news');" class="bg_del" >
+        <i class="fa fa-trash-o"></i> {$smarty.const.langcms_xoa}</a>  
+        {/if}
+         <a href="{$smarty.const.URL_ADMINCMS}export/imports_export.php?{$url_category}{$url_search}{$url_shops}{$url_order}{$url_start}{$url_end}"
+      target="_blank" class="br_off" > <i class="fa fa-file-text"></i> {$smarty.const.langcms_xuatfile}</a>
+    </div>
+    </div>
+</div>
+    
+<div class="panel-body">
+    <ul class="table_ul">
+        <li class="lileft">
+            <select class="limit_option" onchange="MM_jumpMenu('parent',this,0)" >
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=10" {if $limit eq 20 }selected="selected"{/if}>10</option>
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=20" {if $limit eq 20 }selected="selected"{/if}>20</option>
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=50" {if $limit eq 50 }selected="selected"{/if}>50</option>
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=100" {if $limit eq 100 }selected="selected"{/if}>100</option>
+                <option value="{$url_views}{$url_category}{$url_shops}{$url_order}&limit=200" {if $limit eq 200 }selected="selected"{/if}>200</option>
+           </select>
+        </li>
+    	<li class="lileft" style="width:40%"><div class="paging_news">{$paging}</div></li>
+        <li>
+           <select class="cate_option" onchange="MM_jumpMenu('parent',this,0)" >
+            <option value="{$url_views}{$url_shops}{$url_order}{$url_limit}">{$smarty.const.langcms_loctheo}</option>
+            {foreach from=$tree_select name=val  item=val}
+            <option value="{$url_views}{$url_shops}{$url_order}{$url_limit}&category={$val.category_id}" 
+            {if $val.category_id eq $category }selected="selected"{/if}> {$val.category_name}</option>
+            {/foreach}
+            </select>
+        </li>
+        <li style="margin-right:10px">
+            <select class="cate_option" onchange="MM_jumpMenu('parent',this,0)">
+            <option value="{$url_views}{$url_category}{$url_order}{$url_limit}">{$smarty.const.langcms_loccc}</option>
+            {foreach from=$rs_shop item="rs_shop" name="rs_shop"}
+            <option value="{$url_views}{$url_category}{$url_order}{$url_limit}&shops={$rs_shop.id}" {if $rs_shop.id eq $shops}selected{/if}>
+            {$rs_shop.shopname}</option>
+            {/foreach}
+            </select>
+        </li>
+    </ul>
+    <table class="table_views table-striped table-hover">
+    <thead>
+        <tr class="two">
+          <td align="center"> ID
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=id_tem&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=id_tem&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td>{$smarty.const.langcms_spten}</td>
+          <td>{$smarty.const.langcms_cartchon}</td>
+          <td class="mw_100">{$smarty.const.langcms_spgnhap}
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=import_price&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=import_price&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td align="center">{$smarty.const.langcms_cartsol}
+          <div class="order">
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=import_quantity&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=import_quantity&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td align="center">{$smarty.const.langcms_welnnn}
+          <div class="order">
+              <a href="{$url_views}{$url_limit}&order=import_date&sc=asc"><i class="fa fa-caret-up"></i></a>  
+              <a href="{$url_views}{$url_limit}&order=import_date&sc=desc"><i class="fa fa-caret-down"></i></a>
+          </div>
+          </td>
+          <td align="center"><label><input type="checkbox" data-toggle="checkall" data-target="input[id=checks]" /></label></td>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach from=$rs name=rs  item=rs}
+          <tr>
+          <td align="center" class="mw_80">{$rs.id_tem} </td>
+          <td>{$rs.news_name}</td>
+          <td>{$rs.option_name}</td>
+          <td ><input type="text" value="{$rs.import_price}" class="auto_nume" data-v-max="9999999999" data-v-min="0" readonly="readonly" style="text-align:right"/></td>
+          <td align="center">{$rs.import_quantity}</td>
+          <td align="right">{$rs.time_news}</td>
+          <td align="center">
+          {if $rs.time_end <= 86400 }
+          <label><input type="checkbox" id="checks" name="checkbox_id[]" value="{$rs.id_tem}"  /></label>
+          {/if}
+          </td>
+        </tr>
+        {/foreach}
+    </tbody>
+    </table>  
+</div>
+</div>
+</form>  
+</div>
+</div>
+
+</div>
+

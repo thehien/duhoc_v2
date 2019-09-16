@@ -1,0 +1,221 @@
+{include file="$themes/header.html"}
+<div id="wrapper">
+ {include file="$themes/top.html"}  
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="photo-bg" style="background: url({$smarty.const.URL_IMAGE_NEW}/bg1.jpg)">
+	<div class="container">
+		<div class="sixteen columns">
+			<span><a href="#">{$new_detail.category_name}</a></span>
+			<h2>{$new_detail.news_name} 
+								{if $new_detail.job_type == 1}
+                                  <span class="full-time">Full-time</span>
+                                {else}
+                                  <span class="part-time">Part-time</span>
+                                {/if}
+ 								
+ 								{if $new_detail.news_deadline}<span class="temporary"> Deadline: {$new_detail.news_deadline}</span>{/if}
+                                
+			</h2>
+		</div>
+
+	</div>
+</div>
+<!-- Content
+================================================== -->
+{literal}
+<script type="text/javascript">
+function validateApplyJob() {
+  var valid = true; 
+  $(".demoInputBox").css('background-color','');
+  $(".info").html('');
+
+  if(!$("#name").val()) {
+    $("#name-info").html("(required)");
+    $("#name").css('background-color','#FFFFDF');
+    valid = false;
+  }
+  if(!$("#email").val()) {
+    $("#email-info").html("(required)");
+    $("#email").css('background-color','#FFFFDF');
+    valid = false;
+  }
+   var email = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; 
+  if(!$("#email").val().match(email)) {
+    $("#email-info").html("(Invalid email)");
+    $("#email").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if(!$("#phone").val()) {
+    $("#phone-info").html("(required)");
+    $("#phone").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  var phoneNumber = /[0-9-()+]{3,20}/; 
+  if(!$("#phone").val().match(phoneNumber)) {
+    $("#phone-info").html("(Please input number)");
+    $("#phone").css('background-color','#FFFFDF');
+    valid = false;
+  }
+  if(!$("#address").val()) {
+    $("#address-info").html("(required)");
+    $("#address").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if(!$("#message").val()) {
+    $("#message-info").html("(required)");
+    $("#message").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if (valid == false) {
+    var elementFocust = $('*:input[type!=hidden]:first').focus();
+   $('html, body').animate({scrollTop: elementFocust.offset().top}, 1500); 
+  }
+  
+  return valid;
+}
+
+function applyJob() {
+  var valid = validateApplyJob();
+  if(valid) {
+    document.getElementById("frm_applyJob").submit();
+    return false;
+  }
+}
+</script>
+{/literal}
+<div class="container">
+	
+	<!-- Recent Jobs -->
+	<div class="eleven columns">
+	<div class="submit-page">
+		
+		<div class="company-info">
+		  
+			<h4 class="margin-bottom-5">Apply Job</h4>
+
+		</div>
+
+		 {if $errorMessage}
+         <div id="result" class="notification error">{$errorMessage}</div>
+         {/if}
+		<div id="contact_body">
+
+	      <form name="frm_applyJob" id="frm_applyJob" method="post" action="{$smarty.const.URL_HOMEPAGE}cartdetail.html" enctype="multipart/form-data"> 
+	      	<input type="hidden" name="job" id="job" value="{$new_detail.news_name}">
+			<input type="hidden" name="code" id="code" value="{$new_detail.news_code}">
+			<input type="hidden" name="id" id="id" value="{$new_detail.news_id}">
+
+		      <!-- Email -->
+		      <div class="form">
+		        <h5>Your Name</h5>
+		        <span id="name-info" class="info"></span>
+		        <input class="search-field" type="text" name="name" id="name" placeholder="Your full name" value="{$name}" class="demoInputBox" />
+		      </div>
+
+		       <!-- Email -->
+		      <div class="form">
+		        <h5>Your Email</h5>
+		        <span id="email-info" class="info"></span>
+		        <input class="search-field" type="text" name="email" id="email" placeholder="Your Email" value="{$email}" class="demoInputBox" />
+		      </div>
+
+		       <!-- Email -->
+		      <div class="form">
+		        <h5>Your Address</h5>
+		        <span id="address-info" class="info"></span>
+		        <input class="search-field" type="text" name="address" id="address" placeholder="Your address" value="{$address}" class="demoInputBox" />
+		      </div>
+
+		       <!-- Email -->
+		      <div class="form">
+		        <h5>Your Phone</h5>
+		        <span id="phone-info" class="info"></span>
+		        <input class="search-field" type="text" name="phone" id="phone" placeholder="Your phone" value="{$mobile}" class="demoInputBox" />
+		      </div>
+
+		       <!-- Email -->
+		      <div class="form">
+		        <h5>Your Message</h5>
+		        <span id="message-info" class="info"></span>
+		       <textarea rows="13" cols="7" name="message" id="message" placeholder="Your message / cover letter sent to the employer" class="demoInputBox">{$message}</textarea>
+		      </div>
+
+		       <!-- cv -->
+		       <div class="form">
+		        <h5>Upload your CV <span>(optional)</span> <span>Max. file size: 5MB</span></h5>
+		        <input type="file" name="resume" id="resume" multiple />
+		      </div>
+
+		      <!-- captcha  -->
+		      <div class="form with-line">
+                <div class="g-recaptcha" data-sitekey="{$smarty.const.lang_captcha}"></div>
+		      </div>
+
+
+      		  <div class="divider margin-top-0 padding-reset"></div>
+         		 <input type="button" id="submit_btn" class="button big margin-top-5" onClick="applyJob();" value="Send Application" />
+                 <input type="hidden" name="submitCv" value="1" />
+	      </form>
+      </div>
+
+	</div>
+	</div>
+
+
+	<!-- Widgets -->
+	<div class="five columns">
+
+		<!-- Sort by -->
+		<div class="widget">
+			<h4>Overview</h4>
+
+			<div class="job-overview">
+				
+				<ul>
+					<li>
+						<i class="fa fa-map-marker"></i>
+						<div>
+							<strong>Work at:</strong>
+							<span>{$new_detail.news_work_at}</span>
+						</div>
+					</li>
+					<li>
+						<i class="fa fa-user"></i>
+						<div>
+							<strong>Level Japanese:</strong>
+							<span>{$new_detail.news_level}</span>
+						</div>
+					</li>
+					<li>
+						<i class="fa fa-money"></i>
+						<div>
+							<strong>Salary:</strong>
+							<span>{$new_detail.news_salary}</span>
+						</div>
+					</li>
+					<li>
+						<i class="fa fa-folder"></i>
+						<div>
+							<strong>Category:</strong>
+							<span>{$new_detail.category_name}</span>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+	<!-- Widgets / End -->
+</div>
+{include file="$themes/footer.html"}
+
+
+

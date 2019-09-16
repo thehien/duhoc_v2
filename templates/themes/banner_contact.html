@@ -1,0 +1,42 @@
+<div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <!--/.carousel-inner -->
+    <div class="carousel-inner" role="listbox">
+        <!-- .item -->
+            <div class="item {if $smarty.foreach.val.first}active{/if}">
+                <div class="single-slide-item slide{$val}">
+                    <div class="container">
+                        <div class="welcome-hero-content">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="single-welcome-hero">
+                                        <div class="welcome-hero-txt">
+                                            <h2>{$val.banner_name}</h2>
+                                            <h4>{$val.banner_content}</h4>
+                                        </div>
+                                        {if $duhoc}
+                                        <div align="left" class="col-md-12 no-padding fw-mgt30">
+                                            <a href="{$smarty.const.URL_HOMEPAGE}translate.html" class="btn btn-translate btn-lg"
+                                               style="border-radius: 50px !important; padding-bottom:10px;">ĐĂNG KÝ TRỰC TUYẾN</a>
+                                        </div>
+                                        {/if}
+
+                                        {if $news}
+                                        <div align="left" class="col-md-12 no-padding fw-mgt30">
+                                            <a href="{$smarty.const.URL_HOMEPAGE}translate.html" class="btn btn-translate btn-lg"
+                                               style="border-radius: 50px !important; padding-bottom:10px;">HỖ TRỢ</a>
+                                        </div>
+                                        {/if}
+                                        <!--/.welcome-hero-txt-->
+                                    </div><!--/.single-welcome-hero-->
+                                </div><!--/.col-->
+                                <div class="col-sm-4">
+                                </div><!--/.col-->
+                            </div><!--/.row-->
+                        </div><!--/.welcome-hero-content-->
+                    </div><!-- /.container-->
+                </div><!-- /.single-slide-item-->
+
+            </div><!-- /.item .active-->
+
+    </div><!-- /.carousel-inner-->
+</div><!--/#header-carousel-->

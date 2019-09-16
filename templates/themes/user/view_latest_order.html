@@ -1,0 +1,56 @@
+
+<div id="content-d" class="content light">
+	{foreach from=$latest_order item="val" name="val"}
+	<div class="col-md-12 no-padding fw-mgt10 fw-mgb10 fw-hover">
+		<div class="col-md-2 no-padding">
+			<div align="center">
+				{if $val.avatar_cust}
+				<img width="40" height="40" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar_cust}" class="img-circle"/>
+				{else}
+				<img width="40" height="40" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+				{/if}
+			</div>
+		</div>
+
+		<div class="col-md-10 no-padding">
+			<div class="fw-mgb10" style="font-size: 14px;">
+				<strong>ID {$val.coupon_code}: {$val.file_translate}</strong>
+			</div>
+			<div style="clear: both;"></div>
+				
+				<div class="col-md-12 no-padding">
+					<div class="col-md-5 no-padding">
+						{foreach from=$fromTolanguage name=val_order item=val_order}
+						<span id="translate_from" class="language-bg" style="margin-bottom: 5px;">
+							<img width="25" height="25" src="{$smarty.const.URL_HOME}/upload/list_language/{$val_order.from_flag_language.img_flag}" class="img-circle"/><span style="margin:5px; font-size: 13px;">{$val_order.from_language_name}</span>
+						</span>
+						<br/>
+						{/foreach}
+					</div>
+
+					<div class="col-md-2 no-padding" align="center">
+						{foreach from=$fromTolanguage name=val_order item=val_order}
+						<div id="translate_to" style="margin-bottom: 5px;">
+							<i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+						</div>
+						{/foreach}
+					</div>
+
+					<div class="col-md-5 no-padding">
+						{foreach from=$fromTolanguage name=val_order item=val_order}
+						<span id="translate_to" class="language-bg"  style="margin-bottom: 5px;">
+							<img width="25" height="25" src="{$smarty.const.URL_HOME}/upload/list_language/{$val_order.to_flag_language.img_flag}" class="img-circle"/><span style="margin:5px; font-size: 13px;">{$val_order.to_language_name}</span>
+						</span>
+						<br/>
+						{/foreach}
+					</div>
+
+					<div class="col-md-12 no-padding fw-mgb5" style="font-size: 13px; white-space: nowrap;">
+						{$val.ngay_order}
+					</div>
+
+				</div>
+		</div>
+	</div>
+	{/foreach}
+</div>

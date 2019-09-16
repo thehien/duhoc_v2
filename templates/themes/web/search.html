@@ -1,0 +1,24 @@
+<div class="search-container">
+<form name="frmsearch" method="post" action="{$smarty.const.URL_HOMEPAGE}search.html">
+    <!-- Form -->
+    <h2>Find job</h2>
+    <input type="text" name="job" class="ico-01" placeholder="job title" value="">
+
+    {*<input type="text" name="language" class="ico-03" placeholder="Japanese : N1, N2, N3..." value="">*}
+
+    <input type="text" name="province" class="ico-02" placeholder="city, province or region" value="">
+    <button type='submit'><i class="fa fa-search"></i></button>
+
+</form>
+    {if !$isMobile}
+        <!-- Browse Jobs -->
+        <div class="browse-jobs">
+            Browse job offers by <a href="{$smarty.const.URL_HOME}/all-categories-main.html"> category</a>
+        </div>
+   
+    <!-- Announce -->
+    <div class="announce">
+        We have over <strong>{$number}</strong> job offers for you!
+    </div>
+    {/if}
+</div>

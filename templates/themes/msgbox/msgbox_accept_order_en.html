@@ -1,0 +1,38 @@
+<div style="line-height:17px; font-weight:400;">
+  <h4><strong>You received this order. Please review the customer's request before conducting the translation.
+</strong></h4><br />
+  {foreach from=$rs_detail item="val" name="val"}
+  <p>
+   <strong>Project Name:</strong> {$val.file_translate}<br />
+   <strong>Project ID:</strong> {$val.coupon_code}<br />
+
+   <strong>Translate From:</strong>
+   {foreach from=$order_language name=val_order item=val_order}
+     {foreach from=$val_order name=val1 item=val1}
+        {if $val1.translate_id == $val.translate_id}
+          {$val1.from_language_name}{if !$smarty.foreach.val1.last},{/if}
+        {/if}
+      {/foreach}
+   {/foreach}
+   <br />
+   <strong> Translate To:</strong>
+   {foreach from=$order_language name=val_order item=val_order}
+      {foreach from=$val_order name=val1 item=val1}
+        {if $val1.translate_id == $val.translate_id}
+          {$val1.to_language_name}{if !$smarty.foreach.val1.last},{/if}
+        {/if}
+      {/foreach}
+   {/foreach}
+   <br />
+   <strong>Words:</strong> {$val.count_text}<br />
+   <strong>Created Date:</strong> {$val.ngay_mua}<br />
+   <strong>Estimated Delivery:</strong> {$val.estimate} (hours)<br />
+   <strong>Amount:</strong> $ <strong>{$val.price}</strong><br /><br />
+ </p> 
+ {/foreach}  
+ <p>
+  <center>
+    <a href="{$smarty.const.URL_HOMEPAGE}send-order.html" class="btn btn-translate-home">Next</a>
+  </center>
+</p>                     
+</div> 

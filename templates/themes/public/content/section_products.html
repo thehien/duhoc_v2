@@ -1,0 +1,49 @@
+{section name=cate_bo loop=$cate_bo}
+{if $cate_pro[cate_bo]}
+<div class="section_products" style="border-top:2px solid #{$cate_bo[cate_bo].color} ">	
+	<div class="col-lg-33 col-md-3">  
+        <div class="cates_name" style="background:#{$cate_bo[cate_bo].color};">
+        <a href="{$smarty.const.URL_HOMEPAGE}{$cate_bo[cate_bo].category_url}.html">
+            <i class="fa fa-bars"></i>
+            <h3>{$cate_bo[cate_bo].category_name}</h3>
+        </a>
+        </div>
+        <div class="cates_sub">
+            {section name=cate_sub loop=$cate_sub[cate_bo]}
+            	<a href="{$smarty.const.URL_HOMEPAGE}{$cate_sub[cate_bo][cate_sub].category_url}.html"><i class="fa fa-share"></i>
+                <h4>{$cate_sub[cate_bo][cate_sub].category_name}</h4></a>
+            {/section}
+        </div>
+        <div class="cates_img none_display_mb">
+        {section name=cate_img loop=$cate_img[cate_bo]}
+            <a href="{$cate_img[cate_bo][cate_img].banner_link}">
+            <img src="{$smarty.const.URL_HOMEPAGE}upload/banners/{$cate_img[cate_bo][cate_img].banner_img}" alt=""/>
+            </a>
+        {/section}
+       </div>
+    </div>
+    <div class="col-lg-97 col-md-9 products_04" style="padding:15px 15px 0px 15px">  
+       {include file="$themes/public/content/foreach_products_sub.html"}
+    </div>
+</div> 
+{/if}     
+{/section}
+
+
+{literal}
+<style type="text/css">
+.section_products{box-shadow: 0 0 6px #999999; margin-top:20px;width:100%; float:left}
+.cates_name{width:100%; padding:8px; float:left;}
+.cates_name h3{color:#FFFFFF;text-transform:uppercase;}
+.cates_name i{color:#FFF; float:left; font-size:140%; padding-right:10px}
+.cates_sub{width:100%; background:#f5f5f5;float:left;}
+.cates_sub h4{padding:6px 10px; border-bottom:1px dotted #CCC; margin:2px}
+.cates_sub i{float:left; padding:10px 5px;}
+.cates_sub a:hover > h4{color:#09F}
+.cates_sub a:hover > i{color:#09F}
+.cates_img{width:100%; float:left;}
+.cates_img img{width:100%; float:left;  padding:2px 0px}
+</style>
+{/literal}
+
+

@@ -1,0 +1,29 @@
+<div id="tabs">
+  <a href="#tab1" name="#tab1" id="current" >{$smarty.const.lang_sp_mn}</a>
+  <a href="#tab2" name="#tab2" >{$smarty.const.lang_sp_uc}</a>
+  <a href="#tab3" name="#tab3" >{$smarty.const.lang_sp_km}</a>
+</div>
+<div id="content" >
+      <div id="tab1" style="display: block;">
+       {include file="$themes/public/content/foreach_products.html"}  
+         
+      </div>
+      <div id="tab2" style="display: none;">
+         {include file="$themes/public/content/foreach_products.html"}  
+      </div>
+      <div id="tab3" style="display: none;">
+          {include file="$themes/public/content/foreach_products.html"}  
+      </div>
+</div>
+{literal}
+<style>
+	#tabs {width:100%; float:left; border-bottom:0px solid #F00; text-align:left; margin:0px 0; background: #CCC; padding:10px 10px}
+	#tabs li{float: none;}
+	#tabs a {padding:10px 10px 10px 0px; font-size:100%%; color:#000; font-weight:bold; text-transform:capitalize; white-space:nowrap}
+	#tabs a:hover,
+	#tabs a:focus {color:#F60}
+	#tabs a:focus {outline: 0;}
+	#tabs #current {border: 0px solid #dadada; color:#FF3366;  }
+</style> 
+{/literal} 
+<script src="{$smarty.const.URL_WEB}{$themes}/public/slider/slider_tabs_new/tabs_demo.js"></script>

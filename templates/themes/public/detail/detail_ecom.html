@@ -1,0 +1,163 @@
+<div class="index_info detail_ecom">	
+    <div class="index_col col-md-4 col-sm-6"> 
+    	{if $new_detail.tiet_kiem}<div class="detail_ecom_sale"><span>-{$new_detail.tiet_kiem}%</span></div>{/if}
+        <div class="detail_ecom_img gallery clearfix">
+        {if $images} 
+            <dl>    
+                <a href="{$smarty.const.URL_HOMEPAGE}upload/products/{$images[0].img_file}/{$images[0].image}" rel="prettyPhoto[gallery1]">
+                <img src="{$smarty.const.URL_HOMEPAGE}upload/products/{$images[0].img_file}/{$images[0].image}" alt="{$images[0].image_name}" /></a>
+            </dl>
+            {foreach from=$images item=rs name=rs}
+            {if $smarty.foreach.rs.iteration > '1'}
+            <ol>
+                <a href="{$smarty.const.URL_HOMEPAGE}upload/products/{$rs.img_file}/{$rs.image}" rel="prettyPhoto[gallery1]">
+                <img src="{$smarty.const.URL_HOMEPAGE}upload/products/{$rs.img_file}/{$rs.image}" alt="{$rs.image_name}" style="max-height:80px" /></a>
+            </ol>
+            {/if}
+            {/foreach}  
+        {else}
+        <dl> 
+        <a href="{$smarty.const.URL_HOMEPAGE}upload/products/{$new_detail.img_file}/{$new_detail.news_img}" data-lighter>   
+            <img src="{$smarty.const.URL_HOMEPAGE}upload/products/{$new_detail.img_file}/{$new_detail.news_img}" alt="{$new_detail.news_name}"/>
+        </a>
+        </dl>       
+        {/if}
+        </div>
+    </div>
+    <div class="index_col col-md-8 col-sm-6"> 
+        <h1>{$new_detail.news_name}</h1>
+        <div class="detail_ecom_hr"></div>
+    </div>
+    <div class="index_col col-md-5 col-sm-6"> 
+        {if $new_detail.news_content}
+            <h2>{$new_detail.news_content}</h2>  
+            <div class="detail_ecom_hr"></div> 
+        {/if}
+
+        <div class="detail_ecom_content">
+            {if $new_detail.news_code}<p><span>{$smarty.const.lang_sp_procode}:</span> <strong>{$new_detail.news_code}</strong></p>
+            {else}<p><span>{$smarty.const.lang_sp_procode}:</span> <strong>{$new_detail.news_id}</strong></p>{/if}
+            
+           
+            <p><span>{$smarty.const.lang_sp_tinh_trang}:</span>
+            <strong>{if $new_detail.status eq 0}{$smarty.const.lang_sp_giohang_end}{else}{$smarty.const.lang_sp_giohang_con}{/if}</strong></p> 
+             <p><span>VAT:</span>
+            <strong>
+               {if $new_detail.vat ==1}  
+                10%
+               {else}
+                Chưa VAT
+               {/if}
+            </strong></p> 
+             {foreach from=$property item=rs name=rs}
+                <p>{$rs.name}: <strong>{$rs.content}</strong></p>
+                {/foreach} 
+               
+            {if $new_detail.gia_ban}  
+               {if $new_detail.giam}
+                <p><span>{$smarty.const.lang_sp_gia_goc}: </span>
+                    <strong>{$new_detail.gia_kmai} {$smarty.const.lang_cart_tien}</strong>
+                </p>
+                {/if}
+                {if $new_detail.giam}
+                <p><span>{$smarty.const.lang_sp_sales}: </span>
+                    <strong>{$new_detail.giam} {$smarty.const.lang_cart_tien}</strong>
+                </p>
+                {/if}
+                 {if $new_detail.gia_ban neq '0'} 
+                  <p><span>{$smarty.const.lang_sp_gia_ban}: </span>
+                  <strong class="detail_ecom_gb">{$new_detail.gia_ban} {$smarty.const.lang_cart_tien}</strong></p> 
+                  {else}
+                  <p><span>{$smarty.const.lang_sp_gia_ban}: </span>
+                  <strong class="detail_ecom_gb">Call</strong></p> 
+                  {/if}  
+                
+            {/if} 
+            
+        </div>
+        
+        <div class="col-md-12">
+        {if $option}
+        <form name="frm_cart" method="post" action="{$smarty.const.URL_HOMEPAGE}addcart.html" class="detail_ecom_option">	  
+           <input type="hidden" name="news_id" id="news_id" value="{$new_detail.news_id}" />
+           <div class="col-mm-12">
+               <span>{$smarty.const.lang_cart_luachon}: </span>
+               <select name="option_id">
+                      {foreach from=$option item=rs name=rs}
+                      <option value="{$rs.option_id}">{$rs.option_name}</option>
+                      {/foreach}  
+               </select>
+           </div>
+           <div class="col-mm-12">
+               <span>{$smarty.const.lang_cart_soluong}: </span>
+               
+              
+               <select name="amount">
+               		  {if $user_role_u <= 3 and $user_role_u != ""}
+               		  <option value="1">1</option>
+                      <option value="2">3</option>
+                      <option value="4">4</option>
+                      {/if}
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="15">15</option>
+                      <option value="20">20</option>
+                      <option value="30">30</option>
+                      <option value="40">40</option>
+                      <option value="50">50</option>
+                      <option value="60">60</option>
+                      <option value="70">70</option>
+                      <option value="80">80</option>
+                      <option value="90">90</option>
+                      <option value="100">100</option>
+               </select>
+               
+           </div>
+           <div class="col-mm-12">
+            <input type="submit" name="submit" id="submit" value="{$smarty.const.lang_sp_giohang}" class="detail_ecom_cart" />
+           </div>
+         </form>
+        {else}
+            {if $new_detail.status eq 0}<a href="#"><span class="detail_ecom_cart">{$smarty.const.lang_sp_giohang_end}</span></a>
+            {else}
+            <a href="{$smarty.const.URL_HOMEPAGE}cart/{$new_detail.news_id}.html"><span class="detail_ecom_cart">{$smarty.const.lang_sp_giohang}</span></a>
+            {/if}
+        {/if}
+        {if $admin eq true}
+        <!-- admin edit -->
+        <a target="_blank" href="{$smarty.const.URL_HOMEPAGE}admincms/indexcms.php?module=products&main=insert&id_edit={$new_detail.news_id}"><span class="detail_ecom_edit">{$smarty.const.lang_admin_edit}</span></a>
+        {/if}
+        </div>  
+  	</div>
+    <div class="index_col col-md-3 col-sm-12 none_display_mb"> 
+    	<div class="detail_ecom_share">{include file="$themes/public/seo/detail_share.html"}</div>
+        <div class="detail_ecom_right">  
+            <i class="fa fa-comments"></i>
+            <a href="{$smarty.const.URL_HOMEPAGE}{$new_detail.news_id}-danh-gia-san-pham.html#box">{$smarty.const.lang_sp_danh_gia}</a><br>  
+            <p>{$smarty.const.lang_sp_tu_van}</p>
+            <p>Call: <strong>{$smarty.const.lang_hotine}</strong></p> 
+            
+            {section name=spr_bo loop=$spr_bo}
+            {section name=spr_con loop=$spr_con[spr_bo]}
+             <p><a href="{$smarty.const.URL_HOMEPAGE}detail/{$spr_con[spr_bo][spr_con].news_id}-{$spr_con[spr_bo][spr_con].news_url}.html">
+             <i class="fa fa-hand-o-right" style="font-size:95%"></i>  {$spr_con[spr_bo][spr_con].news_name} </a></p>
+            {/section}      
+        	{/section} 
+                     
+        </div>  
+        
+        <div class="detail_ecom_right">  
+            <p><a href="#"><i class="fa fa-hand-o-right" style="font-size:95%"></i>  Sản phảm bán <strong>Sỉ và Lẻ</strong> </a></p>
+            <p><a href="#"><i class="fa fa-hand-o-right" style="font-size:95%"></i>  Giao hàng trên <strong>Toàn Quốc</strong></a></p>
+            <p><a href="#"><i class="fa fa-hand-o-right" style="font-size:95%"></i>  Được bao dùng trong <strong>7 ngày</strong></a></p>                    
+        </div>  
+    </div>
+</div>
+
+<div class="index_info index_col">	
+ 	<div class="detail_ecom_hr"></div> 
+</div>

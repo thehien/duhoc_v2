@@ -1,0 +1,166 @@
+
+.content_tabs {float:left; width:100%; }
+.content_tabs li{float:left; box-shadow: 0 0 1px #999999;}
+.content_tabs li:hover{box-shadow: 0 0 5px #999999;}
+
+.content_tabs_img{text-align:center; margin-bottom:5px; width:auto; height:auto; padding:10px }
+.content_tabs_img img{width:100%; max-height:250px}
+
+.content_tabs_title{height:auto;padding:0px 10px 10px 10px }
+.content_tabs_title a{color:#f86924; font-size:120%; text-transform:capitalize}
+.content_tabs_title a:hover{color:#06F}
+
+.content_tabs_price{width:100%; height:50px;}
+.content_tabs_left{width:56%; float:left; padding:0px 10px;}
+.content_tabs_left span{color:#666}
+.content_tabs_left p{color:#F00; font-weight:bold; font-size:130%}
+
+.content_tabs_right{width:30%;float:right; padding:5px 10px 0px 0px;}
+.content_tabs_cart{background:#f07ec6; border-radius:5px; padding:3px 5px 3px 5px; text-transform:uppercase; color:#FFF; font-weight:bold; float:right; font-size:80%; min-width:60px; text-align:center}
+.content_tabs_cart:hover{background:#5d5098;}
+
+@media (max-width: 480px) 
+{
+	.content_tabs_height {height:405px}
+	.content_tabs_li{width:96%;  margin:0px 2% 10px 2%}	
+}
+@media (min-width: 480px) and (max-width: 600px) 
+{	
+	.content_tabs_height {height:400px}
+	.content_tabs_li{width:48%; margin:0px 0px 10px 1.5%; height:350px}
+}
+@media (min-width: 601px) and (max-width: 780px) 
+{	
+	.content_tabs_height {height:400px}
+	.content_tabs_li{width:48%; margin:0px 0px 10px 1.5%; height:350px}
+}
+@media (min-width: 781px) and (max-width: 979px) 
+{
+	.content_tabs_height {height:400px}
+	.content_tabs_li{width:32%; margin:0px 0px 20px 1%; height:345px}
+}
+@media (min-width: 979px) 
+{
+	.content_tabs_height {height:400px}
+	.content_tabs_li{width:32%; margin:0px 0px 20px 10px; height:340px}
+}
+
+
+
+
+
+#featured .ui-tabs-panel .info{
+		display:none;
+	}
+/*bo khuon*/
+#featured{
+	padding-right:0px;
+	position:relative;
+	box-shadow: 0 0 1px #999999; 
+	overflow:hidden;
+	background:#FFF;
+    margin-bottom:1px;
+	float:left;
+	width:100%
+}
+/*ben phai*/
+#featured ul.ui-tabs-nav{ 
+	position:absolute;
+	top:0; 
+	list-style:none;
+	padding:0px 0px 0px 0px; 
+	margin:0;
+	overflow:auto;
+	overflow-x:hidden;
+	left:0px;
+	width:100%;
+	height:35px ;
+	float:left;	
+	background:#00A650;
+}
+/*muc nho ben phai*/
+#featured ul.ui-tabs-nav li{
+	width:25%;
+	float:left;
+	text-align:center;
+	background:#F00
+	
+}
+/*hinh nho ben phai*/
+#featured ul.ui-tabs-nav li img{
+	float:left; 
+	margin:2px 2px;
+	background:#fff;
+	padding:2px;
+	border:1px solid #eee;
+}
+/*chu ben phai hinh nho*/
+#featured ul.ui-tabs-nav li span{
+	font-size:11px;
+	line-height:18px;
+}
+/*tap con ben phai*/
+#featured li.ui-tabs-nav-item a{
+	display:block;
+	text-decoration:none;
+	color:#FFF; 
+	background:#00A650;
+	outline:none;
+	height:35px; 
+	width:100%;
+	line-height:30px
+
+}
+#featured li.ui-tabs-nav-item a:hover{
+	background:#BE1F2F;
+	
+}
+#featured li.ui-tabs-selected, #featured li.ui-tabs-active{
+	background:url('images/selected-item.gif') top left no-repeat; 
+}
+#featured ul.ui-tabs-nav li.ui-tabs-selected a, #featured ul.ui-tabs-nav li.ui-tabs-active a{
+	background:#BE1F2F;
+}
+/*muc ben trai*/
+#featured .ui-tabs-panel{
+	background:#FFF; 
+	position:relative;
+	left:0px;
+	top:45px;
+	width:100%; 
+	height:100%; 
+}
+
+
+/*muc chu chay len ben trai*/
+#featured .ui-tabs-panel .info{
+	position:absolute;
+	bottom:0; left:0;
+	height:70px;
+	background: url('images/transparent-bg.png');
+    width: 100%;		
+}
+#featured .ui-tabs-panel .info a.hideshow{
+	position:absolute; font-size:11px; font-family:Verdana; color:#f0f0f0; right:10px; top:-20px; line-height:20px; margin:0; outline:none; background:#333;
+}
+#featured .info h2{
+	font-size:1.2em; font-family:Georgia, serif;
+	color:#fff; padding:5px; margin:0; font-weight:normal;
+	overflow:hidden;
+}
+#featured .info p{
+	margin:0 5px;
+	font-family:Verdana; font-size:11px;
+	line-height:15px; color:#f0f0f0;
+}
+#featured .info a{
+	text-decoration:none;
+	color:#fff;
+}
+#featured .info a:hover{
+	text-decoration:underline;
+}
+#featured .ui-tabs-hide{
+	display:none;
+}
+

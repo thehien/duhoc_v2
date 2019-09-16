@@ -1,0 +1,250 @@
+{include file="$themes/header.html"}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick-theme.css">
+{literal}
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+    .slider {
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .slider_menu {
+        width: 60%;
+        margin: 10px auto;
+    }
+
+    .slick-slide {
+        margin: 0 10px;
+    }
+
+    .slick-slide img {
+        width: 100%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
+
+    .slick-slide {
+        transition: all ease-in-out .3s;
+        opacity: .2;
+    }
+
+    .slick-active {
+        opacity: .5;
+    }
+
+    .slick-current {
+        opacity: 1;
+    }
+</style>
+<script type="text/javascript">
+    $(document).on('ready', function() {
+        $(".lazy").slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            cssEase: 'linear',
+            prevArrow: false,
+            nextArrow: false
+        });
+    });
+</script>
+{/literal}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+        <!-- Header Section End -->
+    </section>
+    <!-- end intro section -->
+</div>
+
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt30 fw-mgb30">
+                <div align="left" class="col-md-6 in-middle-how-it-works" style="border-right: 1px solid #999;">
+                    <div class="fw-mgb20">
+                        <h2 class="text-cl-index">{$content_index[0].category_name}</h2>
+                    </div>
+                    <div class="fw-mgb20">
+                        <p>
+                            {$content_index[0].category_content}
+                        </p>
+                    </div>
+                    <div class="fw-mgt10">
+                        <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}translate.html">
+                         Start your translation now
+                     </a>
+                 </div>
+             </div>
+             <div align="center" class="col-md-6">
+                 <section class="lazy slider">
+                    {foreach from=$list_banner item="val" name="val"}
+                    <div align="center">
+                        <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_HOME}/upload/banners/{$val.banner_img}" alt="">
+                    </div>
+                    {/foreach}
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+
+<!-- end intro section -->
+<section class="works-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt30 fw-mgb30">
+                <div align="left" class="col-md-6" style="border-right: 1px solid #999; min-height: 380px;">
+                    <div class="fw-mgb20">
+                        <h2 class="text-cl-index">{$content_index[1].category_name}</h2>
+                    </div>
+                    <div class="fw-mgb20">
+                        <p>{$content_index[1].category_content}
+                        </p>
+                    </div>
+                </div>
+                <div align="center" class="col-md-6">
+                    {foreach from=$list_content item="val" key="key" name="val"}
+                    <div class="col-md-12 fw-mgb30">
+                        <div class="col-md-3">
+                            {if $val.category_img}
+                            <img src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}" />
+                            {else}
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo_small.png" />
+                            {/if}
+
+                        </div>
+                        <div class="col-md-9" align="left">
+                            <div class="text-cl-index fw-mgb10 fw-fs-13">
+                                <strong>{$val.category_name}</strong>
+                            </div>
+                            <div class="fw-fs-12">{$val.category_content}</div>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- end intro section -->
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt20 fw-mgb20">
+                <div align="left" class="col-md-6" style="border-right: 1px solid #999;min-height: 380px;">
+                    <div class="fw-mgb20">
+                        <h2 class="text-cl-index">{$content_index[2].category_name}</h2>
+                    </div>
+                    <div class="fw-mgb20">
+                        <p>{$content_index[2].category_content}
+                        </p>
+                    </div>
+                </div>
+                <div align="center" class="col-md-6">
+                    {foreach from=$list_content1 item="val" key="key" name="val"}
+                     <div class="col-md-12 fw-mgb30">
+                        <div class="col-md-3">
+                            {if $val.category_img}
+                            <img src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}" />
+                            {else}
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo_small.png" />
+                            {/if}
+
+                        </div>
+                        <div class="col-md-9" align="left">
+                            <div class="text-cl-index fw-mgb10 fw-fs-13">
+                                <strong>{$val.category_name}</strong>
+                            </div>
+                            <div class="fw-fs-12">{$val.category_content}</div>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- end intro section -->
+<section class="works-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt20 fw-mgb20">
+                <div align="left" class="col-md-6" style="border-right: 1px solid #999;min-height: 380px;">
+                    <div class="fw-mgb20">
+                        <h2 class="text-cl-index">{$content_index[3].category_name}</h2>
+                    </div>
+                    <div class="fw-mgb20">
+                        <p>{$content_index[3].category_content}
+                        </p>
+                    </div>
+                </div>
+                <div align="center" class="col-md-6">
+                    {foreach from=$list_content2 item="val" key="key" name="val"}
+                     <div class="col-md-12 fw-mgb30">
+                        <div class="col-md-3">
+                            {if $val.category_img}
+                            <img src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}" />
+                            {else}
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo_small.png" />
+                            {/if}
+
+                        </div>
+                        <div class="col-md-9" align="left">
+                            <div class="text-cl-index fw-mgb10 fw-fs-13">
+                                <strong>{$val.category_name}</strong>
+                            </div>
+                            <div class="fw-fs-12">{$val.category_content}</div>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- end intro section -->
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt20 fw-mgb20">
+                <h2 class="text-cl-index">{$content_index[4].category_name}</h2>
+            </div>
+
+            <div class="col-md-12 fw-mgt20 fw-mgb20">
+             {$content_index[4].category_content}
+             </div>
+
+         <div class="col-md-12 fw-mgt10 fw-mgb20">
+            <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}translate.html">
+             Start your translation now
+         </a>
+     </div>
+ </div>
+</div>
+</section>
+
+
+<!-- footer -->
+{include file="$themes/footer.html"}

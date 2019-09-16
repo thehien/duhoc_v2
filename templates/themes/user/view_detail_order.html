@@ -1,0 +1,168 @@
+<div style="padding-bottom: 20px;">
+  <div class="col-xs-12 col-sm-12 no-padding fw-pdr10 fw-pdb10">
+
+    <form role="form" class="form-ad" name="acceptTranslate" method="post" action="{$smarty.const.URL_HOMEPAGE}accept-translate.html"/>
+    <input type="hidden" name="coupon_code_id" value="{$order_detail[0].coupon_code}">
+
+    <div class="fw-mgb10 box" style="padding:10px;">
+      <div class="col-md-12 no-padding fw-mgb10 fw-mgt7" style="font-size: 18px;">
+        <strong>ID {$order_detail[0].coupon_code}: {$order_detail[0].file_translate}</strong>
+      </div>
+      <div class="col-md-12 no-padding">
+       <div class="col-md-1 no-padding">
+           {if $order_detail[0].avatar}
+           <img width="30" height="30" src="{$smarty.const.URL_HOME}/upload/avatar/{$order_detail[0].avatar}" class="img-circle"/>
+           {else}
+           <img width="30" height="30" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+           {/if}
+         </div>
+        <div class="col-md-11 no-padding">
+          <strong style="font-size: 13px;">{$order_detail[0].name}</strong>
+        </div>
+  </div>
+
+  <div class="col-md-12 no-padding fw-mgb10 fw-mgt7">
+    {$order_detail[0].message}
+  </div>
+
+  <div style="clear: both;"></div>
+  <div class="col-md-2 no-padding">
+    {foreach from=$fromTolanguage name=val_order item=val_order}
+    <span id="translate_from" class="language-bg" style="margin-bottom: 5px;">
+      <img width="25" height="25" src="{$smarty.const.URL_HOME}/upload/list_language/{$val_order.from_flag_language.img_flag}" class="img-circle"/><span style="margin:5px; font-size: 13px;">{$val_order.from_language_name}</span>
+    </span>
+    <br/>
+    {/foreach}
+  </div>
+
+  <div class="col-md-1 no-padding" style="margin-left:25px;">
+    {foreach from=$fromTolanguage name=val_order item=val_order}
+    <div id="translate_to" style="margin-bottom: 5px; height: 30px;">
+            <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+    </div>
+    {/foreach}
+  </div>
+
+  <div class="col-md-3 no-padding">
+    {foreach from=$fromTolanguage name=val_order item=val_order}
+    <span id="translate_to" class="language-bg"  style="margin-bottom: 5px;">
+      <img width="25" height="25" src="{$smarty.const.URL_HOME}/upload/list_language/{$val_order.to_flag_language.img_flag}" class="img-circle"/><span style="margin:5px; font-size: 13px;">{$val_order.to_language_name}</span>
+    </span>
+    <br/>
+    {/foreach}
+  </div>
+
+  <div class="col-md-2">
+
+  </div>
+
+
+  <div style="clear: both;"></div>
+  <div class="fw-mgt10">
+   <div class="col-md-7 fw-mgb5 no-padding">
+    <div class="col-md-12 fw-mgb10 no-padding">
+     Subject : {$order_detail[0].subject_field}
+   </div>
+
+   <div class="col-md-12 fw-mgb5 no-padding">
+     Created Date: {$order_detail[0].ngay_mua}
+   </div>
+
+   <div class="col-md-12  fw-mgb5 no-padding">
+     Estimated Delivery: {$order_detail[0].estimate} (hours)
+   </div>
+ </div>
+
+ <div class="col-md-5 fw-mgb5 no-padding">
+  <div class="col-md-6">
+   <strong style="font-size: 17px;">{$order_detail[0].count_text}</strong> word(s)
+ </div>
+ <div class="col-md-6">
+  <strong style="font-size: 17px;">$ {$order_detail[0].price}</strong>
+</div>
+</div>
+{if $order_detail[0].translater_id > 0}
+<div class="col-md-12 no-padding">
+  <div class="col-md-12">
+    <input type="button" value="Sorry this job has been taken by another translator.
+    " name="submit" class="btn btn-order-suc log-btn" />
+  </div>
+</div>
+<div class="col-md-12 fw-mgt10">
+  <a class="btn btn-order-suc" href="{$smarty.const.URL_HOMEPAGE}translator-job.html">
+    Go Back
+  </a>
+</div>
+
+{else}
+
+<div class="col-md-12 no-padding">
+  <div class="col-md-6" align="left">
+    <a class="btn btn-preview log-btn fadeandscale_open" href="#fadeandscale">
+     Preview
+   </a>
+ </div>
+  <div class="col-md-6">
+    <input type="submit" value="Accept" name="submit" class="btn btn-submit log-btn" />
+  </div>
+
+</div>
+
+<div class="col-md-12 fw-mgt10">
+  <a class="btn btn-order-suc" href="{$smarty.const.URL_HOMEPAGE}translator-job.html">
+    Go Back
+  </a>
+</div>
+
+<div class="col-md-12 no-padding fw-mgt10">
+  Please provide your best translation because your work will be rated. Poor translation quality will affect your ability to translate with Linkrica.
+</div>
+
+{/if}
+
+</div>
+<div style="clear: both;"></div>
+
+</div>
+</form>
+
+</div>
+</div>
+
+{* Hiển thị nội dung popup *}
+<!-- Fade & scale -->
+<div id="fadeandscale" class="well">
+  <div align="left" class="fw-mb10">
+   <strong>ID {$order_detail[0].coupon_code}: {$order_detail[0].file_translate}</strong>
+ </div>
+ {$previewFile}
+</div>
+
+{literal}
+<script>
+  $(document).ready(function () {
+    $('#fadeandscale').popup({
+      pagecontainer: '.container',
+      transition: 'all 0.3s'
+    });
+  });
+</script>
+<style>
+#fadeandscale {
+  background-color: #fff;
+  width: 800px;
+  min-height: 500px;
+  overflow: hidden;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
+}
+.popup_visible #fadeandscale {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+</style>
+{/literal}

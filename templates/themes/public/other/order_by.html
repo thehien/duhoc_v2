@@ -1,0 +1,14 @@
+<select name="news_category" id="news_category" onChange="MM_jumpMenu('parent',this,0)" style="width:100%; border:1px solid #ECE8E8; border-radius:3px; padding:7px; color:#333; margin:10px 0; float:right">
+    <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}" selected="selected">{$smarty.const.lang_order_name}</option>	
+    <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}/saledesc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $hover_gia eq 'saledesc'}selected="selected"{/if}>{$smarty.const.lang_order_km}</option>
+    <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}/viewsdesc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $hover_gia eq 'viewsdesc'}selected="selected"{/if}>{$smarty.const.lang_order_bc}</option>
+    <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}/priceasc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $hover_gia eq 'priceasc'}selected="selected"{/if}>{$smarty.const.lang_order_gt}</option>
+    <option value="{$smarty.const.URL_HOMEPAGE}{$url_filter}/pricedesc.html?search_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}_{$fil_cty}_{$fil_dis}" {if $hover_gia eq 'pricedesc'}selected="selected"{/if}>{$smarty.const.lang_order_gc}</option>                       
+</select>  
+{literal}
+<script type="text/javascript">
+    function MM_jumpMenu(targ,selObj,restore){ 
+    eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'"); if 
+    (restore) selObj.selectedIndex=0; } 
+</script>
+{/literal}

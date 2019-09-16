@@ -1,0 +1,40 @@
+ <div class="col-md-12 no-padding">
+ <form name="frm_search" method="post" action="{$smarty.const.URL_ADMIN}?module={$url}&main=search" class="search_date">
+    <div class="col-md-4 no-padding fw-pdr10 fw-pdl10">
+  <div class="form-group">
+
+    <select class="form-control" onchange="MM_jumpMenu('parent',this,0)" >
+     <option value="">Translate From</option>
+     {foreach from=$rs_all_language name = rs_language item =rs_language} 
+       <option value="{$smarty.const.URL_HOMEPAGE}search/from-{$rs_language.id}.html">{$rs_language.name}</option>
+       {/foreach}
+   </select>
+ </div>
+</div>
+<div class="col-md-4 no-padding fw-pdr10">
+  <div class="form-group">
+    <select class="form-control" onchange="MM_jumpMenu('parent',this,0)" >
+     <option value="">Translate To</option>
+    {foreach from=$rs_all_language name = rs_language item =rs_language} 
+       <option value="{$smarty.const.URL_HOMEPAGE}search/to-{$rs_language.id}.html">{$rs_language.name}</option>
+    {/foreach}
+   </select>
+
+ </div>
+</div>
+
+<div class="col-md-4 no-padding fw-pdr10">
+  <div class="form-group">
+
+   <select class="form-control"  onchange="MM_jumpMenu('parent',this,0)" >
+     <option value="">Subject Field</option>
+     {foreach from=$rs_all_subject_field name=rs_subject item =rs_subject} 
+       <option value="{$smarty.const.URL_HOMEPAGE}/search/subject-{$rs_subject.id}.html">{$rs_subject.category_name}</option>
+    {/foreach}
+   </select>
+
+ </div>
+</div>
+</form>
+</div>
+<div style="clear: both;"></div>

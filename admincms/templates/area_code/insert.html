@@ -1,0 +1,93 @@
+{include file="left.html"}
+<script type="text/javascript" src="{$smarty.const.URL_HOMEPAGE}editor/ckeditor/ckeditor.js"></script>
+<div id="page-wrapper">
+    <form id="frm_admin" name="frm_admin" method="post" enctype="multipart/form-data" action="{$smarty.const.URL_ADMIN}?module={$url}&main=insert{$url_edit}">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header"><a href="{$url_views}" ><i class="fa fa-home"></i> 
+                {if $id_edit}{$smarty.const.langcms_capnhat}{else}{$smarty.const.langcms_them}{/if} {$main_name}</a>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12" >
+            <table class="table_insert category_tree table-striped" style="margin-top:0px" >
+                <tbody class="pro_tbody">
+                    <tr data-tt-id="20" class="pro_tr" >
+                        <td><strong>{$smarty.const.langcms_spttcb} </strong></td>
+                    </tr>
+                    <tr data-tt-id="21" data-tt-parent-id="20" style="display: none;">
+                        <td>
+                            <div class="col-lg-12">
+                                <table class="table_insert" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <td align="right" class="mmw_250"><span>{$smarty.const.langcms_area_code} <em>*</em></span></td>
+                                            <td style="width: 300px;"><input type="text" class="check_input" placeholder="{$smarty.const.langcms_area_code}" name="name" id="name" value="{$rs_edit.name}" /></td>
+
+                                            <td align="right" class="mmw_250"><span>Code <em>*</em></span></td>
+                                            <td style="width: 300px;">
+                                               <input type="text" class="check_input" placeholder="Code" name="code" id="code" value="{$rs_edit.code}" />
+                                           </td>
+
+                                       </tr>
+
+
+                               <tr>
+
+                                    <td align="right" class="mmw_250"><span>{$smarty.const.langcms_trangthai}</span></td>
+                                    <td>
+                                        <select class="select_option check_input" name="status" id="status">
+                                            <option value="1" {if $rs_edit.status eq 1}selected{/if}>Hiển thị</option>
+                                            <option value="0" {if $rs_edit.status eq 0}selected{/if}>Không hiển thị</option>
+                                        </select>
+                                    </td>
+
+
+
+                                </tr>
+                            </thead>  
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+
+        <tr>
+            <td align="right" style="background:#FFF; height:100px ">
+                {if $id_edit}<button type="submit" name="submit" id="submit" value="submit" class="bg_edit" >{$smarty.const.langcms_capnhat} </button>
+                <a href="{$rs_undo}" class="status_undo"><i class="fa fa-undo"></i> {$smarty.const.langcms_quaylai}</a>
+                {else}<button type="submit" name="submit" id="submit" value="submit" class="bg_insert" >{$smarty.const.langcms_themmoi} </button>{/if}
+            </td>
+        </tr>
+    </table>
+</div>     
+</div>
+</form>
+</div>
+
+{literal}
+<script>
+    loadstatustext = 'Loading...';
+    function ajaxLoad(url,id)
+    {
+        if (document.getElementById){var x = (window.ActiveXObject) ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();}
+        if (x)
+        {
+            x.onreadystatechange = function()
+            {
+                el = document.getElementById(id);
+                el.innerHTML = loadstatustext;
+                if (x.readyState == 4 && x.status == 200){el.innerHTML = x.responseText;}
+            }
+            x.open("GET", url, true);
+            x.send(null);
+        }
+    }
+    function pb_display(x) 
+    {
+        ajaxLoad('{/literal}{$smarty.const.URL_ADMINCMS}{literal}district.php?cityid='+x,'district_shows');
+    }
+    ajaxLoad('{/literal}{$smarty.const.URL_ADMINCMS}district.php?cityid={$rs_edit.cityid}&district_id={$rs_edit.district}{literal}','district_shows');
+</script>
+{/literal}

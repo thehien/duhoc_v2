@@ -1,0 +1,10 @@
+table.treetable .tdtree{padding:8px; width:700px !important; float:left} 
+table.treetable span.indenter {display: inline-block;text-align: right;user-select:none; width:20px; padding-right:6px}
+table.treetable span.indenter a {background-position: left center; background-repeat: no-repeat; display: inline-block; width: 20px;}
+table.treetable tr.collapsed span.indenter a {background-image: url(closed.png);line-height:18px}
+table.treetable tr.expanded span.indenter a {background-image: url(open.png);line-height:18px}
+.category_tree{float:left;width:100%; margin:15px 0px;}
+.category_tree tbody{width:100%;}
+.category_tree .toptr{background:#f9f9f9; width:99.8%; float:left;  border:1px solid #F1F1F1;}
+.category_tree .rowtd{border:1px solid #F1F1F1; width:100%; padding:10px}
+.category_tree .subtr{display: none; height:10px}

@@ -1,0 +1,129 @@
+{include file="$themes/header.html"}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick-theme.css">
+{literal}
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+    .slider {
+        width: 100%;
+        margin: 10px auto;
+    }
+    .slider_menu {
+        width: 60%;
+        margin: 10px auto;
+    }
+    .slick-slide {
+        margin: 0 10px;
+    }
+    .slick-slide img {
+        width: 100%;
+    }
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
+    .slick-slide {
+        transition: all ease-in-out .3s;
+        opacity: .2;
+    }
+    .slick-active {
+        opacity: 1;
+    }
+    .slick-current {
+        opacity: 1;
+    }
+</style>
+<script type="text/javascript">
+    $(document).on('ready', function() {
+        $('.variable-width').slick({
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            centerMode: false,
+            variableWidth: true
+        });
+    });
+</script>
+{/literal}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+    </section>
+    <section class="home_background section" style="background: url({$smarty.const.URL_WEB}{$themes}/assets/img/services/sub_service.png) no-repeat center center;
+-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; min-height: 200px;position: relative;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-left" style="color: #000;">
+                    <h2 class="fw-mgt10 fw-mgb20">{$service_content[0].service_name}</h2>
+                    <span class="fw-fs-16">{$service_content[0].service_content}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt30 fw-mgb30">
+                <div class="col-md-12 fw-mgb10">
+                    <h2 class="text-cl-index">{$detail_service[0].news_name}</h2>
+                </div>
+                <div class="col-md-3">
+                    <div class="fw-mgb20">
+                        <img src="{$smarty.const.URL_HOME}/upload/service_content/{$detail_service[0].news_img}"/>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    {$detail_service[0].description}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="home_background section" style="background: url({$smarty.const.URL_WEB}{$themes}/assets/img/new_bg.png) no-repeat center center;
+-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; min-height: 300px;position: relative;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left" style="color: #fff;">
+                <div class="fw-mgb30">
+                    <h3 class="fw-mgt20 fw-mgb30">Enterprise Solution</h3>
+                    <span class="fw-fs-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+magna aliqua.</span>
+                </div>
+                <div>
+                    <a class="btn btn-border btn-lg-new" href="{$smarty.const.URL_HOMEPAGE}service-detail.html">
+                        Read more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt10 fw-mgb10">
+                {include file="$themes/web/news_top.html"}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- footer -->
+{include file="$themes/footer.html"}

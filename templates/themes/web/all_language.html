@@ -1,0 +1,49 @@
+<div class="col-md-12">
+    {foreach from=$list_language_first item="val" name="val"}
+    {assign var="counter" value=$smarty.foreach.val.iteration}
+        <div class="col-md-2 text-left">
+            <div class="fw-fw-12" style="margin: 3px;">
+                <i class="fa fa-flag fa-lg" aria-hidden="true"></i>
+                {$val.name}
+            </div>
+        </div>
+    {/foreach}
+    <div class="showhide" style="display: none;">
+        {foreach from=$list_language_second item="val" name="val"}
+            <div class="col-md-2 text-left">
+                <div class="fw-fw-12" style="margin: 3px;">
+                    <i class="fa fa-flag fa-lg" aria-hidden="true"></i>
+                    {$val.name}
+                </div>
+            </div>
+        {/foreach}
+    </div>
+
+
+
+</div>
+<div align="center" class="col-md-12 fw-mgt20 fw-mgb20 clickShow"
+     style="cursor: pointer; color: #fff;">Read More <i class="fa fa-angle-up" aria-hidden="true"></i>
+</div>
+
+<div align="center" style="display: none" class="col-md-12 fw-mgt20 fw-mgb20 clickHide"
+     style="cursor: pointer; color: #fff;">Read Less <i class="fa fa-angle-down" aria-hidden="true"></i>
+</div>
+
+{literal}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".clickShow").click(function () {
+            $(".showhide").slideToggle("slow");
+            $(".clickHide").show();
+            $(".clickShow").hide();
+        });
+
+        $(".clickHide").click(function () {
+            $(".showhide").slideToggle("slow");
+             $(".clickShow").show();
+             $(".clickHide").hide();
+        });
+    });
+</script>
+{/literal}

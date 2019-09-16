@@ -1,0 +1,70 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+    </section>
+</div>
+
+{foreach from=$list_chuong_trinh item="val" name="val"}
+
+{if $smarty.foreach.val.iteration % 2 != 0}
+    {assign var="position1" value="float:right"}
+    {assign var="position2" value="float:left"}
+{else}
+    {assign var="position1" value="float:left"}
+    {assign var="position2" value="float:right"}
+{/if}
+    <!-- Find Job Section Start -->
+    <section class="find-job section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 no-padding
+                 {if $smarty.foreach.val.first}
+                    fw-mgt30
+                 {/if}
+                 fw-mgb20">
+
+                    <div align="center" class="col-md-6" style="{$position1}">
+                        <section>
+                            <div align="center">
+                                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}" alt="">
+                            </div>
+                        </section>
+                    </div>
+
+                    <div align="center" class="col-md-6" style="{$position2}">
+                        <div align="left" class="col-md-12 fw-mgb10">
+                            <h2 class="text-cl-index">{$val.category_name}</h2>
+                        </div>
+                        <div class="col-md-12 fw-mgb10 text-justify">
+                            <p class="fw-fs-13">
+                                {$val.category_content}
+                            </p>
+                        </div>
+
+                        <div align="left" class="col-md-12 fw-mgt20">
+                            <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}pg-detail/{$val.category_id}/{$val.category_url}.html">
+                                Xem thêm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {if !$smarty.foreach.val.last}
+                    <div class='col-md-12 dotted-spaced'></div>
+                {/if}
+            </div>
+        </div>
+
+    </section>
+{/foreach}
+
+<!-- footer -->
+{include file="$themes/footer.html"}

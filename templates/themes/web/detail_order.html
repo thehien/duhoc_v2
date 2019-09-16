@@ -1,0 +1,59 @@
+{include file="$themes/header-account.html"}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/jquery.popupoverlay.js"></script>
+<!-- Header Section Start -->
+<div class="header">    
+  <!-- Start intro section -->
+  <section id="intro" class="section-intro">
+    <div class="logo-menu">
+      {if $isLogin}
+      {include file="$themes/top-account.html"}
+      {else}
+      {include file="$themes/top.html"}
+      {/if}
+    </div>
+  </section>
+
+</div>
+
+<!-- Find Job Section Start -->
+<section class="find-job section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-8">
+
+          <div class="col-md-12"> {include file="$themes/user/view_detail_order.html"}</div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="fw-mgb10">
+            <a class="btn btn-submit fw-fs-28" href="{$smarty.const.URL_HOMEPAGE}login-cv.html">
+             Orders: {$all_order_numbers}
+           </a>
+         </div>
+
+         <div class="fw-mgb10">
+           <div class="latest_border">
+            <div class="latest_title_border">
+              <div class="fw-bold-order">LATEST ORDERS</div>
+              <div class="fw-clearfix"></div>
+            </div>
+            <div class="fw-mgb10">
+              <div class="col-md-12">
+                 {include file="$themes/user/view_latest_order.html"}
+              </div>
+              <div class="fw-clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>         
+</section>
+<!-- Find Job Section End -->
+
+
+<!-- footer -->
+{include file="$themes/footer.html"}

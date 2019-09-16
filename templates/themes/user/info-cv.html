@@ -1,0 +1,169 @@
+{include file="$themes/header-account.html"}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+ <link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.css">
+ <link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick-theme.css">
+
+{literal}
+ <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+
+    .slider {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .slick-slide {
+      margin: 0px 10px;
+    }
+
+    .slick-slide img {
+      width: 70%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      color: black;
+    }
+
+    .slick-slide {
+      transition: all ease-in-out .3s;
+      opacity: 1;
+    }
+
+    .slick-active {
+      opacity: 1;
+    }
+
+    .slick-current {
+      opacity: 1;
+    }
+  </style>
+  <script type="text/javascript">
+    $(document).on('ready', function() {
+      $(".regular").slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        autoplay: true
+      });
+    });
+</script>
+{/literal}
+<!-- Header Section Start -->
+<div class="header">
+  <!-- Start intro section -->
+  <section id="intro" class="section-intro">
+    <div class="logo-menu">
+      {include file="$themes/top-cv-account.html"}
+    </div>
+  </section>
+  <!-- end intro section -->
+</div>
+
+<!-- Header Section End -->
+<section class="job-detail section-info">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-lg-2 border-right">
+        <nav class="navbar navbar-default navbar-fixed-side">
+          <!-- normal collapsible navbar markup -->
+          <div class="container">
+            <div class="navbar-header">
+              <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse">
+              <div class="right-sideabr">
+                {include file="$themes/user/left_cv_menu.html"}
+              </div>
+
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="col-sm-9 col-lg-10 fw-bg-white">
+        <!-- your page content -->
+       {include file="$themes/user/header_info.html"}
+       <!-- Page Header End -->
+      <div class="fw-main-bg">
+          <div class="fw-mgb10">
+            <div class="inner-box my-resume menu_info">
+               <nav class="navbar navbar-default">
+                  <div class="container-fluid">                    
+                  <ul class="nav navbar-nav">
+                    <li class="activeInfo"><a href="{$smarty.const.URL_HOMEPAGE}info-cv.html">HOME</a></li>
+                    <li><a href="{$smarty.const.URL_HOMEPAGE}all-order-cv.html">ALL ORDER</a></li>
+                    <li><a href="{$smarty.const.URL_HOMEPAGE}accept-order-cv.html">ACCEPTED ORDERS</a></li>
+                  </ul>
+                  </div>
+                </nav>
+            </div>
+          </div>
+        </div>
+
+      <div class="fw-main-content">
+        <div class="col-md-12">
+          <div class="col-md-9">
+             <div class="fw-mgb10"><strong>ONLINE TRANSLATORS</strong></div>
+            <div class="fw-mgb15">
+               <section class="regular slider">
+                {foreach from=$all_cv_online item="val" name="val"}
+                  <div>
+                    <div align="center">{if $val.avatar}
+                      <img height="110" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}" class="img-circle"/>
+                    {else}
+                      <img height="110" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+                    {/if}</div>
+                    <div style="clear: both;"></div>
+                    <div align="center" style="font-size: 14px;">
+                      <strong title="{$val.full_name}">{$val.name}</strong>
+                    </div>
+                    <div  align="center" class="col-md-12 no-padding" style="font-size: 13px;">
+                    {$val.country_name}
+                    </div>
+                  </div>
+
+                {/foreach}
+                </section>
+            </div>
+
+            <div class="fw-mgb10">
+               {include file="$themes/user/search_order_cv.html"}
+            </div>
+             <div class="fw-mgb10"><strong>LATEST ORDERS</strong></div>
+             <div>
+               {include file="$themes/user/order_cv_home.html"}
+             </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="fw-mgb10"><strong>MAJOR INDUSTRY</strong></div>
+             <div>
+               {include file="$themes/user/list_industry.html"}
+             </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="clearfix"></div>
+<!-- footer -->
+{literal}
+  <script type="text/javascript" charset="utf-8">
+    function MM_jumpMenu(targ,selObj,restore){ 
+    eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'"); if 
+    (restore) selObj.selectedIndex=0; }
+    </script>
+{/literal}
+{include file="$themes/footer_js_info.html"}

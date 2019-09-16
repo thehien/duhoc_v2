@@ -1,0 +1,224 @@
+{include file="$themes/header.html"}
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script type="text/javascript" src="{$smarty.const.URL_HOMEPAGE_EMPLOYERS}/editor/ckeditor/ckeditor.js"></script>
+<div id="wrapper">
+ {include file="$themes/top.html"}
+
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single submit-page">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2><i class="fa fa-plus-circle"></i> Add jobs</h2>
+    </div>
+
+  </div>
+</div>
+
+<!-- Content
+================================================== -->
+{literal}
+<script type="text/javascript">
+function validateJob() {
+  var valid = true; 
+  $(".demoInputBox").css('background-color','');
+  $(".info").html('');
+
+  if(!$("#email").val()) {
+    $("#email-info").html("(required)");
+    $("#email").css('background-color','#FFFFDF');
+    valid = false;
+  }
+  if(!$("#email").val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
+    $("#email-info").html("(invalid)");
+    $("#email").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if(!$("#title").val()) {
+    $("#title-info").html("(required)");
+    $("#title").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if(!$("#jobtype").val()) {
+    $("#jobtype-info").html("(required)");
+    $("#jobtype").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if(!$("#categories").val()) {
+    $("#categories-info").html("(required)");
+    $("#categories").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if(!$("#companyname").val()) {
+    $("#companyname-info").html("(required)");
+    $("#companyname").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+  if(!$("#companyphone").val()) {
+    $("#companyphone-info").html("(required)");
+    $("#companyphone").css('background-color','#FFFFDF');
+    valid = false;
+  }
+
+
+  if (valid == false) {
+    var elementFocust = $('*:input[type!=hidden]:first').focus();
+   $('html, body').animate({scrollTop: elementFocust.offset().top}, 1500); 
+  }
+  
+  return valid;
+}
+
+function sendJob() {
+  var valid = validateJob();
+  if(valid) {
+    document.getElementById("frm_addjob").submit();
+    return false;
+  }
+}
+</script>
+{/literal}
+
+<!-- Content
+================================================== -->
+<div class="container">
+
+  <!-- Submit Page -->
+  <div class="sixteen columns">
+    <div class="submit-page">
+
+      <div id="contact_form">
+        
+         <div id="mail-status">{$errorMessage}</div>
+
+      <div id="contact_body">
+
+      <form name="frm_addjob" id="frm_addjob" method="post" action="{$smarty.const.URL_HOMEPAGE}submitjob.html" enctype="multipart/form-data"> 
+        <!-- Email -->
+      <div class="form">
+        <h5>Your Email</h5>
+        <span id="email-info" class="info"></span>
+        <input class="search-field" type="text" name="email" id="email" placeholder="mail@example.com" value=""/>
+      </div>
+
+      <!-- Title -->
+      <div class="form">
+        <h5>Job Title</h5>
+         <span id="title-info" class="info"></span>
+        <input class="search-field" type="text" name="title" id="title" placeholder="" value=""/>
+      </div>
+
+      <!-- Location -->
+      <div class="form">
+        <h5>Location <span>(optional)</span></h5>
+        <input class="search-field" type="text" name="location" id="location" placeholder="e.g. London" value=""/>
+        <p class="note">Leave this blank if the location is not important</p>
+      </div>
+
+      <!-- Job Type -->
+      <div class="form">
+        <h5>Job Type</h5>
+        <span id="jobtype-info" class="info"></span>
+        <select data-placeholder="Full-Time" name="jobtype" id="jobtype" class="chosen-select-no-single">
+          <option value="1">Full-Time</option>
+          <option value="2">Part-Time</option>
+          <option value="2">Internship</option>
+          <option value="2">Freelance</option>
+        </select>
+      </div>
+
+
+      <!-- Choose Category -->
+      <div class="form">
+        <div class="select">
+          <h5>Category</h5>
+          <span id="categories-info" class="info"></span>
+          <select data-placeholder="Choose Categories" name="categories" id="categories" class="chosen-select" multiple>
+            <option value="1">Web Developers</option>
+            <option value="2">Mobile Developers</option>
+            <option value="3">Designers & Creatives</option>
+            <option value="4">Writers</option>
+            <option value="5">Virtual Assistants</option>
+            <option value="6">Customer Service Agents</option>
+            <option value="7">Sales & Marketing Experts</option>
+            <option value="8">Accountants & Consultants</option>
+          </select>
+        </div>
+      </div>
+
+
+      <!-- Description -->
+      <div class="form">
+        <h5>Description</h5>
+          <textarea class="ckeditor" name="summary" id="summary"></textarea>
+        {literal}<script type="text/javascript">CKEDITOR.replace('summary'); </script>{/literal}
+      </div>
+
+      <!-- TClosing Date -->
+      <div class="form">
+        <h5>Closing Date <span>(optional)</span></h5>
+        <input data-role="date" type="text" name="close-date" id="close-date" placeholder="yyyy-mm-dd">
+        <p class="note">Deadline for new applicants.</p>
+      </div>
+
+      
+      <!-- Company Details -->
+      <div class="divider"><h3>Company Details</h3></div>
+
+      <!-- Company Name -->
+      <div class="form">
+        <h5>Company Name</h5>
+         <span id="companyname-info" class="info"></span>
+        <input type="text" name="companyname" id="companyname" placeholder="Enter the name of the company">
+      </div>
+
+       <!-- Company Name -->
+      <div class="form">
+        <h5>Company Phone</h5>
+         <span id="companyphone-info" class="info"></span>
+        <input type="text" name="companyphone" id="companyphone" placeholder="Enter the phone number">
+      </div>
+
+      <!-- Website -->
+      <div class="form">
+        <h5>Website <span>(optional)</span></h5>
+        <input type="text" name="companywebsite" id="companywebsite" placeholder="http://">
+      </div>
+
+      <!-- Video -->
+      <div class="form">
+        <h5>Video <span>(optional)</span></h5>
+        <input type="text" name="companyvideo" id="companyvideo" placeholder="A link to a video about your company">
+      </div>
+
+      <!-- Experience  -->
+      <div class="form with-line">
+       <div class="g-recaptcha" data-sitekey="6LfIRxYUAAAAAL0n8vEBpAK0TJOqFyhpiN_yvBZX"></div>
+      </div>
+
+
+      <div class="divider margin-top-0 padding-reset"></div>
+          <input type="button" id="submit_btn" class="button big margin-top-5" onClick="sendJob();" value="Send" />
+          <input type="hidden" name="submitJob" value="1" />
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+{include file="$themes/footer.html"}
+
+
+

@@ -1,0 +1,137 @@
+{include file="$themes/header.html"}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+{literal}
+<script type="text/javascript">
+    $(function () {
+        $("form[name='contact']").validate({
+            // Specify validation rules
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                name: {
+                    required: true
+                },
+            },
+            // Specify validation error messages
+            messages: {
+                email: "{/literal}{$smarty.const.lang_err_email}{literal}",
+                name: "{/literal}{$smarty.const.lang_err_last_name}{literal}"
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>
+{/literal}
+
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+
+    </section>
+    {foreach from=$list_banner_home item="val" name="val"}
+    <section class="home_background section" style="background: #12e246 url({$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}) no-repeat center center;
+-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; min-height: 400px;">
+        {include file="$themes/banner_contact.html"}
+    </section>
+    {/foreach}
+</div>
+
+<section class="contact_background section fw-mgb30 fw-mgt30">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 no-padding">
+                <div align="left" class="col-md-6" style="border-right: 1px solid #999;">
+                    {foreach from=$list_contact item="val" key="key" name="val"}
+                    <div class="col-md-12 fw-mgb30">
+                        <div class="col-md-2">
+                            {if $val.news_img}
+                                <img src="{$smarty.const.URL_HOME}/timthumb.php?src={$smarty.const.URL_HOME}/upload/contact/{$val.news_img}&w=50&zc=0" alt="{$val.news_name}">
+                            {else}
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="{$val.news_name}">
+                            {/if}
+                        </div>
+                        <div class="col-md-10">
+                            <div class="text-cl-index">{$val.news_name}</div>
+                            <div>
+                                {$val.news_content}
+                            </div>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+
+                <div align="left" class="col-md-6">
+
+                    <div class="padding-left-xl padding-right-xl">
+
+                        <div class="box-contact">
+                            <form role="form" class="form-ad" name="contact" method="post"
+                                  enctype="multipart/form-data" action="{$smarty.const.URL_HOMEPAGE}contact-exe.html"/>
+
+                            <div class="form-group" align="right">
+                                <div align="left" class="col-md-12">
+                                    <h3 class="fw-cl-blue1 fw-mgt10 fw-fs-32">Liên hệ với chúng tôi!</h3>
+                                </div>
+                            </div>
+
+                            <div style="clear: both;"></div>
+
+                            <div style="margin:10px 20px 20px 20px;">
+
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <input type="password" class="form-control" name="name" id="name"
+                                               placeholder="Họ tên"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <input type="text" class="form-control" name="email" id="email"
+                                               placeholder="Email"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <input type="password" class="form-control" name="mobile" id="mobile"
+                                               placeholder="Điện thoại"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <textarea class="form-control" rows="6" name="messages" id="messages"
+                                                  placeholder="Để lại tin nhắn cho chúng tôi để được tư vấn"></textarea>
+                                    </div>
+                                </div>
+
+                                <div align="left" class="fw-pdt10 fw-pdb10">
+                                    <input class="btn btn-contact" name="submitContact" type="submit" value="Gửi đi">
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- footer -->
+{include file="$themes/footer.html"}

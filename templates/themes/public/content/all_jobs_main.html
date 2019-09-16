@@ -1,0 +1,39 @@
+{include file="$themes/header.html"}
+<div id="wrapper">
+ {include file="$themes/top.html"} 
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="ten columns">
+			<h2>All jobs category</h2>
+		</div>
+
+	</div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+
+		<div class="sixteen columns">
+        <ul id="popular-categories">
+{section name=cate_bo loop=$cate_bo}
+  <li><a href="{$smarty.const.URL_HOMEPAGE}{$cate_bo[cate_bo].news_url}{$cate_bo[cate_bo].category_url}.html"><i class="fa {$cate_bo[cate_bo].color}"></i> {$cate_bo[cate_bo].category_name} <span id="numberJob">({$numberPro[cate_bo][0].num_product})</span></a></li>   
+{/section}
+        </ul>
+
+        <div class="clearfix"></div>
+    </div>
+
+
+</div>
+<!-- Widgets / End -->
+
+
+</div>
+{include file="$themes/footer.html"}
+
+
+

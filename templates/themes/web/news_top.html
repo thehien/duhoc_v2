@@ -1,0 +1,95 @@
+<div class="col-md-12 fw-mgb10">
+    <div class="col-md-7 slider_menu variable-width">
+        {foreach from=$list_news_category item="val" name="val"}
+                <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}news/{$val.category_id}/{$val.category_url}.html">
+                    <strong>{$val.category_name}</strong>
+                </a>
+        {/foreach}
+    </div>
+    <div class="col-md-5"></div>
+</div>
+
+<div class="col-md-12 fw-mgb10">
+    <h2 class="main_title text-cl-index">{$content_index[2].category_name}</h2>
+</div>
+<div class="col-md-12 no-padding fw-mgb10">
+    <div align="left" class="col-md-8 text-justify">
+        {$content_index[2].category_content}
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+{literal}
+<script>
+    jQuery(document).ready(function() {
+        jQuery("#paging li").on('click',function(e){
+            e.preventDefault();
+            jQuery("#target-content").html('loading...');
+            jQuery("#paging li").removeClass('active');
+            jQuery(this).addClass('active');
+            var pageNum = this.id;
+            jQuery("#target-content").load("{/literal}{$smarty.const.URL_HOME}{literal}/load/load_pagination.php?page=" + pageNum);
+        });
+    });
+</script>
+{/literal}
+
+{if count($list_content_industry) > 0}
+<div class="col-md-6 col-sm-6 col-xs-12 fw-mgb20">
+    <div style="background: #fff;">
+        {include file="$themes/content_banner_top.html"}
+    </div>
+</div>
+<div id="target-content">
+{foreach from=$list_content_industry item="val" key="key" name="val"}
+    <div class="col-md-3 fw-mgb20">
+        <div class="col-md-12 fw-mgb10" align="center">
+            <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}/{$val.news_url}.html">
+            {if $val.news_img}
+               <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_HOME}/upload/contents/{$val.news_img}" />
+            {else}
+                <img class="img-thumbnail img-rounded" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg">
+            {/if}
+            </a>
+        </div>
+
+        <div class="col-md-12">
+            <div class="team_title">
+                <a class="team_title" href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}/{$val.news_url}.html">
+                    <strong>{$val.news_name_limit}</strong>
+                </a>
+            </div>
+            <div class="team_content fw-mgb20" style="height:auto; min-height: 80px;">{$val.news_content_limit}</div>
+            <div class="col-md-12 no-padding">
+                <div class="col-md-6 no-padding">
+                    <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                    <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
+                </div>
+                <div class="col-md-6 no-padding" align="right">
+                    <span style="color:#9b9999"><strong>SHARE</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+{/foreach}
+</div>
+
+    {if $total_pages > 0}
+    <div class="col-md-12">
+        <div class="showing pull-left"></div>
+        <ul class="pagination pull-right" id="paging">
+            {section name=foo start=1 loop=$total_pages step=1}
+                {if $smarty.section.foo.index == 1}
+                    <li class='active' id="{$smarty.section.foo.index}">
+                        <a href='{$smarty.const.URL_HOME}/load/pagination.php?page={$smarty.section.foo.index}'>{$smarty.section.foo.index}</a>
+                    </li>
+                {else}
+                   <li id="{$smarty.section.foo.index}">
+                       <a href='{$smarty.const.URL_HOME}/load/pagination.php?page={$smarty.section.foo.index}'>{$smarty.section.foo.index}</a>
+                   </li>
+                {/if}
+            {/section}
+        </ul>
+    </div>
+    {/if}
+{/if}

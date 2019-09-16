@@ -1,0 +1,120 @@
+ <div class="col-md-12 no-padding fw-mgb10">
+  <form role="form" class="form-ad" name="acceptTranslate" method="post" action="{$smarty.const.URL_HOMEPAGE}send-translate.html"/>
+  <input type="hidden" name="coupon_code_id" value="{$rs_detail[0].coupon_code}">
+  <input type="hidden" name="user_name" value="{$rs_detail[0].fullname}">
+  <input type="hidden" name="user_email" value="{$rs_detail[0].email}">
+
+<div align="center" class="col-md-12 no-padding fw-mgb10 fw-mgt10">
+  {if $rs_detail[0].avatar}
+  <img width="100" height="100" src="{$smarty.const.URL_HOME}/upload/avatar/{$rs_detail[0].avatar}" class="img-circle"/>
+  {else}
+  <img width="100" height="100" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle" />
+  {/if}
+</div> 
+<div align="center" class="col-md-12 no-padding fw-mgb10"><strong>{$rs_detail[0].fullname}</strong></div>
+
+<div align="center" class="col-md-12 no-padding fw-mgb10">Submit translation documents</div>
+
+<div align="center" class="col-md-12 no-padding fw-mgb10"><strong>ID {$rs_detail[0].coupon_code} : {$rs_detail[0].file_translate}</strong></div>
+
+<div align="center" class="col-md-12 no-padding fw-mgb15">
+ Subject : {$rs_detail[0].subject_field}
+</div>
+
+<div align="center" class="col-md-12 no-padding fw-mgb15">
+ Created Date: {$rs_detail[0].ngay_mua}
+</div>
+
+<div align="center" class="col-md-12 no-padding fw-mgb15">
+  <div>
+   <table width="300">
+    <tr>
+      <td align="center" width="45%">
+        {foreach from=$fromTolanguage name=val_order item=val_order}
+        {foreach from=$val_order name=val1 item=val1}
+        {if $val1.translate_id == $rs_detail[0].translate_id}
+        <span id="translate_from" class="language-bg" style="margin-bottom: 5px;">
+          <span style="margin:5px; font-size: 13px;">{$val1.from_language_name}</span>
+        </span>
+        <br/>
+        {/if}
+        {/foreach}
+        {/foreach}
+      </td>
+
+      <td align="center" width="10%">
+       {foreach from=$fromTolanguage name=val_order item=val_order}
+       {foreach from=$val_order name=val1 item=val1}
+       {if $val1.translate_id == $rs_detail[0].translate_id}
+       <div id="translate_to" style="margin-bottom: 5px;">
+        <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+      </div>
+      {/if}
+      {/foreach}
+      {/foreach}
+    </td>
+
+    <td align="left" width="45%" style="padding-left: 35px;">
+     {foreach from=$fromTolanguage name=val_order item=val_order}
+     {foreach from=$val_order name=val1 item=val1}
+     {if $val1.translate_id == $rs_detail[0].translate_id}
+     <span id="translate_to" class="language-bg"  style="margin-bottom: 5px;">
+      <span style="margin:5px; font-size: 13px;">{$val1.to_language_name}</span>
+    </span>
+    <br/>
+    {/if}
+    {/foreach}
+    {/foreach}
+  </td>
+</tr>
+</table>
+</div>
+</div>
+
+<div class="col-md-12 no-padding fw-border-bottom-sender fw-mgb10"></div>
+
+
+<div align="center" class="col-md-12 no-padding fw-mgb10">
+  Bạn vui lòng kiểm tra cẩn thận đơn hàng đã dịch trước khi gửi đến khách hàng.
+</div>
+
+<div align="center" class="col-md-12 no-padding fw-mgb10">
+ <div class="upload-btn-wrapper">
+<div> 
+  <button class="btn btn-upload-order">Upload</button>
+  <input id="upload" type="file" name="translateFile" />
+</div>
+  <div id="translateFile"></div>
+  {literal}
+    <script type="text/javascript">
+      document.getElementById("upload").onchange = function () {
+        document.getElementById("translateFile").innerHTML = this.value;
+    };
+    </script>
+  {/literal}
+</div>
+</div>
+
+<div align="center" class="col-md-12 no-padding fw-mgb10">
+  <div class="col-md-12">Upload the translated file</div>
+</div>
+
+<div align="center" class="col-md-12 no-padding fw-mgb10">
+ <input type="submit" value="Send" name="submit" class="btn btn-send" />
+</div>
+
+<div class="col-md-12 no-padding fw-border-bottom-sender"></div>
+
+<div class="col-md-12 fw-mgb20">
+  <div>Do you need help? Please contact <a href="mailto:translator@linkrica@.com">translator@linkrica@.com</a></div>
+  <div>Thank you,</div>
+  <div>The Linkrica Team</div>
+</div>
+
+
+
+
+  </form>
+
+</div>
+

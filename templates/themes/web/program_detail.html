@@ -1,0 +1,55 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+    </section>
+</div>
+<!-- Find Job Section Start -->
+<section class="find-job section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-border-content-bottom"
+                 style="margin: 5px; text-align: center">
+                <h2 class="fw-fs-32 fw-mgt10 fw-mgb20">CHƯƠNG TRÌNH</h2>
+            </div>
+
+            <div class="col-md-12" style="margin: 10px;">
+                <div class="col-md-8">
+                    <div class="fw-fs-24 fw-mgb20">{$pg_content.category_name}</div>
+                    <div class="col-md-12 no-padding">
+                        <p>
+                            {$pg_content.category_content}
+                        </p>
+                        <br/>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="fw-mgb20">
+                        <div class="fw-fs-24">Categories</div>
+                        <div align="left" class="btn-bg-under-center fw-mgt10"></div>
+                    </div>
+                    <div>
+                        {foreach from=$list_chuong_trinh item="val" name="val"}
+                        <div class="fw-mgb10">
+                            <a href="{$smarty.const.URL_HOMEPAGE}pg-detail/{$val.category_id}/{$val.category_url}.html" class="industry">
+                                <h3 style="font-size: 16px;">{$val.category_name}</h3>
+                            </a>
+                        </div>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- footer -->
+{include file="$themes/footer.html"}

@@ -1,0 +1,168 @@
+<nav class="navbar navbar-default" role="navigation" data-spy="affix" data-offset-top="50">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" href="{$smarty.const.URL_HOMEPAGE}index.html">
+                <img style="width: 70%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo.png" alt="">
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-right float-right" id="navbar">
+            <!-- Start Navigation List -->
+            <ul class="nav navbar-nav">
+
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}duhoc-top.html" {if $url_views ==
+                    'duhoc' || $url_views == 'duhoc-top' || $url_views == 'duhoc-detail'}class="active"{else}class="btn btn-common-link"{/if}>
+                     Du học
+                    </a>
+                    <ul class="dropdown">
+                        {foreach from=$list_service_menu item="val" name="val"}
+                        <li>
+                            <a href="{$smarty.const.URL_HOMEPAGE}duhoc/{$val.id}/{$val.service_url}.html">
+                                <div><strong>{$val.service_name}</strong></div>
+                                <div class="sub-drop-text">{$val.service_code}</div>
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </li>
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}about-us.html" {if $url_views ==
+                    'about-us'}class="active"{else}class="btn btn-common-link"{/if}>
+                    Giới thiệu
+                    </a>
+                </li>
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}news-top.html"
+                       {if $url_views == 'news-top' || $url_views == 'news' || $url_views == 'news-detail'}class="active"{else}class="btn btn-common-link"{/if}>
+                    Tin tức
+                    </a>
+                    <ul class="dropdown">
+                        {foreach from=$list_news_category_menu item="val" name="val"}
+                        <li>
+                            <a href="{$smarty.const.URL_HOMEPAGE}news/{$val.category_id}/{$val.category_url}.html">
+                                <div><strong>{$val.category_name}</strong></div>
+                                <div class="sub-drop-text">{$val.category_code}</div>
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}hocbong-top.html" {if $url_views ==
+                    'hocbong-top' || $url_views == 'hocbong' || $url_views == 'hb-detail'}class="active"{else}class="btn btn-common-link"{/if}>
+                    Học bổng
+                    </a>
+                    <ul class="dropdown">
+                        {foreach from=$list_hoc_bong item="val" name="val"}
+                        <li>
+                            <a href="{$smarty.const.URL_HOMEPAGE}hocbong/{$val.category_id}/{$val.category_url}.html">
+                                <div><strong>{$val.category_name}</strong></div>
+                                <div class="sub-drop-text">{$val.category_code}</div>
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}language.html" {if $url_views ==
+                    'location'}class="active"{else}class="btn btn-common-link"{/if}>
+                    Tìm trường
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}program.html" {if $url_views ==
+                    'program' || $url_views == 'pg-detail'}class="active"{else}class="btn btn-common-link"{/if}>
+                    Chương trình
+                    </a>
+                    <ul class="dropdown">
+                        {foreach from=$list_chuong_trinh item="val" name="val"}
+                        <li>
+                            <a href="{$smarty.const.URL_HOMEPAGE}pg-detail/{$val.category_id}/{$val.category_url}.html">
+                                <div><strong>{$val.category_name}</strong></div>
+                                <div class="sub-drop-text">{$val.category_code}</div>
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}blog.html" {if $url_views ==
+                    'blog' || $url_views == 'blog-detail'}class="active"{else}class="btn btn-common-link"{/if}>
+                    Blog
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}contact.html" {if $url_views ==
+                    'contact'}class="active"{else}class="btn btn-common-link"{/if}>
+                    Liên hệ
+                    </a>
+                </li>
+
+            </ul>
+
+            <ul id="menuheader" class="nav navbar-nav navbar-right float-right">
+                <li class="right">
+                    <a href="{$smarty.const.URL_HOMEPAGE}login.html" {if $url_views== 'login'}class="btn-login-active"{else}
+                    class="btn-login-active"{/if}>
+                    Đăng nhập
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Mobile Menu Start -->
+    <ul class="wpb-mobile-menu">
+        <li>
+            <a href="{$smarty.const.URL_HOMEPAGE}translate.html" {if $url_views== 'translate'} class="active"{/if}>
+            <strong>{$smarty.const.lang_common_translate_now}</strong>
+            </a>
+        </li>
+        <li>
+            <a class="active" href="{$smarty.const.URL_HOMEPAGE}index.html"><strong>Home</strong></a>
+        </li>
+        <li>
+            <a href="{$smarty.const.URL_HOMEPAGE}how-it-works.html" {if $url_views== 'how-it-works'}class="active"{/if}>
+            <strong>How it works</strong>
+            </a>
+        </li>
+        <li>
+            <a href="{$smarty.const.URL_HOMEPAGE}about-us.html" {if $url_views== 'about-us'}class="active"{/if}>
+            <strong>{$smarty.const.lang_common_about}</strong>
+            </a>
+        </li>
+
+        <li>
+            <a href="{$smarty.const.URL_HOMEPAGE}service.html" {if $url_views== 'service'}class="active"{/if}>
+            <strong>{$smarty.const.lang_common_service}</strong>
+            </a>
+        </li>
+        <li class="btn-m">
+            <a {if $active}class="active" {/if} href="{$smarty.const.URL_HOMEPAGE}register.html"><i
+                class="ti-pencil-alt"></i>
+            <strong>{$smarty.const.lang_common_register}</strong>
+            </a>
+        </li>
+        <li class="btn-m"><a {if $url_views== 'login'}class="active"{/if} href="{$smarty.const.URL_HOMEPAGE}login.html">
+            <i class="ti-lock"></i>
+            <strong>{$smarty.const.lang_common_login}</strong>
+            </a></li>
+        <li class="btn-m"><a href="{$smarty.const.URL_HOMEPAGE}help-center.html" {if $url_views==
+            'help-center'}class="active"{/if}>
+            <strong>{$smarty.const.lang_common_support}</strong>
+            </a></li>
+    </ul>
+    <!-- Mobile Menu End -->
+</nav>

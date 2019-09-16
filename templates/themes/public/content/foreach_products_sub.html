@@ -1,0 +1,37 @@
+   {foreach from=$rs item="val" name="val"}
+    <div class="col-md-3 brief-grids wow">
+    <a href="{$smarty.const.URL_HOMEPAGE}{$val.news_id}-{$val.news_url}.html" title="{$val.news_name}" />
+      {if $val.news_img}
+      <img class="img-circle"  width="160" height="160" src="{$smarty.const.URL_HOMEPAGE}upload/products/{$val.img_file}/{$val.news_img}" alt="{$val.news_name}" />
+       {else} 
+      <img class="img-circle"  width="180" height="160" src="{$smarty.const.URL_IMAGE_NEW}/nophoto.png" alt="{$val.news_name}" />
+      {/if}
+    </a>
+       <div class="brief-grid">
+         <div class="brief-grid-text-detail">
+           <h4>{$val.news_code}</h4>
+           <p>
+            {$smarty.const.lang_position} : {$val.news_position}<br/>
+            {$smarty.const.lang_type}:   {$val.news_type} <br/>
+            {$smarty.const.lang_time_product} : {$val.news_time}<br/>
+            {$smarty.const.lang_salary}: <strong>{$val.price}</strong> vnd          
+           </p>  
+         </div>
+       </div>
+
+   <div class="maidbutton-padding">
+    <a href="{$smarty.const.URL_HOMEPAGE}{$val.news_id}-{$val.news_url}.html" class="link">{$smarty.const.lang_xemchitiet}</a>
+   </div>
+     </div>
+    {/foreach}
+     
+{if $paging}<div class="paging_news">{$paging}</div>{/if}
+
+
+
+
+
+
+
+
+

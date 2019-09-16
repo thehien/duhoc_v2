@@ -1,0 +1,293 @@
+{include file="$themes/header-account.html"}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/jquery.popupoverlay.js"></script>
+
+{literal}
+<style>
+label.error {
+    position: absolute;
+    /*right: 143px;*/
+    top: -25px;
+    width: 200px;
+    border: solid 1px #000;
+    background: #fff;    
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, .7);
+    padding: 2px 5px;
+    white-space: nowrap;
+}
+</style>
+{/literal}
+
+{literal}
+<script type="text/javascript">
+ $(function() {
+  $("form[name='payment-online']").validate({
+    // Specify validation rules
+    rules: {
+      option_payment: "required", 
+      bankcode :"required"
+    },
+    // Specify validation error messages
+    messages: {
+      option_payment: "Please select a payment type",
+      bankcode : "Please select a bank type"
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+{/literal}
+
+
+{literal}
+<style>
+  
+  ul.bankList {
+    clear: both;
+    height: 202px;
+    width: 636px;
+  }
+  ul.bankList li {
+    list-style-position: outside;
+    list-style-type: none;
+    cursor: pointer;
+    float: left;
+    margin-right: 0;
+    padding: 5px 2px;
+    text-align: center;
+    width: 90px;
+  }
+  .list-content li {
+    list-style: none outside none;
+    margin: 0 0 10px;
+  }
+  
+  .list-content li .boxContent {
+    display: none;
+    width: 636px;
+    border:1px solid #cccccc;
+    padding:10px; 
+  }
+  .list-content li.active .boxContent {
+    display: block;
+  }
+  .list-content li .boxContent ul {
+    height:280px;
+  }
+  
+  i.VISA, i.MASTE, i.AMREX, i.JCB, i.VCB, i.TCB, i.MB, i.VIB, i.ICB, i.EXB, i.ACB, i.HDB, i.MSB, i.NVB, i.DAB, i.SHB, i.OJB, i.SEA, i.TPB, i.PGB, i.BIDV, i.AGB, i.SCB, i.VPB, i.VAB, i.GPB, i.SGB,i.NAB,i.BAB 
+  { width:80px; height:30px; display:block; background:url(https://www.nganluong.vn/webskins/skins/nganluong/checkout/version3/images/bank_logo.png) no-repeat;}
+  i.MASTE { background-position:0px -31px}
+  i.AMREX { background-position:0px -62px}
+  i.JCB { background-position:0px -93px;}
+  i.VCB { background-position:0px -124px;}
+  i.TCB { background-position:0px -155px;}
+  i.MB { background-position:0px -186px;}
+  i.VIB { background-position:0px -217px;}
+  i.ICB { background-position:0px -248px;}
+  i.EXB { background-position:0px -279px;}
+  i.ACB { background-position:0px -310px;}
+  i.HDB { background-position:0px -341px;}
+  i.MSB { background-position:0px -372px;}
+  i.NVB { background-position:0px -403px;}
+  i.DAB { background-position:0px -434px;}
+  i.SHB { background-position:0px -465px;}
+  i.OJB { background-position:0px -496px;}
+  i.SEA { background-position:0px -527px;}
+  i.TPB { background-position:0px -558px;}
+  i.PGB { background-position:0px -589px;}
+  i.BIDV { background-position:0px -620px;}
+  i.AGB { background-position:0px -651px;}
+  i.SCB { background-position:0px -682px;}
+  i.VPB { background-position:0px -713px;}
+  i.VAB { background-position:0px -744px;}
+  i.GPB { background-position:0px -775px;}
+  i.SGB { background-position:0px -806px;}
+  i.NAB { background-position:0px -837px;}
+  i.BAB { background-position:0px -868px;}
+  
+  ul.cardList li {
+    cursor: pointer;
+    float: left;
+    margin-right: 0;
+    padding: 5px 4px;
+    text-align: center;
+    width: 90px;
+  }
+</style>
+{/literal}
+
+<!-- Header Section Start -->
+<div class="header">
+  <!-- Start intro section -->
+  <section id="intro" class="section-intro">
+    <div class="logo-menu">
+      {if $isLogin}
+      {include file="$themes/top-account.html"}
+      {else}
+      {include file="$themes/top.html"}
+      {/if}
+    </div>
+
+   
+    <div id="content" class="register-account fw-font-default">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 fw-mgb10">
+        {if $countOrderStatus > 0}
+          <h2 style="text-align: center;"> Pending for Payment</h2>
+        {else}
+         <h2 style="text-align: center;"> Payment</h2>
+        {/if}
+       </div>
+<form role="form" class="payment-form" name="payment-online" method="post" enctype="multipart/form-data" action="{$smarty.const.URL_HOMEPAGE}cartorder.html" autocomplete="off" />
+        <input type="hidden" name="userid_u" value="{$userid_u}">
+         <input type="hidden" name="order_id" value="{$userid_u}">
+        
+          <div class="col-sm-8">
+           <div class="fw-bglogin box fw-mgb10">
+            <div class="content_left fw-mg10" style=" width: 97%">
+              <div class="fw-mgb10">
+                <span class="fw-fs-18"><strong>Choose form of Payment</strong></span>
+              </div>
+              
+              <div>
+                 {include file="$themes/web/bank_type.html"}
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="fw-bglogin box fw-mgb10">
+            <div class="content_left fw-mg10" style=" width: 97%">
+
+              <div class="fw-mgb10">
+                <span class="fw-fs-18"><strong>Payment Information</strong></span>
+              </div>
+
+              <div class="fw-mgb10">
+                {include file="$themes/web/cart_info.html"}
+              </div>
+               
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+        </div>
+
+     <div class="col-sm-4">
+      <div class="fw-bglogin box">
+        <div>
+          <div class="fw-fs-24 col-sm-10"><div align="center" style="padding-left: 10px;">Total</div></div>
+          <div align="right" class="col-sm-2">
+            <a href="{$smarty.const.URL_HOMEPAGE}order.html"><img src="{$smarty.const.URL_WEB}{$themes}/assets/img/previous.png" width="40"></a>
+          </div>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="divider-translate"></div>
+
+        <div class="fw-mgt10">
+          {if $list_order_translate_finish}
+          {foreach from=$list_order_translate_finish name=val item=val}
+          <div class="fw-mgb10">
+            <div class="col-sm-9" style="font-size: 13px;">. {$val.file_translate}</div>
+            <div class="col-sm-3 language-bg" style="font-size: 13px;">{$val.price}$</div>
+            <div class="clearfix"></div>
+          </div>
+          {/foreach}
+          {else}
+          <div align="center">Don't have translate document</div>
+          {/if}
+        </div>
+
+        <div class="fw-mgt20" style="padding:20px 10px 20px 10px;">
+          <div style="float: left">
+            <span id="count_results">
+              {if $list_order_translate_finish}
+              <strong>{$total_count}</strong>
+              {else}
+              <strong>0</strong>
+              {/if}
+            </span> word(s)
+          </div>
+
+          <div style="float: right;"><span style="font-size: 18px;">{$total_price}</span> $</div>
+        </div>
+         <div style="clear: both;"></div>     
+      </div>
+
+      <div class="fw-mgt10">
+        {if $countOrderStatus > 0}
+         <center>
+            <a class="btn btn-order-translate log-btn fadeandscale_open" href="#fadeandscale">
+             Pending for payment
+           </a>
+         </center>
+        {else}
+        <center>
+          <button class="btn btn-order-translate log-btn" name="nlpayment" type="submit">Payment</button>
+        </center>
+        {/if}
+
+      </div>
+
+  </div>
+</form>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+  {literal}
+  <script language="javascript">
+    $('input[name="option_payment"]').click(function() {
+    $('.list-content li').removeClass('active');
+    $(this).parent().parent('li').addClass('active');
+    });   
+  </script>   
+  {/literal}
+
+{* Hiển thị nội dung popup alert active mail *}
+<!-- Fade & scale -->
+<div id="fadeandscale" class="well" style="width: 600px; height: 100px;">
+  <span style="font-size: 25px; line-height: 50px; color: #ff0000;">Please check mail to confirm and make payment</span>
+</div>
+
+{literal}
+<script>
+  $(document).ready(function () {
+    $('#fadeandscale').popup({
+      pagecontainer: '.container',
+      transition: 'all 0.3s'
+    });
+  });
+</script>
+<style>
+#fadeandscale {
+  background-color: #fff;
+  width: 530px;
+  overflow: hidden;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
+}
+.popup_visible #fadeandscale {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+</style>
+{/literal}
+
+<div id="loadingInfo" class="loading-img">
+  <p style="position: absolute; top: 35%; left: 50%;">
+   <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/loading.gif" class="fw-img-p50" />
+ </p>
+</div>
+
+{include file="$themes/footer_js_translate.html"}

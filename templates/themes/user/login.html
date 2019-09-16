@@ -1,0 +1,127 @@
+{include file="$themes/header.html"}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+{literal}
+<script type="text/javascript">
+    $(function () {
+        $("form[name='login']").validate({
+            // Specify validation rules
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+            },
+            // Specify validation error messages
+            messages: {
+                password: {
+                    required: "{/literal}{$smarty.const.lang_err_pass}{literal}",
+                    minlength: "{/literal}{$smarty.const.lang_err_pass_1}{literal}"
+                },
+                email: "{/literal}{$smarty.const.lang_err_email}{literal}",
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>
+{/literal}
+
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            {include file="$themes/top.html"}
+        </div>
+
+        <div>
+            <div class="col-md-6 login-bg"></div>
+
+            <div id="content" class="col-md-6 my-account">
+
+                <div class="col-md-8 col-md-offset-2">
+                    {if $warning}
+                        <div class="col-md-12 fw-mgb10" align="center">
+                            <span class="error-msg">{$warning}</span>
+                        </div>
+                    {/if}
+
+                    <div style="clear: both;"></div>
+
+                    <div class="col-md-12 my-account-form">
+
+                        <div id="cd-signup" class="is-selected fw-mgb20">
+                            <div class="fw-bglogin box-login">
+
+                                <form role="form" class="form-ad" name="login" method="post"
+                                      enctype="multipart/form-data" action="{$smarty.const.URL_HOMEPAGE}loginexe.html"/>
+
+                                <div class="form-group" align="right">
+                                    <div align="left" class="col-md-3">
+                                        <img width="50" src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo_small.png" alt="">
+                                    </div>
+                                    <div align="left" class="col-md-9">
+                                        <h3 class="fw-cl-blue1 fw-mgt10 fw-fs-18">Welcome to Linkrica!</h3>
+                                    </div>
+                                </div>
+
+                                <div style="clear: both;"></div>
+
+                                <div style="margin:10px 20px 20px 20px;">
+                                    <div class="form-group">
+                                        <div class="input-icon">
+                                            <input type="text" class="form-control" name="email" id="email"
+                                                   placeholder="Email"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-icon">
+                                            <input type="password" class="form-control" name="password" id="password"
+                                                   placeholder="Password"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="fw-pdt10 fw-pdb10">
+                                        <center>
+                                            <button class="btn btn-submit log-btn" type="submit">
+                                                {$smarty.const.lang_common_login}
+                                            </button>
+                                        </center>
+                                    </div>
+
+                                    <div class="fw-mgt10 fw-mgb7" align="left">
+                                        <a href="{$smarty.const.URL_HOMEPAGE}forgot-password.html" class="fw-fgpass">{$smarty.const.lang_common_forgot_pass}</a>
+                                    </div>
+                                    <div class="fw-mgt7" align="left">
+                                        {$smarty.const.lang_common_have_account} <a
+                                            href="{$smarty.const.URL_HOMEPAGE}register.html" class="fw-fgpass">
+                                        <strong>{$smarty.const.lang_common_register}</strong>
+                                         </a>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="fw-mgl10">
+                            You are translator !
+                            <a style="color:#fff;text-decoration: underline;" href="{$smarty.const.URL_HOMEPAGE}login-cv.html"
+                               class="btn-submit-cv">Login Here</a></div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+</div>
+
+<!-- footer -->
+{include file="$themes/footer_js.html"}

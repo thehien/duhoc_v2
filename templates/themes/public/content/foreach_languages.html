@@ -1,0 +1,23 @@
+<div id="testimonials">
+    <!-- Slider -->
+    <div class="container">
+        <div class="sixteen columns">
+            <div class="testimonials-slider">
+                  <ul class="slides">
+
+         {section name=spr_comment loop=$spr_comment}
+            {section name=spr_conmmentchild loop=$spr_conmmentchild[spr_comment]}
+                    <li class="" style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1;">
+                      <p>{$spr_conmmentchild[spr_comment][spr_conmmentchild].news_content}
+                      <span>{$spr_conmmentchild[spr_comment][spr_conmmentchild].news_name}</span></p>
+                    </li>
+        {/section}      
+      {/section} 
+                   
+
+                  </ul>
+            
+            </div>
+        </div>
+    </div>
+</div>
