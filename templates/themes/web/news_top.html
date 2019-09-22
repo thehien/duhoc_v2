@@ -42,7 +42,7 @@
 </div>
 <div id="target-content">
 {foreach from=$list_content_industry item="val" key="key" name="val"}
-    <div class="col-md-3 fw-mgb20">
+    <div class="col-md-3 fw-mgb20" style="max-height: 380px; height: 380px;">
         <div class="col-md-12 fw-mgb10" align="center">
             <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}news-detail/{$val.news_id}/{$val.news_url}.html">
             {if $val.news_img}

@@ -306,7 +306,11 @@ function process_client()
                 LANG_LINKRICA_TEAM,
                 LANG_OUR_TRANSLATOR,
                 LANG_QUALITY,
-                LANG_TO_BE_LINKRICA
+                LANG_REGISTER,
+                LANG_DU_HOC,
+                LANG_HOC_BONG,
+                LANG_HANH_TRINH,
+                LANG_WELCOME
             ];
             $content_index = $oNews->get_category_content($array_const);
             $smarty->assign("content_index", $content_index);
@@ -535,10 +539,8 @@ function process_client()
             $list_blog_center = $oNews->get_list_blog(LANG_BLOG_CENTER, 0, 30);
             $smarty->assign("list_blog_center", $list_blog_center);
 
-
             $list_blog_right = $oNews->get_list_blog(LANG_BLOG_RIGHT, 0, 10);
             $smarty->assign("list_blog_right", $list_blog_right);
-
 
             return $smarty->fetch($themes . "/web/hocbong_detail.html");
             break;
@@ -578,9 +580,7 @@ function process_client()
             $paramId = $function->sql_injection($arr_detail[0]);
             $smarty->assign("main_cate", $paramId);
             if ($paramId) {
-                $list_banner_home = $oNews->show_all_coupons_banner($paramId, 0, 0, 1);
-            } else {
-                $list_banner_home = $oNews->show_all_coupons_banner(LANG_CONTACT, 0, 0, 1);
+                $list_banner_home = $oNews->get_detail_study_abroad($paramId);
             }
             $smarty->assign("list_banner_home", $list_banner_home);
 
@@ -607,12 +607,19 @@ function process_client()
             $paramId = $function->sql_injection($b);
 
             // Get main category
-            $detail_service = $oNews->get_detail_translator_service($paramId);
+            $detail_service = $oNews->get_detail_study_abroad($paramId);
             $smarty->assign("detail_service", $detail_service);
             // Get content main service
             $service_content = $oNews->get_translator_service_by_id($detail_service[0]['news_category']);
             $smarty->assign("service_content", $service_content);
 
+            // Get data index
+            $list_cate_study_abroad = $oNews->get_list_cate_study_abroad();
+            $arr_news_study = array();
+            for ($i = 0; $i < count($list_cate_study_abroad); $i++) {
+                $arr_news_study[$i] = $oNews->show_new_detail_category($list_cate_study_abroad[$i]["id"], 4);
+            }
+            $smarty->assign("arr_news_study", $arr_news_study);
 
             return $smarty->fetch($themes . "/web/duhoc_detail.html");
             break;

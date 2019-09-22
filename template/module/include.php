@@ -56,7 +56,7 @@ if ($_SESSION[URL_HOME]["lang"] == "vn") {
         define("LANG_LINKRICA_TEAM", '97');
         define("LANG_OUR_TRANSLATOR", '98');
         define("LANG_QUALITY", '99');
-        define("LANG_TO_BE_LINKRICA", '100');
+        define("LANG_REGISTER", '100');
         define("LANG_OUR_MISSION", '105');
         define("LANG_MAKE_US_DIFFERENT", '106');
         define("LANG_WHERE_IS_FIND_US", '110');
@@ -68,6 +68,8 @@ if ($_SESSION[URL_HOME]["lang"] == "vn") {
         define("LANG_CHUONG_TRINH", '127');
         define("LANG_BLOG_CENTER", '121');
         define("LANG_BLOG_RIGHT", '122');
+        define("LANG_HANH_TRINH", '138');
+        define("LANG_WELCOME", '139');
         require('general/include/contact.php');
         include('general/language/language_en.php');
     }

@@ -13,7 +13,6 @@
             <form name="frm_search" method="post" action="{$smarty.const.URL_ADMIN}?module={$url}&main=search"
                   class="search_text">
 
-
                 <table>
                     <tr>
                         <td width="90">Search name</td>
@@ -109,12 +108,22 @@
 
                                 <td>Image
                                     <div class="order">
-                                        <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=news_name&sc=asc"><i
+                                        <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=service_img&sc=asc"><i
                                                 class="fa fa-caret-up"></i></a>
-                                        <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=news_name&sc=desc"><i
+                                        <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=service_img&sc=desc"><i
                                                 class="fa fa-caret-down"></i></a>
                                     </div>
                                 </td>
+
+                                <td>Banner
+                                    <div class="order">
+                                        <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=service_banner&sc=asc"><i
+                                                class="fa fa-caret-up"></i></a>
+                                        <a href="{$url_views}{$url_category}{$url_shops}{$url_limit}&order=service_banner&sc=desc"><i
+                                                class="fa fa-caret-down"></i></a>
+                                    </div>
+                                </td>
+
 
                                 <td>{$smarty.const.langcms_service}
                                     <div class="order">
@@ -164,6 +173,14 @@
                                 <td align="center" class="mw_50">
                                     {if $rs.service_img}
                                     <img src="{$smarty.const.IMG_UPLOAD}{$url}/{$rs.service_img}" height="35"/>
+                                    {else}
+                                    <i class="fa fa-picture-o status_img"></i>
+                                    {/if}
+                                </td>
+
+                                <td align="center" class="mw_50">
+                                    {if $rs.service_banner}
+                                    <img src="{$smarty.const.IMG_UPLOAD}{$url}/{$rs.service_banner}" height="35"/>
                                     {else}
                                     <i class="fa fa-picture-o status_img"></i>
                                     {/if}

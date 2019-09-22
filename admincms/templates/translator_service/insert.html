@@ -74,6 +74,19 @@
                                             </div>
                                             {/if}
                                         </td>
+
+                                        <td align="right" valign="top"><span>Banner</span></td>
+                                        <td valign="top"><input type="file" name="bannerimg" id="bannerimg" class="border_solid" value=""/>
+                                            {if $rs_edit.service_banner}
+                                            <div style="float:left">
+                                                <input type="hidden" name="banner_old" id="banner_old"
+                                                       value="{$rs_edit.service_banner}"/>
+                                                <img src="{$smarty.const.IMG_UPLOAD}{$url}/{$rs_edit.service_banner}" height="50"
+                                                     style="padding:5px 0px; float:left"/>
+
+                                            </div>
+                                            {/if}
+                                        </td>
                                     </tr>
 
                                     <tr>

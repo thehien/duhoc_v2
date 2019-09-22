@@ -1,54 +1,47 @@
 {include file="$themes/header.html"}
-<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.css">
-<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick-theme.css">
+<link rel="stylesheet"  href="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/css/lightslider.css"/>
 {literal}
-<style type="text/css">
-    * {
-        box-sizing: border-box;
+<style>
+    ul{
+        list-style: none outside none;
+        padding-left: 0;
+        margin: 0;
     }
-    .slider {
+    .demo .item{
+        margin-bottom: 10px;
+    }
+    .content-slider li{
+        background-color: #ed3020;
+        text-align: center;
+        color: #FFF;
+    }
+    .content-slider h3 {
+        margin: 0;
+        padding: 70px 0;
+    }
+    .demo{
         width: 100%;
-        margin: 10px auto;
-    }
-    .slider_menu {
-        width: 60%;
-        margin: 10px auto;
-    }
-    .slick-slide {
-        margin: 0 10px;
-    }
-    .slick-slide img {
-        width: 100%;
-    }
-    .slick-prev:before,
-    .slick-next:before {
-        color: black;
-    }
-    .slick-slide {
-        transition: all ease-in-out .3s;
-        opacity: .2;
-    }
-    .slick-active {
-        opacity: 1;
-    }
-    .slick-current {
-        opacity: 1;
     }
 </style>
-<script type="text/javascript">
-    $(document).on('ready', function() {
-        $('.variable-width').slick({
-            dots: false,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 1,
-            centerMode: false,
-            variableWidth: true
+
+<script>
+    $(document).ready(function() {
+        $('#image-gallery').lightSlider({
+            gallery:true,
+            item:1,
+            thumbItem:9,
+            slideMargin: 0,
+            speed:500,
+            auto:true,
+            loop:true,
+            onSliderLoad: function() {
+                $('#image-gallery').removeClass('cS-hidden');
+            }
         });
     });
 </script>
 {/literal}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/js/lightslider.js"></script>
 <!-- Header Section Start -->
 <div class="header">
     <!-- Start intro section -->
@@ -61,69 +54,194 @@
             {/if}
         </div>
     </section>
-    <section class="home_background section" style="background: url({$smarty.const.URL_WEB}{$themes}/assets/img/services/sub_service.png) no-repeat center center;
--webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; min-height: 200px;position: relative;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-left" style="color: #000;">
-                    <h2 class="fw-mgt10 fw-mgb20">{$service_content[0].service_name}</h2>
-                    <span class="fw-fs-16">{$service_content[0].service_content}</span>
-                </div>
-            </div>
-        </div>
-    </section>
 </div>
 
 <section class="find-jobs section-about">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 fw-mgt30 fw-mgb30">
-                <div class="col-md-12 fw-mgb10">
-                    <h2 class="text-cl-index">{$detail_service[0].news_name}</h2>
+            <div class="col-md-12 fw-mgt10 fw-mgb10">
+                <div class="col-md-8 no-padding">
+                    <div class="col-md-12 fw-mgb20">
+                       <section class="home_background section" style="background: url({$smarty.const.URL_WEB}{$themes}/assets/img/services/sub_service.png) no-repeat center center;
+                       -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; min-height: 200px;position: relative;">
+                       <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-left" style="color: #000;">
+                                <h2 class="fw-mgt10 fw-mgb20">{$service_content[0].service_name}</h2>
+                                <span class="fw-fs-16">{$service_content[0].service_content}</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-md-12 fw-mgb20">
+                <div class="col-md-8 no-padding">
+                    <span class="text-cl-index fw-fs-16">Học phí: $ 30.000/ năm (Cho phép nhập)</span>
                 </div>
-                <div class="col-md-3">
-                    <div class="fw-mgb20">
-                        <img src="{$smarty.const.URL_HOME}/upload/service_content/{$detail_service[0].news_img}"/>
+
+                <div class="col-md-4 no-padding" align="right">
+                   <a class="btn btn-learn-more fw-fs-14" href="{$smarty.const.URL_HOMEPAGE}about-us.html">
+                       Nộp hồ sơ
+                   </a>
+               </div>
+           </div>
+
+           <div class="col-md-12 fw-mgb20">
+            <div class="fw-mgb10">
+                <h3>
+                    TRƯỜNG PHỔ THÔNG NỘI TRÚ MARIAN CATHOLIC AMERIGO CHICAGO
+                </h3>
+            </div>
+            <div class="fw-mgb10">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum
+                  dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                  sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum
+                  dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                  sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+
+              </p>
+              <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum
+                  dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                  sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum
+                  dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                  sed do eiusmod tempor incididunt ut ero labore et Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+
+              </p>
+          </div>
+      </div>
+
+      <div class="col-md-12 fw-mgb20">
+        <div class="fw-mgb10"><h3>THƯ VIỆN HÌNH ẢNH</h3></div>
+        <div class="fw-mgb20">
+            <div class="demo">
+                <div class="item">
+                    <div class="clearfix" style="max-width:474px;">
+                        <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                            <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-1.jpg">
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-1.jpg" />
+                            </li>
+                            <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-2.jpg">
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-2.jpg" />
+                            </li>
+                            <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-3.jpg">
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-3.jpg" />
+                            </li>
+                            <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-4.jpg">
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-4.jpg" />
+                            </li>
+                            <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-5.jpg">
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-5.jpg" />
+                            </li>
+                            <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-6.jpg">
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-6.jpg" />
+                            </li>
+                            <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-7.jpg">
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-7.jpg" />
+                            </li>
+                            <li data-thumb="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/thumb/cS-8.jpg">
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img_slider/img/cS-8.jpg" />
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="col-md-9">
-                    {$detail_service[0].description}
-                </div>
+
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<section class="home_background section" style="background: url({$smarty.const.URL_WEB}{$themes}/assets/img/new_bg.png) no-repeat center center;
--webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; min-height: 300px;position: relative;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-left" style="color: #fff;">
-                <div class="fw-mgb30">
-                    <h3 class="fw-mgt20 fw-mgb30">Enterprise Solution</h3>
-                    <span class="fw-fs-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-magna aliqua.</span>
-                </div>
-                <div>
-                    <a class="btn btn-border btn-lg-new" href="{$smarty.const.URL_HOMEPAGE}service-detail.html">
-                        Read more
-                    </a>
-                </div>
-            </div>
+<div class="col-md-4">
+    <div class="col-md-12 no-padding">
+        <div class="col-md-4 fw-mgb10">
+            <a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.category_id}/{$val.category_url}.html">
+                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
+            </a>
+        </div>
+        <div class="col-md-8 fw-mgb10">
+            <div class="fw-mgb10 text-cl-index"><a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.category_id}/{$val.category_url}.html"><strong>Name of Student</strong></a></div>
+            <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
+        </div>
+        <div class="col-md-12 fw-mgb10">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
+                et doloremagna.
+            </p>
+        </div>
+        <div class="col-md-12">
+            <hr class="hr_border">
         </div>
     </div>
-</section>
 
-
-<section class="find-jobs section-about">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 fw-mgt10 fw-mgb10">
-                {include file="$themes/web/news_top.html"}
-            </div>
+    <div class="col-md-12 no-padding">
+        <div class="col-md-4 fw-mgb10">
+            <a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.category_id}/{$val.category_url}.html">
+                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
+            </a>
+        </div>
+        <div class="col-md-8 fw-mgb10">
+            <div class="fw-mgb10 text-cl-index"><a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.category_id}/{$val.category_url}.html"><strong>Name of Student</strong></a></div>
+            <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
+        </div>
+        <div class="col-md-12 fw-mgb10">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
+                et doloremagna.
+            </p>
+        </div>
+        <div class="col-md-12">
+            <hr class="hr_border">
         </div>
     </div>
+
+    <div class="col-md-12 no-padding">
+        <div class="col-md-4 fw-mgb10">
+            <a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.category_id}/{$val.category_url}.html">
+                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
+            </a>
+        </div>
+        <div class="col-md-8 fw-mgb10">
+            <div class="fw-mgb10 text-cl-index"><a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.category_id}/{$val.category_url}.html"><strong>Name of Student</strong></a></div>
+            <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
+        </div>
+        <div class="col-md-12 fw-mgb10">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
+                et doloremagna.
+            </p>
+        </div>
+        <div class="col-md-12">
+            <hr class="hr_border">
+        </div>
+    </div>
+    <div class="col-md-12 fw-mgb10" align="left">
+        <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
+            Xem thêm
+        </a>
+    </div>
+
+    <div class="col-md-12 no-padding">
+            
+    </div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <!-- footer -->
 {include file="$themes/footer.html"}

@@ -186,8 +186,14 @@ class Translator_service_class
         global $db;
 
         $sql = "Update list_cate_study_abroad set service_name ='" . $data['service_name'] . "',service_url ='" . $data['service_url'] . "',service_img ='" . $data['service_img'] . "',
-        service_content ='" . $data['service_content'] . "', service_code ='" . $data['service_code'] . "',status ='" . $data['status'] . "' where id='$id' ";
-        //echo $sql;exit;
+        service_content ='" . $data['service_content'] . "', service_code ='" . $data['service_code'] . "',status ='" . $data['status'] . "'";
+
+        if ($data['service_banner']) {
+            $sql .=",service_banner ='" . $data['service_banner']."' ";
+        }
+
+         $sql .= "where id='$id' ";
+
         $res = $db->db_query($sql);
         $db->db_freeresult($res);
         return false;

@@ -198,7 +198,9 @@
                 {foreach from=$list_service_menu item="val" name="val"}
                     <div class="col-md-4 no-padding">
                         <div class="duhoc_border text-center" style="margin: 5px;">
-                            {$val.service_name}
+                            <a href="{$smarty.const.URL_HOMEPAGE}duhoc/{$val.id}/{$val.service_url}.html">
+                             {$val.service_name}
+                            </a>
                         </div>
 
                     </div>

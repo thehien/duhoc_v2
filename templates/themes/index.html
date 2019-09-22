@@ -297,13 +297,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center fw-mgb20 fw-mgt20">
-                <h2 class="text-cl-index">Du Học Dài Hạn</h2>
+                <h2 class="text-cl-index">{$content_index[7].category_name}</h2>
             </div>
 
             <div class="col-md-12 text-center fw-mgb30">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et doloremagna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in uienply voluptate velit esse cillum dolore eu fugiatnulla pariatur.
+                {$content_index[7].category_content}
             </div>
 
             <div class="col-md-12 fw-mgb30">
@@ -312,13 +310,17 @@
                     {foreach from=$list_du_hoc item="val" key="key" name="val"}
                     <div class="carousel-cell fw-mgb30 fw-mgt20">
                         <div class="fw-mgb10" style="padding: 10px;">
-                            <a href="{$smarty.const.URL_HOMEPAGE}sv-detail/{$val.news_id}/{$val.news_url}.html">
+                            <a href="{$smarty.const.URL_HOMEPAGE}duhoc/{$val.id}/{$val.service_url}.html">
                                 <img style="width: 100%;" src="{$smarty.const.URL_HOME}/upload/translator_service/{$val.service_img}" alt="{$val.service_name_limit}">
                             </a>
                         </div>
 
                         <div class="col-md-12 fw-mgb20">
-                            <span class="fw-fs-16 text-cl-index"><strong>{$val.service_name_limit}</strong></span>
+                            <span class="fw-fs-16"><strong>
+                                <a class="text-cl-index" href="{$smarty.const.URL_HOMEPAGE}duhoc/{$val.id}/{$val.service_url}.html">
+                                {$val.service_name_limit}
+                                </a>
+                            </strong></span>
                         </div>
 
                         <div class="col-md-12 fw-mgb10">
@@ -361,13 +363,11 @@
                 </div>
                 <div class="col-md-9">
                     <div class="col-md-12 fw-mgb10">
-                        <h3 class="text-cl-index">Học Bổng</h3>
+                        <h3 class="text-cl-index">{$content_index[8].category_name}</h3>
                     </div>
 
                     <div class="col-md-12 fw-mgb10">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et doloremagna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in uienply voluptate velit esse cillum dolore eu fugiatnulla pariatur.
+                        {$content_index[8].category_content}
                     </div>
 
                     <div class="col-md-12 fw-mgb10">
@@ -457,12 +457,11 @@
                     <div align="center" class="box_home_translate">
 
                         <div class="fw-mgb30">
-                            <span class="translator_text"><strong>Hành trình du học của bạn</strong></span>
+                            <span class="translator_text"><strong>{$content_index[9].category_name}</strong></span>
                         </div>
                         <div class="fw-mgb30">
                             <span>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                            do eiusmod tempor incididunt ut ero labore et dolore.
+                             {$content_index[9].category_content}
                             </span>
                         </div>
                         <div class="fw-mgb20">
@@ -477,12 +476,11 @@
                 <div class="col-md-6">
                     <div align="center" class="box_home_translate">
                         <div class="fw-mgb30">
-                            <span class="translator_text"><strong>Chào mừng bạn đến với AMV</strong></span>
+                            <span class="translator_text"><strong>{$content_index[10].category_name}</strong></span>
                         </div>
                         <div class="fw-mgb30">
                             <span>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                do eiusmod tempor incididunt ut ero labore et dolore.
+                               {$content_index[10].category_content}
                             </span>
                         </div>
                         <div class="fw-mgb20">
@@ -507,7 +505,7 @@
             </div>
             <div class="col-md-12 fw-mgb10 fw-mgt20">
                 {foreach from=$list_blog_center item="val" key="key" name="val"}
-                <div class="col-md-3 no-padding fw-mgb20">
+                <div class="col-md-3 no-padding fw-mgb20" style="max-height: 380px; height: 380px;">
                     <div class="col-md-12 fw-mgb10" align="center">
                         <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
                             {if $val.news_img}

@@ -51,7 +51,7 @@
 
     {foreach from=$list_banner_home item="val" name="val"}
         <section class="home_background section" style="background: #0f5dc4 url({$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}) no-repeat center center;
-    -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; max-height: 300px;">
+    -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; max-height: 350px;">
             {include file="$themes/banner_contact.html"}
         </section>
     {/foreach}
@@ -64,14 +64,18 @@
                 <div class="col-md-12 fw-mgt30 fw-mgb20">
                     <div class="col-md-3 no-padding">
                         <div class="fw-mgb10">
-                            <h3 class="text-cl-index">{$list_cate_study_abroad[val].service_name}</h3>
+                            <a href="{$smarty.const.URL_HOMEPAGE}duhoc/{$list_cate_study_abroad[val].id}/{$list_cate_study_abroad[val].service_url}.html">
+                                <h3 class="text-cl-index">{$list_cate_study_abroad[val].service_name}</h3>
+                            </a>
                         </div>
                         <div class="fw-mgb10">
                             {$list_cate_study_abroad[val].service_content_limit}
                         </div>
                         <div class="fw-mgb10">
-                            <img class="img-thumbnail img-rounded"
-                                 src="{$smarty.const.URL_HOME}/upload/translator_service/{$list_cate_study_abroad[val].service_img}" alt="">
+                            <a href="{$smarty.const.URL_HOMEPAGE}duhoc/{$list_cate_study_abroad[val].id}/{$list_cate_study_abroad[val].service_url}.html">
+                                <img class="img-thumbnail img-rounded"
+                                    src="{$smarty.const.URL_HOME}/upload/translator_service/{$list_cate_study_abroad[val].service_img}" alt="">
+                            </a>
                         </div>
                     </div>
 
@@ -146,11 +150,13 @@
                                 </div>
                             </div>
                         {/section}
-                        <div class="col-md-12 no-padding fw-mgt10">
-                            <a class="btn btn-learn-more" href="">
-                                Xem thêm
-                            </a>
-                        </div>
+                        {if count($arr_news_study[val]) > 0}
+                            <div class="col-md-12 no-padding fw-mgt10">
+                                <a class="btn btn-learn-more" href="#">
+                                    Xem thêm
+                                </a>
+                            </div>
+                        {/if}
                     </div>
                 </div>
                 {if !$smarty.section.val.last}

@@ -100,7 +100,7 @@ class News
 
         for ($i = 0; $i < count($rows); $i++) {
             $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 60);
-            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 200),'<b>');
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 150),'<b>');
             $rows[$i]["full_news_name"] = $function->cutnchar($rows[$i]["news_name"], 10000);
         }
         return $rows;
@@ -647,12 +647,11 @@ class News
         return $rows;
     }
 
-    function get_detail_translator_service($service_id)
+    function get_detail_study_abroad($service_id)
     {
         global $db;
         $language = LANG_AUGE;
-        $sql = "SELECT news_category, news_name, news_content, news_img, description FROM list_cate_study_abroad where 
-        news_id=$service_id and language=$language and status = 1 ";
+        $sql = "SELECT * FROM list_cate_study_abroad where id = $service_id and language=$language and status = 1 ";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);

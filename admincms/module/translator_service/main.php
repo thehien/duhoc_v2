@@ -169,6 +169,32 @@ function translator_service_process()
                 }
                 // end image
 
+                // upload image
+                $types1 = [
+                    "image/gif",
+                    "image/GIF",
+                    "image/JPG",
+                    "image/png",
+                    "image/PNG",
+                    "image/jpg",
+                    "image/JPEG",
+                    "image/jpeg"
+                ];
+                $file_size1 = $_FILES['bannerimg']['size'];
+                $tmp_name1 = $_FILES['bannerimg']['tmp_name'];
+                $type_name1 = $_FILES['bannerimg']['type'];
+                $new_name1 = $_FILES['bannerimg']['name'];
+                $name_image1 = date("hs") . '-' . $function->character_name_img($new_name1);
+                if ($file_size1 > 2097152) {
+                    return $function->msg_box_status(msg_box_erro_img, 20, $_SESSION[$module]['url_views'], 2);
+                } elseif (in_array($type_name1, $types1)) {
+                    move_uploaded_file($tmp_name1, IMG_UPLOAD . $url . '/' . $name_image1);
+                    $data['info']['service_banner'] = $name_image1;
+                } else {
+                    $data['info']['service_banner'] = '';
+                }
+                // end image
+
                 if ($data['info']['service_name'] == "") {
                     return $function->msg_box_status(msg_box_erro_info, $msg_time, $_SESSION[$module]['url_views'], 2);
                 } else {
@@ -177,11 +203,10 @@ function translator_service_process()
                         $delete_img = $function->FixQuotes(isset($_POST['delete_img']) ? intval($_POST['delete_img']) : 0);
                         if ($new_name) {
                             if ($image_old) {
-                                // unlink(IMG_UPLOAD.$url.'/'.$image_old);
+                                unlink(IMG_UPLOAD.$url.'/'.$image_old);
                             }
-                        } elseif ($delete_img == 1 or $new_name != "") {
-                            // unlink(IMG_UPLOAD.$url.'/'.$image_old);
-                            // $data['info']['news_img']="";
+                        } elseif ($delete_img == 1 || $new_name != "") {
+                            $data['info']['service_img'] = "";
                         } else {
                             $data['info']['service_img'] = $image_old;
                         }
