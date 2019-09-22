@@ -339,10 +339,24 @@ function process_client()
 
             // Get data index
             $array_const = [
-                LANG_ABOUT
+                LANG_ABOUT,
+                LANG_HO_SO_DU_HOC,
+                LANG_DU_HOC_HE_SU_MENH_GIA_TRI,
+                LANG_DU_HOC,
+                LANG_HOC_BONG,
+                LANG_CHUONG_TRINH,
+                LANG_FIND_SCHOOL
             ];
             $content_index = $oNews->get_category_content($array_const);
+            //$function->debugPrint($content_index);
             $smarty->assign("content_index", $content_index);
+
+            // Get list array data
+            $list_content = $oNews->get_sub_list_category(LANG_DU_HOC_HE_SU_MENH_GIA_TRI);
+            $smarty->assign("list_content", $list_content);
+
+            $list_content1 = $oNews->get_sub_list_category(LANG_HO_SO_DU_HOC);
+            $smarty->assign("list_content1", $list_content1);
 
             return $smarty->fetch($themes . "/web/aboutus.html");
             break;

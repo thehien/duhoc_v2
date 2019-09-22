@@ -57,8 +57,8 @@ if ($_SESSION[URL_HOME]["lang"] == "vn") {
         define("LANG_OUR_TRANSLATOR", '98');
         define("LANG_QUALITY", '99');
         define("LANG_REGISTER", '100');
-        define("LANG_OUR_MISSION", '105');
-        define("LANG_MAKE_US_DIFFERENT", '106');
+        define("LANG_HO_SO_DU_HOC", '105');
+        define("LANG_DU_HOC_HE_SU_MENH_GIA_TRI", '106');
         define("LANG_WHERE_IS_FIND_US", '110');
         define("LANG_HEAD_TRANSLATOR", '111');
         define("LANG_DU_HOC", '112');
@@ -70,6 +70,7 @@ if ($_SESSION[URL_HOME]["lang"] == "vn") {
         define("LANG_BLOG_RIGHT", '122');
         define("LANG_HANH_TRINH", '138');
         define("LANG_WELCOME", '139');
+        define("LANG_FIND_SCHOOL", '143');
         require('general/include/contact.php');
         include('general/language/language_en.php');
     }

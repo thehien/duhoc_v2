@@ -106,12 +106,8 @@
                                 </ul>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-
-
             </div>
             <div class='col-md-12 dotted-spaced'></div>
         </div>
@@ -126,48 +122,24 @@
                 <div align="center" class="col-md-6" style="float:left">
                     <section>
                         <div align="center">
-                            <img class="img-thumbnail img-rounded" src="http://localhost/duhoc_v2/upload/categorys/0908-img_2.jpg" alt="">
+                            {if $content_index[2].category_img}
+                               <img class="img-thumbnail img-rounded"
+                                    src="{$smarty.const.URL_HOME}/upload/categorys/{$content_index[2].category_img}" alt="">
+                            {/if}
                         </div>
                     </section>
                 </div>
 
                 <div align="center" class="col-md-6" style="float:right">
-                    <div align="left" class="col-md-12 fw-mgb10">
-                        <h2 class="text-cl-index">Du học hè</h2>
-                        <div class="fw-border2"></div>
-                    </div>
-                    <div class="col-md-12 fw-mgb10 text-justify">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteursint occaecat cupidatat norin proident,
-                    </div>
-
-                    <div align="left" class="col-md-12 fw-mgb10">
-                        <h2 class="text-cl-index">Sứ mệnh</h2>
-                        <div class="fw-border2"></div>
-                    </div>
-                    <div class="col-md-12 fw-mgb10 text-justify">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteursint occaecat cupidatat norin proident,
-                    </div>
-
-                    <div align="left" class="col-md-12 fw-mgb10">
-                        <h2 class="text-cl-index">Giá trị cốt lõi</h2>
-                        <div class="fw-border2"></div>
-                    </div>
-                    <div class="col-md-12 text-justify">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteursint occaecat cupidatat norin proident,
-                    </div>
-
+                    {foreach from=$list_content item="val" key="key" name="val"}
+                        <div align="left" class="col-md-12 fw-mgb10">
+                            <h2 class="text-cl-index">{$val.category_name}</h2>
+                            <div class="fw-border2"></div>
+                        </div>
+                        <div class="col-md-12 fw-mgb10 text-justify">
+                            {$val.category_content}
+                        </div>
+                    {/foreach}
                 </div>
             </div>
             <div class='col-md-12 dotted-spaced'></div>
@@ -184,13 +156,9 @@
             </div>
 
             <div class="col-md-6 fw-mgb10 text-justify">
-                <div class="fw-mgb10"><h3 class="text-cl-index">Du học dài hạn</h3></div>
+                <div class="fw-mgb10"><h3 class="text-cl-index">{$content_index[3].category_name}</h3></div>
                 <div class="fw-mgb10">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteursint occaecat cupidatat norin proident
+                    {$content_index[3].category_content}
                 </div>
             </div>
 
@@ -209,15 +177,11 @@
             <div class="col-md-12 no-padding">
                 <div class="col-md-4 fw-mgb10 text-justify">
                     <div class="fw-mgb10">
-                        <h3 class="text-cl-index">Chương trình du học</h3>
+                        <h3 class="text-cl-index">{$content_index[4].category_name}</h3>
                         <div class="fw-border2"></div>
                     </div>
                     <div class="fw-mgb10">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteursint occaecat cupidatat norin proident
+                        {$content_index[4].category_content}
                     </div>
                     <div class="fw-mgb20">
                         <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
@@ -228,15 +192,11 @@
 
                 <div class="col-md-4 fw-mgb10 text-justify">
                     <div class="fw-mgb10">
-                        <h3 class="text-cl-index">Học bổng</h3>
+                        <h3 class="text-cl-index">{$content_index[5].category_name}</h3>
                         <div class="fw-border2"></div>
                     </div>
                     <div class="fw-mgb10">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteursint occaecat cupidatat norin proident
+                        {$content_index[5].category_content}
                     </div>
                     <div class="fw-mgb20">
                         <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
@@ -247,15 +207,11 @@
 
                 <div class="col-md-4 fw-mgb10 text-justify">
                     <div class="fw-mgb10">
-                        <h3 class="text-cl-index">Tìm trường</h3>
+                        <h3 class="text-cl-index">{$content_index[6].category_name}</h3>
                         <div class="fw-border2"></div>
                     </div>
                     <div class="fw-mgb10">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteursint occaecat cupidatat norin proident
+                        {$content_index[6].category_content}
                     </div>
                     <div class="fw-mgb20">
                         <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
@@ -276,12 +232,10 @@
         <div class="row">
             <div class="col-md-12 no-padding fw-mgt20 fw-mgb20">
                 <div align="center" class="col-md-6" style="float:left">
-                    <div class="fw-mgb20"><h2 class="text-cl-index">Hồ Sơ Du Học Tiện Lợi</h2></div>
+                    <div class="fw-mgb20"><h2 class="text-cl-index">{$content_index[1].category_name}</h2></div>
 
                     <div class="text-center fw-mgb10">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        {$content_index[1].category_content}
                     </div>
 
                     <div class="text-center fw-mgt20">
@@ -292,41 +246,18 @@
                 </div>
 
                 <div align="center" class="col-md-6" style="float:right">
-                    <div align="left" class="col-md-3 fw-mgb30">
-                        <img class="img-rounded" src="http://localhost/duhoc_v2/upload/categorys/0908-img_2.jpg" alt="">
-                    </div>
-                    <div class="col-md-9 text-justify fw-mgb30">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteursint occaecat cupidatat norin proident,
-                    </div>
-
-                    <div align="left" class="col-md-3 fw-mgb30">
-                        <img class="img-rounded" src="http://localhost/duhoc_v2/upload/categorys/0908-img_2.jpg" alt="">
-                    </div>
-                    <div class="col-md-9 text-justify fw-mgb30">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteursint occaecat cupidatat norin proident,
-                    </div>
-
-
-                    <div align="left" class="col-md-3">
-                        <img class="img-rounded" src="http://localhost/duhoc_v2/upload/categorys/0908-img_2.jpg" alt="">
-                    </div>
-                    <div class="col-md-9 text-justify">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididu t ut ero labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco poriti laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor inreprehenderit in uienply voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteursint occaecat cupidatat norin proident,
-                    </div>
-
-
+                    {foreach from=$list_content1 item="val" key="key" name="val"}
+                        <div align="left" class="col-md-3 fw-mgb30">
+                            {if $val.category_img}
+                            <img class="img-rounded" src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}" />
+                            {else}
+                            <img class="img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo_small.png" />
+                            {/if}
+                        </div>
+                        <div class="col-md-9 text-justify fw-mgb30">
+                            {$val.category_content}
+                        </div>
+                    {/foreach}
                 </div>
             </div>
             <div class='col-md-12 dotted-spaced'></div>
