@@ -31,6 +31,7 @@
                                                              value="{$rs_edit.news_url}" placeholder="Ex: san-pham"/>
                                 </td>
                             </tr>
+                        
                             <tr>
                                 <td align="right"><span>{$smarty.const.langcms_danhmuc} <em>*</em></span></td>
                                 <td>
@@ -48,6 +49,7 @@
                                            placeholder="Ex: www.web.com"/></td>
                             </tr>
 
+                            
                             <tr>
                                 <td align="right" valign="top"><span>{$smarty.const.langcms_hinhanh}</span></td>
                                 <td valign="top"><input type="file" name="filename" id="filename" class="border_solid"
@@ -65,9 +67,6 @@
                                     </div>
                                     {/if}
                                 </td>
-
-
-
                             </tr>
                             <tr>
                                 <td align="right" valign="top"><span>{$smarty.const.langcms_small}</span></td>
@@ -287,16 +286,6 @@
                                         <td> <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=status&id={$rs.id_tem}&status={$rs.status}#enable_{$rs.id_tem}"
                                                 {if $rs.status eq 1}class="status_on"{else}class="status_off"{/if}><i class="fa fa-check-square"></i>
                                             </a></td></tr>
-                                    <tr>
-                                        <td>Slider</td>
-                                        <td> <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=status_slide&id={$rs.id_tem}&status_slide={$rs.status_slide}"
-                                                {if $rs.status_slide eq 1}class="status_on"{else}class="status_off"{/if}><i class="fa fa-check-square"></i>
-                                            </a></td></tr>
-                                    <td>Trang chủ</td>
-                                    <td> <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=status_home&id={$rs.id_tem}&status_home={$rs.status_home}"
-                                            {if $rs.status_home eq 1}class="status_on"{else}class="status_off"{/if}><i class="fa fa-check-square"></i>
-                                        </a></td></tr>
-
                                 </table>
                             </td>
                             {if $action_edit}

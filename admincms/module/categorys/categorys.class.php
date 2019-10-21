@@ -239,9 +239,7 @@ class categorys_class
     }
 
     //select list service
-    function get_list_service_arrays(
-        $check_id,
-        $news_url = '',
+    function get_list_category_arrays(
         $parent_id = 0,
         $spacing = '',
         $tree_arrays = '',
@@ -253,29 +251,26 @@ class categorys_class
             $tree_arrays = [];
         }
         $str = "";
-        if ($news_url == 1) {
-            $str .= "and a.service_url=''";
-        }
-        if ($news_url == 2) {
-            $str .= "and a.service_url='menu/'";
+        if ($parent_id) {
+            $str .= "and a.parent_id = '$parent_id'";
         }
 
-        $sql = "SELECT a.service_name,a.id FROM list_cate_study_abroad a 
-        WHERE language ='$language' and status = 1 $str ORDER BY a.id ASC";
-
+        $sql = "SELECT a.category_name,a.category_id FROM coupons_category a 
+        WHERE language ='$language' and status = 1 $str ORDER BY a.category_id ASC";
+        //echo $sql;
         $res = $db->db_query($sql);
         if ($db->db_numrows($res) > 0) {
             $rows = $db->db_fetchrowset($res);
             foreach ($rows as $tree) {
                 if ($level == 0) {
-                    $str = $spacing . '&raquo;&nbsp;<b>' . $tree['service_name'] . '</b>';
+                    $str = $spacing . '&raquo;&nbsp;<b>' . $tree['category_name'] . '</b>';
                 } else {
-                    $str = $spacing . '&raquo;&raquo;&nbsp;' . $tree['service_name'];
+                    $str = $spacing . '&raquo;&raquo;&nbsp;' . $tree['category_name'];
                 }
 
                 $tree_arrays[] = [
                     "category_name" => $str,
-                    "category_id" => $tree['id'],
+                    "category_id" => $tree['category_id'],
                     "level" => $level
                 ];
                 $level++;

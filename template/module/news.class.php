@@ -137,6 +137,34 @@ class News
         return $rows;
     }
 
+    function get_list_scholarship($category_id, $news_type, $page, $per_page)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+        $sr = '';
+        if (!$category_id) {
+            $sr .= "";
+        } else {
+            $sr .= "and news_category = '$category_id' and news_type = '$news_type' ";
+        }
+
+        $sql = "SELECT news_id, news_url, news_name, news_img, news_content, FROM_UNIXTIME(created_date,'%d/%m/%Y %h:%i') as time_news ";
+        $sql .= "FROM list_scholarship where status = '1' and language ='$language' $sr 
+        ORDER BY news_id asc Limit $page, $per_page";
+
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 60);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 250),'');
+            $rows[$i]["news_content_limit_1"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 450),'');
+            $rows[$i]["full_news_name"] = $function->cutnchar($rows[$i]["news_name"], 10000);
+        }
+        return $rows;
+    }
+
+
     function get_list_blog($category_id, $page, $per_page)
     {
         global $db, $function;
@@ -308,18 +336,6 @@ class News
     {
         global $db;
         $sql = "SELECT category_name, category_content, category_img FROM coupons_category where parent_id  = '$parent_id'";
-        //echo $sql;
-        $res = $db->db_query($sql);
-        $rows = $db->db_fetchrowset($res);
-
-        return $rows;
-    }
-
-    // Get list team
-    function get_list_team($parent_id)
-    {
-        global $db;
-        $sql = "SELECT news_id, news_name, news_content, news_img, description FROM coupons_team where news_category  = '$parent_id'";
         //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -639,6 +655,19 @@ class News
         global $db;
         $language = LANG_AUGE;
         $sql = "SELECT news_category FROM coupons_contents where news_id=$industry_id and language=$language and status = 1 ";
+
+        //echo $sql;
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        return $rows;
+    }
+
+    function get_cate_scholarship($news_id)
+    {
+        global $db;
+        $language = LANG_AUGE;
+        $sql = "SELECT news_category FROM list_scholarship where news_id=$news_id and language=$language and status = 1 ";
 
         //echo $sql;
         $res = $db->db_query($sql);

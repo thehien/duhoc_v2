@@ -179,6 +179,24 @@ switch ($module) {
             $function->goto_url(URL_ADMIN);
         }
         break;
+    case 'duhoc_content':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/duhoc_content/main.php");
+            $smarty->assign("panel_module", duhoc_content_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
+    case 'scholarship':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/scholarship/main.php");
+            $smarty->assign("panel_module", scholarship_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
     case 'contact':
         if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
             require("module/contact/main.php");

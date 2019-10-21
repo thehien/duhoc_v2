@@ -1,7 +1,7 @@
 <?php
-require("module/team/team.class.php");
+require("module/duhoc_content/duhoc_content.class.php");
 
-function team_process()
+function duhoc_content_process()
 {
     global $db, $smarty, $function;
     global $module, $action_views, $action_insert, $action_edit, $action_delete, $main_url, $main_name, $main_content, $msg_time;
@@ -21,7 +21,7 @@ function team_process()
     $smarty->assign("category", $category);
     $submit = $function->sql_injection(isset($_POST['submit']) ? $_POST['submit'] : "");
 
-    $Process = new Team_class();
+    $Process = new Duhoc_content_class();
     $url = $function->sql_injection($main_url);
     $file = $function->sql_injection($main_url);
     $smarty->assign("url", $url);
@@ -29,7 +29,7 @@ function team_process()
     $smarty->assign("main_content", $main_content);
 
     $class_cate = new categorys_class();
-    $tree_select = $class_cate->select_tree_arrays(0,2);
+    $tree_select = $class_cate->get_list_service_arrays(0);
     $smarty->assign('tree_select', $tree_select);
 
     switch ($main) {
@@ -79,7 +79,6 @@ function team_process()
             }
 
             $numf = $Process->num_views($name_search, $category);
-
             if ($numf) {
                 if ($page == "") {
                     $page = 0;
@@ -118,6 +117,8 @@ function team_process()
                 $data['info']['news_content'] = $function->FixQuotes(isset($_POST['news_content']) ? $_POST['news_content'] : "");
                 $data['info']['description'] = $function->FixQuotes(isset($_POST['description']) ? $_POST['description'] : "");
                 $data['info']['language'] = LANG_AUGE_CMS;
+
+                $data['info']['news_tags'] = $function->sql_injection(isset($_POST['news_tags']) ? $_POST['news_tags'] : "");
 
                 if ($_POST['seo_title']) {
                     $data['info']['seo_title'] = $function->sql_injection(isset($_POST['seo_title']) ? $_POST['seo_title'] : "");

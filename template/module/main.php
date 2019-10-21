@@ -221,17 +221,9 @@ function process_client()
     $list_news_category_menu = $oNews->get_list_news_category(10);
     $smarty->assign("list_news_category_menu", $list_news_category_menu);
 
-    // Get list team
-    $list_team = $oNews->get_list_team(LANG_LINKRICA_TEAM);
-    $smarty->assign("list_team", $list_team);
-
     // Get list contact
     $list_contact = $oNews->get_list_contact();
     $smarty->assign("list_contact", $list_contact);
-
-    // Get list team
-    $list_team = $oNews->get_list_team(LANG_LINKRICA_TEAM);
-    $smarty->assign("list_team", $list_team);
 
     // Get list hoc bong
     $list_hoc_bong = $oNews->get_list_category(LANG_HOC_BONG);
@@ -524,17 +516,16 @@ function process_client()
             $paramId = $function->sql_injection($arr_detail[0]);
             $smarty->assign("main_cate", $paramId);
 
-            // Get all news category
-            $list_news_category = $oNews->get_list_news_category();
-            $smarty->assign("list_news_category", $list_news_category);
+            $hocbong_content = $oNews->category_name_category_id($paramId);
+            $smarty->assign("hocbong_content", $hocbong_content);
 
             // Get right content
-            $list_blog_center = $oNews->get_list_blog(LANG_BLOG_CENTER, 0, 30);
-            $smarty->assign("list_blog_center", $list_blog_center);
+            $list_scholarship_center = $oNews->get_list_scholarship($paramId, 0, 0, 30);
+            $smarty->assign("list_scholarship_center", $list_scholarship_center);
 
 
-            $list_blog_right = $oNews->get_list_blog(LANG_BLOG_RIGHT, 0, 10);
-            $smarty->assign("list_blog_right", $list_blog_right);
+            $list_scholarship_right = $oNews->get_list_scholarship($paramId, 1, 0, 10);
+            $smarty->assign("list_scholarship_right", $list_scholarship_right);
 
             return $smarty->fetch($themes . "/web/hocbong.html");
             break;
@@ -549,12 +540,21 @@ function process_client()
             $list_news_category = $oNews->get_list_news_category();
             $smarty->assign("list_news_category", $list_news_category);
 
-            // Get right content
-            $list_blog_center = $oNews->get_list_blog(LANG_BLOG_CENTER, 0, 30);
-            $smarty->assign("list_blog_center", $list_blog_center);
+            // Get main category
+            $main_cate = $oNews->get_cate_scholarship($paramId);
+            //$function->debugPrint($main_cate);
+            $smarty->assign("main_cate", $main_cate[0]['news_category']);
 
-            $list_blog_right = $oNews->get_list_blog(LANG_BLOG_RIGHT, 0, 10);
-            $smarty->assign("list_blog_right", $list_blog_right);
+            // Get content industry
+            $industry_content = $oNews->get_news_category_content($main_cate[0]['news_category']);
+            $smarty->assign("industry_content", $industry_content);
+
+            // Get right content
+            $list_scholarship_center = $oNews->get_list_scholarship($main_cate[0]['news_category'], 0, 0, 30);
+            $smarty->assign("list_scholarship_center", $list_scholarship_center);
+
+            $list_scholarship_right = $oNews->get_list_scholarship($main_cate[0]['news_category'], 1, 0, 10);
+            $smarty->assign("list_scholarship_right", $list_scholarship_right);
 
             return $smarty->fetch($themes . "/web/hocbong_detail.html");
             break;

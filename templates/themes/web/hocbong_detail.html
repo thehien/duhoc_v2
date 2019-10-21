@@ -141,7 +141,7 @@
                                     </div>
                                 </div>
 
-                                {foreach from=$list_blog_center item="val" key="key" name="val"}
+                                {foreach from=$list_scholarship_center item="val" key="key" name="val"}
                                 <div class="col-md-12 no-padding fw-border3">
                                     <div class="col-md-9">
                                         <div class="team_title fw-mgt10">
@@ -167,7 +167,7 @@
                                     <div class="col-md-3 no-padding" align="right">
                                         <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$val.news_id}/{$val.news_url}.html">
                                             {if $val.news_img}
-                                            <img style="height: 150px !important;" src="{$smarty.const.URL_HOME}/upload/blogs/{$val.news_img}" />
+                                            <img style="height: 150px !important;" src="{$smarty.const.URL_HOME}/upload/scholarship/{$val.news_img}" />
                                             {else}
                                             <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
                                             {/if}
@@ -179,13 +179,13 @@
                         </div>
 
                         <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb20">
-                            {foreach from=$list_blog_right item="val" key="key" name="val"}
+                            {foreach from=$list_scholarship_right item="val" key="key" name="val"}
                             <div class="col-md-12 no-padding fw-mgt10 fw-mgb10">
 
                                 <div class="col-md-12 no-padding fw-mgb10" align="left">
-                                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$val.news_id}/{$val.news_url}.html">
                                         {if $val.news_img}
-                                        <img style="height: 140px !important;" src="{$smarty.const.URL_HOME}/upload/blogs/{$val.news_img}" />
+                                        <img style="height: 140px !important;" src="{$smarty.const.URL_HOME}/upload/scholarship/{$val.news_img}" />
                                         {else}
                                         <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
                                         {/if}
@@ -194,7 +194,7 @@
 
                                 <div class="col-md-12 no-padding team_title">
                                     <a class="team_title"
-                                       href="{$smarty.const.URL_HOMEPAGE}blog-detail/{$val.news_id}/{$val.news_url}.html">
+                                       href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$val.news_id}/{$val.news_url}.html">
                                         <strong>{$val.news_name_limit}</strong>
                                     </a>
                                 </div>
