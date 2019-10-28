@@ -57,8 +57,9 @@ class Scholarship_class
             $sr_search .= " and b.category_id IN ($arr_id) ";
         }
 
-        $sql = "SELECT a.news_id as id_tem,a.news_name,a.status,a.news_img,a.news_url,a.pos, b.category_name, a.news_type
-		FROM list_scholarship a, coupons_category b where a.news_id >= '1' and a.news_category = b.category_id 
+        $sql = "SELECT a.news_id as id_tem,a.news_name,a.status,a.news_img,a.news_url,a.pos, b.category_name, a.news_type, c.service_name
+		FROM list_scholarship a, coupons_category b, list_cate_study_abroad c where a.news_id >= '1' and a.news_category = b.category_id
+		and  a.news_duhoc_category = c.id
 		and a.language ='$language' $sr_search $orderby Limit $page,$per_page";
 
         $res = $db->db_query($sql);
@@ -90,9 +91,9 @@ class Scholarship_class
         global $db;
         $userid = $_SESSION[URL_ADMIN]["userid"];
         $created_date = time();
-        $sql = "INSERT INTO list_scholarship(news_id,news_name,news_category,news_url,news_img,news_content,news_type,description,
+        $sql = "INSERT INTO list_scholarship(news_id,news_name,news_category,news_duhoc_category,news_url,news_img,news_content,news_type,description,
 				seo_title,seo_desc,seo_key,status,pos,language,created_date) 
-				VALUES(NULL,'" . $data['news_name'] . "','" . $data['news_category'] . "','" . $data['news_url'] . "','" . $data['news_img'] . "',
+				VALUES(NULL,'" . $data['news_name'] . "','" . $data['news_category'] . "','" . $data['news_duhoc_category'] . "','" . $data['news_url'] . "','" . $data['news_img'] . "',
 				'" . $data['news_content'] . "','" . $data['news_type'] . "','" . $data['description'] . "',
 				'" . $data['seo_title'] . "','" . $data['seo_desc'] . "','" . $data['seo_key'] . "',
 				'0','0','" . $data['language'] . "','$created_date')";
@@ -120,6 +121,7 @@ class Scholarship_class
         $sql = "Update list_scholarship set news_name ='" . $data['news_name'] . "', news_category ='" . $data['news_category'] . "',
 		news_url ='" . $data['news_url'] . "',
 		news_img ='" . $data['news_img'] . "',
+		news_duhoc_category ='" . $data['news_duhoc_category'] . "',
 		news_content ='" . $data['news_content'] . "',news_type ='" . $data['news_type'] . "',description ='" . $data['description'] . "',
 		seo_title ='" . $data['seo_title'] . "',seo_desc ='" . $data['seo_desc'] . "',seo_key ='" . $data['seo_key'] . "'
 		where news_id='$id'";

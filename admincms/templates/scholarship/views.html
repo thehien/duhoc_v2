@@ -49,6 +49,19 @@
                                            placeholder="Ex: www.web.com"/></td>
                             </tr>
 
+                            <tr>
+                                <td align="right"><span>Du học categories <em>*</em></span></td>
+                                <td>
+                                    <select class="select_option check_input" name="news_duhoc_category" id="news_duhoc_category">
+                                        <option value="">{$smarty.const.langcms_chondanhmuc}</option>
+                                        {foreach from=$duhoc_category name=val item=val}
+                                        <option value="{$val.category_id}" {if $val.category_id eq
+                                                $rs_edit.news_duhoc_category}selected="selected" {
+                                        /if}>{$val.category_name}</option>
+                                        {/foreach}
+                                    </select>
+                                </td>
+                            </tr>
 
                             <tr>
                                 <td align="right" valign="top"><span>{$smarty.const.langcms_hinhanh}</span></td>
@@ -252,6 +265,7 @@
                                             class="fa fa-caret-down"></i></a>
                                 </div>
                             </td>
+                            <td align="center">Study abroad cate</td>
                             <td align="center">Position</td>
                             <td align="center">{$smarty.const.langcms_vitri}</td>
                             <td align="center">{$smarty.const.langcms_trangthai}</td>
@@ -284,6 +298,9 @@
                                    target="_blank">
                                     <i class="fa fa-hand-o-right"></i> {$rs.category_name}
                                 </a>
+                            </td>
+                            <td align="center" class="mw_100">
+                                <a href="#" target="_blank">{$rs.service_name}</a>
                             </td>
                             <td align="center" class="mw_100">
                                 {if $rs.news_type == 0}

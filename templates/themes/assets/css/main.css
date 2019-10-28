@@ -5881,11 +5881,11 @@ div.show-image input.delete {
 }
 
 .fw-font-default {
-    font-size: 15px !important;
+    font-size: 12px !important;
 }
 
 .form-control {
-    font-size: 15px !important;
+    font-size: 12px !important;
 }
 
 .col-sm-9 {
@@ -7517,3 +7517,7 @@ hr.hr_border {
     position: relative;
     margin-top: 8px;
 }
+
+.duhoc_data{margin-top:10px;font-family:"PlayfairDisplay";font-style:italic;font-size:50px;margin-top:3px;}
+
+.duhoc_hocvien{font-family:"PlayfairDisplay";font-style:italic;margin-top:3px; font-size: 36px;}

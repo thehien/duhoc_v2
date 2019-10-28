@@ -92,10 +92,10 @@
                                 <div class="col-md-12 no-padding">
                                     <div class="col-md-5 no-padding">
                                         <div class="form-group">
-                                            <select name="mobileCode" id="mobileCode" class="form-control">
+                                            <select name="hongbongCode" id="hongbongCode" class="form-control" style="height: 42px;">
                                                 <option value="">Tất cả</option>
-                                                {foreach from=$rs_mobile_code item="val" name="val"}
-                                                <option value="{$val.code}">{$val.name} (+{$val.code})</option>
+                                                {foreach from=$list_hoc_bong item="val" name="val"}
+                                                    <option value="{$val.category_id}">{$val.category_name}</option>
                                                 {/foreach}
                                             </select>
                                         </div>
@@ -109,7 +109,7 @@
                                 </div>
 
                                 {if count($list_scholarship_center) > 0}
-                                {foreach from=$list_scholarship_center item="val" key="key" name="val"}
+                                    {foreach from=$list_scholarship_center item="val" key="key" name="val"}
                                     <div class="col-md-12 no-padding fw-border3">
                                         <div class="col-md-9">
                                             <div class="team_title fw-mgt10">
@@ -142,7 +142,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                {/foreach}
+                                    {/foreach}
                                 {else}
                                 <div align="center" class="col-md-12 fw-mgt30 fw-mgb30"><h3>Don't have data.</h3></div>
                                 {/if}
@@ -166,35 +166,35 @@
 
                                 <div class="col-md-12 no-padding team_title">
                                     <a class="team_title"
-                                       href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$val.news_id}/{$val.news_url}.html">
-                                        <strong>{$val.news_name_limit}</strong>
-                                    </a>
+                                    href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$val.news_id}/{$val.news_url}.html">
+                                    <strong>{$val.news_name_limit}</strong>
+                                </a>
+                            </div>
+                            <div class="team_content fw-mgb10" style="height:auto; min-height: 80px;">
+                                {$val.news_content_limit}
+                            </div>
+                            <div class="col-md-12 no-padding fw-fs-12">
+                                <div class="col-md-6 no-padding">
+                                    <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
+                                    <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
                                 </div>
-                                <div class="team_content fw-mgb10" style="height:auto; min-height: 80px;">
-                                    {$val.news_content_limit}
-                                </div>
-                                <div class="col-md-12 no-padding fw-fs-12">
-                                    <div class="col-md-6 no-padding">
-                                        <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
-                                        <span><i class="fa fa-eye" aria-hidden="true"></i> 120</span>
-                                    </div>
-                                    <div class="col-md-6 no-padding" align="right">
-                                        <span style="color:#9b9999"><strong>SHARE</strong></span>
-                                    </div>
+                                <div class="col-md-6 no-padding" align="right">
+                                    <span style="color:#9b9999"><strong>SHARE</strong></span>
                                 </div>
                             </div>
-                            {/foreach}
-                            {else}
-                                <div align="center" class="fw-mgt30 fw-mgb30"><h3>Don't have data.</h3></div>
-                            {/if}
-
                         </div>
+                        {/foreach}
+                        {else}
+                        <div align="center" class="fw-mgt30 fw-mgb30"><h3>Don't have data.</h3></div>
+                        {/if}
+
                     </div>
                 </div>
             </div>
-
         </div>
+
     </div>
+</div>
 </section>
 
 {include file="$themes/footer.html"}

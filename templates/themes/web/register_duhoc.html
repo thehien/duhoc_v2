@@ -45,7 +45,7 @@
 </script>
 {/literal}
     <section id="intro" class="section-intro">
-        <div id="content" class="register-account fw-font-default">
+        <div id="content" class="register-account">
             <div class="container">
                 <div class="row">
 
@@ -59,22 +59,16 @@
                         <div class="my-account-form">
 
                             <div id="cd-signup" class="is-selected">
-                                <div class="fw-bglogin box-login" style="padding: 25px;">
+                                <div class="fw-bglogin box-login" style="padding: 15px;">
                                     <form role="form" class="form-ad" name="registration" method="post"
                                           enctype="multipart/form-data"
                                           action="{$smarty.const.URL_HOMEPAGE}add-member.html"/>
 
                                     <div class="form-group">
                                         <div class="row">
-
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="first_name"
-                                                       id="first_name" placeholder="{$smarty.const.lang_common_ho}"/>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="last_name" id="last_name"
-                                                       placeholder="{$smarty.const.lang_common_ten}"/>
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control" name="full_name"
+                                                       id="full_name" placeholder="{$smarty.const.lang_common_ho}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -82,12 +76,13 @@
                                     <div class="form-group">
                                         <div class="row">
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-12 fw-mgb10"><strong>Ngày sinh</strong></div>
+
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="input-icon">
-                                                        <select name="mobileCode" id="mobileCode" class="form-control">
-                                                            <option value="">{$smarty.const.lang_common_mobile_code}
-                                                            </option>
+                                                        <select name="day_birthday" id="day_birthday" class="form-control">
+                                                            <option value="">{$smarty.const.lang_common_mobile_code}</option>
                                                             {foreach from=$rs_mobile_code item="val" name="val"}
                                                             <option value="{$val.code}">{$val.name} (+{$val.code})
                                                             </option>
@@ -97,40 +92,78 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="mobile"
-                                                       placeholder="{$smarty.const.lang_common_mobile}">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="input-icon">
+                                                        <select name="month_birthday" id="month_birthday" class="form-control">
+                                                            <option value="">{$smarty.const.lang_common_mobile_code}</option>
+                                                            {foreach from=$rs_mobile_code item="val" name="val"}
+                                                            <option value="{$val.code}">{$val.name} (+{$val.code})
+                                                            </option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="input-icon">
+                                                        <select name="year_birthday" id="year_birthday" class="form-control">
+                                                            <option value="">{$smarty.const.lang_common_mobile_code}</option>
+                                                            {foreach from=$rs_mobile_code item="val" name="val"}
+                                                            <option value="{$val.code}">{$val.name} (+{$val.code})
+                                                            </option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="input-icon">
-                                            <select name="country" class="form-control">
-                                                <option value="">{$smarty.const.lang_common_country}</option>
-                                                {foreach from=$rs_list_country name=val item=val}
-                                                <option value="{$val.id}">{$val.name}</option>
-                                                {/foreach}
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <div class="col-md-12 no-padding fw-mgb10"><strong>Thông tin liên hệ</strong></div>
 
                                     <div class="form-group">
                                         <div class="input-icon">
                                             <input type="text" class="form-control" name="email" id="email"
-                                                   placeholder="Email"/>
+                                                   placeholder="Email(*)"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-icon">
+                                            <input type="text" class="form-control" name="mobile" id="mobile"
+                                                   placeholder="Điện thoại(*)"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-icon">
-                                            <input type="password" class="form-control" name="password" id="password"
-                                                   placeholder="Password"/>
+                                            <input type="text" class="form-control" name="address" id="address"
+                                                   placeholder="Địa chỉ(*)"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 no-padding fw-mgb10"><strong>Bạn muốn du học quốc gia nào?</strong></div>
+
+                                    <div class="col-md-12 no-padding">
+                                        <div class="form-group">
+                                            <div class="input-icon">
+                                                <select name="country" id="country" class="form-control">
+                                                    <option value="">{$smarty.const.lang_common_mobile_code}</option>
+                                                    {foreach from=$rs_mobile_code item="val" name="val"}
+                                                    <option value="{$val.code}">{$val.name} (+{$val.code})
+                                                    </option>
+                                                    {/foreach}
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <center>
                                         <button class="btn btn-submit log-btn" type="submit">
-                                            {$smarty.const.lang_common_sign_up}
+                                            Gửi đi
                                         </button>
                                     </center>
                                     </form>

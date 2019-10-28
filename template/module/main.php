@@ -133,9 +133,6 @@ function process_client()
     $list_language = $oNews->get_all_language();
     $smarty->assign("list_language", $list_language);
 
-    $list_software = $oNews->get_all_software();
-    $smarty->assign("list_software", $list_software);
-
     // translate from/to
     $rs_all_language = $oMember->show_all_language();
     $smarty->assign("rs_all_language", $rs_all_language);
@@ -262,9 +259,6 @@ function process_client()
             // Get all translator
             $all_partner = $oMember->get_all_partner();
             $smarty->assign("all_partner", $all_partner);
-
-            $translater = $oNews->get_all_translater();
-            $smarty->assign("translater", $translater);
 
             // Get all news category
             $list_news_category = $oNews->get_list_news_category();
@@ -456,8 +450,7 @@ function process_client()
             $smarty->assign("list_content_industry", $list_content_industry);
 
             // Detail content
-            $contentId = $function->sql_injection($b);
-            $detail_content_industry = $oNews->get_detail_industry_content($contentId);
+            $detail_content_industry = $oNews->get_detail_industry_content($paramId);
             $smarty->assign("detail_content_industry", $detail_content_industry);
 
             // tags title
@@ -500,6 +493,11 @@ function process_client()
         case "hocbong-top":
             $smarty->assign("hocbong", 1);
 
+            // Get data of news category
+            $array_const = [LANG_HOC_BONG];
+            $content_index = $oNews->get_category_content($array_const);
+            $smarty->assign("content_index", $content_index);
+
             $list_banner_home = $oNews->show_all_coupons_banner(LANG_DU_HOC, 0, 0, 1);
             $smarty->assign("list_banner_home", $list_banner_home);
 
@@ -519,11 +517,15 @@ function process_client()
             $hocbong_content = $oNews->category_name_category_id($paramId);
             $smarty->assign("hocbong_content", $hocbong_content);
 
-            // Get right content
-            $list_scholarship_center = $oNews->get_list_scholarship($paramId, 0, 0, 30);
+            // Get all news category
+            $list_news_category = $oNews->get_list_news_category();
+            $smarty->assign("list_news_category", $list_news_category);
+
+            // Get center content
+            $list_scholarship_center = $oNews->get_list_scholarship($paramId, 0, 0, 10);
             $smarty->assign("list_scholarship_center", $list_scholarship_center);
 
-
+            // get right content
             $list_scholarship_right = $oNews->get_list_scholarship($paramId, 1, 0, 10);
             $smarty->assign("list_scholarship_right", $list_scholarship_right);
 
@@ -536,14 +538,20 @@ function process_client()
             $paramId = $function->sql_injection($arr_detail[0]);
             $smarty->assign("main_cate", $paramId);
 
+            // Get main category
+            $main_cate = $oNews->get_cate_scholarship($paramId);
+            $smarty->assign("main_cate", $main_cate[0]['news_category']);
+
+            $hocbong_content = $oNews->category_name_category_id($main_cate[0]['news_category']);
+            $smarty->assign("hocbong_content", $hocbong_content);
+
             // Get all news category
             $list_news_category = $oNews->get_list_news_category();
             $smarty->assign("list_news_category", $list_news_category);
 
-            // Get main category
-            $main_cate = $oNews->get_cate_scholarship($paramId);
-            //$function->debugPrint($main_cate);
-            $smarty->assign("main_cate", $main_cate[0]['news_category']);
+            // Detail content
+            $detail_content_hb = $oNews->get_detail_hb_content($paramId);
+            $smarty->assign("detail_content_hb", $detail_content_hb);
 
             // Get content industry
             $industry_content = $oNews->get_news_category_content($main_cate[0]['news_category']);
@@ -580,7 +588,7 @@ function process_client()
             for ($i = 0; $i < count($list_cate_study_abroad); $i++) {
                 $arr_news_study[$i] = $oNews->show_new_detail_category($list_cate_study_abroad[$i]["id"], 4);
             }
-            //$function->debugPrint($arr_news_study);
+
             $smarty->assign("arr_news_study", $arr_news_study);
 
             return $smarty->fetch($themes . "/web/duhoc_top.html");
@@ -593,24 +601,38 @@ function process_client()
             $arr_detail = explode("-", $b);
             $paramId = $function->sql_injection($arr_detail[0]);
             $smarty->assign("main_cate", $paramId);
+            $list_banner_home = [];
             if ($paramId) {
                 $list_banner_home = $oNews->get_detail_study_abroad($paramId);
             }
             $smarty->assign("list_banner_home", $list_banner_home);
 
-            //////////////////////////////////////////////////////
-            // Get all list du hoc
-            //////////////////////////////////////////////////////
-            $list_du_hoc = $oNews->get_list_study_abroad(20);
-            $smarty->assign("list_du_hoc", $list_du_hoc);
+            //data top slider
+            $duhoc_slide = $oNews->get_duhoc_slide_by_id($paramId);
+            $smarty->assign("duhoc_slide", $duhoc_slide);
 
-            // Get content service
-            $service_content = $oNews->get_translator_service_by_id($paramId);
-            $smarty->assign("service_content", $service_content);
+            // Get main content du hoc
+            $duhoc_main_content = $oNews->get_duhoc_main_content_by_id($paramId);
+            $smarty->assign("duhoc_main_content", $duhoc_main_content);
 
-            // Get list sub service
-            $list_sub_service = $oNews->get_list_service_content($paramId, 50);
-            $smarty->assign("list_sub_service", $list_sub_service);
+            // Sub content of du hoc
+            $duhoc_sub_content = $oNews->get_duhoc_sub_content_by_id($paramId);
+            $smarty->assign("list_duhoc_sub_content", $duhoc_sub_content);
+
+            // Get list chuong trinh du hoc
+
+            // Get list hoc bong
+            $duhoc_content = $oNews->get_scholarship_by_id($paramId);
+            $smarty->assign("list_duhoc_content", $duhoc_content);
+
+            // Get list news of du hoc
+            $list_duhoc_news = $oNews->get_duhoc_news_by_id($paramId);
+            $smarty->assign("list_duhoc_news", $list_duhoc_news);
+
+            // Get list img of du hoc
+            $list_duhoc_imgages = $oNews->get_duhoc_img_by_id($paramId);
+            $smarty->assign("list_duhoc_images", $list_duhoc_imgages);
+
 
             return $smarty->fetch($themes . "/web/duhoc.html");
             break;

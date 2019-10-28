@@ -89,7 +89,7 @@ class categorys_class
         return $num;
     }
 
-//select tree
+    //select tree
     function select_tree_arrays($check_id, $news_url = '', $parent_id = 0, $spacing = '', $tree_arrays = '', $level = 0)
     {
         global $db;
@@ -129,6 +129,131 @@ class categorys_class
                 $tree_arrays = $this->select_tree_arrays($check_id, $news_url = '', $tree['category_id'],
                     $spacing . '&nbsp;&nbsp;&nbsp;&nbsp;', $tree_arrays, $level);
                 $level--;
+            }
+        }
+        return $tree_arrays;
+    }
+
+    // get all sub program du hoc
+    function select_program_cate_arrays($parent_id = 0, $spacing = '', $tree_arrays = '', $level = 0)
+    {
+        global $db;
+        $language = LANG_AUGE_CMS;
+        if (!is_array($tree_arrays)) {
+            $tree_arrays = [];
+        }
+
+        $sql = "SELECT a.news_name,a.news_id FROM list_duhoc_program_cate a 
+	WHERE a.news_category = $parent_id and language ='$language' ORDER BY a.pos ASC";
+        $res = $db->db_query($sql);
+        if ($db->db_numrows($res) > 0) {
+            $rows = $db->db_fetchrowset($res);
+            foreach ($rows as $tree) {
+                if ($level == 0) {
+                    $str = $spacing . '&raquo;&nbsp;<b>' . $tree['news_name'] . '</b>';
+                } else {
+                    $str = $spacing . '&raquo;&raquo;&nbsp;' . $tree['news_name'];
+                }
+
+                $tree_arrays[] = [
+                    "category_name" => $str,
+                    "category_id" => $tree['news_id'],
+                    "level" => $level
+                ];
+                $level++;
+                $db->db_freeresult($res);
+            }
+        }
+        return $tree_arrays;
+    }
+
+    // Get list du hoc program
+    function select_duhoc_program_arrays($check_id, $news_url = '', $parent_id = 0, $spacing = '', $tree_arrays = '', $level = 0)
+    {
+        global $db,$function;
+        $language = LANG_AUGE_CMS;
+        if (!is_array($tree_arrays)) {
+            $tree_arrays = [];
+        }
+        $str = "";
+        if ($news_url == 1) {
+            $str .= "and a.news_url=''";
+        }
+        if ($news_url == 2) {
+            $str .= "and a.news_url='menu/'";
+        }
+        if ($check_id > 0) {
+            $str .= "and a.parent_id <> $check_id and a.category_id <> $check_id";
+        }
+        $sql = "SELECT a.service_name,a.id FROM list_cate_study_abroad a 
+	WHERE language ='$language' and status = 1 $str ORDER BY a.id ASC";
+        $res = $db->db_query($sql);
+        if ($db->db_numrows($res) > 0) {
+            $rows = $db->db_fetchrowset($res);
+            foreach ($rows as $tree) {
+                if ($level == 0) {
+                    $str = $spacing . '&raquo;&nbsp;<b>' . $tree['service_name'] . '</b>';
+                } else {
+                    $str = $spacing . '&raquo;&raquo;&nbsp;' . $tree['service_name'];
+                }
+
+                $tree_arrays[] = [
+                    "category_name" => $str,
+                    "category_id" => $tree['id'],
+                    "level" => $level
+                ];
+                $level++;
+                $db->db_freeresult($res);
+                $tree_arrays = $this->select_program_cate_arrays($tree['id'],
+                    $spacing . '&nbsp;&nbsp;&nbsp;&nbsp;', $tree_arrays, $level);
+                $level--;
+            }
+        }
+        return $tree_arrays;
+    }
+
+    //select list service
+    function get_list_service_arrays(
+        $check_id,
+        $news_url = '',
+        $parent_id = 0,
+        $spacing = '',
+        $tree_arrays = '',
+        $level = 0
+    ) {
+        global $db;
+        $language = LANG_AUGE_CMS;
+        if (!is_array($tree_arrays)) {
+            $tree_arrays = [];
+        }
+        $str = "";
+        if ($news_url == 1) {
+            $str .= "and a.service_url=''";
+        }
+        if ($news_url == 2) {
+            $str .= "and a.service_url='menu/'";
+        }
+
+        $sql = "SELECT a.service_name,a.id FROM list_cate_study_abroad a 
+        WHERE language ='$language' and status = 1 $str ORDER BY a.id ASC";
+
+        $res = $db->db_query($sql);
+        if ($db->db_numrows($res) > 0) {
+            $rows = $db->db_fetchrowset($res);
+            foreach ($rows as $tree) {
+                if ($level == 0) {
+                    $str = $spacing . '&raquo;&nbsp;<b>' . $tree['service_name'] . '</b>';
+                } else {
+                    $str = $spacing . '&raquo;&raquo;&nbsp;' . $tree['service_name'];
+                }
+
+                $tree_arrays[] = [
+                    "category_name" => $str,
+                    "category_id" => $tree['id'],
+                    "level" => $level
+                ];
+                $level++;
+                $db->db_freeresult($res);
             }
         }
         return $tree_arrays;
@@ -178,9 +303,55 @@ class categorys_class
                 ];
                 $level++;
                 $db->db_freeresult($res);
-//                $tree_arrays = $this->get_list_industry_arrays($check_id, $news_url = '', $tree['id'],
-//                    $spacing . '&nbsp;&nbsp;&nbsp;&nbsp;', $tree_arrays, $level);
-//                $level--;
+            }
+        }
+        return $tree_arrays;
+    }
+
+     //select tree
+    function get_list_sub_duhoc_arrays(
+        $check_id,
+        $news_url = '',
+        $parent_id = 0,
+        $spacing = '',
+        $tree_arrays = '',
+        $level = 0
+    ) {
+        global $db;
+        $language = LANG_AUGE_CMS;
+        if (!is_array($tree_arrays)) {
+            $tree_arrays = [];
+        }
+        $str = "";
+        if ($news_url == 1) {
+            $str .= "and a.service_url=''";
+        }
+        if ($news_url == 2) {
+            $str .= "and a.service_url='menu/'";
+        }
+        if ($check_id > 0) {
+            $str .= "and a.news_id <> $check_id";
+        }
+        $sql = "SELECT a.news_name,a.news_id FROM list_duhoc_content a 
+    WHERE language ='$language' and status = 1 $str ORDER BY a.news_id ASC";
+        //echo $sql;
+        $res = $db->db_query($sql);
+        if ($db->db_numrows($res) > 0) {
+            $rows = $db->db_fetchrowset($res);
+            foreach ($rows as $tree) {
+                if ($level == 0) {
+                    $str = $spacing . '&raquo;&nbsp;&nbsp;<b>' . $tree['news_name'] . '</b>';
+                } else {
+                    $str = $spacing . '&raquo;&raquo;&nbsp;' . $tree['news_name'];
+                }
+
+                $tree_arrays[] = [
+                    "news_name" => $str,
+                    "news_id" => $tree['news_id'],
+                    "level" => $level
+                ];
+                $level++;
+                $db->db_freeresult($res);
             }
         }
         return $tree_arrays;
@@ -230,9 +401,6 @@ class categorys_class
                 ];
                 $level++;
                 $db->db_freeresult($res);
-//                $tree_arrays = $this->get_list_industry_arrays($check_id, $news_url = '', $tree['id'],
-//                    $spacing . '&nbsp;&nbsp;&nbsp;&nbsp;', $tree_arrays, $level);
-//                $level--;
             }
         }
         return $tree_arrays;

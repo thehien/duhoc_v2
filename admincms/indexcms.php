@@ -179,10 +179,73 @@ switch ($module) {
             $function->goto_url(URL_ADMIN);
         }
         break;
+     case 'duhoc_program':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/duhoc_program/main.php");
+            $smarty->assign("panel_module", duhoc_program_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
+    case 'duhoc_program_cate':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/duhoc_program_cate/main.php");
+            $smarty->assign("panel_module", duhoc_program_cate_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
     case 'duhoc_content':
         if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
             require("module/duhoc_content/main.php");
             $smarty->assign("panel_module", duhoc_content_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
+    case 'duhoc_slide':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/duhoc_slide/main.php");
+            $smarty->assign("panel_module", duhoc_slide_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
+    case 'duhoc_img':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/duhoc_img/main.php");
+            $smarty->assign("panel_module", duhoc_img_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
+    case 'duhoc_data':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/duhoc_data/main.php");
+            $smarty->assign("panel_module", duhoc_data_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
+    case 'duhoc_subcontent':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/duhoc_subcontent/main.php");
+            $smarty->assign("panel_module", duhoc_subcontent_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
+    case 'duhoc_news':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/duhoc_news/main.php");
+            $smarty->assign("panel_module", duhoc_news_process());
             $smarty->display("homepage.html");
         } else {
             $function->goto_url(URL_ADMIN);

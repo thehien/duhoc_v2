@@ -32,6 +32,9 @@ function scholarship_process()
     $tree_select = $class_cate->get_list_category_arrays(128);
     $smarty->assign('tree_select', $tree_select);
 
+    $duhoc_category = $class_cate->get_list_study_arrays(0);
+    $smarty->assign('duhoc_category', $duhoc_category);
+
     switch ($main) {
         case "search":
             $name_search = $function->sql_injection(isset($_POST['name_search']) ? $_POST['name_search'] : "");
@@ -113,6 +116,8 @@ function scholarship_process()
                     $data['info']['news_url'] = $function->character_url(isset($_POST['news_name']) ? $_POST['news_name'] : "");
                 }
                 $data['info']['news_category'] = $function->sql_injection(isset($_POST['news_category']) ? intval($_POST['news_category']) : 0);
+                $data['info']['news_duhoc_category'] = $function->sql_injection(isset($_POST['news_duhoc_category']) ? intval($_POST['news_duhoc_category']) : 0);
+
                 $data['info']['news_link'] = $function->sql_injection(isset($_POST['news_link']) ? $_POST['news_link'] : "");
                 $data['info']['news_content'] = $function->FixQuotes(isset($_POST['news_content']) ? $_POST['news_content'] : "");
                 $data['info']['description'] = $function->FixQuotes(isset($_POST['description']) ? $_POST['description'] : "");

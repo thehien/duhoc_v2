@@ -229,6 +229,27 @@ class News
         return $rows;
     }
 
+    function get_detail_hb_content($hb_id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+        $sr = '';
+
+        $sql = "SELECT news_id, news_url, news_name, news_img, news_content, news_type, description, FROM_UNIXTIME(created_date,'%d/%m/%Y %h:%i') as time_news ";
+        $sql .= "FROM list_scholarship where status = '1' and news_id = $hb_id and language ='$language' $sr 
+        ORDER BY pos asc";
+        //echo $sql;
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 100);
+            $rows[$i]["news_content_limit"] = $function->cutnchar($rows[$i]["news_content"], 200);
+            $rows[$i]["full_news_name"] = $function->cutnchar($rows[$i]["news_name"], 10000);
+        }
+        return $rows;
+    }
+
     function get_slide_industry_content($category_id, $page, $per_page, $status_slide = null)
     {
         global $db, $function;
@@ -275,6 +296,110 @@ class News
         }
         return $rows;
     }
+
+    function get_duhoc_news_by_id($id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_id, news_name, news_content, news_img, news_url ";
+        $sql .= "FROM list_duhoc_news where status = '1' and news_category=$id and language ='$language' ORDER BY news_id asc limit 100";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 200),'');
+        }
+        return $rows;
+    }
+
+    function get_duhoc_img_by_id($id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_id, news_name, news_img, news_url ";
+        $sql .= "FROM list_duhoc_img where status = '1' and news_category=$id and language ='$language' ORDER BY news_id asc limit 50";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 200),'');
+        }
+        return $rows;
+    }
+
+    function get_duhoc_main_content_by_id($id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_id, news_name, news_content, news_img ";
+        $sql .= "FROM list_duhoc_content where status = '1' and news_category=$id and language ='$language' ORDER BY news_id asc limit 100";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 200),'');
+        }
+        return $rows;
+    }
+
+    function get_duhoc_sub_content_by_id($id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_name, news_content, news_img, news_type_category, news_category, description ";
+        $sql .= "FROM list_duhoc_sub_content where status = '1' and news_category=$id and language ='$language' ORDER BY news_id asc limit 100";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 200),'');
+            $rows[$i]["description_limit"] = strip_tags($function->cutnchar($rows[$i]["description"], 250),'');
+        }
+        return $rows;
+    }
+
+    function get_duhoc_slide_by_id($id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT * ";
+        $sql .= "FROM list_duhoc_slide where status = '1' and news_category=$id and language ='$language' ORDER BY news_id asc limit 100";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 200),'');
+        }
+        return $rows;
+    }
+
+    function get_scholarship_by_id($id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT * ";
+        $sql .= "FROM list_scholarship where status = '1' and news_duhoc_category=$id and language ='$language' ORDER BY news_id asc limit 100";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 200),'');
+        }
+        return $rows;
+    }
+
 
     function get_translator_service_by_id($id)
     {
@@ -343,17 +468,6 @@ class News
         return $rows;
     }
 
-    function get_all_list_experience()
-    {
-        global $db;
-        $language = LANG_AUGE;
-        $sql = "SELECT * FROM list_experience where language=$language order by id asc ";
-        $res = $db->db_query($sql);
-        $rows = $db->db_fetchrowset($res);
-
-        return $rows;
-    }
-
     // kiem tra muc con url
     function get_all_language($offset = null, $limit = null)
     {
@@ -407,38 +521,6 @@ class News
             $rows[$i]["category_name_limit"] = $function->cutnchar($rows[$i]["category_name"], 70);
             $rows[$i]["category_content_limit"] = strip_tags($function->cutnchar($rows[$i]["category_content"], 250),'');
         }
-
-        return $rows;
-    }
-
-
-    // kiem tra muc con url
-    function get_all_software()
-    {
-        global $db;
-        $language = LANG_AUGE;
-        $sql = "SELECT * FROM list_software where language=$language order by id asc ";
-        $res = $db->db_query($sql);
-        $rows = $db->db_fetchrowset($res);
-
-        return $rows;
-    }
-
-
-    // kiem tra muc con url
-    function get_all_translater()
-    {
-        global $db, $function;
-        $sql = "SELECT * FROM coupons_translater where status = 1 ";
-        $res = $db->db_query($sql);
-        $rows = $db->db_fetchrowset($res);
-
-        $imgPath = URL_HOME . '/' . IMG_TRANSLATER . '/';
-        for ($i = 0; $i < count($rows); $i++) {
-            $rows[$i]["news_img"] = URL_HOME . '/timthumb.php?src=' . $imgPath . $rows[$i]["news_img"] . '&h=40&w=40&zc=1';;
-
-        }
-
 
         return $rows;
     }
