@@ -620,6 +620,16 @@ function process_client()
             $smarty->assign("list_duhoc_sub_content", $duhoc_sub_content);
 
             // Get list chuong trinh du hoc
+            $duhoc_program_cate = $oNews->get_list_duhoc_program($paramId);
+            $smarty->assign("duhoc_program_cate", $duhoc_program_cate);
+
+            $programStr = '';
+            foreach ($duhoc_program_cate as $value) {
+                $programStr .= $value['news_id']. ",";
+            }
+            $programStrNew = rtrim($programStr, ",");
+            $duhoc_program_data = $oNews->get_list_data_program($programStrNew);
+            $smarty->assign("duhoc_program_data", $duhoc_program_data);
 
             // Get list hoc bong
             $duhoc_content = $oNews->get_scholarship_by_id($paramId);

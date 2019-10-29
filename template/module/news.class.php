@@ -297,6 +297,45 @@ class News
         return $rows;
     }
 
+    function get_list_duhoc_program($id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_id, news_name, news_url ";
+        $sql .= "FROM list_duhoc_program_cate where status = '1' and news_category=$id and language ='$language' ORDER BY news_id asc limit 100";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+        }
+        return $rows;
+    }
+
+    /**
+     * @param $programArray
+     * @return array|bool
+     */
+    function get_list_data_program($programArray)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_id, news_name, news_content,news_img, news_url,description ";
+        $sql .= "FROM list_duhoc_program where status = '1' and news_category in ($programArray) and language ='$language' ORDER BY news_id asc limit 100";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 70),'');
+            $rows[$i]["description_limit"] = strip_tags($function->cutnchar($rows[$i]["description"], 200),'');
+        }
+        return $rows;
+    }
+
+
     function get_duhoc_news_by_id($id)
     {
         global $db, $function;

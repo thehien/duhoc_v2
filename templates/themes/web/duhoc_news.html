@@ -4,167 +4,46 @@
             <div style="float: left; margin-right:50px;">
                 <a href="#" class="duhoc_active text-cl-index fw-fs-20">Tất cả</a>
             </div>
+            {foreach from=$duhoc_program_cate item="val" name="val"}
             <div  style="float: left; margin-right:50px;">
-                <a href="#" class="fw-fs-20">THPT</a>
+                <a href="#" class="fw-fs-20">{$val.news_name}</a>
             </div>
-            <div  style="float: left; margin-right:50px;">
-                <a href="#" class="fw-fs-20">Cao đẳng - Đại học</a>
-            </div>
-            <div  style="float: left; margin-right:50px;">
-                <a href="#" class="fw-fs-20">Thạc sỹ</a>
-            </div>
-
-
-
+            {/foreach}
         </div>
         <div class="col-md-3 no-padding"></div>
     </div>
     <div class="col-md-12 no-padding fw-mgt30">
-        <div class="col-md-4 no-padding">
-            <div class="col-md-4 fw-mgb10">
-                <a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.category_id}/{$val.category_url}.html">
-                    <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
-                </a>
-            </div>
-            <div class="col-md-8 fw-mgb10">
-                <div class="fw-mgb10 text-cl-index"><a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.category_id}/{$val.category_url}.html"><strong>Name of Student</strong></a></div>
-                <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
-                    et doloremagna.
-                </p>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <hr class="hr_border">
-            </div>
-        </div>
-        <div class="col-md-4 no-padding">
-            <div class="col-md-4 fw-mgb10">
-                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
-            </div>
-            <div class="col-md-8 fw-mgb10">
-                <div class="fw-mgb10 text-cl-index"><strong>Name of Student</strong></div>
-                <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
-                    et doloremagna.
-                </p>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <hr class="hr_border">
-            </div>
-        </div>
-        <div class="col-md-4 no-padding">
-            <div class="col-md-4 fw-mgb10">
-                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
-            </div>
-            <div class="col-md-8 fw-mgb10">
-                <div class="fw-mgb10 text-cl-index"><strong>Name of Student</strong></div>
-                <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
-                    et doloremagna.
-                </p>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <hr class="hr_border">
-            </div>
-        </div>
-        <div class="col-md-4 no-padding">
-            <div class="col-md-4 fw-mgb10">
-                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
-            </div>
-            <div class="col-md-8 fw-mgb10">
-                <div class="fw-mgb10 text-cl-index"><strong>Name of Student</strong></div>
-                <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
-                    et doloremagna.
-                </p>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <hr class="hr_border">
-            </div>
-        </div>
-        <div class="col-md-4 no-padding">
-            <div class="col-md-4 fw-mgb10">
-                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
-            </div>
-            <div class="col-md-8 fw-mgb10">
-                <div class="fw-mgb10 text-cl-index"><strong>Name of Student</strong></div>
-                <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
-                    et doloremagna.
-                </p>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <hr class="hr_border">
-            </div>
-        </div>
-        <div class="col-md-4 no-padding">
-            <div class="col-md-4 fw-mgb10">
-                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
-            </div>
-            <div class="col-md-8 fw-mgb10">
-                <div class="fw-mgb10 text-cl-index"><strong>Name of Student</strong></div>
-                <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
-                    et doloremagna.
-                </p>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <hr class="hr_border">
-            </div>
-        </div>
-        <div class="col-md-4 no-padding">
-            <div class="col-md-4 fw-mgb10">
-                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
-            </div>
-            <div class="col-md-8 fw-mgb10">
-                <div class="fw-mgb10 text-cl-index"><strong>Name of Student</strong></div>
-                <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
-                    et doloremagna.
-                </p>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <hr class="hr_border">
-            </div>
-        </div>
-        <div class="col-md-4 no-padding">
-            <div class="col-md-4 fw-mgb10">
-                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/facebook_logo.png" alt="">
-            </div>
-            <div class="col-md-8 fw-mgb10">
-                <div class="fw-mgb10 text-cl-index"><strong>Name of Student</strong></div>
-                <div class="text-cl-duhoc">Học phí: $ 30.000/ năm</div>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore
-                    et doloremagna.
-                </p>
-            </div>
-            <div class="col-md-12 fw-mgb10">
-                <hr class="hr_border">
-            </div>
-        </div>
+        {if count($duhoc_program_data) >0}
+            {foreach from=$duhoc_program_data item="val" name="val"}
+                <div class="col-md-4 no-padding">
+                    <div class="col-md-4 fw-mgb10">
+                        <a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.news_id}/{$val.news_url}.html">
+                            {if $val.news_img}
+                                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_HOME}/upload/duhoc_program/{$val.news_img}" alt="">
+                            {else}
+                                <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_WEB}{$themes}/assets/img/no_img.png" alt="">
+                            {/if}
+                        </a>
+                    </div>
+                    <div class="col-md-8 fw-mgb10">
+                        <div class="fw-mgb10 text-cl-index">
+                            <a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.category_id}/{$val.category_url}.html">
+                                <strong>{$val.news_name_limit}</strong></a>
+                        </div>
+                        <div class="text-cl-duhoc">{$val.news_content_limit}</div>
+                    </div>
+                    <div class="col-md-12 fw-mgb10">
+                        <p>
+                            {$val.description_limit}
+                        </p>
+                    </div>
+                    <div class="col-md-12 fw-mgb10">
+                        <hr class="hr_border">
+                    </div>
+                </div>
+            {/foreach}
+        {else}
+            <div align="center" class="col-md-12 fw-mgt30 fw-mgb30"><h3>Don't have data</h3></div>
+        {/if}
     </div>
 </div>

@@ -187,9 +187,11 @@
             </div>
 
             <div align="center" class="col-md-12 fw-mgb20">
-                <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
-                    Xem thêm
-                </a>
+                {if count($list_duhoc_content) > 0}
+                    <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}">
+                        Xem thêm
+                    </a>
+                {/if}
             </div>
         </div>
     </div>
@@ -210,9 +212,11 @@
             </div>
 
             <div align="center" class="col-md-12 fw-mgb20">
-                <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}duhoc-news.html">
-                    Xem thêm
-                </a>
+                {if count($duhoc_program_data) >0}
+                    <a class="btn btn-learn-more" href="{$smarty.const.URL_HOMEPAGE}duhoc-news.html">
+                        Xem thêm
+                    </a>
+                {/if}
             </div>
         </div>
     </div>
@@ -293,7 +297,7 @@
                                             </div>
 
                                             <div class="col-md-12 fw-mgb10 fw-fs-16">
-                                                <h3 class="duhoc_data">{$val.news_content_limit}</h3> 
+                                                <h3 class="duhoc_data">{$val.news_content_limit}</h3>
                                             </div>
                                             <div class="fw-mgb20">{$val.description}</div>
                                         </div>
@@ -311,7 +315,7 @@
                         {else}
                             <img src="http://localhost/duhoc_v2/upload/categorys/0908-img_2.jpg" alt="">
                         {/if}
-                        
+
                     </div>
                 </div>
 
