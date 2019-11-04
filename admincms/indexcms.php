@@ -215,6 +215,15 @@ switch ($module) {
             $function->goto_url(URL_ADMIN);
         }
         break;
+    case 'duhoc_program_img':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/duhoc_program_img/main.php");
+            $smarty->assign("panel_module", duhoc_program_img_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
     case 'duhoc_img':
         if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
             require("module/duhoc_img/main.php");

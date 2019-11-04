@@ -4710,11 +4710,11 @@ blockquote p a:hover {
 .form-control {
     background-color: #FFF;
     border: 1px solid #ddd;
-    border-radius: 0px;
+    border-radius: 4px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075);
     color: #444;
     display: block;
-    height: 50px;    /* padding: 15px 10px;*/
+    height: 37px;    /* padding: 15px 10px;*/
     width: 100%;
 }
 
@@ -5881,11 +5881,11 @@ div.show-image input.delete {
 }
 
 .fw-font-default {
-    font-size: 12px !important;
+    font-size: 13px !important;
 }
 
 .form-control {
-    font-size: 12px !important;
+    font-size: 13px !important;
 }
 
 .col-sm-9 {

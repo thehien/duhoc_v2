@@ -17,7 +17,7 @@
             {foreach from=$duhoc_program_data item="val" name="val"}
                 <div class="col-md-4 no-padding">
                     <div class="col-md-4 fw-mgb10">
-                        <a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.news_id}/{$val.news_url}.html">
+                        <a href="{$smarty.const.URL_HOMEPAGE}program-detail/{$val.news_id}/{$val.news_url}.html">
                             {if $val.news_img}
                                 <img class="img-thumbnail img-rounded" src="{$smarty.const.URL_HOME}/upload/duhoc_program/{$val.news_img}" alt="">
                             {else}
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-md-8 fw-mgb10">
                         <div class="fw-mgb10 text-cl-index">
-                            <a href="{$smarty.const.URL_HOMEPAGE}dh-detail/{$val.category_id}/{$val.category_url}.html">
+                            <a href="{$smarty.const.URL_HOMEPAGE}program-detail/{$val.news_id}/{$val.news_url}.html">
                                 <strong>{$val.news_name_limit}</strong></a>
                         </div>
                         <div class="text-cl-duhoc">{$val.news_content_limit}</div>

@@ -378,12 +378,6 @@ function process_client()
             return $smarty->fetch($themes . "/web/blog_detail.html");
             break;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-        case "duhoc-news":
-            $smarty->assign("blog", 1);
-            $paramId = $function->sql_injection($b);
-            return $smarty->fetch($themes . "/web/duhoc_all_news.html");
-            break;
-////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "news-top":
             $smarty->assign("news", 1);
             // Get all banner
@@ -517,13 +511,15 @@ function process_client()
             $hocbong_content = $oNews->category_name_category_id($paramId);
             $smarty->assign("hocbong_content", $hocbong_content);
 
-            // Get all news category
-            $list_news_category = $oNews->get_list_news_category();
-            $smarty->assign("list_news_category", $list_news_category);
+            // Get total record
+            $count_scholarship_center = $oNews->num_scholarship($paramId, 0);
+            $smarty->assign("count_scholarship_center", $count_scholarship_center);
 
             // Get center content
-            $list_scholarship_center = $oNews->get_list_scholarship($paramId, 0, 0, 10);
+            $per_page = 5;
+            $list_scholarship_center = $oNews->get_list_scholarship($paramId, 0, 0, $per_page);
             $smarty->assign("list_scholarship_center", $list_scholarship_center);
+
 
             // get right content
             $list_scholarship_right = $oNews->get_list_scholarship($paramId, 1, 0, 10);
@@ -634,6 +630,7 @@ function process_client()
             // Get list hoc bong
             $duhoc_content = $oNews->get_scholarship_by_id($paramId);
             $smarty->assign("list_duhoc_content", $duhoc_content);
+            $smarty->assign("hocbong_cate", $duhoc_content[0]['news_category']);
 
             // Get list news of du hoc
             $list_duhoc_news = $oNews->get_duhoc_news_by_id($paramId);
@@ -643,33 +640,69 @@ function process_client()
             $list_duhoc_imgages = $oNews->get_duhoc_img_by_id($paramId);
             $smarty->assign("list_duhoc_images", $list_duhoc_imgages);
 
-
             return $smarty->fetch($themes . "/web/duhoc.html");
             break;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Service sub
+        case "program-detail":
+            $smarty->assign("duhoc", 1);
+            $paramId = $function->sql_injection($b);
+
+            // get detail program
+            $program_content = $oNews->get_detail_program($paramId);
+            $smarty->assign("program_content", $program_content);
+
+            // Get list img
+
+            // Get list other program
+            $duhoc_program_data = $oNews->get_list_data_program($program_content[0]['news_category']);
+            $smarty->assign("duhoc_program_data", $duhoc_program_data);
+
+            return $smarty->fetch($themes . "/web/duhoc_program_detail.html");
+            break;
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+        case "dh-news":
+            $smarty->assign("duhoc", 1);
+            $paramId = $function->sql_injection($b);
+            // Get main content du hoc
+            $duhoc_news_content = $oNews->get_duhoc_content_news_by_id($c);
+            $smarty->assign("duhoc_news_content", $duhoc_news_content);
+
+            // Get list chuong trinh du hoc
+            $duhoc_program_cate = $oNews->get_list_duhoc_program($paramId);
+            $smarty->assign("duhoc_program_cate", $duhoc_program_cate);
+
+            $programStr = '';
+            foreach ($duhoc_program_cate as $value) {
+                $programStr .= $value['news_id']. ",";
+            }
+            $programStrNew = rtrim($programStr, ",");
+            $duhoc_program_data = $oNews->get_list_data_program($programStrNew);
+            $smarty->assign("duhoc_program_data", $duhoc_program_data);
+
+            return $smarty->fetch($themes . "/web/duhoc_all_news.html");
+            break;
+////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "dh-detail":
             $smarty->assign("duhoc", 1);
             $paramId = $function->sql_injection($b);
 
-            // Get main category
-            $detail_service = $oNews->get_detail_study_abroad($paramId);
-            $smarty->assign("detail_service", $detail_service);
-            // Get content main service
-            $service_content = $oNews->get_translator_service_by_id($detail_service[0]['news_category']);
-            $smarty->assign("service_content", $service_content);
+            // get detail news
+            $news_content = $oNews->get_detail_duhoc_news($paramId);
+            $smarty->assign("news_content", $news_content);
 
-            // Get data index
-            $list_cate_study_abroad = $oNews->get_list_cate_study_abroad();
-            $arr_news_study = array();
-            for ($i = 0; $i < count($list_cate_study_abroad); $i++) {
-                $arr_news_study[$i] = $oNews->show_new_detail_category($list_cate_study_abroad[$i]["id"], 4);
-            }
-            $smarty->assign("arr_news_study", $arr_news_study);
+            // Get list other news du hoc
+            $duhoc_news_data = $oNews->get_list_duhoc_news($news_content[0]['news_category']);
+            $smarty->assign("news_data", $duhoc_news_data);
 
-            return $smarty->fetch($themes . "/web/duhoc_detail.html");
+            return $smarty->fetch($themes . "/web/duhoc_news_detail.html");
             break;
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+        case "register":
+            $smarty->assign("register", 1);
 
+
+            break;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "contact":
             $smarty->assign("contact", 1);

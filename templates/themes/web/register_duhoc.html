@@ -1,22 +1,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/moment.js"></script>
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/combodate/combodate.js"></script>
 {literal}
 <script type="text/javascript">
     $(function () {
         $("form[name='registration']").validate({
             // Specify validation rules
             rules: {
-                first_name: "required",
-                last_name: "required",
+                full_name: "required",
                 email: {
                     required: true, email: true
-                },
-                password: {
-                    required: true, minlength: 5
                 },
                 country: {
                     required: true
                 },
-                mobileCode: {
+                address: {
                     required: true
                 },
                 mobile: {
@@ -24,14 +22,9 @@
                 },
             }, // Specify validation error messages
             messages: {
-                first_name: "{/literal}{$smarty.const.lang_err_first_name}{literal}",
-                last_name: "{/literal}{$smarty.const.lang_err_last_name}{literal}",
-                password: {
-                    required: "{/literal}{$smarty.const.lang_err_pass}{literal}",
-                    minlength: "{/literal}{$smarty.const.lang_err_pass_1}{literal}"
-                },
+                full_name: "{/literal}{$smarty.const.lang_err_first_name}{literal}",
                 country: "{/literal}{$smarty.const.lang_err_country}{literal}",
-                mobileCode: "{/literal}{$smarty.const.lang_err_mobile_code}{literal}",
+                address: "Please input your address",
                 email: "{/literal}{$smarty.const.lang_err_email}{literal}",
                 mobile: {
                     required: "{/literal}{$smarty.const.lang_err_mobile}{literal}",
@@ -40,6 +33,16 @@
             }, submitHandler: function (form) {
                 form.submit();
             }
+        });
+    });
+</script>
+<script>
+    $(function(){
+        $('#birthday').combodate({
+            value: new Date(),
+            minYear: 1945,
+            maxYear: moment().format('YYYY'),
+            customClass: 'form-control'
         });
     });
 </script>
@@ -60,15 +63,13 @@
 
                             <div id="cd-signup" class="is-selected">
                                 <div class="fw-bglogin box-login" style="padding: 15px;">
-                                    <form role="form" class="form-ad" name="registration" method="post"
-                                          enctype="multipart/form-data"
-                                          action="{$smarty.const.URL_HOMEPAGE}add-member.html"/>
+                                    <form role="form" class="form-ad" name="registration" method="post" enctype="multipart/form-data"
+                                          action="{$smarty.const.URL_HOMEPAGE}register.html"/>
 
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" name="full_name"
-                                                       id="full_name" placeholder="{$smarty.const.lang_common_ho}"/>
+                                                <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Họ & tên(*)"/>
                                             </div>
                                         </div>
                                     </div>
@@ -78,14 +79,20 @@
 
                                             <div class="col-md-12 fw-mgb10"><strong>Ngày sinh</strong></div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-12 form-inline">
+                                                <div class="input-icon">
+                                                    <input type="text" id="birthday" name="birthday" data-format="DD-MM-YYYY" data-template="D MMM YYYY" value="09-01-2013" />
+                                                </div>
+                                            </div>
+
+                                            {* date/month/year *}
+                                            {*<div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="input-icon">
                                                         <select name="day_birthday" id="day_birthday" class="form-control">
                                                             <option value="">{$smarty.const.lang_common_mobile_code}</option>
                                                             {foreach from=$rs_mobile_code item="val" name="val"}
-                                                            <option value="{$val.code}">{$val.name} (+{$val.code})
-                                                            </option>
+                                                                <option value="{$val.code}">{$val.name} (+{$val.code})</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -98,8 +105,7 @@
                                                         <select name="month_birthday" id="month_birthday" class="form-control">
                                                             <option value="">{$smarty.const.lang_common_mobile_code}</option>
                                                             {foreach from=$rs_mobile_code item="val" name="val"}
-                                                            <option value="{$val.code}">{$val.name} (+{$val.code})
-                                                            </option>
+                                                                <option value="{$val.code}">{$val.name} (+{$val.code})</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -112,13 +118,12 @@
                                                         <select name="year_birthday" id="year_birthday" class="form-control">
                                                             <option value="">{$smarty.const.lang_common_mobile_code}</option>
                                                             {foreach from=$rs_mobile_code item="val" name="val"}
-                                                            <option value="{$val.code}">{$val.name} (+{$val.code})
-                                                            </option>
+                                                                <option value="{$val.code}">{$val.name} (+{$val.code})</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>*}
 
                                         </div>
                                     </div>
@@ -151,10 +156,9 @@
                                         <div class="form-group">
                                             <div class="input-icon">
                                                 <select name="country" id="country" class="form-control">
-                                                    <option value="">{$smarty.const.lang_common_mobile_code}</option>
-                                                    {foreach from=$rs_mobile_code item="val" name="val"}
-                                                    <option value="{$val.code}">{$val.name} (+{$val.code})
-                                                    </option>
+                                                    <option value="">{$smarty.const.lang_user_address_3}</option>
+                                                    {foreach from=$rs_list_country name=val item=val}
+                                                    <option value="{$val.id}">{$val.name}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>

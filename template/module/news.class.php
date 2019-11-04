@@ -137,6 +137,18 @@ class News
         return $rows;
     }
 
+    function num_scholarship($parent_id, $news_type)
+    {
+        global $db;
+        $language = LANG_AUGE;
+        $sql = "SELECT news_id FROM list_scholarship where status = '1'
+        and news_category = '$parent_id' and language ='$language' and news_type = '$news_type'";
+        $res = $db->db_query($sql);
+        $rows = $db->db_numrows($res);
+
+        return $rows;
+    }
+
     function get_list_scholarship($category_id, $news_type, $page, $per_page)
     {
         global $db, $function;
@@ -335,6 +347,73 @@ class News
         return $rows;
     }
 
+    /**
+     * @param $programArray
+     * @return array|bool
+     */
+    function get_list_duhoc_news($programArray)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_id, news_name, news_content,news_img, news_url,description ";
+        $sql .= "FROM list_duhoc_news where status = '1' and news_category in ($programArray) and language ='$language' ORDER BY news_id asc limit 100";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 70),'');
+            $rows[$i]["description_limit"] = strip_tags($function->cutnchar($rows[$i]["description"], 200),'');
+        }
+        return $rows;
+    }
+
+    /**
+     * @param $program_id
+     * @return array|bool
+     */
+    function get_detail_program($program_id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_id, news_name, news_content, news_img, news_url,description, news_category ";
+        $sql .= "FROM list_duhoc_program where status = '1' and news_id = $program_id and language ='$language'";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content"] = strip_tags($rows[$i]["news_content"],'');
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 70),'');
+            $rows[$i]["description_limit"] = strip_tags($function->cutnchar($rows[$i]["description"], 200),'');
+        }
+        return $rows;
+    }
+
+    /**
+     * @param $news_id
+     * @return array|bool
+     */
+    function get_detail_duhoc_news($news_id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_id, news_name, news_content, news_img, news_url,description, news_category ";
+        $sql .= "FROM list_duhoc_news where status = '1' and news_id = $news_id and language ='$language'";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content"] = strip_tags($rows[$i]["news_content"],'');
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 70),'');
+            $rows[$i]["description_limit"] = strip_tags($function->cutnchar($rows[$i]["description"], 200),'');
+        }
+        return $rows;
+    }
 
     function get_duhoc_news_by_id($id)
     {
@@ -377,6 +456,23 @@ class News
 
         $sql = "SELECT news_id, news_name, news_content, news_img ";
         $sql .= "FROM list_duhoc_content where status = '1' and news_category=$id and language ='$language' ORDER BY news_id asc limit 100";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 200),'');
+        }
+        return $rows;
+    }
+
+    function get_duhoc_content_news_by_id($id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_id, news_name, news_content, news_img ";
+        $sql .= "FROM list_duhoc_content where status = '1' and news_id=$id and language ='$language' ORDER BY news_id asc limit 100";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 

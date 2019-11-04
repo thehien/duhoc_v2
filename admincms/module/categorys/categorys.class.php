@@ -212,6 +212,49 @@ class categorys_class
         return $tree_arrays;
     }
 
+
+    // Get list du hoc program
+    function select_list_program_arrays($check_id, $news_url = '', $parent_id = 0, $spacing = '', $tree_arrays = '', $level = 0)
+    {
+        global $db,$function;
+        $language = LANG_AUGE_CMS;
+        if (!is_array($tree_arrays)) {
+            $tree_arrays = [];
+        }
+        $str = "";
+        if ($news_url == 1) {
+            $str .= "and a.news_url=''";
+        }
+        if ($news_url == 2) {
+            $str .= "and a.news_url='menu/'";
+        }
+        if ($check_id > 0) {
+            $str .= "";
+        }
+        $sql = "SELECT a.news_name,a.news_id FROM list_duhoc_program a 
+    WHERE language ='$language' and status = 1 $str ORDER BY a.news_id ASC";
+        $res = $db->db_query($sql);
+        if ($db->db_numrows($res) > 0) {
+            $rows = $db->db_fetchrowset($res);
+            foreach ($rows as $tree) {
+                if ($level == 0) {
+                    $str = $spacing . '&raquo;&nbsp;<b>' . $tree['news_name'] . '</b>';
+                } else {
+                    $str = $spacing . '&raquo;&raquo;&nbsp;' . $tree['news_name'];
+                }
+
+                $tree_arrays[] = [
+                    "category_name" => $str,
+                    "category_id" => $tree['news_id'],
+                    "level" => $level
+                ];
+                $level++;
+                $db->db_freeresult($res);
+            }
+        }
+        return $tree_arrays;
+    }
+
     //select list service
     function get_list_service_arrays(
         $check_id,
