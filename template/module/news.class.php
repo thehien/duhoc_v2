@@ -449,6 +449,23 @@ class News
         return $rows;
     }
 
+    function get_list_program_img_by_id($id)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+
+        $sql = "SELECT news_id, news_name, news_img, news_url ";
+        $sql .= "FROM list_duhoc_program_img where status = '1' and news_category=$id and language ='$language' ORDER BY news_id asc limit 50";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 70);
+            $rows[$i]["news_content_limit"] = strip_tags($function->cutnchar($rows[$i]["news_content"], 200),'');
+        }
+        return $rows;
+    }
+
     function get_duhoc_main_content_by_id($id)
     {
         global $db, $function;

@@ -48,7 +48,43 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function(){
+        $('.loader').hide();
+        $(window).scroll(function(){
+            if($(window).scrollTop() + $(window).height() >= $(document).height()){
+
+                var row = Number($('#row').val());
+                var allcount = Number($('#all').val());
+                var news_category = Number($('#news_category').val());
+                var news_type = Number($('#news_type').val());
+                var rowperpage = 5;
+                row = row + rowperpage;
+
+
+                if(row <= allcount){
+                    $('#row').val(row);
+                    $.ajax({
+                        url: '{/literal}{$smarty.const.URL_HOMEPAGE}{literal}load/fetch_data.php',
+                        type: 'post',
+                        data: {row:row, news_category:news_category, news_type:news_type},
+                        success: function(response){
+                            $(".post_scholarship:last").after(response).show().fadeIn("slow");
+                            $('.loader').show(0).delay(2000).hide(0);
+                        }
+                    });
+
+                }
+            }
+
+        });
+
+    });
+</script>
 {/literal}
+
+
 
 <!-- Header Section Start -->
 <div class="header">
@@ -120,15 +156,18 @@
                                     </div>
                                 </div>
 
+                                {if count($list_scholarship_center) > 0}
                                 {foreach from=$list_scholarship_center item="val" key="key" name="val"}
-                                <div class="col-md-12 no-padding fw-border3">
+                                <div class="post_scholarship col-md-12 no-padding fw-border3" id="post_{$val.news_id}">
                                     <div class="col-md-9">
                                         <div class="team_title fw-mgt10">
                                             <a href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$val.news_id}/{$val.news_url}.html">
                                                 <strong>{$val.news_name_limit}</strong>
                                             </a>
                                         </div>
-                                        <div class="team_content fw-mgb10" style="height:auto; min-height: 70px;">{$val.news_content_limit_1}</div>
+                                        <div class="team_content fw-mgb10" style="height:auto; min-height: 70px;">
+                                            {$val.news_content_limit_1}
+                                        </div>
                                         <div class="col-md-12 no-padding fw-fs-12 fw-mgb10">
                                             <div class="col-md-3 no-padding">
                                                 <span class="margin-right-md"><i class="fa fa-heart" aria-hidden="true"></i> 609</span>
@@ -144,16 +183,32 @@
                                     </div>
 
                                     <div class="col-md-3 no-padding" align="right">
-                                        <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$val.news_id}/{$val.news_url}.html">
+                                        <a class="hover-effect"
+                                           href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$val.news_id}/{$val.news_url}.html">
                                             {if $val.news_img}
-                                            <img style="height: 150px !important;" src="{$smarty.const.URL_HOME}/upload/scholarship/{$val.news_img}" />
+                                            <img style="height: 150px !important;"
+                                                 src="{$smarty.const.URL_HOME}/upload/scholarship/{$val.news_img}"/>
                                             {else}
-                                            <img width="100%" src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg" alt="">
+                                            <img width="100%"
+                                                 src="http://linkrica.com/duhoc/upload/categorys/0347-america-01.jpg"
+                                                 alt="">
                                             {/if}
                                         </a>
                                     </div>
                                 </div>
+
                                 {/foreach}
+
+                                <div align="center" class="col-md-12 loader"></div>
+
+                                <input type="hidden" id="row" value="0">
+                                <input type="hidden" id="all" value="{$count_scholarship_center}">
+                                <input type="hidden" id="news_category" value="{$main_cate}">
+                                <input type="hidden" id="news_type" value="0">
+
+                                {else}
+                                <div align="center" class="col-md-12 fw-mgt30 fw-mgb30"><h3>Don't have data.</h3></div>
+                                {/if}
                             </div>
                         </div>
 

@@ -334,12 +334,15 @@ function process_client()
                 LANG_FIND_SCHOOL
             ];
             $content_index = $oNews->get_category_content($array_const);
-            //$function->debugPrint($content_index);
             $smarty->assign("content_index", $content_index);
 
             // Get list array data
             $list_content = $oNews->get_sub_list_category(LANG_DU_HOC_HE_SU_MENH_GIA_TRI);
             $smarty->assign("list_content", $list_content);
+
+            // Get list slider img
+            $list_content = $oNews->show_all_coupons_banner(LANG_ABOUT_SLIDER_IMG,0, 0, 50);
+            $smarty->assign("list_slider_img", $list_content);
 
             $list_content1 = $oNews->get_sub_list_category(LANG_HO_SO_DU_HOC);
             $smarty->assign("list_content1", $list_content1);
@@ -520,7 +523,6 @@ function process_client()
             $list_scholarship_center = $oNews->get_list_scholarship($paramId, 0, 0, $per_page);
             $smarty->assign("list_scholarship_center", $list_scholarship_center);
 
-
             // get right content
             $list_scholarship_right = $oNews->get_list_scholarship($paramId, 1, 0, 10);
             $smarty->assign("list_scholarship_right", $list_scholarship_right);
@@ -653,6 +655,9 @@ function process_client()
             $smarty->assign("program_content", $program_content);
 
             // Get list img
+            $list_program_imgages = $oNews->get_list_program_img_by_id($paramId);
+            //$function->debugPrint($list_program_imgages);
+            $smarty->assign("list_program_images", $list_program_imgages);
 
             // Get list other program
             $duhoc_program_data = $oNews->get_list_data_program($program_content[0]['news_category']);

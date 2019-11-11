@@ -71,6 +71,7 @@ if ($_SESSION[URL_HOME]["lang"] == "vn") {
         define("LANG_HANH_TRINH", '138');
         define("LANG_WELCOME", '139');
         define("LANG_FIND_SCHOOL", '143');
+        define("LANG_ABOUT_SLIDER_IMG", '145');
         require('general/include/contact.php');
         include('general/language/language_en.php');
     }
