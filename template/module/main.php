@@ -706,7 +706,6 @@ function process_client()
         case "register":
             $smarty->assign("register", 1);
 
-
             break;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "contact":

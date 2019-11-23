@@ -163,7 +163,7 @@ class News
         $sql = "SELECT news_id, news_url, news_name, news_img, news_content, FROM_UNIXTIME(created_date,'%d/%m/%Y %h:%i') as time_news ";
         $sql .= "FROM list_scholarship where status = '1' and language ='$language' $sr 
         ORDER BY news_id asc Limit $page, $per_page";
-
+        //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 

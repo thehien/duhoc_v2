@@ -15,19 +15,16 @@
         $('.loader').hide();
         $(window).scroll(function () {
             if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-
                 var row = Number($('#row').val());
                 var allcount = Number($('#all').val());
                 var news_category = Number($('#news_category').val());
-                var news_type = Number($('#news_type').val());
                 var rowperpage = 5;
                 row = row + rowperpage;
 
-
-                if (row <= allcount) {
+                if(row <= allcount){
                     $('#row').val(row);
                     $.ajax({
-                        url: '{/literal}{$smarty.const.URL_HOMEPAGE}{literal}load/fetch_data.php',
+                        url: '{/literal}{$smarty.const.URL_HOMEPAGE}{literal}load/load_blog_data.php',
                         type: 'post',
                         data: {row: row, news_category: news_category, news_type: news_type},
                         success: function (response) {
@@ -35,12 +32,9 @@
                             $('.loader').show(0).delay(2000).hide(0);
                         }
                     });
-
                 }
             }
-
         });
-
     });
 </script>
 {/literal}

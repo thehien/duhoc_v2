@@ -17,7 +17,7 @@ if ($_POST) {
     $stmt = $db_con->prepare("SELECT news_id, news_url, news_name, news_img, news_content 
     FROM list_scholarship where status = '1' and language =:language and news_category =:news_category and news_type =:news_type
     ORDER BY news_id asc Limit :row, :rowperpage");
-
+    //var_dump($stmt);
     $stmt->bindValue(':language', $language, PDO::PARAM_INT);
     $stmt->bindValue(':news_category', $news_category, PDO::PARAM_INT);
     $stmt->bindValue(':news_type', $news_type, PDO::PARAM_INT);
@@ -32,7 +32,7 @@ if ($_POST) {
         $shortName = substr($row['news_name'], 0, 60)."...";
         $shortContent = substr($row['news_content'], 0, 250)."...";
         // Creating HTML structure
-        $html = "<div class=\"col-md-12 no-padding fw-border3\" id=\"post_".$row[news_id]."\">
+        $html .= "<div class=\"col-md-12 no-padding fw-border3\" id=\"post_".$row[news_id]."\">
                                         <div class=\"col-md-9\">
                                             <div class=\"team_title fw-mgt10\">
                                                 <a href=\"" . URL_HOMEPAGE . "hb-detail/".$row[news_id]."/".$row[news_url].".html\">
